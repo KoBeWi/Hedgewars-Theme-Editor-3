@@ -1,21 +1,9 @@
 extends VBoxContainer
 
-var themes_path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars/Data/Themes"
-
 func _ready():
-	var dir = Directory.new()
-	dir.open(themes_path)
-	dir.list_dir_begin(true)
-	
-	var theme_dir = dir.get_next()
-	while theme_dir != "":
-		if !dir.dir_exists(themes_path + "/" + theme_dir):
-			theme_dir = dir.get_next()
-			continue
-		
+	for theme_dir in Util.list_directory(Util.themes_path, false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		button.get_node("Name").text = theme_dir
-		button.get_node("Icon").texture = Util.load_texture(themes_path + "/" + theme_dir + "/" + "icon@2x.png")
+		button.get_node("Icon").texture = Util.load_texture(str(Util.themes_path, "/", theme_dir, "/", "icon@2x.png"))
+		button.connect("pressed", HWTheme, "load_theme", [theme_dir])
 		$ThemesList.add_child(button)
-		
-		theme_dir = dir.get_next()
