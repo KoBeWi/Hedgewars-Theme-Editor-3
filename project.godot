@@ -28,6 +28,10 @@ HWTheme="*res://Scripts/Theme.gd"
 
 window/dpi/allow_hidpi=true
 
+[gui]
+
+theme/custom_font="res://Font/DefaultFont.tres"
+
 [rendering]
 
 environment/default_clear_color=Color( 0.0784314, 0.0705882, 0.313726, 1 )
