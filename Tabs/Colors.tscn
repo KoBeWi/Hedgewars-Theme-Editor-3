@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/TabColors.gd" type="Script" id=1]
+[ext_resource path="res://Nodes/ColorPicker.tscn" type="PackedScene" id=2]
+
+[node name="Colors" type="ScrollContainer"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 41.0
+margin_right = 171.0
+margin_bottom = 462.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+scroll_horizontal_enabled = false
+scroll_horizontal = 0
+scroll_vertical_enabled = true
+scroll_vertical = 0
+scroll_deadzone = 0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Scroll" ]
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 298.0
+margin_bottom = 2671.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="Sky" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 298.0
+margin_bottom = 546.0
+_sections_unfolded = [ "Rect" ]
+label = "Sky color"
+
+[node name="Border" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 550.0
+margin_right = 298.0
+margin_bottom = 1096.0
+_sections_unfolded = [ "Rect" ]
+label = "Border color"
+
+[node name="UpperWater" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 1100.0
+margin_right = 298.0
+margin_bottom = 1646.0
+_sections_unfolded = [ "Rect" ]
+label = "Upper water color"
+edit_alpha = true
+
+[node name="LowerWater" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 1650.0
+margin_right = 298.0
+margin_bottom = 2671.0
+_sections_unfolded = [ "Rect" ]
+label = "Lower water color"
+edit_alpha = true
+

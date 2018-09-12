@@ -9,8 +9,8 @@ func _ready():
 		$Music/List.add_item(music.get_basename())
 
 func on_theme_loaded():
-	$Header/Icon.texture = Util.load_texture(Util.theme_path() + "icon.png")
-	$Header/Icon2x.texture = Util.load_texture(Util.theme_path() + "icon@2x.png")
+	$Header/Icon.texture = Util.load_texture(HWTheme.path() + "icon.png")
+	$Header/Icon2x.texture = Util.load_texture(HWTheme.path() + "icon@2x.png")
 	$Header/Name.text = HWTheme.theme_name
 
 func play_music(): #TODO: cache music on change, pause

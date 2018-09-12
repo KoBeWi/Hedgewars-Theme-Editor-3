@@ -11,9 +11,6 @@ func load_texture(file):
 	texture.create_from_image(image)
 	return texture
 
-func theme_path():
-	return str(themes_path, "/", HWTheme.theme_name, "/")
-
 func list_directory(path, for_files = true):
 	var list = []
 	

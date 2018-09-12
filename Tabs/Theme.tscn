@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/TabTheme.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Images/Play.png" type="Texture" id=3]
-[ext_resource path="res://Images/Stop.png" type="Texture" id=4]
+[ext_resource path="res://Font/HeaderFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://Images/Play.png" type="Texture" id=4]
+[ext_resource path="res://Images/Stop.png" type="Texture" id=5]
 
 [node name="Theme" type="VBoxContainer"]
 anchor_left = 0.0
@@ -45,8 +46,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 399.0
-margin_right = 464.0
+margin_left = 287.0
+margin_right = 352.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 65, 96 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -65,8 +66,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 468.0
-margin_right = 533.0
+margin_left = 356.0
+margin_right = 421.0
 margin_bottom = 128.0
 rect_min_size = Vector2( 65, 96 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -85,9 +86,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 537.0
+margin_left = 425.0
 margin_top = 16.0
-margin_right = 616.0
+margin_right = 728.0
 margin_bottom = 112.0
 rect_min_size = Vector2( 0, 96 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -96,12 +97,13 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
+custom_fonts/font = ExtResource( 3 )
 text = "Theme name"
 valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Rect", "custom_fonts" ]
 
 [node name="Separator" type="HSeparator" parent="."]
 anchor_left = 0.0
@@ -119,6 +121,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 
 [node name="Music" type="HBoxContainer" parent="."]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -198,7 +201,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 3 )
+icon = ExtResource( 4 )
 flat = false
 align = 1
 
@@ -221,7 +224,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-icon = ExtResource( 4 )
+icon = ExtResource( 5 )
 flat = false
 align = 1
 
