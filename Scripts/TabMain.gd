@@ -1,6 +1,8 @@
 extends VBoxContainer
 
 func _ready():
+	name = tr("Main")
+	
 	for theme_dir in Util.list_directory(Util.themes_path, false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		button.get_node("Name").text = theme_dir

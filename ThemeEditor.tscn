@@ -29,6 +29,9 @@ visible = false
 margin_top = 41.0
 
 [node name="Colors" parent="." instance=ExtResource( 4 )]
+visible = false
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="Customization" type="Control" parent="."]
 visible = false

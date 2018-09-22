@@ -1,0 +1,19 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Language: pl\n"
+"X-Source-Language: C\n"
+
+msgid "Hedgewars Theme Editor 3"
+msgstr "Edytor Motywów Hedgewars 3"
+
+msgid "Main"
+msgstr "Ekran główny"
+
+msgid "Theme"
+msgstr "Motyw"
+
+msgid "Colors"
+msgstr "Kolory"

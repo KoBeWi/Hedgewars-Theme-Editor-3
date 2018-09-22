@@ -1,6 +1,8 @@
 extends VBoxContainer
 
 func _ready():
+	name = tr("Theme")
+	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	$Music/Play.connect("pressed", self, "play_music")
 	$Music/Stop.connect("pressed", self, "stop_music")
