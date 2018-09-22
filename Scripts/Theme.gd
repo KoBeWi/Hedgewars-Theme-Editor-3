@@ -4,8 +4,12 @@ var theme_name
 
 var sky = Color(0, 0, 0)
 var border = Color("505050")
-var water_top = Color("80545C9D")
-var water_bottom = Color("80343C7D")
+var water_top = Color("545C9D")
+var water_bottom = Color("343C7D")
+var water_opacity = 128
+var sd_water_top = Color("9670A9")
+var sd_water_bottom = Color("B972C9")
+var sd_water_opacity = 128
 
 signal theme_loaded
 
@@ -24,7 +28,19 @@ func load_theme(_theme_name):
 		if split.size() > 1: params = split[1].split(", ")
 		
 		match split[0]:
-			"sky": sky = Color(int(params[0]), int(params[1]), int(params[2]))
+			"sky": sky = Util.get_color(params)
+			"border": border = Util.get_color(params)
+			"water-top": water_top = Util.get_color(params)
+			"water-bottom": water_bottom = Util.get_color(params)
+			"water-opacity": water_opacity = Util.get_color_value(params[0])
+			"sd-water-top": sd_water_top = Util.get_color(params)
+			"sd-water-bottom": sd_water_bottom = Util.get_color(params)
+			"sd-water-opacity": sd_water_opacity = Util.get_color_value(params[0])
+	
+	water_top.a = water_opacity
+	water_bottom.a = water_opacity
+	sd_water_top.a = sd_water_opacity
+	sd_water_bottom.a = sd_water_opacity
 	
 	emit_signal("theme_loaded")
 

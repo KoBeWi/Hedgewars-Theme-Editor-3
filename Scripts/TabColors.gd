@@ -1,6 +1,6 @@
 extends Control
 
-const colors = ["sky", "border", "water_top", "water_bottom"]
+const colors = ["sky", "border", "water_top", "water_bottom", "sd_water_top", "sd_water_bottom"]
 
 func _ready():
 	name = tr("Colors")

@@ -32,7 +32,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 298.0
-margin_bottom = 2196.0
+margin_bottom = 3296.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -89,5 +89,31 @@ margin_right = 298.0
 margin_bottom = 2196.0
 _sections_unfolded = [ "Rect" ]
 label = "Lower water color"
+edit_alpha = true
+
+[node name="SDUpperWater" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 2200.0
+margin_right = 298.0
+margin_bottom = 2746.0
+_sections_unfolded = [ "Rect" ]
+label = "Sudden Death upper water color"
+edit_alpha = true
+
+[node name="SDLowerWater" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 2750.0
+margin_right = 298.0
+margin_bottom = 3296.0
+_sections_unfolded = [ "Rect" ]
+label = "Sudden Death lower water color"
 edit_alpha = true
 

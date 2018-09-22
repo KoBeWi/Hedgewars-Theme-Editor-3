@@ -28,3 +28,12 @@ func list_directory(path, for_files = true):
 		entry = dir.get_next()
 	
 	return list
+
+func get_color(rgb):
+	var result = []
+	for i in 3: result.append(get_color_value(rgb[i]))
+	return Color(result[0], result[1], result[2])
+
+func get_color_value(val):
+	if val.begins_with("$"): return val.substr(1, 2).hex_to_int() / 255.0
+	else: return int(val) / 255.0
