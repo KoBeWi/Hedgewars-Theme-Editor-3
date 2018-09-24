@@ -17,3 +17,6 @@ msgstr "Motyw"
 
 msgid "Colors"
 msgstr "Kolory"
+
+msgid "When off, related key will not appear in theme.cfg"
+msgstr "Kiedy wyłączone, odpowiedni klucz nie pojawi się w theme.cfg"

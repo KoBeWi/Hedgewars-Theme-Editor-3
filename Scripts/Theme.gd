@@ -14,7 +14,9 @@ var sd_water_bottom = Color("B972C9")
 var sd_water_opacity = 128
 
 var clouds = 9
+var clouds_defined = false
 var sd_clouds = 9
+var sd_clouds_defined = false
 var flatten_clouds = false
 
 signal theme_loaded
@@ -43,8 +45,12 @@ func load_theme(_theme_name):
 			"sd-water-top": sd_water_top = Util.get_color(params)
 			"sd-water-bottom": sd_water_bottom = Util.get_color(params)
 			"sd-water-opacity": sd_water_opacity = Util.get_color_value(params[0])
-			"clouds": clouds = int(params[0])
-			"sd-clouds": sd_clouds = int(params[0])
+			"clouds":
+				clouds = int(params[0])
+				clouds_defined = true
+			"sd-clouds":
+				sd_clouds = int(params[0])
+				sd_clouds_defined = true
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity

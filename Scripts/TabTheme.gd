@@ -4,7 +4,10 @@ var player_paused = null
 var playing_sd
 
 func _ready():
-	name = tr("Theme")
+	name = tr(name)
+	
+	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
+	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	$Music/Play.connect("pressed", self, "play_music", [false])
@@ -21,7 +24,10 @@ func on_theme_loaded():
 	$Header/Icon2x.texture = Util.load_texture(HWTheme.path() + "icon@2x.png")
 	$Header/Name.text = HWTheme.theme_name
 	
+	$CloudsHeader/OnOff.pressed = HWTheme.clouds_defined
 	$Clouds/Amount.value = HWTheme.clouds
+	$SDCloudsHeader/OnOff.pressed = HWTheme.sd_clouds_defined
+	$SDClouds/Amount.value = HWTheme.clouds
 
 func play_music(sd): #TODO: cache music on change, also handle pause on change
 	if sd == playing_sd:

@@ -3,7 +3,7 @@ extends Control
 const colors = ["sky", "border", "water_top", "water_bottom", "sd_water_top", "sd_water_bottom"]
 
 func _ready():
-	name = tr("Colors")
+	name = tr(name)
 	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	$Container/UpperWater/Color.connect("color_changed", self, "synchronize_water_alpha")
