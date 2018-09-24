@@ -2,6 +2,7 @@ extends Node
 
 var themes_path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars/Data/Themes"
 var hedgewars_path = "C:/Program Files (x86)/Hedgewars 0.9.24.1"
+var hedgewars_user_path = "C:/Users/Tomek/Documents/Hedgewars"
 
 func load_texture(file):
 	var image = Image.new()

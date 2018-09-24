@@ -4,19 +4,26 @@ var theme_name
 
 var sky = Color(0, 0, 0)
 var border = Color("505050")
+
 var water_top = Color("545C9D")
 var water_bottom = Color("343C7D")
 var water_opacity = 128
+
 var sd_water_top = Color("9670A9")
 var sd_water_bottom = Color("B972C9")
 var sd_water_opacity = 128
+
+var clouds = 9
+var sd_clouds = 9
+var flatten_clouds = false
 
 signal theme_loaded
 
 func load_theme(_theme_name):
 	theme_name = _theme_name
 	
-	sky = Color(0, 0, 0)
+	sky = Color(0, 0, 0) #TODO: same with other values
+	sd_clouds = null
 	
 	var cfg_file = File.new()
 	cfg_file.open(path() + "theme.cfg", cfg_file.READ)
@@ -36,11 +43,15 @@ func load_theme(_theme_name):
 			"sd-water-top": sd_water_top = Util.get_color(params)
 			"sd-water-bottom": sd_water_bottom = Util.get_color(params)
 			"sd-water-opacity": sd_water_opacity = Util.get_color_value(params[0])
+			"clouds": clouds = int(params[0])
+			"sd-clouds": sd_clouds = int(params[0])
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
 	sd_water_top.a = sd_water_opacity
 	sd_water_bottom.a = sd_water_opacity
+	
+	if sd_clouds == null: sd_clouds = clouds
 	
 	emit_signal("theme_loaded")
 
