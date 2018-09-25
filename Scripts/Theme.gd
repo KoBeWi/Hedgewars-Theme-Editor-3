@@ -55,6 +55,8 @@ var ice
 var objects
 var sprays
 
+var theme_output
+
 signal theme_loaded
 
 func load_defaults():
@@ -173,7 +175,7 @@ func load_theme(_theme_name):
 			"ice": ice = true
 			"object":
 				var object = {buried = [], visible = []}
-				object.max = int(params[1])
+				object.number = int(params[1])
 				
 				var rects = 1
 				var i = 2
@@ -194,6 +196,7 @@ func load_theme(_theme_name):
 					i += 4
 				
 				objects[params[0]] = object
+			"spray": sprays[params[0]] = int(params[1])
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
@@ -202,8 +205,52 @@ func load_theme(_theme_name):
 	
 	if sd_clouds == null: sd_clouds = clouds
 	
+	cfg_file.close()
 	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", theme_name, ")"))
 	emit_signal("theme_loaded")
 
+func save_theme():
+	refresh_oputput()
+	
+	var cfg_file = File.new()
+	cfg_file.open(path() + "theme.cfg", cfg_file.WRITE)
+	cfg_file.store_string(theme_output.join("\n"))
+	cfg_file.close()
+
 func path():
 	return str(Util.themes_path, "/", theme_name, "/")
+
+func refresh_oputput():
+	theme_output = PoolStringArray()
+	
+	theme_output.append("#Created with Hedgewars Theme Editor 3")
+	theme_output.append(str("sky = ", int(sky.r * 255), ", ", int(sky.g * 255), ", ", int(sky.b * 255)))
+	theme_output.append(str("border = ", int(border.r * 255), ", ", int(border.g * 255), ", ", int(border.b * 255)))
+	theme_output.append(str("water-top = ", int(water_top.r * 255), ", ", int(water_top.g * 255), ", ", int(water_top.b * 255)))
+	theme_output.append(str("water-bottom = ", int(water_bottom.r * 255), ", ", int(water_bottom.g * 255), ", ", int(water_bottom.b * 255)))
+	theme_output.append(str("water-opacity = ", int(water_top.a * 255)))
+	theme_output.append(str("sd-water-top = ", int(sd_water_top.r * 255), ", ", int(sd_water_top.g * 255), ", ", int(sd_water_top.b * 255)))
+	theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
+	theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
+	theme_output.append(str("sd-tint = ", int(sd_tint.r * 255), ", ", int(sd_tint.g * 255), ", ", int(sd_tint.b * 255), ", ", int(sd_tint.a * 255)))
+	theme_output.append(str("music = ", music, ".ogg"))
+	theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
+	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
+	if clouds_defined: theme_output.append(str("clouds = ", clouds))
+	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
+	
+	for object in objects.keys():
+		var line = str(object, ", ", objects[object].number, ", ")
+		
+		if objects[object].buried.size() > 1: line += str(objects[object].buried.size(), ", ")
+		for buried in objects[object].buried:
+			line += str(buried.position.x, ", ", buried.position.y, ", ", buried.size.x, ", ", buried.size.y, ", ")
+		
+		line += str(objects[object].visible.size())
+		for visible in objects[object].visible:
+			line += str(", ", visible.position.x, ", ", visible.position.y, ", ", visible.size.x, ", ", visible.size.y)
+		
+		theme_output.append("object = " + line)
+	
+	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))

@@ -5,6 +5,8 @@ func _ready():
 	
 	Util.size_listeners.append(self)
 	
+	$Save.connect("pressed", HWTheme, "save_theme")
+	
 	for theme_dir in Util.list_directory(Util.themes_path, false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		button.get_node("Name").text = theme_dir
