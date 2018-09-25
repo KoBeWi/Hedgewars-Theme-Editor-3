@@ -47,3 +47,10 @@ func get_color_value(val):
 func update_size():
 	for container in size_listeners:
 		container.rect_min_size.x = get_viewport().size.x
+
+func select_music(list, item):
+	list.selected = 0
+	for i in list.get_item_count():
+		if list.get_item_text(i) == item:
+			list.selected = i
+			return

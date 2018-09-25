@@ -2,9 +2,12 @@ extends Node
 
 var theme_name
 
-var sky = Color(0, 0, 0)
-var border = Color("505050")
-var sd_tint = Color("808080")
+var music
+var sd_music
+
+var sky
+var border
+var sd_tint
 
 var water_top = Color("545C9D")
 var water_bottom = Color("343C7D")
@@ -41,10 +44,16 @@ var ice = false
 
 signal theme_loaded
 
+func load_defaults():
+	sky = Color(0, 0, 0)
+	border = Color("505050")
+	sd_tint = Color("808080")
+	#TODO: same with other values
+
 func load_theme(_theme_name):
+	load_defaults()
 	theme_name = _theme_name
 	
-	sky = Color(0, 0, 0) #TODO: same with other values
 	sd_clouds = null
 	
 	var cfg_file = File.new()
@@ -57,6 +66,8 @@ func load_theme(_theme_name):
 		if split.size() > 1: params = split[1].split(", ")
 		
 		match split[0]:
+			"music": music = params[0].get_basename()
+			"sd-music": sd_music = params[0].get_basename()
 			"sky": sky = Util.get_color(params)
 			"border": border = Util.get_color(params)
 			"water-top": water_top = Util.get_color(params)
@@ -71,6 +82,25 @@ func load_theme(_theme_name):
 			"sd-clouds":
 				sd_clouds = int(params[0])
 				sd_clouds_defined = true
+			"flakes":
+				flakes_amount = int(params[0])
+				flakes_frames = int(params[1])
+				flakes_duration = int(params[2])
+				flakes_rotation = int(params[3])
+				flakes_speed = int(params[4])
+				flakes_defined = true
+			"sd-flakes":
+				sd_flakes_amount = int(params[0])
+				#TODO: can have amount only
+				sd_flakes_frames = int(params[1])
+				sd_flakes_duration = int(params[2])
+				sd_flakes_rotation = int(params[3])
+				sd_flakes_speed = int(params[4])
+				sd_flakes_defined = true
+			"flatten-clouds": flatten_clouds = true
+			"flatten-flakes": flatten_flakes = true
+			"snow": snow = true
+			"ice": ice = true
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
@@ -79,6 +109,7 @@ func load_theme(_theme_name):
 	
 	if sd_clouds == null: sd_clouds = clouds
 	
+	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", theme_name, ")"))
 	emit_signal("theme_loaded")
 
 func path():

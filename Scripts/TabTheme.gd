@@ -4,7 +4,7 @@ var player_paused = null
 var playing_sd
 
 func _ready():
-	name = tr(name)
+	get_parent().name = tr(get_parent().name)
 	
 	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
@@ -17,7 +17,14 @@ func _ready():
 	$SDMusic/Play.connect("pressed", self, "play_music", [true])
 	$SDMusic/Stop.connect("pressed", self, "stop_music")
 	
+	$Music/List.add_item(tr("/none/"))
+	$SDMusic/List.add_item(tr("/none/"))
+	
 	for music in Util.list_directory(music_dir()):
+		$Music/List.add_item(music.get_basename())
+		$SDMusic/List.add_item(music.get_basename())
+		
+	for music in Util.list_directory(user_music_dir()):
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
 
@@ -26,10 +33,29 @@ func on_theme_loaded():
 	$Header/Icon2x.texture = Util.load_texture(HWTheme.path() + "icon@2x.png")
 	$Header/Name.text = HWTheme.theme_name
 	
+	Util.select_music($Music/List, HWTheme.music)
+	Util.select_music($SDMusic/List, HWTheme.sd_music)
+	
 	$CloudsHeader/OnOff.pressed = HWTheme.clouds_defined
 	$Clouds/Amount.value = HWTheme.clouds
 	$SDCloudsHeader/OnOff.pressed = HWTheme.sd_clouds_defined
 	$SDClouds/Amount.value = HWTheme.clouds
+	
+	$FlakesHeader/OnOff.pressed = HWTheme.flakes_defined
+	$Flakes/Amount/Value.value = HWTheme.flakes_amount
+	$Flakes/Frames/Value.value = HWTheme.flakes_frames
+	$Flakes/FrameDuration/Value.value = HWTheme.flakes_duration
+	$Flakes/RotationSpeed/Value.value = HWTheme.flakes_rotation
+	$Flakes/FallingSpeed/Value.value = HWTheme.flakes_speed
+	
+	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
+	$SDFlakes/Amount/Value.value = HWTheme.sd_flakes_amount
+	$SDFlakes/Frames/Value.value = HWTheme.sd_flakes_frames
+	$SDFlakes/FrameDuration/Value.value = HWTheme.sd_flakes_duration
+	$SDFlakes/RotationSpeed/Value.value = HWTheme.sd_flakes_rotation
+	$SDFlakes/FallingSpeed/Value.value = HWTheme.sd_flakes_speed
+	
+	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
 
 func play_music(sd): #TODO: cache music on change, also handle pause on change
 	if sd == playing_sd:
@@ -60,3 +86,6 @@ func stop_music():
 
 func music_dir():
 	return str(Util.hedgewars_path, "/Data/Music/")
+
+func user_music_dir():
+	return str(Util.hedgewars_user_path, "/Data/Music/")

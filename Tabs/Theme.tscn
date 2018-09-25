@@ -30,13 +30,12 @@ scroll_deadzone = 0
 _sections_unfolded = [ "Scroll" ]
 
 [node name="Container" type="VBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 538.0
-margin_bottom = 1376.0
+margin_bottom = 1368.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -284,9 +283,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 184.0
+margin_left = 128.0
 margin_top = 3.0
-margin_right = 229.0
+margin_right = 285.0
 margin_bottom = 26.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -294,7 +293,7 @@ mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 4
-text = "Music"
+text = "Sudden Death Music"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -304,8 +303,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 233.0
-margin_right = 274.0
+margin_left = 289.0
+margin_right = 330.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -329,8 +328,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 278.0
-margin_right = 314.0
+margin_left = 334.0
+margin_right = 370.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -352,8 +351,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 318.0
-margin_right = 354.0
+margin_left = 374.0
+margin_right = 410.0
 margin_bottom = 30.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -678,13 +677,14 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
 
 [node name="Flakes" type="VBoxContainer" parent="Container"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 420.0
 margin_right = 538.0
-margin_bottom = 420.0
+margin_bottom = 601.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -693,15 +693,14 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Amount" type="HBoxContainer" parent="Container"]
+[node name="Amount" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 424.0
 margin_right = 538.0
-margin_bottom = 457.0
+margin_bottom = 33.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -710,7 +709,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/Amount"]
+[node name="Label" type="Label" parent="Container/Flakes/Amount"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -730,7 +729,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/Amount"]
+[node name="Value" type="SpinBox" parent="Container/Flakes/Amount"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -757,15 +756,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="Frames" type="HBoxContainer" parent="Container"]
+[node name="Frames" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 461.0
+margin_top = 37.0
 margin_right = 538.0
-margin_bottom = 494.0
+margin_bottom = 70.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -774,7 +773,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/Frames"]
+[node name="Label" type="Label" parent="Container/Flakes/Frames"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -794,7 +793,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/Frames"]
+[node name="Value" type="SpinBox" parent="Container/Flakes/Frames"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -809,7 +808,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 min_value = 0.0
-max_value = 0.0
+max_value = 65536.0
 step = 1.0
 page = 0.0
 value = 0.0
@@ -821,15 +820,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="FrameDuration" type="HBoxContainer" parent="Container"]
+[node name="FrameDuration" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 498.0
+margin_top = 74.0
 margin_right = 538.0
-margin_bottom = 531.0
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -838,7 +837,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/FrameDuration"]
+[node name="Label" type="Label" parent="Container/Flakes/FrameDuration"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -858,7 +857,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/FrameDuration"]
+[node name="Value" type="SpinBox" parent="Container/Flakes/FrameDuration"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -886,15 +885,15 @@ editable = true
 prefix = ""
 suffix = "ms"
 
-[node name="RotationSpeed" type="HBoxContainer" parent="Container"]
+[node name="RotationSpeed" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 535.0
+margin_top = 111.0
 margin_right = 538.0
-margin_bottom = 568.0
+margin_bottom = 144.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -903,7 +902,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/RotationSpeed"]
+[node name="Label" type="Label" parent="Container/Flakes/RotationSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -923,7 +922,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/RotationSpeed"]
+[node name="Value" type="SpinBox" parent="Container/Flakes/RotationSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -952,15 +951,15 @@ prefix = ""
 suffix = ""
 _sections_unfolded = [ "Rect" ]
 
-[node name="FallingSpeed" type="HBoxContainer" parent="Container"]
+[node name="FallingSpeed" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 572.0
+margin_top = 148.0
 margin_right = 538.0
-margin_bottom = 605.0
+margin_bottom = 181.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -969,7 +968,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/FallingSpeed"]
+[node name="Label" type="Label" parent="Container/Flakes/FallingSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -989,7 +988,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/FallingSpeed"]
+[node name="Value" type="SpinBox" parent="Container/Flakes/FallingSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1023,9 +1022,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 609.0
+margin_top = 605.0
 margin_right = 538.0
-margin_bottom = 651.0
+margin_bottom = 647.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1078,30 +1077,14 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
 
 [node name="SDFlakes" type="VBoxContainer" parent="Container"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 655.0
-margin_right = 538.0
-margin_bottom = 655.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 1
-
-[node name="Amount2" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 659.0
+margin_top = 651.0
 margin_right = 538.0
-margin_bottom = 692.0
+margin_bottom = 832.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1110,7 +1093,23 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/Amount2"]
+[node name="Amount" type="HBoxContainer" parent="Container/SDFlakes"]
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 538.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="Label" type="Label" parent="Container/SDFlakes/Amount"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1130,7 +1129,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/Amount2"]
+[node name="Value" type="SpinBox" parent="Container/SDFlakes/Amount"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1157,15 +1156,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="Frames2" type="HBoxContainer" parent="Container"]
+[node name="Frames" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 696.0
+margin_top = 37.0
 margin_right = 538.0
-margin_bottom = 729.0
+margin_bottom = 70.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1174,7 +1173,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/Frames2"]
+[node name="Label" type="Label" parent="Container/SDFlakes/Frames"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1194,7 +1193,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/Frames2"]
+[node name="Value" type="SpinBox" parent="Container/SDFlakes/Frames"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1209,7 +1208,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 min_value = 0.0
-max_value = 0.0
+max_value = 65536.0
 step = 1.0
 page = 0.0
 value = 0.0
@@ -1221,15 +1220,15 @@ editable = true
 prefix = ""
 suffix = ""
 
-[node name="FrameDuration2" type="HBoxContainer" parent="Container"]
+[node name="FrameDuration" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 733.0
+margin_top = 74.0
 margin_right = 538.0
-margin_bottom = 766.0
+margin_bottom = 107.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1238,7 +1237,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/FrameDuration2"]
+[node name="Label" type="Label" parent="Container/SDFlakes/FrameDuration"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1258,7 +1257,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/FrameDuration2"]
+[node name="Value" type="SpinBox" parent="Container/SDFlakes/FrameDuration"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1286,15 +1285,15 @@ editable = true
 prefix = ""
 suffix = "ms"
 
-[node name="RotationSpeed2" type="HBoxContainer" parent="Container"]
+[node name="RotationSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 770.0
+margin_top = 111.0
 margin_right = 538.0
-margin_bottom = 803.0
+margin_bottom = 144.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1303,7 +1302,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/RotationSpeed2"]
+[node name="Label" type="Label" parent="Container/SDFlakes/RotationSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1323,7 +1322,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/RotationSpeed2"]
+[node name="Value" type="SpinBox" parent="Container/SDFlakes/RotationSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1352,15 +1351,15 @@ prefix = ""
 suffix = ""
 _sections_unfolded = [ "Rect" ]
 
-[node name="FallingSpeed2" type="HBoxContainer" parent="Container"]
+[node name="FallingSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 807.0
+margin_top = 148.0
 margin_right = 538.0
-margin_bottom = 840.0
+margin_bottom = 181.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1369,7 +1368,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 1
 
-[node name="Label" type="Label" parent="Container/FallingSpeed2"]
+[node name="Label" type="Label" parent="Container/SDFlakes/FallingSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1389,7 +1388,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="SpinBox" parent="Container/FallingSpeed2"]
+[node name="Value" type="SpinBox" parent="Container/SDFlakes/FallingSpeed"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1423,9 +1422,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 844.0
+margin_top = 836.0
 margin_right = 538.0
-margin_bottom = 886.0
+margin_bottom = 878.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1483,9 +1482,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 890.0
+margin_top = 882.0
 margin_right = 538.0
-margin_bottom = 997.0
+margin_bottom = 989.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1693,9 +1692,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1001.0
+margin_top = 993.0
 margin_right = 538.0
-margin_bottom = 1043.0
+margin_bottom = 1035.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1753,9 +1752,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1047.0
+margin_top = 1039.0
 margin_right = 538.0
-margin_bottom = 1154.0
+margin_bottom = 1146.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -1962,9 +1961,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1158.0
+margin_top = 1150.0
 margin_right = 538.0
-margin_bottom = 1200.0
+margin_bottom = 1192.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -1984,9 +1983,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1204.0
+margin_top = 1196.0
 margin_right = 538.0
-margin_bottom = 1244.0
+margin_bottom = 1236.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -2044,9 +2043,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1248.0
+margin_top = 1240.0
 margin_right = 538.0
-margin_bottom = 1288.0
+margin_bottom = 1280.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -2104,9 +2103,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1292.0
+margin_top = 1284.0
 margin_right = 538.0
-margin_bottom = 1332.0
+margin_bottom = 1324.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -2164,9 +2163,9 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 1336.0
+margin_top = 1328.0
 margin_right = 538.0
-margin_bottom = 1376.0
+margin_bottom = 1368.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
