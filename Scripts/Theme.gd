@@ -241,16 +241,17 @@ func refresh_oputput():
 	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
 	
 	for object in objects.keys():
-		var line = str(object, ", ", objects[object].number, ", ")
+		var line = PoolStringArray()
+		line.append(str(object, ", ", objects[object].number, ", "))
 		
-		if objects[object].buried.size() > 1: line += str(objects[object].buried.size(), ", ")
+		if objects[object].buried.size() > 1: line.append(str(objects[object].buried.size(), ", "))
 		for buried in objects[object].buried:
-			line += str(buried.position.x, ", ", buried.position.y, ", ", buried.size.x, ", ", buried.size.y, ", ")
+			line.append(str(buried.position.x, ", ", buried.position.y, ", ", buried.size.x, ", ", buried.size.y, ", "))
 		
-		line += str(objects[object].visible.size())
+		line.append(str(objects[object].visible.size()))
 		for visible in objects[object].visible:
-			line += str(", ", visible.position.x, ", ", visible.position.y, ", ", visible.size.x, ", ", visible.size.y)
+			line.append(str(", ", visible.position.x, ", ", visible.position.y, ", ", visible.size.x, ", ", visible.size.y))
 		
-		theme_output.append("object = " + line)
+		theme_output.append("object = " + line.join(""))
 	
 	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
