@@ -66,11 +66,13 @@ func play_music(sd): #TODO: cache music on change, also handle pause on change
 		elif player_paused:
 			$MusicPlayer.play(player_paused)
 			return
-	
 	playing_sd = sd
-	var file = music_dir() + ($SDMusic/List.get_item_text($SDMusic/List.selected) if sd else $Music/List.get_item_text($Music/List.selected)) + ".ogg"
 	
 	var ogg_file = File.new()
+	var file = str(music_dir(), $SDMusic/List.get_item_text($SDMusic/List.selected) if sd else $Music/List.get_item_text($Music/List.selected), ".ogg")
+	if !ogg_file.file_exists(file):
+		file = str(user_music_dir(), $SDMusic/List.get_item_text($SDMusic/List.selected) if sd else $Music/List.get_item_text($Music/List.selected), ".ogg")
+	
 	ogg_file.open(file, File.READ)
 	
 	var stream = AudioStreamOGGVorbis.new()

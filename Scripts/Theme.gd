@@ -70,6 +70,7 @@ func load_theme(_theme_name):
 			"sd-music": sd_music = params[0].get_basename()
 			"sky": sky = Util.get_color(params)
 			"border": border = Util.get_color(params)
+			"sd-tint": sd_tint = Util.get_color(params)
 			"water-top": water_top = Util.get_color(params)
 			"water-bottom": water_bottom = Util.get_color(params)
 			"water-opacity": water_opacity = Util.get_color_value(params[0])
