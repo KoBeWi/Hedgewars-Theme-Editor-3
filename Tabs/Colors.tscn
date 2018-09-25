@@ -23,7 +23,6 @@ scroll_horizontal = 0
 scroll_vertical_enabled = true
 scroll_vertical = 0
 scroll_deadzone = 0
-script = ExtResource( 1 )
 _sections_unfolded = [ "Scroll" ]
 
 [node name="Container" type="VBoxContainer" parent="."]
@@ -39,7 +38,8 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 1
+alignment = 0
+script = ExtResource( 1 )
 
 [node name="Sky" parent="Container" instance=ExtResource( 2 )]
 anchor_left = 0.0

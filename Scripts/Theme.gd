@@ -4,6 +4,7 @@ var theme_name
 
 var sky = Color(0, 0, 0)
 var border = Color("505050")
+var sd_tint = Color("808080")
 
 var water_top = Color("545C9D")
 var water_bottom = Color("343C7D")
@@ -13,11 +14,30 @@ var sd_water_top = Color("9670A9")
 var sd_water_bottom = Color("B972C9")
 var sd_water_opacity = 128
 
-var clouds = 9
 var clouds_defined = false
-var sd_clouds = 9
+var clouds = 9
+
 var sd_clouds_defined = false
+var sd_clouds = 9
+
+var flakes_defined = false
+var flakes_amount = 0
+var flakes_frames = 0
+var flakes_duration = 0
+var flakes_rotation = 0
+var flakes_speed = 0
+
+var sd_flakes_defined = false
+var sd_flakes_amount = 0
+var sd_flakes_frames = 0
+var sd_flakes_duration = 0
+var sd_flakes_rotation = 0
+var sd_flakes_speed = 0
+
 var flatten_clouds = false
+var flatten_flakes = false
+var snow = false
+var ice = false
 
 signal theme_loaded
 

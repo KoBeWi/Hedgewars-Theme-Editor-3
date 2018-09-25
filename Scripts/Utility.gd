@@ -4,6 +4,11 @@ var themes_path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars/Data/
 var hedgewars_path = "C:/Program Files (x86)/Hedgewars 0.9.24.1"
 var hedgewars_user_path = "C:/Users/Tomek/Documents/Hedgewars"
 
+var size_listeners = []
+
+func _ready():
+	get_viewport().connect("size_changed", self, "update_size")
+
 func load_texture(file):
 	var image = Image.new()
 	image.load(file)
@@ -38,3 +43,7 @@ func get_color(rgb):
 func get_color_value(val):
 	if val.begins_with("$"): return val.substr(1, 2).hex_to_int() / 255.0
 	else: return int(val) / 255.0
+
+func update_size():
+	for container in size_listeners:
+		container.rect_min_size.x = get_viewport().size.x

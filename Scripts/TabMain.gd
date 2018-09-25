@@ -1,7 +1,9 @@
-extends VBoxContainer
+extends Control
 
 func _ready():
 	name = tr(name)
+	
+	Util.size_listeners.append(self)
 	
 	for theme_dir in Util.list_directory(Util.themes_path, false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
