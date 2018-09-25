@@ -9,48 +9,51 @@ var sky
 var border
 var sd_tint
 
-var water_top = Color("545C9D")
-var water_bottom = Color("343C7D")
-var water_opacity = 128
+var water_top
+var water_bottom
+var water_opacity
 
-var sd_water_top = Color("9670A9")
-var sd_water_bottom = Color("B972C9")
-var sd_water_opacity = 128
+var sd_water_top
+var sd_water_bottom
+var sd_water_opacity
 
-var clouds_defined = false
-var clouds = 9
+var clouds_defined
+var clouds
 
-var sd_clouds_defined = false
-var sd_clouds = 9
+var sd_clouds_defined
+var sd_clouds
 
-var flakes_defined = false
-var flakes_amount = 0
-var flakes_frames = 0
-var flakes_duration = 0
-var flakes_rotation = 0
-var flakes_speed = 0
+var flakes_defined
+var flakes_amount
+var flakes_frames
+var flakes_duration
+var flakes_rotation
+var flakes_speed
 
-var sd_flakes_defined = false
-var sd_flakes_amount = 0
-var sd_flakes_frames = 0
-var sd_flakes_duration = 0
-var sd_flakes_rotation = 0
-var sd_flakes_speed = 0
+var sd_flakes_defined
+var sd_flakes_amount
+var sd_flakes_frames
+var sd_flakes_duration
+var sd_flakes_rotation
+var sd_flakes_speed
 
-var water_animation_defined = false
-var water_animation_frames = 1
-var water_animation_duration = 0
-var water_animation_speed = 1
+var water_animation_defined
+var water_animation_frames
+var water_animation_duration
+var water_animation_speed
 
-var sd_water_animation_defined = false
-var sd_water_animation_frames = 1
-var sd_water_animation_duration = 0
-var sd_water_animation_speed = 1
+var sd_water_animation_defined
+var sd_water_animation_frames
+var sd_water_animation_duration
+var sd_water_animation_speed
 
-var flatten_clouds = false
-var flatten_flakes = false
-var snow = false
-var ice = false
+var flatten_clouds
+var flatten_flakes
+var snow
+var ice
+
+var objects
+var sprays
 
 signal theme_loaded
 
@@ -58,7 +61,52 @@ func load_defaults():
 	sky = Color(0, 0, 0)
 	border = Color("505050")
 	sd_tint = Color("808080")
-	#TODO: same with other values
+	
+	water_top = Color("545C9D")
+	water_bottom = Color("343C7D")
+	water_opacity = 128
+	
+	sd_water_top = Color("9670A9")
+	sd_water_bottom = Color("B972C9")
+	sd_water_opacity = 128
+	
+	clouds_defined = false
+	clouds = 9
+	
+	sd_clouds_defined = false
+	sd_clouds = 9
+	
+	flakes_defined = false
+	flakes_amount = 0
+	flakes_frames = 0
+	flakes_duration = 0
+	flakes_rotation = 0
+	flakes_speed = 0
+	
+	sd_flakes_defined = false
+	sd_flakes_amount = 0
+	sd_flakes_frames = 0
+	sd_flakes_duration = 0
+	sd_flakes_rotation = 0
+	sd_flakes_speed = 0
+	
+	water_animation_defined = false
+	water_animation_frames = 1
+	water_animation_duration = 0
+	water_animation_speed = 1
+	
+	sd_water_animation_defined = false
+	sd_water_animation_frames = 1
+	sd_water_animation_duration = 0
+	sd_water_animation_speed = 1
+	
+	flatten_clouds = false
+	flatten_flakes = false
+	snow = false
+	ice = false
+
+	objects = {}
+	sprays = {}
 
 func load_theme(_theme_name):
 	load_defaults()
@@ -95,19 +143,20 @@ func load_theme(_theme_name):
 				sd_clouds_defined = true
 			"flakes":
 				flakes_amount = int(params[0])
-				flakes_frames = int(params[1])
-				flakes_duration = int(params[2])
-				flakes_rotation = int(params[3])
-				flakes_speed = int(params[4])
-				flakes_defined = true
+				if params.size() > 1:
+					flakes_frames = int(params[1])
+					flakes_duration = int(params[2])
+					flakes_rotation = int(params[3])
+					flakes_speed = int(params[4])
+					flakes_defined = true
 			"sd-flakes":
 				sd_flakes_amount = int(params[0])
-				#TODO: can have amount only
-				sd_flakes_frames = int(params[1])
-				sd_flakes_duration = int(params[2])
-				sd_flakes_rotation = int(params[3])
-				sd_flakes_speed = int(params[4])
-				sd_flakes_defined = true
+				if params.size() > 1:
+					sd_flakes_frames = int(params[1])
+					sd_flakes_duration = int(params[2])
+					sd_flakes_rotation = int(params[3])
+					sd_flakes_speed = int(params[4])
+					sd_flakes_defined = true
 			"water-animation":
 				water_animation_frames = int(params[0])
 				water_animation_duration = int(params[1])
@@ -122,6 +171,29 @@ func load_theme(_theme_name):
 			"flatten-flakes": flatten_flakes = true
 			"snow": snow = true
 			"ice": ice = true
+			"object":
+				var object = {buried = [], visible = []}
+				object.max = int(params[1])
+				
+				var rects = 1
+				var i = 2
+				if params.size() % 2 == 0:
+					rects = int(params[2])
+					i = 3
+				
+				while rects > 0:
+					object.buried.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					rects -= 1
+					i += 4
+				
+				rects = int(params[i])
+				i += 1
+				while rects > 0:
+					object.visible.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					rects -= 1
+					i += 4
+				
+				objects[params[0]] = object
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
