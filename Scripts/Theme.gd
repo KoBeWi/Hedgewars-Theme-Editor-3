@@ -37,6 +37,16 @@ var sd_flakes_duration = 0
 var sd_flakes_rotation = 0
 var sd_flakes_speed = 0
 
+var water_animation_defined = false
+var water_animation_frames = 1
+var water_animation_duration = 0
+var water_animation_speed = 1
+
+var sd_water_animation_defined = false
+var sd_water_animation_frames = 1
+var sd_water_animation_duration = 0
+var sd_water_animation_speed = 1
+
 var flatten_clouds = false
 var flatten_flakes = false
 var snow = false
@@ -98,6 +108,16 @@ func load_theme(_theme_name):
 				sd_flakes_rotation = int(params[3])
 				sd_flakes_speed = int(params[4])
 				sd_flakes_defined = true
+			"water-animation":
+				water_animation_frames = int(params[0])
+				water_animation_duration = int(params[1])
+				water_animation_speed = float(params[2])
+				water_animation_defined = true
+			"sd-water-animation":
+				sd_water_animation_frames = int(params[0])
+				sd_water_animation_duration = int(params[1])
+				sd_water_animation_speed = float(params[2])
+				sd_water_animation_defined = true
 			"flatten-clouds": flatten_clouds = true
 			"flatten-flakes": flatten_flakes = true
 			"snow": snow = true

@@ -55,6 +55,16 @@ func on_theme_loaded():
 	$SDFlakes/RotationSpeed/Value.value = HWTheme.sd_flakes_rotation
 	$SDFlakes/FallingSpeed/Value.value = HWTheme.sd_flakes_speed
 	
+	$WaterAnimationHeader/OnOff.pressed = HWTheme.water_animation_defined
+	$WaterAnimation/Frames/Value.value = HWTheme.water_animation_frames
+	$WaterAnimation/FrameDuration/Value.value = HWTheme.water_animation_duration
+	$WaterAnimation/MovementSpeed/Value.value = HWTheme.water_animation_speed
+	
+	$SDWaterAnimationHeader/OnOff.pressed = HWTheme.sd_water_animation_defined
+	$SDWaterAnimation/Frames/Value.value = HWTheme.sd_water_animation_frames
+	$SDWaterAnimation/FrameDuration/Value.value = HWTheme.sd_water_animation_duration
+	$SDWaterAnimation/MovementSpeed/Value.value = HWTheme.sd_water_animation_speed
+	
 	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
 
 func play_music(sd): #TODO: cache music on change, also handle pause on change
