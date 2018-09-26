@@ -1,7 +1,7 @@
 extends Control
 
 func _ready():
-	name = tr(name)
+	name = tr("Main")
 	
 	Util.size_listeners.append(self)
 	

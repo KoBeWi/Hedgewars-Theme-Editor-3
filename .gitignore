@@ -1,1 +1,3 @@
 .import/
+*.pot
+*.mo

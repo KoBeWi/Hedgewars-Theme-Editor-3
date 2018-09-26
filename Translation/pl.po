@@ -1,13 +1,98 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Language: pl\n"
-"X-Source-Language: C\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
 
-msgid "Hedgewars Theme Editor 3"
-msgstr "Edytor Motywów Hedgewars 3"
+msgid "Game path"
+msgstr "Ścieżka gry"
+
+msgid "User path"
+msgstr "Ścieżka użytkownika"
+
+msgid "Save theme"
+msgstr "Zapisz motyw"
+
+msgid "Enable autosave"
+msgstr "Włącz autozapis"
+
+msgid "Select theme"
+msgstr "Wybierz motyw"
+
+msgid "Theme name"
+msgstr "Nazwa motywu"
+
+msgid "Music"
+msgstr "Muzyka"
+
+msgid "Sudden Death Music"
+msgstr "Muzyka Nagłej Śmierci"
+
+msgid "Clouds"
+msgstr "Chmury"
+
+msgid "Amount"
+msgstr "Ilość"
+
+msgid "Sudden Death Clouds"
+msgstr "Chmury Nagłej Śmierci"
+
+msgid "Flakes"
+msgstr "Płatki"
+
+msgid "Frames"
+msgstr "Klatki"
+
+msgid "Frame duration"
+msgstr "Długość klatki"
+
+msgid "Rotation speed"
+msgstr "Szybkość obracania"
+
+msgid "Falling speed"
+msgstr "Szybkość spadania"
+
+msgid "Sudden Death Flakes"
+msgstr "Płatki Nagłej Śmierci"
+
+msgid "Water Animation"
+msgstr "Animacja wody"
+
+msgid "Flowing speed"
+msgstr "Szybkość płynięcia"
+
+msgid "Sudden Death Water Animation"
+msgstr "Animacja wody Nagłej Śmierci"
+
+msgid "Miscellaneous"
+msgstr "Różne"
+
+msgid "Flattened flakes have constant size and layer"
+msgstr "Spłaszczone płatki mają stały rozmiar i warstwę"
+
+msgid "Flatten flakes?"
+msgstr "Spłaszcz płatki?"
+
+msgid "Flatten clouds?"
+msgstr "Spłaszcz chmury?"
+
+msgid "Snow?"
+msgstr "Śnieg?"
+
+msgid "Ice?"
+msgstr "Lód?"
+
+msgid "Colors"
+msgstr "Kolory"
 
 msgid "Main"
 msgstr "Ekran główny"
@@ -15,8 +100,17 @@ msgstr "Ekran główny"
 msgid "Theme"
 msgstr "Motyw"
 
-msgid "Colors"
-msgstr "Kolory"
-
 msgid "When off, related key will not appear in theme.cfg"
 msgstr "Kiedy wyłączone, odpowiedni klucz nie pojawi się w theme.cfg"
+
+msgid "/none/"
+msgstr "/brak/"
+
+msgid "Hedgewars Theme Editor 3"
+msgstr "Edytor Motywów Hedgewars 3"
+
+msgid "Sky color"
+msgstr "Kolor nieba"
+
+#~ msgid "Frame length"
+#~ msgstr "Długość klatki"

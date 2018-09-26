@@ -4,7 +4,7 @@ var player_paused = null
 var playing_sd
 
 func _ready():
-	get_parent().name = tr(get_parent().name)
+	get_parent().name = tr("Theme")
 	
 	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")

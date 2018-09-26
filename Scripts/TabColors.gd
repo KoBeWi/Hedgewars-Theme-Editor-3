@@ -3,7 +3,7 @@ extends Control
 const colors = ["sky", "border", "water_top", "water_bottom", "sd_water_top", "sd_water_bottom"]
 
 func _ready():
-	get_parent().name = tr(get_parent().name)
+	get_parent().name = tr("Colors")
 	
 #	Util.size_listeners.append(self)
 	
