@@ -1,13 +1,61 @@
 extends Node
 
-var themes_path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars/Data/Themes"
-var hedgewars_path = "C:/Program Files (x86)/Hedgewars 0.9.24.1"
-var hedgewars_user_path = "C:/Users/Tomek/Documents/Hedgewars"
+var preferred_language
+var enable_autosave = true
+var hedgewars_path
+var hedgewars_user_path
 
 var size_listeners = []
 
 func _ready():
+#	TranslationServer.set_locale("en") #TODO: preferred language
 	get_viewport().connect("size_changed", self, "update_size")
+	
+	var config = File.new()
+	if config.open("user://config", File.READ) == OK:
+		config.close()
+	
+	if !hedgewars_path:
+		var path
+		var test_directory = Directory.new()
+		
+		match OS.get_name():
+			"Windows":
+				for dir in Util.list_directory("C:/Program Files (x86)", false):
+					if dir.begins_with("Hedgewars"):
+						path = "C:/Program Files (x86)/" + dir
+						break
+				
+				if !path: for dir in Util.list_directory("C:/Program Files", false):
+					if dir.begins_with("Hedgewars"):
+						path = "C:/Program Files/" + dir
+						break
+			
+			"X11":
+				if test_directory.dir_exists("/usr/share/hedgewars"): path = "/usr/share/hedgewars"
+				else: path = "/usr/share/games/hedgewars"
+			
+			"OSX": #TODO: really?
+				if test_directory.dir_exists("/usr/share/hedgewars"): path = "/usr/share/hedgewars"
+				else: path = "/usr/share/games/hedgewars"
+		
+		hedgewars_path = path
+	
+	if !hedgewars_user_path:
+		var path
+		var test_directory = Directory.new()
+		
+		match OS.get_name():
+			"Windows":
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars"
+			
+			"X11":
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir() + "/home"
+			
+			"OSX": #TODO: really?
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir() + "/home"
+		
+		hedgewars_user_path = path
 
 func load_texture(file):
 	var image = Image.new()
@@ -26,7 +74,7 @@ func list_directory(path, for_files = true):
 	
 	var entry = dir.get_next()
 	while entry != "":
-		if for_files == dir.dir_exists(str(Util.themes_path, "/", entry)):
+		if for_files == dir.dir_exists(str(path, "/", entry)):
 			entry = dir.get_next()
 			continue
 		
@@ -54,3 +102,12 @@ func select_music(list, item):
 		if list.get_item_text(i) == item:
 			list.selected = i
 			return
+
+func save_settings():
+	var config = File.new()
+	config.open("user://config", File.WRITE)
+	config.store_line(str(preferred_language))
+	config.store_line(str(enable_autosave))
+	config.store_line(hedgewars_path)
+	config.store_line(hedgewars_user_path)
+	config.close()

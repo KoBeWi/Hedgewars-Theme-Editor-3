@@ -218,7 +218,7 @@ func save_theme():
 	cfg_file.close()
 
 func path():
-	return str(Util.themes_path, "/", theme_name, "/")
+	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
 
 func refresh_oputput():
 	theme_output = PoolStringArray()
