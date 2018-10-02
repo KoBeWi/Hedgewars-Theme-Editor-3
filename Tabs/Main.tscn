@@ -327,6 +327,7 @@ size_flags_vertical = 1
 columns = 6
 
 [node name="FileDialog" type="Control" parent="."]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -367,9 +368,9 @@ mode = 2
 access = 2
 filters = PoolStringArray(  )
 show_hidden_files = false
-current_dir = "X:/Sandbox/HW/Theme Editor 3"
+current_dir = "X:/Inne/Hedgewars/Theme Editor 3"
 current_file = ""
-current_path = "X:/Sandbox/HW/Theme Editor 3/"
+current_path = "X:/Inne/Hedgewars/Theme Editor 3/"
 
 [node name="UserDialog" type="FileDialog" parent="FileDialog"]
 visible = false
@@ -397,7 +398,7 @@ mode = 2
 access = 2
 filters = PoolStringArray(  )
 show_hidden_files = false
-current_dir = "X:/Sandbox/HW/Theme Editor 3"
+current_dir = "X:/Inne/Hedgewars/Theme Editor 3"
 current_file = ""
-current_path = "X:/Sandbox/HW/Theme Editor 3/"
+current_path = "X:/Inne/Hedgewars/Theme Editor 3/"
 

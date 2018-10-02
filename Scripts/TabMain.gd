@@ -18,6 +18,9 @@ func _ready():
 	$FileDialog/GameDialog.current_dir = Util.hedgewars_path
 	$FileDialog/UserDialog.current_dir = Util.hedgewars_user_path
 	
+	$Save/EnableAutosave.pressed = Util.enable_autosave
+	$Save/EnableAutosave.connect("toggled", self, "on_autosave_changed")
+	
 	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		button.get_node("Name").text = theme_dir
@@ -36,3 +39,7 @@ func update_game_path():
 func update_user_path():
 	Util.hedgewars_user_path = $FileDialog/UserDialog.current_dir
 	$UserPath/Label.text = Util.hedgewars_user_path
+
+func on_autosave_changed(enabled):
+	Util.enable_autosave = enabled
+	Util.save_settings()

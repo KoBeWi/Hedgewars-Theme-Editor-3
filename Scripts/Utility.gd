@@ -13,6 +13,11 @@ func _ready():
 	
 	var config = File.new()
 	if config.open("user://config", File.READ) == OK:
+		var lines = config.get_as_text().split("\n")
+		preferred_language = lines[0]
+		enable_autosave = lines[1] == "True"
+		hedgewars_path = lines[2]
+		hedgewars_user_path = lines[3]
 		config.close()
 	
 	if !hedgewars_path:
