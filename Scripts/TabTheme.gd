@@ -27,6 +27,11 @@ func _ready():
 	for music in Util.list_directory(user_music_dir()):
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
+	
+	$Music/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $Music/List])
+	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])
+	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
+	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
 
 func on_theme_loaded():
 	$Header/Icon.texture = Util.load_texture(HWTheme.path() + "icon.png")

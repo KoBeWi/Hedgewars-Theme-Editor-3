@@ -55,9 +55,11 @@ var ice
 var objects
 var sprays
 
-var theme_output
+var theme_output setget set_output
+var stored_output
 
 signal theme_loaded
+signal output_updated
 
 func load_defaults():
 	sky = Color(0, 0, 0)
@@ -206,8 +208,9 @@ func load_theme(_theme_name):
 	if sd_clouds == null: sd_clouds = clouds
 	
 	cfg_file.close()
-	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", theme_name, ")"))
 	emit_signal("theme_loaded")
+	
+	refresh_oputput(true)
 
 func save_theme():
 	refresh_oputput()
@@ -216,11 +219,13 @@ func save_theme():
 	cfg_file.open(path() + "theme.cfg", cfg_file.WRITE)
 	cfg_file.store_string(theme_output.join("\n"))
 	cfg_file.close()
+	
+	stored_output = theme_output
 
 func path():
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
 
-func refresh_oputput():
+func refresh_oputput(initial = false):
 	theme_output = PoolStringArray()
 	
 	theme_output.append("#Created with Hedgewars Theme Editor 3")
@@ -255,3 +260,17 @@ func refresh_oputput():
 		theme_output.append("object = " + line.join(""))
 	
 	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
+	
+	if initial: stored_output = theme_output
+	set_output(theme_output)
+
+func set_output(new_output):
+	theme_output = new_output
+	emit_signal("output_updated", theme_output != stored_output)
+
+func change_property(value, property):
+	set(property, value)
+	refresh_oputput()
+	
+func change_property_from_list(item, property, list):
+	change_property(list.get_item_text(item), property)
