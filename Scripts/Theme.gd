@@ -97,12 +97,12 @@ func load_defaults():
 	water_animation_defined = false
 	water_animation_frames = 1
 	water_animation_duration = 0
-	water_animation_speed = 1
+	water_animation_speed = 100
 	
 	sd_water_animation_defined = false
 	sd_water_animation_frames = 1
 	sd_water_animation_duration = 0
-	sd_water_animation_speed = 1
+	sd_water_animation_speed = 100
 	
 	flatten_clouds = false
 	flatten_flakes = false
@@ -164,12 +164,12 @@ func load_theme(_theme_name):
 			"water-animation":
 				water_animation_frames = int(params[0])
 				water_animation_duration = int(params[1])
-				water_animation_speed = float(params[2])
+				water_animation_speed = float(params[2]) * 100
 				water_animation_defined = true
 			"sd-water-animation":
 				sd_water_animation_frames = int(params[0])
 				sd_water_animation_duration = int(params[1])
-				sd_water_animation_speed = float(params[2])
+				sd_water_animation_speed = float(params[2]) * 100
 				sd_water_animation_defined = true
 			"flatten-clouds": flatten_clouds = true
 			"flatten-flakes": flatten_flakes = true
@@ -215,6 +215,8 @@ func load_theme(_theme_name):
 func save_theme():
 	refresh_oputput(false)
 	
+	Directory.new().rename(path() + "theme.cfg", path() + "theme.bak")
+	
 	var cfg_file = File.new()
 	cfg_file.open(path() + "theme.cfg", cfg_file.WRITE)
 	cfg_file.store_string(theme_output.join("\n"))
@@ -244,6 +246,8 @@ func refresh_oputput(emit_changed = true):
 	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
 	if clouds_defined: theme_output.append(str("clouds = ", clouds))
 	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
+	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01)) #TODO: make sure floats have 2 decimal digits
+	if sd_water_animation_defined: theme_output.append(str("sd-water-animation = ", sd_water_animation_frames, ", ", sd_water_animation_duration, ", ", sd_water_animation_speed * 0.01))
 	
 	for object in objects.keys():
 		var line = PoolStringArray()

@@ -32,6 +32,8 @@ func _ready():
 	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
+	$SDCloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_clouds_defined"])
+	$SDClouds/Amount.connect("value_changed", HWTheme, "change_property", ["sd_clouds"])
 
 func on_theme_loaded():
 	$Header/Icon.texture = Util.load_texture(HWTheme.path() + "icon.png")
