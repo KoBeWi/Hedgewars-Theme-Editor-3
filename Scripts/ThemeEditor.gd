@@ -15,7 +15,7 @@ func _ready():
 func on_theme_loaded():
 	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.theme_name, ")"))
 	
-	for i in range(1, get_child_count()-1):
+	for i in range(1, get_child_count()):
 		set_tab_disabled(i, false)
 
 func on_output_updated(dirty):

@@ -206,8 +206,7 @@ func load_theme(_theme_name):
 			"snow": snow = true
 			"ice": ice = true
 			"object":
-				var object = {buried = [], visible = []}
-				object.number = int(params[1])
+				var object = {name = params[0], number = int(params[1]), buried = [], visible = [], on_water = false}
 				
 				var rects = 1
 				var i = 2

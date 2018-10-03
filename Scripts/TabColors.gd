@@ -4,10 +4,9 @@ const colors = ["sky", "border", "water_top", "water_bottom", "sd_water_top", "s
 
 func _ready():
 	get_parent().name = tr("Colors")
-	
 	Util.size_listeners.append(self)
-	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	
 	$UpperWater/Color.connect("color_changed", self, "synchronize_water_alpha", [$LowerWater/Color])
 	$LowerWater/Color.connect("color_changed", self, "synchronize_water_alpha", [$UpperWater/Color])
 	$SDUpperWater/Color.connect("color_changed", self, "synchronize_water_alpha", [$SDLowerWater/Color])

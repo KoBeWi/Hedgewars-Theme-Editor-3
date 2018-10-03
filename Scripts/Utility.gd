@@ -5,6 +5,7 @@ var enable_autosave = true
 var hedgewars_path
 var hedgewars_user_path
 
+var temp_editor
 var size_listeners = []
 
 func _ready():

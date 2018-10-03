@@ -2,10 +2,9 @@ extends Control
 
 func _ready():
 	name = tr("Main")
-	
 	Util.size_listeners.append(self)
-	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	
 	$Save/Button.connect("pressed", HWTheme, "save_theme")
 	$GamePath/Button.connect("pressed", $FileDialog/GameDialog, "popup_centered")
 	$UserPath/Button.connect("pressed", $FileDialog/UserDialog, "popup_centered")

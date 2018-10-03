@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/ThemeEditor.gd" type="Script" id=1]
 [ext_resource path="res://Tabs/Main.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Tabs/Theme.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Tabs/Colors.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Tabs/Objects.tscn" type="PackedScene" id=5]
 
 [node name="ThemeEditor" type="TabContainer"]
 anchor_left = 0.0
@@ -50,37 +51,6 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 
-[node name="Objects" type="Control" parent="."]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
+[node name="Objects" parent="." instance=ExtResource( 5 )]
 margin_top = 41.0
-margin_right = -4.0
-margin_bottom = -4.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-
-[node name="Edit" type="Control" parent="."]
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 41.0
-margin_right = -4.0
-margin_bottom = -4.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 
