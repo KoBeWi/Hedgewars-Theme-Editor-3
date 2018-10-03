@@ -8,29 +8,38 @@ script/source = "extends Sprite
 
 var drawing
 var drawing_buried
+var selected_rects = []
+var was_selected
 
 func _process(delta):
-	if drawing != null: update()
+	if drawing != null or !selected_rects.empty() or was_selected:
+		update()
 
 func _draw():
 	draw_set_transform(origin(), 0, Vector2(1, 1))
 	
 	for rect in get_parent().object.buried:
-		draw_rect(rect, Color.red, false)
-		draw_rect(rect, Color(1, 0, 0, 0.25))
+		var color = Color.yellow if rect in selected_rects else Color.red
+		draw_rect(rect, color, false)
+		draw_rect(rect, fill_color(color))
 	
 	for rect in get_parent().object.visible:
-		draw_rect(rect, Color.green, false)
-		draw_rect(rect, Color(0, 1, 0, 0.25))
+		var color = Color.yellow if rect in selected_rects else Color.green
+		draw_rect(rect, color, false)
+		draw_rect(rect, fill_color(color))
 	
 	if drawing != null:
 		draw_rect(get_drawn_rectangle(), Color.red if drawing_buried else Color.green, false)
-		draw_rect(get_drawn_rectangle(), Color(1, 0, 0, 0.25) if drawing_buried else Color(0, 1, 0, 0.25), true)
+		draw_rect(get_drawn_rectangle(), fill_color(Color.red) if drawing_buried else fill_color(Color.green), true)
 	
 	draw_set_transform(Vector2(), 0, Vector2(1, 1))
+	if !selected_rects.empty(): was_selected = selected_rects.duplicate()
+	else: was_selected = null
+	selected_rects.clear()
 
 func origin(): return -texture.get_size()/2
-func mouse(): return get_local_mouse_position() - origin()
+func mouse(): return (get_local_mouse_position() - origin()).floor()
+func fill_color(color): return Color(color.r, color.g, color.b, 0.25)
 
 func get_drawn_rectangle():
 	var start = Vector2(drawing.x if drawing.x < mouse().x else mouse().x, drawing.y if drawing.y < mouse().y else mouse().y)
@@ -38,6 +47,14 @@ func get_drawn_rectangle():
 	return Rect2(start, size)
 
 func start_rectangle(buried):
+	if was_selected:
+		for rect in was_selected:
+			if (buried and rect in get_parent().object.visible) or (!buried and rect in get_parent().object.buried):
+				if buried: get_parent().object.visible.erase(rect)
+				else: get_parent().object.buried.erase(rect)
+				
+				return
+	
 	drawing = mouse()
 	drawing.x = max(drawing.x, 0)
 	drawing.y = max(drawing.y, 0)
