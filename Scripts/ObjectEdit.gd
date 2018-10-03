@@ -28,12 +28,26 @@ func _input(event):
 				drag = $ObjectImage.position - get_viewport().get_mouse_position()
 		elif event.button_index == BUTTON_MIDDLE:
 			drag = null
+		elif event.button_index == BUTTON_LEFT:
+			object.visible.append($ObjectImage.get_drawn_rectangle())
+			$ObjectImage.stop_rectangle()
+		elif event.button_index == BUTTON_RIGHT:
+			object.buried.append($ObjectImage.get_drawn_rectangle())
+			$ObjectImage.stop_rectangle()
 		
 	if event is InputEventKey and event.is_pressed() and event.scancode == KEY_ESCAPE:
 		queue_free()
 		$"/root".add_child(Util.temp_editor)
 		get_tree().current_scene = Util.temp_editor
 		Util.temp_editor = null
+
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == BUTTON_LEFT:
+				$ObjectImage.start_rectangle(false)
+			elif event.button_index == BUTTON_RIGHT:
+				$ObjectImage.start_rectangle(true)
 
 func set_zoom(new_zoom):
 	zoom = new_zoom

@@ -6,11 +6,14 @@
 
 script/source = "extends Sprite
 
+var drawing
+var drawing_buried
+
 func _process(delta):
-	update()
+	if drawing != null: update()
 
 func _draw():
-	draw_set_transform(-texture.get_size()/2, 0, Vector2(1, 1))
+	draw_set_transform(origin(), 0, Vector2(1, 1))
 	
 	for rect in get_parent().object.buried:
 		draw_rect(rect, Color.red, false)
@@ -20,7 +23,30 @@ func _draw():
 		draw_rect(rect, Color.green, false)
 		draw_rect(rect, Color(0, 1, 0, 0.25))
 	
-	draw_set_transform(Vector2(), 0, Vector2(1, 1))"
+	if drawing != null:
+		draw_rect(get_drawn_rectangle(), Color.red if drawing_buried else Color.green, false)
+		draw_rect(get_drawn_rectangle(), Color(1, 0, 0, 0.25) if drawing_buried else Color(0, 1, 0, 0.25), true)
+	
+	draw_set_transform(Vector2(), 0, Vector2(1, 1))
+
+func origin(): return -texture.get_size()/2
+func mouse(): return get_local_mouse_position() - origin()
+
+func get_drawn_rectangle():
+	var start = Vector2(drawing.x if drawing.x < mouse().x else mouse().x, drawing.y if drawing.y < mouse().y else mouse().y)
+	var size = Vector2(clamp(abs(mouse().x - drawing.x), 1, texture.get_size().x), clamp(abs(mouse().y - drawing.y), 1, texture.get_size().y))
+	return Rect2(start, size)
+
+func start_rectangle(buried):
+	drawing = mouse()
+	drawing.x = max(drawing.x, 0)
+	drawing.y = max(drawing.y, 0)
+	drawing_buried = buried
+
+func stop_rectangle():
+	drawing = null
+	drawing_buried = null
+	update()"
 
 [node name="ObjectEdit" type="Panel"]
 anchor_left = 0.0
@@ -29,7 +55,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
-mouse_filter = 0
+mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
@@ -41,6 +67,7 @@ script = SubResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
 [node name="UI" type="CanvasLayer" parent="."]
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
