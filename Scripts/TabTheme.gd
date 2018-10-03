@@ -30,10 +30,39 @@ func _ready():
 	
 	$Music/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $Music/List])
 	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])
+	
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
 	$SDCloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_clouds_defined"])
 	$SDClouds/Amount.connect("value_changed", HWTheme, "change_property", ["sd_clouds"])
+	
+	$FlakesHeader/OnOff.connect("toggled", HWTheme, "change_property", ["flakes_defined"])
+	$Flakes/Amount/Value.connect("value_changed", HWTheme, "change_property", ["flakes_amount"])
+	$Flakes/Frames/Value.connect("value_changed", HWTheme, "change_property", ["flakes_frames"])
+	$Flakes/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["flakes_duration"])
+	$Flakes/RotationSpeed/Value.connect("value_changed", HWTheme, "change_property", ["flakes_rotation"])
+	$Flakes/FallingSpeed/Value.connect("value_changed", HWTheme, "change_property", ["flakes_speed"])
+	
+	$SDFlakesHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_flakes_defined"])
+	$SDFlakes/Amount/Value.connect("value_changed", HWTheme, "change_property", ["sd_flakes_amount"])
+	$SDFlakes/Frames/Value.connect("value_changed", HWTheme, "change_property", ["sd_flakes_frames"])
+	$SDFlakes/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["sd_flakes_duration"])
+	$SDFlakes/RotationSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_flakes_rotation"])
+	$SDFlakes/FallingSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_flakes_speed"])
+	
+	$WaterAnimationHeader/OnOff.connect("toggled", HWTheme, "change_property", ["water_animation_defined"])
+	$WaterAnimation/Frames/Value.connect("value_changed", HWTheme, "change_property", ["water_animation_frames"])
+	$WaterAnimation/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["water_animation_duration"])
+	$WaterAnimation/MovementSpeed/Value.connect("value_changed", HWTheme, "change_property", ["water_animation_speed"])
+	$SDWaterAnimationHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_water_animation_defined"])
+	$SDWaterAnimation/Frames/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_frames"])
+	$SDWaterAnimation/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_duration"])
+	$SDWaterAnimation/MovementSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_speed"])
+	
+	$FlattenFlakes/OnOff.connect("toggled", HWTheme, "change_property", ["flatten_flakes"])
+	$FlattenClouds/OnOff.connect("toggled", HWTheme, "change_property", ["flatten_clouds"])
+	$Snow/OnOff.connect("toggled", HWTheme, "change_property", ["snow"])
+	$Ice/OnOff.connect("toggled", HWTheme, "change_property", ["ice"])
 
 func on_theme_loaded():
 	$Header/Icon.texture = Util.load_texture(HWTheme.path() + "icon.png")

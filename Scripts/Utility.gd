@@ -99,7 +99,7 @@ func get_color_value(val):
 
 func update_size():
 	for container in size_listeners:
-		container.rect_min_size.x = get_viewport().size.x
+		container.rect_min_size.x = get_viewport().size.x-32
 
 func select_music(list, item):
 	list.selected = 0

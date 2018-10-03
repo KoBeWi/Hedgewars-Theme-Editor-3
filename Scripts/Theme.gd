@@ -57,6 +57,7 @@ var sprays
 
 var theme_output
 var stored_output
+var is_loading = false
 
 signal theme_loaded
 signal output_updated
@@ -115,6 +116,7 @@ func load_defaults():
 func load_theme(_theme_name):
 	load_defaults()
 	theme_name = _theme_name
+	is_loading = true
 	
 	sd_clouds = null
 	
@@ -211,6 +213,7 @@ func load_theme(_theme_name):
 	emit_signal("theme_loaded")
 	
 	refresh_oputput(false)
+	is_loading = false
 
 func save_theme():
 	refresh_oputput(false)
@@ -249,6 +252,8 @@ func refresh_oputput(emit_changed = true):
 	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01)) #TODO: make sure floats have 2 decimal digits
 	if sd_water_animation_defined: theme_output.append(str("sd-water-animation = ", sd_water_animation_frames, ", ", sd_water_animation_duration, ", ", sd_water_animation_speed * 0.01))
 	
+	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
+	
 	for object in objects.keys():
 		var line = PoolStringArray()
 		line.append(str(object, ", ", objects[object].number, ", "))
@@ -263,11 +268,16 @@ func refresh_oputput(emit_changed = true):
 		
 		theme_output.append("object = " + line.join(""))
 	
-	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
+	if flatten_flakes: theme_output.append("flatten-flakes = true")
+	if flatten_clouds: theme_output.append("flatten-clouds = true")
+	if snow: theme_output.append("snow = true")
+	if ice: theme_output.append("ice = true")
 	
 	if emit_changed: emit_signal("output_updated", theme_output != stored_output)
 
 func change_property(value, property):
+	if is_loading: return
+	
 	set(property, value)
 	if Util.enable_autosave:
 		save_theme()
