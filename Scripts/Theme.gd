@@ -313,10 +313,11 @@ func change_property(value, property):
 	if is_loading: return
 	
 	set(property, value)
-	if Util.enable_autosave:
-		save_theme()
-	else:
-		refresh_oputput()
+	apply_change()
 	
 func change_property_from_list(item, property, list):
 	change_property(list.get_item_text(item), property)
+
+func apply_change():
+	if Util.enable_autosave: save_theme()
+	else: refresh_oputput()

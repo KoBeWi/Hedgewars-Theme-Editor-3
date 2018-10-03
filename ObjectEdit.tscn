@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/ObjectEdit.gd" type="Script" id=1]
+[ext_resource path="res://Images/Checker.png" type="Texture" id=2]
 
 [sub_resource type="GDScript" id=1]
 
@@ -11,6 +12,10 @@ var drawing_buried
 var selected_rects = []
 var was_selected
 
+func _ready():
+	texture = Util.load_texture(str(HWTheme.path(), get_parent().object.name, \".png\"))
+	$Checker.region_rect.size = texture.get_size()
+
 func _process(delta):
 	if drawing != null or !selected_rects.empty() or was_selected:
 		update()
@@ -18,13 +23,20 @@ func _process(delta):
 func _draw():
 	draw_set_transform(origin(), 0, Vector2(1, 1))
 	
+	var intersecting = []
 	for rect in get_parent().object.buried:
-		var color = Color.yellow if rect in selected_rects else Color.red
+		var intersect = false
+		for rect2 in get_parent().object.visible:
+			if rect.intersects(rect2):
+				intersect = true
+				intersecting.append(rect2)
+		
+		var color = Color.yellow if rect in selected_rects else Color.magenta if intersect else Color.red
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color))
 	
 	for rect in get_parent().object.visible:
-		var color = Color.yellow if rect in selected_rects else Color.green
+		var color = Color.yellow if rect in selected_rects else Color.magenta if rect in intersecting else Color.green
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color))
 	
@@ -43,18 +55,16 @@ func fill_color(color): return Color(color.r, color.g, color.b, 0.25)
 
 func get_drawn_rectangle():
 	var start = Vector2(drawing.x if drawing.x < mouse().x else mouse().x, drawing.y if drawing.y < mouse().y else mouse().y)
-	var size = Vector2(clamp(abs(mouse().x - drawing.x), 1, texture.get_size().x), clamp(abs(mouse().y - drawing.y), 1, texture.get_size().y))
-	return Rect2(start, size)
+	start.x = clamp(start.x, 0, texture.get_size().x-1)
+	start.y = clamp(start.y, 0, texture.get_size().y-1)
+	
+	var end = Vector2(drawing.x if drawing.x > mouse().x else mouse().x, drawing.y if drawing.y > mouse().y else mouse().y)
+	end.x = clamp(end.x, start.x + 1, texture.get_size().x)
+	end.y = clamp(end.y, start.y + 1, texture.get_size().y)
+	
+	return Rect2(start, end - start)
 
 func start_rectangle(buried):
-	if was_selected:
-		for rect in was_selected:
-			if (buried and rect in get_parent().object.visible) or (!buried and rect in get_parent().object.buried):
-				if buried: get_parent().object.visible.erase(rect)
-				else: get_parent().object.buried.erase(rect)
-				
-				return
-	
 	drawing = mouse()
 	drawing.x = max(drawing.x, 0)
 	drawing.y = max(drawing.y, 0)
@@ -63,7 +73,49 @@ func start_rectangle(buried):
 func stop_rectangle():
 	drawing = null
 	drawing_buried = null
-	update()"
+	update()
+
+func update_checker():
+	$Checker.global_scale = Vector2(1, 1)
+	$Checker.region_rect.size = texture.get_size() * scale
+
+func remove_rectangles():
+	if was_selected: for rect in was_selected:
+		get_parent().object.visible.erase(rect)
+		get_parent().object.buried.erase(rect)"
+
+[sub_resource type="InputEventAction" id=2]
+
+device = 0
+action = "ui_accept"
+pressed = false
+
+[sub_resource type="ShortCut" id=3]
+
+shortcut = SubResource( 2 )
+_sections_unfolded = [ "shortcut" ]
+
+[sub_resource type="InputEventAction" id=6]
+
+device = 0
+action = "ui_help"
+pressed = false
+
+[sub_resource type="ShortCut" id=7]
+
+shortcut = SubResource( 6 )
+_sections_unfolded = [ "shortcut" ]
+
+[sub_resource type="InputEventAction" id=4]
+
+device = 0
+action = "ui_cancel"
+pressed = false
+
+[sub_resource type="ShortCut" id=5]
+
+shortcut = SubResource( 4 )
+_sections_unfolded = [ "shortcut" ]
 
 [node name="ObjectEdit" type="Panel"]
 anchor_left = 0.0
@@ -79,12 +131,18 @@ size_flags_vertical = 1
 script = ExtResource( 1 )
 
 [node name="ObjectImage" type="Sprite" parent="."]
+editor/display_folded = true
 z_index = 1
 script = SubResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
+[node name="Checker" type="Sprite" parent="ObjectImage"]
+show_behind_parent = true
+texture = ExtResource( 2 )
+region_enabled = true
+_sections_unfolded = [ "Region", "Visibility" ]
+
 [node name="UI" type="CanvasLayer" parent="."]
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -142,4 +200,278 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Anchor", "Rect" ]
+
+[node name="Container" type="HBoxContainer" parent="UI"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -658.0
+margin_top = -102.0
+margin_right = -16.0
+margin_bottom = 103.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Stretcher" type="Control" parent="UI/Container"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 245.0
+margin_right = 245.0
+margin_bottom = 205.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Help" type="VBoxContainer" parent="UI/Container"]
+editor/display_folded = true
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 491.0
+margin_bottom = 205.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 10.0
+margin_right = 491.0
+margin_bottom = 33.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Left mouse - visible rectangle (green)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label2" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 37.0
+margin_right = 491.0
+margin_bottom = 60.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Right mouse - buried rectangle (red)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label3" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 64.0
+margin_right = 491.0
+margin_bottom = 87.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Middle mouse - move around"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label4" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 91.0
+margin_right = 491.0
+margin_bottom = 114.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Middle click - remove rectangle (yellow)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label5" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 118.0
+margin_right = 491.0
+margin_bottom = 141.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "Mouse wheel - zoom in/zoom out"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label6" type="Label" parent="UI/Container/Help"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 145.0
+margin_right = 491.0
+margin_bottom = 194.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+custom_colors/font_color = Color( 1, 0, 1, 1 )
+text = "Magenta rectangles are intersecting visible and buried rectangles.
+This MUSTN'T happen."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="Separator" type="Control" parent="UI/Container"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 249.0
+margin_right = 269.0
+margin_bottom = 205.0
+rect_min_size = Vector2( 20, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Rect" ]
+
+[node name="Buttons" type="VBoxContainer" parent="UI/Container"]
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 273.0
+margin_right = 396.0
+margin_bottom = 205.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 1
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="Apply" type="Button" parent="UI/Container/Buttons"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 55.0
+margin_right = 123.0
+margin_bottom = 84.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 3 )
+group = null
+text = "Apply changes"
+flat = false
+align = 1
+_sections_unfolded = [ "shortcut" ]
+
+[node name="Help" type="Button" parent="UI/Container/Buttons"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 88.0
+margin_right = 123.0
+margin_bottom = 117.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 7 )
+group = null
+text = "Help"
+flat = false
+align = 1
+_sections_unfolded = [ "shortcut" ]
+
+[node name="Revert" type="Button" parent="UI/Container/Buttons"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 121.0
+margin_right = 123.0
+margin_bottom = 150.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = SubResource( 5 )
+group = null
+text = "Revert"
+flat = false
+align = 1
+_sections_unfolded = [ "shortcut" ]
 

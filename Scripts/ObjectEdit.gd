@@ -3,18 +3,23 @@ extends Panel
 onready var image = $ObjectImage
 
 var object
+var original_object
 var zoom = 1 setget set_zoom
 var drag
+var moved = false
 
 func _ready():
-	image.texture = Util.load_texture(str(HWTheme.path(), object.name, ".png"))
-	
 	connect("resized", self, "move_view")
 	$UI/Zoom.connect("value_changed", self, "set_zoom")
 	$UI/Zoom.connect("resized", self, "set_zoom", [zoom])
+	$UI/Container/Buttons/Apply.connect("pressed", self, "on_apply")
+	$UI/Container/Buttons/Help.connect("pressed", self, "on_help")
+	$UI/Container/Buttons/Revert.connect("pressed", self, "on_revert")
+	$UI/Container/Stretcher.rect_min_size.x = $UI/Container/Help.rect_size.x
 	
 	set_zoom(1)
 	move_view()
+	original_object = object.duplicate(true)
 
 func _process(delta):
 	if drag: image.position = drag + get_viewport().get_mouse_position()
@@ -31,20 +36,18 @@ func _input(event):
 				self.zoom = max(zoom - 0.5, 0)
 			elif event.button_index == BUTTON_MIDDLE:
 				drag = image.position - get_viewport().get_mouse_position()
+				moved = false
 		elif event.button_index == BUTTON_MIDDLE:
 			drag = null
+			if !moved: image.remove_rectangles()
 		elif event.button_index == BUTTON_LEFT and image.drawing != null:
 			object.visible.append(image.get_drawn_rectangle())
 			image.stop_rectangle()
 		elif event.button_index == BUTTON_RIGHT and image.drawing != null:
 			object.buried.append(image.get_drawn_rectangle())
 			image.stop_rectangle()
-		
-	if event is InputEventKey and event.is_pressed() and event.scancode == KEY_ESCAPE:
-		queue_free()
-		$"/root".add_child(Util.temp_editor)
-		get_tree().current_scene = Util.temp_editor
-		Util.temp_editor = null
+	
+	if event is InputEventMouseMotion: moved = true
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -61,6 +64,26 @@ func set_zoom(new_zoom):
 	$UI/Zoom.value = new_zoom
 	$UI/Zoom/Label.text = str("x", zoom)
 	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 20
+	$ObjectImage.update_checker()
 
 func move_view():
 	image.position = rect_position + rect_size/2
+	
+func on_apply():
+	HWTheme.apply_change()
+	exit()
+
+func on_help():
+	$UI/Container/Help.visible = !$UI/Container/Help.visible
+	$UI/Container/Stretcher.visible = !$UI/Container/Help.visible
+
+func on_revert():
+	object.buried = original_object.buried
+	object.visible = original_object.visible
+	exit()
+
+func exit():
+	queue_free()
+	$"/root".add_child(Util.temp_editor)
+	get_tree().current_scene = Util.temp_editor
+	Util.temp_editor = null
