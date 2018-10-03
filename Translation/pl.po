@@ -13,6 +13,27 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
+msgid "Sky color"
+msgstr "Kolor nieba"
+
+msgid "Border/Mudgun color"
+msgstr "Kolor krawędzi/miotacza błota"
+
+msgid "Upper water color"
+msgstr "Górny kolor wody"
+
+msgid "Lower water color"
+msgstr "Dolny kolor wody"
+
+msgid "Sudden Death upper water color"
+msgstr "Kolor wody Nagłej Śmierci"
+
+msgid "Sudden Death lower water color"
+msgstr "Kolor wody Nagłej Śmierci"
+
+msgid "Sudden Death lower sky/horizon tint"
+msgstr "Odcień nieba/horyzontu Nagłej Śmierci"
+
 msgid "Game path"
 msgstr "Ścieżka gry"
 
@@ -108,9 +129,6 @@ msgstr "/brak/"
 
 msgid "Hedgewars Theme Editor 3"
 msgstr "Edytor Motywów Hedgewars 3"
-
-msgid "Sky color"
-msgstr "Kolor nieba"
 
 #~ msgid "Frame length"
 #~ msgstr "Długość klatki"

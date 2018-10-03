@@ -31,14 +31,14 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 298.0
-margin_bottom = 3296.0
+margin_bottom = 3846.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-alignment = 0
+alignment = 1
 script = ExtResource( 1 )
 
 [node name="Sky" parent="Container" instance=ExtResource( 2 )]
@@ -51,7 +51,7 @@ margin_top = 0.0
 margin_right = 298.0
 margin_bottom = 546.0
 _sections_unfolded = [ "Rect" ]
-label = "Sky color"
+text = "Sky color"
 
 [node name="Border" parent="Container" instance=ExtResource( 2 )]
 anchor_left = 0.0
@@ -63,7 +63,7 @@ margin_top = 550.0
 margin_right = 298.0
 margin_bottom = 1096.0
 _sections_unfolded = [ "Rect" ]
-label = "Border color"
+text = "Border/Mudgun color"
 
 [node name="UpperWater" parent="Container" instance=ExtResource( 2 )]
 anchor_left = 0.0
@@ -75,7 +75,7 @@ margin_top = 1100.0
 margin_right = 298.0
 margin_bottom = 1646.0
 _sections_unfolded = [ "Rect" ]
-label = "Upper water color"
+text = "Upper water color"
 edit_alpha = true
 
 [node name="LowerWater" parent="Container" instance=ExtResource( 2 )]
@@ -88,7 +88,7 @@ margin_top = 1650.0
 margin_right = 298.0
 margin_bottom = 2196.0
 _sections_unfolded = [ "Rect" ]
-label = "Lower water color"
+text = "Lower water color"
 edit_alpha = true
 
 [node name="SDUpperWater" parent="Container" instance=ExtResource( 2 )]
@@ -101,7 +101,7 @@ margin_top = 2200.0
 margin_right = 298.0
 margin_bottom = 2746.0
 _sections_unfolded = [ "Rect" ]
-label = "Sudden Death upper water color"
+text = "Sudden Death upper water color"
 edit_alpha = true
 
 [node name="SDLowerWater" parent="Container" instance=ExtResource( 2 )]
@@ -114,6 +114,19 @@ margin_top = 2750.0
 margin_right = 298.0
 margin_bottom = 3296.0
 _sections_unfolded = [ "Rect" ]
-label = "Sudden Death lower water color"
+text = "Sudden Death lower water color"
+edit_alpha = true
+
+[node name="SDTint" parent="Container" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 3300.0
+margin_right = 298.0
+margin_bottom = 3846.0
+_sections_unfolded = [ "Rect" ]
+text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
 

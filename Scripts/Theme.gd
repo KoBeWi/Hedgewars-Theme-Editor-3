@@ -5,14 +5,21 @@ var theme_name
 var music
 var sd_music
 
+var sky_defined
+var border_defined
+var sd_tint_defined
 var sky
 var border
 var sd_tint
 
+var water_top_defined
+var water_bottom_defined
 var water_top
 var water_bottom
 var water_opacity
 
+var sd_water_top_defined
+var sd_water_bottom_defined
 var sd_water_top
 var sd_water_bottom
 var sd_water_opacity
@@ -63,14 +70,21 @@ signal theme_loaded
 signal output_updated
 
 func load_defaults():
+	sky_defined = false
+	border_defined = false
+	sd_tint_defined = false
 	sky = Color(0, 0, 0)
 	border = Color("505050")
 	sd_tint = Color("808080")
 	
+	water_top_defined = false
+	water_bottom_defined = false
 	water_top = Color("545C9D")
 	water_bottom = Color("343C7D")
 	water_opacity = 128
 	
+	sd_water_top_defined = false
+	sd_water_bottom_defined = false
 	sd_water_top = Color("9670A9")
 	sd_water_bottom = Color("B972C9")
 	sd_water_opacity = 128
@@ -132,14 +146,28 @@ func load_theme(_theme_name):
 		match split[0]:
 			"music": music = params[0].get_basename()
 			"sd-music": sd_music = params[0].get_basename()
-			"sky": sky = Util.get_color(params)
-			"border": border = Util.get_color(params)
-			"sd-tint": sd_tint = Util.get_color(params)
-			"water-top": water_top = Util.get_color(params)
-			"water-bottom": water_bottom = Util.get_color(params)
+			"sky":
+				sky = Util.get_color(params)
+				sky_defined = true
+			"border":
+				border = Util.get_color(params)
+				border_defined = true
+			"sd-tint":
+				sd_tint = Util.get_color(params)
+				sd_tint_defined = true
+			"water-top":
+				water_top = Util.get_color(params)
+				water_top_defined = true
+			"water-bottom":
+				water_bottom = Util.get_color(params)
+				water_bottom_defined = true
 			"water-opacity": water_opacity = Util.get_color_value(params[0])
-			"sd-water-top": sd_water_top = Util.get_color(params)
-			"sd-water-bottom": sd_water_bottom = Util.get_color(params)
+			"sd-water-top":
+				sd_water_top = Util.get_color(params)
+				sd_water_top_defined = true
+			"sd-water-bottom":
+				sd_water_bottom = Util.get_color(params)
+				sd_water_bottom_defined = true
 			"sd-water-opacity": sd_water_opacity = Util.get_color_value(params[0])
 			"clouds":
 				clouds = int(params[0])
@@ -234,21 +262,28 @@ func refresh_oputput(emit_changed = true):
 	theme_output = PoolStringArray()
 	
 	theme_output.append("#Created with Hedgewars Theme Editor 3")
-	theme_output.append(str("sky = ", int(sky.r * 255), ", ", int(sky.g * 255), ", ", int(sky.b * 255)))
-	theme_output.append(str("border = ", int(border.r * 255), ", ", int(border.g * 255), ", ", int(border.b * 255)))
-	theme_output.append(str("water-top = ", int(water_top.r * 255), ", ", int(water_top.g * 255), ", ", int(water_top.b * 255)))
-	theme_output.append(str("water-bottom = ", int(water_bottom.r * 255), ", ", int(water_bottom.g * 255), ", ", int(water_bottom.b * 255)))
-	theme_output.append(str("water-opacity = ", int(water_top.a * 255)))
-	theme_output.append(str("sd-water-top = ", int(sd_water_top.r * 255), ", ", int(sd_water_top.g * 255), ", ", int(sd_water_top.b * 255)))
-	theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
-	theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
-	theme_output.append(str("sd-tint = ", int(sd_tint.r * 255), ", ", int(sd_tint.g * 255), ", ", int(sd_tint.b * 255), ", ", int(sd_tint.a * 255)))
-	theme_output.append(str("music = ", music, ".ogg"))
-	theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	
+	if sky_defined: theme_output.append(str("sky = ", int(sky.r * 255), ", ", int(sky.g * 255), ", ", int(sky.b * 255)))
+	if border_defined: theme_output.append(str("border = ", int(border.r * 255), ", ", int(border.g * 255), ", ", int(border.b * 255)))
+	if sd_tint_defined: theme_output.append(str("sd-tint = ", int(sd_tint.r * 255), ", ", int(sd_tint.g * 255), ", ", int(sd_tint.b * 255), ", ", int(sd_tint.a * 255)))
+	
+	if water_top_defined: theme_output.append(str("water-top = ", int(water_top.r * 255), ", ", int(water_top.g * 255), ", ", int(water_top.b * 255)))
+	if water_bottom_defined: theme_output.append(str("water-bottom = ", int(water_bottom.r * 255), ", ", int(water_bottom.g * 255), ", ", int(water_bottom.b * 255)))
+	if water_top_defined or water_bottom_defined: theme_output.append(str("water-opacity = ", int(water_top.a * 255)))
+	
+	if sd_water_top_defined: theme_output.append(str("sd-water-top = ", int(sd_water_top.r * 255), ", ", int(sd_water_top.g * 255), ", ", int(sd_water_top.b * 255)))
+	if sd_water_bottom_defined: theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
+	if sd_water_top_defined or sd_water_bottom_defined: theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
+	
+	if music != tr("/none/"): theme_output.append(str("music = ", music, ".ogg"))
+	if sd_music != tr("/none/"): theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	
 	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
 	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
+	
 	if clouds_defined: theme_output.append(str("clouds = ", clouds))
 	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
+	
 	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01)) #TODO: make sure floats have 2 decimal digits
 	if sd_water_animation_defined: theme_output.append(str("sd-water-animation = ", sd_water_animation_frames, ", ", sd_water_animation_duration, ", ", sd_water_animation_speed * 0.01))
 	

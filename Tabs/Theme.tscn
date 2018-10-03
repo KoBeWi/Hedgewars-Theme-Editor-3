@@ -430,7 +430,6 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
 
 [node name="Clouds" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -1077,6 +1076,7 @@ max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts", "custom_fonts/font" ]
 
 [node name="SDFlakes" type="VBoxContainer" parent="Container"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
