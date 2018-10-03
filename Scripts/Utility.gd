@@ -68,7 +68,7 @@ func load_texture(file):
 	image.load(file)
 	
 	var texture = ImageTexture.new()
-	texture.create_from_image(image)
+	texture.create_from_image(image, 0)
 	return texture
 
 func list_directory(path, for_files = true):

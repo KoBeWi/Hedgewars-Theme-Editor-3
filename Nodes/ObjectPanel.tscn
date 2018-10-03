@@ -8,17 +8,15 @@ script/source = "extends Panel
 
 var object
 
-func assign_object(_object):
-	object = _object
+func _ready():
+	$Container/Controls/EditObject.connect(\"pressed\", get_parent(), \"edit_object\", [object])
+	
 	var texture = Util.load_texture(str(HWTheme.path(), object.name, \".png\"))
 	$Container/Image.texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
 	$Container/Controls/Amount/Value.value = object.number
-	$Container/Controls/OnWater.pressed = object.buried[0] == Rect2()
-
-func _ready():
-	$Container/Controls/EditObject.connect(\"pressed\", get_parent(), \"edit_object\", [object])"
+	$Container/Controls/OnWater.pressed = object.buried[0] == Rect2()"
 
 [node name="ObjectPanel" type="Panel"]
 anchor_left = 0.0

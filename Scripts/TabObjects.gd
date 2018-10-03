@@ -10,13 +10,14 @@ func on_theme_loaded():
 	
 	for object in HWTheme.objects.values():
 		var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
-		panel.assign_object(object)
+		panel.object = object
 		add_child(panel)
 
 func edit_object(object):
 	Util.temp_editor = get_tree().current_scene
 	
 	var object_edit = preload("res://ObjectEdit.tscn").instance()
+	object_edit.object = object
 	$"/root".add_child(object_edit)
 	get_tree().current_scene = object_edit
 	
