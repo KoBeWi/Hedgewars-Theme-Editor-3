@@ -6,21 +6,18 @@
 
 script/source = "extends Panel
 
-var object
+var spray
 
 func _ready():
-	$Container/Controls/EditObject.connect(\"pressed\", get_parent(), \"edit_object\", [object])
-	$Container/Controls/Amount/Value.connect(\"value_changed\", get_parent(), \"update_object_amount\", [object.name])
-	$Container/Controls/OnWater.connect(\"toggled\", get_parent(), \"update_object_on_water\", [object.name])
+	$Container/Controls/Amount/Value.connect(\"value_changed\", get_parent(), \"update_spray_amount\", [spray])
 	
-	var texture = Util.load_texture(str(HWTheme.path(), object.name, \".png\"))
+	var texture = Util.load_texture(str(HWTheme.path(), spray, \".png\"))
 	$Container/Image.texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
-	$Container/Controls/Amount/Value.value = object.number
-	$Container/Controls/OnWater.pressed = object.buried[0] == Rect2()"
+	$Container/Controls/Amount/Value.value = HWTheme.sprays[spray]"
 
-[node name="ObjectPanel" type="Panel"]
+[node name="SprayPanel" type="Panel"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -100,13 +97,14 @@ size_flags_vertical = 1
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 77.0
+margin_top = 111.0
 margin_right = 210.0
-margin_bottom = 110.0
+margin_bottom = 144.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -160,50 +158,4 @@ text = "Number per map"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-
-[node name="OnWater" type="CheckBox" parent="Container/Controls"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 114.0
-margin_right = 210.0
-margin_bottom = 145.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Placed on water"
-flat = false
-align = 0
-
-[node name="EditObject" type="Button" parent="Container/Controls"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 149.0
-margin_right = 210.0
-margin_bottom = 178.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-group = null
-text = "Edit this object"
-flat = false
-align = 1
 
