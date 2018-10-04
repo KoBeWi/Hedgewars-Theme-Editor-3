@@ -3,6 +3,7 @@ extends TabContainer
 var last_dirty = false
 
 func _ready():
+	TranslationServer.set_locale(Util.preferred_language)
 	OS.set_window_title(tr("Hedgewars Theme Editor 3"))
 	OS.window_maximized = true #TODO: optional
 	

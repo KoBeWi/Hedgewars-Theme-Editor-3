@@ -9,7 +9,6 @@ var temp_editor
 var size_listeners = []
 
 func _ready():
-#	TranslationServer.set_locale("en") #TODO: preferred language
 	get_viewport().connect("size_changed", self, "update_size")
 	
 	var config = File.new()
@@ -20,6 +19,8 @@ func _ready():
 		hedgewars_path = lines[2]
 		hedgewars_user_path = lines[3]
 		config.close()
+	else:
+		preferred_language = OS.get_locale()
 	
 	if !hedgewars_path:
 		var path

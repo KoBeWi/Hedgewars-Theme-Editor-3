@@ -95,26 +95,26 @@ pressed = false
 shortcut = SubResource( 2 )
 _sections_unfolded = [ "shortcut" ]
 
-[sub_resource type="InputEventAction" id=6]
+[sub_resource type="InputEventAction" id=4]
 
 device = 0
 action = "ui_help"
 pressed = false
 
-[sub_resource type="ShortCut" id=7]
+[sub_resource type="ShortCut" id=5]
 
-shortcut = SubResource( 6 )
+shortcut = SubResource( 4 )
 _sections_unfolded = [ "shortcut" ]
 
-[sub_resource type="InputEventAction" id=4]
+[sub_resource type="InputEventAction" id=6]
 
 device = 0
 action = "ui_cancel"
 pressed = false
 
-[sub_resource type="ShortCut" id=5]
+[sub_resource type="ShortCut" id=7]
 
-shortcut = SubResource( 4 )
+shortcut = SubResource( 6 )
 _sections_unfolded = [ "shortcut" ]
 
 [node name="ObjectEdit" type="Panel"]
@@ -444,7 +444,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 7 )
+shortcut = SubResource( 5 )
 group = null
 text = "Help"
 flat = false
@@ -468,7 +468,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 toggle_mode = false
 enabled_focus_mode = 2
-shortcut = SubResource( 5 )
+shortcut = SubResource( 7 )
 group = null
 text = "Revert"
 flat = false

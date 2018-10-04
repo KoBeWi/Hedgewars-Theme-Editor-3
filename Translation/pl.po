@@ -9,9 +9,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.1.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+
+msgid "x1"
+msgstr ""
+
+msgid "Middle mouse - move around"
+msgstr ""
+
+msgid "Mouse wheel - zoom in/zoom out"
+msgstr ""
+
+msgid "Apply changes"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Revert"
+msgstr ""
 
 msgid "Sky color"
 msgstr "Kolor nieba"
@@ -34,11 +52,26 @@ msgstr "Kolor wody Nagłej Śmierci"
 msgid "Sudden Death lower sky/horizon tint"
 msgstr "Odcień nieba/horyzontu Nagłej Śmierci"
 
+msgid "General Settings"
+msgstr ""
+
 msgid "Game path"
 msgstr "Ścieżka gry"
 
 msgid "User path"
 msgstr "Ścieżka użytkownika"
+
+msgid "Misc"
+msgstr ""
+
+msgid "Maximize on start"
+msgstr ""
+
+msgid "Preferred language"
+msgstr ""
+
+msgid "System default"
+msgstr ""
 
 msgid "Save theme"
 msgstr "Zapisz motyw"
@@ -118,6 +151,12 @@ msgstr "Kolory"
 msgid "Main"
 msgstr "Ekran główny"
 
+msgid "English"
+msgstr "Polski"
+
+msgid "Objects"
+msgstr ""
+
 msgid "Theme"
 msgstr "Motyw"
 
@@ -129,6 +168,15 @@ msgstr "/brak/"
 
 msgid "Hedgewars Theme Editor 3"
 msgstr "Edytor Motywów Hedgewars 3"
+
+msgid "Number per map"
+msgstr ""
+
+msgid "Placed on water"
+msgstr ""
+
+msgid "Edit this object"
+msgstr ""
 
 #~ msgid "Frame length"
 #~ msgstr "Długość klatki"
