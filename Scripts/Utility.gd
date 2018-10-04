@@ -4,6 +4,7 @@ var preferred_language
 var enable_autosave = true
 var hedgewars_path
 var hedgewars_user_path
+var package_path
 
 var temp_editor
 var size_listeners = []
@@ -63,6 +64,11 @@ func _ready():
 				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir() + "/home"
 		
 		hedgewars_user_path = path
+	
+	if !package_path:
+		var file = File.new()
+		file.open("res://icon.png", file.READ)
+		package_path = file.get_path_absolute().get_base_dir() + "/PackedThemes"
 
 func load_texture(file):
 	var image = Image.new()
@@ -89,6 +95,9 @@ func list_directory(path, for_files = true):
 		entry = dir.get_next()
 	
 	return list
+
+func get_theme_path(theme):
+	return str(hedgewars_user_path, "/Data/Themes/", theme, "/")
 
 func get_color(rgb):
 	var result = []

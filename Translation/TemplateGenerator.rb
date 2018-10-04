@@ -40,6 +40,7 @@ while !dir_stack.empty?
             File.readlines(full_path).each do |line|
                 strings.concat line.scan(/text = "([^()]*)"/).flatten
                 strings.concat line.scan(/hint_tooltip = "([^()]*)"/).flatten
+                strings.concat line.scan(/placeholder_text = "([^()]*)"/).flatten
             end
         end
     end
