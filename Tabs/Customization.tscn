@@ -24,12 +24,28 @@ margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
 alignment = 1
 
-[node name="Sprays" type="ItemList" parent="Container/ItemLists"]
+[node name="Sprays" type="VBoxContainer" parent="Container/ItemLists"]
+editor/display_folded = true
 margin_right = 311.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
+[node name="Label" type="Label" parent="Container/ItemLists/Sprays"]
+margin_right = 311.0
+margin_bottom = 18.0
+text = "Sprays"
+align = 1
+valign = 1
+
+[node name="List" type="ItemList" parent="Container/ItemLists/Sprays"]
+margin_top = 22.0
+margin_right = 311.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="LeftMove" type="VBoxContainer" parent="Container/ItemLists"]
+editor/display_folded = true
 margin_left = 315.0
 margin_right = 348.0
 margin_bottom = 200.0
@@ -47,11 +63,26 @@ margin_right = 33.0
 margin_bottom = 126.0
 text = ">>>"
 
-[node name="Other" type="ItemList" parent="Container/ItemLists"]
+[node name="Other" type="VBoxContainer" parent="Container/ItemLists"]
+editor/display_folded = true
 margin_left = 352.0
 margin_right = 663.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Container/ItemLists/Other"]
+margin_right = 311.0
+margin_bottom = 18.0
+text = "Unused images"
+align = 1
+valign = 1
+
+[node name="List" type="ItemList" parent="Container/ItemLists/Other"]
+margin_top = 22.0
+margin_right = 311.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="RightMove" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
@@ -72,9 +103,24 @@ margin_right = 33.0
 margin_bottom = 126.0
 text = ">>>"
 
-[node name="Objects" type="ItemList" parent="Container/ItemLists"]
+[node name="Objects" type="VBoxContainer" parent="Container/ItemLists"]
+editor/display_folded = true
 margin_left = 704.0
 margin_right = 1016.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Container/ItemLists/Objects"]
+margin_right = 312.0
+margin_bottom = 18.0
+text = "Objects"
+align = 1
+valign = 1
+
+[node name="List" type="ItemList" parent="Container/ItemLists/Objects"]
+margin_top = 22.0
+margin_right = 312.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
