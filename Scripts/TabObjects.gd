@@ -2,7 +2,6 @@ extends VBoxContainer
 
 func _ready():
 	get_parent().name = tr("Objects")
-	Util.size_listeners.append(self)
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	
 func on_theme_loaded():

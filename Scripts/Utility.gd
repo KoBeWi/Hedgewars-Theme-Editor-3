@@ -7,11 +7,8 @@ var hedgewars_user_path
 var package_path
 
 var temp_editor
-var size_listeners = []
 
 func _ready():
-	get_viewport().connect("size_changed", self, "update_size")
-	
 	var config = File.new()
 	if config.open("user://config", File.READ) == OK:
 		var lines = config.get_as_text().split("\n")
@@ -107,10 +104,6 @@ func get_color(rgb):
 func get_color_value(val):
 	if val.begins_with("$"): return val.substr(1, 2).hex_to_int() / 255.0
 	else: return int(val) / 255.0
-
-func update_size():
-	for container in size_listeners:
-		container.rect_min_size.x = get_viewport().size.x-32
 
 func select_music(list, item):
 	list.selected = 0

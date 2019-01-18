@@ -5,7 +5,6 @@ var playing_sd
 
 func _ready():
 	get_parent().name = tr("Theme")
-	Util.size_listeners.append(self)
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	
 	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")

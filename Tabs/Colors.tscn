@@ -4,40 +4,20 @@
 [ext_resource path="res://Nodes/ColorPicker.tscn" type="PackedScene" id=2]
 
 [node name="Colors" type="ScrollContainer"]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 41.0
 margin_right = 171.0
 margin_bottom = 462.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 scroll_horizontal_enabled = false
-scroll_horizontal = 0
-scroll_vertical_enabled = true
-scroll_vertical = 0
-scroll_deadzone = 0
-_sections_unfolded = [ "Scroll" ]
 
 [node name="Container" type="VBoxContainer" parent="."]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 298.0
-margin_bottom = 3846.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+margin_right = 1179.0
+margin_bottom = 3671.0
+size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 1 )
 
@@ -48,9 +28,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 298.0
-margin_bottom = 546.0
-_sections_unfolded = [ "Rect" ]
+margin_right = 1179.0
+margin_bottom = 521.0
 text = "Sky color"
 
 [node name="Border" parent="Container" instance=ExtResource( 2 )]
@@ -59,10 +38,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 550.0
-margin_right = 298.0
-margin_bottom = 1096.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 525.0
+margin_right = 1179.0
+margin_bottom = 1046.0
 text = "Border/Mudgun color"
 
 [node name="UpperWater" parent="Container" instance=ExtResource( 2 )]
@@ -71,10 +49,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1100.0
-margin_right = 298.0
-margin_bottom = 1646.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 1050.0
+margin_right = 1179.0
+margin_bottom = 1571.0
 text = "Upper water color"
 edit_alpha = true
 
@@ -84,10 +61,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1650.0
-margin_right = 298.0
-margin_bottom = 2196.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 1575.0
+margin_right = 1179.0
+margin_bottom = 2096.0
 text = "Lower water color"
 edit_alpha = true
 
@@ -97,10 +73,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2200.0
-margin_right = 298.0
-margin_bottom = 2746.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 2100.0
+margin_right = 1179.0
+margin_bottom = 2621.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
@@ -110,10 +85,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2750.0
-margin_right = 298.0
-margin_bottom = 3296.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 2625.0
+margin_right = 1179.0
+margin_bottom = 3146.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
@@ -123,10 +97,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 3300.0
-margin_right = 298.0
-margin_bottom = 3846.0
-_sections_unfolded = [ "Rect" ]
+margin_top = 3150.0
+margin_right = 1179.0
+margin_bottom = 3671.0
 text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
 

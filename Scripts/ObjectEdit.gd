@@ -15,7 +15,6 @@ func _ready():
 	$UI/Container/Buttons/Apply.connect("pressed", self, "on_apply")
 	$UI/Container/Buttons/Help.connect("pressed", self, "on_help")
 	$UI/Container/Buttons/Revert.connect("pressed", self, "on_revert")
-	$UI/Container/Stretcher.rect_min_size.x = $UI/Container/Help.rect_size.x
 	
 	set_zoom(1)
 	move_view()
@@ -75,7 +74,6 @@ func on_apply():
 
 func on_help():
 	$UI/Container/Help.visible = !$UI/Container/Help.visible
-	$UI/Container/Stretcher.visible = !$UI/Container/Help.visible
 
 func on_revert():
 	object.buried = original_object.buried

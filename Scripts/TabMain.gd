@@ -7,7 +7,6 @@ var pack_mode = false
 
 func _ready():
 	get_parent().name = tr("Main")
-	Util.size_listeners.append(self)
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	get_viewport().connect("size_changed", self, "update_columns")
 	
@@ -106,7 +105,7 @@ func update_user_path():
 	$UserPath/Label.text = Util.hedgewars_user_path
 
 func update_columns():
-	$ThemeAlign/ThemesList.columns = floor(get_viewport_rect().size.x / 128) - 1
+	$ThemeAlign/ThemesList.columns = max(floor(get_viewport_rect().size.x / 128) - 1, 1)
 
 func change_language(item):
 	Util.preferred_language = language_list[item]
