@@ -20,7 +20,7 @@ scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1004.0
-margin_bottom = 1278.0
+margin_bottom = 1368.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -75,26 +75,26 @@ margin_bottom = 170.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Music"]
-margin_left = 421.0
-margin_top = 6.0
-margin_right = 457.0
-margin_bottom = 24.0
+margin_left = 417.0
+margin_top = 3.0
+margin_right = 462.0
+margin_bottom = 26.0
 text = "Music"
 
 [node name="List" type="OptionButton" parent="Container/Music"]
-margin_left = 461.0
-margin_right = 502.0
+margin_left = 466.0
+margin_right = 507.0
 margin_bottom = 30.0
 
 [node name="Play" type="Button" parent="Container/Music"]
-margin_left = 506.0
-margin_right = 542.0
+margin_left = 511.0
+margin_right = 547.0
 margin_bottom = 30.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/Music"]
-margin_left = 546.0
-margin_right = 582.0
+margin_left = 551.0
+margin_right = 587.0
 margin_bottom = 30.0
 icon = ExtResource( 5 )
 
@@ -106,26 +106,26 @@ margin_bottom = 204.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDMusic"]
-margin_left = 376.0
-margin_top = 6.0
-margin_right = 502.0
-margin_bottom = 24.0
+margin_left = 361.0
+margin_top = 3.0
+margin_right = 518.0
+margin_bottom = 26.0
 text = "Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="Container/SDMusic"]
-margin_left = 506.0
-margin_right = 547.0
+margin_left = 522.0
+margin_right = 563.0
 margin_bottom = 30.0
 
 [node name="Play" type="Button" parent="Container/SDMusic"]
-margin_left = 551.0
-margin_right = 587.0
+margin_left = 567.0
+margin_right = 603.0
 margin_bottom = 30.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/SDMusic"]
-margin_left = 591.0
-margin_right = 627.0
+margin_left = 607.0
+margin_right = 643.0
 margin_bottom = 30.0
 icon = ExtResource( 5 )
 
@@ -149,27 +149,27 @@ text = "Clouds"
 [node name="Clouds" type="HBoxContainer" parent="Container"]
 margin_top = 254.0
 margin_right = 1004.0
-margin_bottom = 282.0
+margin_bottom = 287.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Clouds"]
-margin_left = 444.0
+margin_left = 432.0
 margin_top = 5.0
 margin_right = 494.0
-margin_bottom = 23.0
+margin_bottom = 28.0
 text = "Amount"
 
 [node name="Amount" type="SpinBox" parent="Container/Clouds"]
 margin_left = 498.0
-margin_right = 560.0
-margin_bottom = 28.0
+margin_right = 572.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="SDCloudsHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 286.0
+margin_top = 291.0
 margin_right = 1004.0
-margin_bottom = 328.0
+margin_bottom = 333.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDCloudsHeader"]
 margin_right = 76.0
@@ -184,29 +184,29 @@ text = "Sudden Death Clouds"
 
 [node name="SDClouds" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 332.0
+margin_top = 337.0
 margin_right = 1004.0
-margin_bottom = 360.0
+margin_bottom = 370.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDClouds"]
-margin_left = 444.0
+margin_left = 432.0
 margin_top = 5.0
 margin_right = 494.0
-margin_bottom = 23.0
+margin_bottom = 28.0
 text = "Amount"
 
 [node name="Amount" type="SpinBox" parent="Container/SDClouds"]
 margin_left = 498.0
-margin_right = 560.0
-margin_bottom = 28.0
+margin_right = 572.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="FlakesHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 364.0
+margin_top = 374.0
 margin_right = 1004.0
-margin_bottom = 406.0
+margin_bottom = 416.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlakesHeader"]
 margin_right = 76.0
@@ -221,121 +221,121 @@ text = "Flakes"
 
 [node name="Flakes" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 410.0
+margin_top = 420.0
 margin_right = 1004.0
-margin_bottom = 566.0
+margin_bottom = 601.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
 margin_right = 1004.0
-margin_bottom = 28.0
+margin_bottom = 33.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/Amount"]
-margin_left = 444.0
+margin_left = 432.0
 margin_top = 5.0
 margin_right = 494.0
-margin_bottom = 23.0
+margin_bottom = 28.0
 text = "Amount"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/Amount"]
 margin_left = 498.0
-margin_right = 560.0
-margin_bottom = 28.0
+margin_right = 572.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="Frames" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
-margin_top = 32.0
+margin_top = 37.0
 margin_right = 1004.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/Frames"]
-margin_left = 446.0
+margin_left = 434.0
 margin_top = 5.0
-margin_right = 492.0
-margin_bottom = 23.0
+margin_right = 491.0
+margin_bottom = 28.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/Frames"]
-margin_left = 496.0
-margin_right = 558.0
-margin_bottom = 28.0
+margin_left = 495.0
+margin_right = 569.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
-margin_top = 64.0
+margin_top = 74.0
 margin_right = 1004.0
-margin_bottom = 92.0
+margin_bottom = 107.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/FrameDuration"]
-margin_left = 401.0
+margin_left = 390.0
 margin_top = 5.0
-margin_right = 499.0
-margin_bottom = 23.0
+margin_right = 509.0
+margin_bottom = 28.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/FrameDuration"]
-margin_left = 503.0
-margin_right = 603.0
-margin_bottom = 28.0
+margin_left = 513.0
+margin_right = 613.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 100, 0 )
 max_value = 65536.0
 suffix = "ms"
 
 [node name="RotationSpeed" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
-margin_top = 96.0
+margin_top = 111.0
 margin_right = 1004.0
-margin_bottom = 124.0
+margin_bottom = 144.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/RotationSpeed"]
-margin_left = 413.0
+margin_left = 402.0
 margin_top = 5.0
-margin_right = 506.0
-margin_bottom = 23.0
+margin_right = 517.0
+margin_bottom = 28.0
 text = "Rotation speed"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/RotationSpeed"]
-margin_left = 510.0
-margin_right = 590.0
-margin_bottom = 28.0
+margin_left = 521.0
+margin_right = 601.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 80, 0 )
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="FallingSpeed" type="HBoxContainer" parent="Container/Flakes"]
 editor/display_folded = true
-margin_top = 128.0
+margin_top = 148.0
 margin_right = 1004.0
-margin_bottom = 156.0
+margin_bottom = 181.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/FallingSpeed"]
-margin_left = 419.0
+margin_left = 410.0
 margin_top = 5.0
-margin_right = 500.0
-margin_bottom = 23.0
+margin_right = 509.0
+margin_bottom = 28.0
 text = "Falling speed"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/FallingSpeed"]
-margin_left = 504.0
-margin_right = 584.0
-margin_bottom = 28.0
+margin_left = 513.0
+margin_right = 593.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 80, 0 )
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="SDFlakesHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 570.0
+margin_top = 605.0
 margin_right = 1004.0
-margin_bottom = 612.0
+margin_bottom = 647.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDFlakesHeader"]
 margin_right = 76.0
@@ -350,120 +350,120 @@ text = "Sudden Death Flakes"
 
 [node name="SDFlakes" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 616.0
+margin_top = 651.0
 margin_right = 1004.0
-margin_bottom = 772.0
+margin_bottom = 832.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
 margin_right = 1004.0
-margin_bottom = 28.0
+margin_bottom = 33.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/Amount"]
-margin_left = 444.0
+margin_left = 432.0
 margin_top = 5.0
 margin_right = 494.0
-margin_bottom = 23.0
+margin_bottom = 28.0
 text = "Amount"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/Amount"]
 margin_left = 498.0
-margin_right = 560.0
-margin_bottom = 28.0
+margin_right = 572.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="Frames" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
-margin_top = 32.0
+margin_top = 37.0
 margin_right = 1004.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/Frames"]
-margin_left = 446.0
+margin_left = 434.0
 margin_top = 5.0
-margin_right = 492.0
-margin_bottom = 23.0
+margin_right = 491.0
+margin_bottom = 28.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/Frames"]
-margin_left = 496.0
-margin_right = 558.0
-margin_bottom = 28.0
+margin_left = 495.0
+margin_right = 569.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
-margin_top = 64.0
+margin_top = 74.0
 margin_right = 1004.0
-margin_bottom = 92.0
+margin_bottom = 107.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/FrameDuration"]
-margin_left = 401.0
+margin_left = 390.0
 margin_top = 5.0
-margin_right = 499.0
-margin_bottom = 23.0
+margin_right = 509.0
+margin_bottom = 28.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/FrameDuration"]
-margin_left = 503.0
-margin_right = 603.0
-margin_bottom = 28.0
+margin_left = 513.0
+margin_right = 613.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 100, 0 )
 max_value = 65536.0
 suffix = "ms"
 
 [node name="RotationSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
-margin_top = 96.0
+margin_top = 111.0
 margin_right = 1004.0
-margin_bottom = 124.0
+margin_bottom = 144.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/RotationSpeed"]
-margin_left = 413.0
+margin_left = 402.0
 margin_top = 5.0
-margin_right = 506.0
-margin_bottom = 23.0
+margin_right = 517.0
+margin_bottom = 28.0
 text = "Rotation speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/RotationSpeed"]
-margin_left = 510.0
-margin_right = 590.0
-margin_bottom = 28.0
+margin_left = 521.0
+margin_right = 601.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 80, 0 )
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="FallingSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
 editor/display_folded = true
-margin_top = 128.0
+margin_top = 148.0
 margin_right = 1004.0
-margin_bottom = 156.0
+margin_bottom = 181.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/FallingSpeed"]
-margin_left = 419.0
+margin_left = 410.0
 margin_top = 5.0
-margin_right = 500.0
-margin_bottom = 23.0
+margin_right = 509.0
+margin_bottom = 28.0
 text = "Falling speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/FallingSpeed"]
-margin_left = 504.0
-margin_right = 584.0
-margin_bottom = 28.0
+margin_left = 513.0
+margin_right = 593.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 80, 0 )
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="WaterAnimationHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 776.0
+margin_top = 836.0
 margin_right = 1004.0
-margin_bottom = 818.0
+margin_bottom = 878.0
 
 [node name="OnOff" type="CheckButton" parent="Container/WaterAnimationHeader"]
 margin_right = 76.0
@@ -478,70 +478,70 @@ text = "Water Animation"
 
 [node name="WaterAnimation" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 822.0
+margin_top = 882.0
 margin_right = 1004.0
-margin_bottom = 914.0
+margin_bottom = 989.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/WaterAnimation"]
 editor/display_folded = true
 margin_right = 1004.0
-margin_bottom = 28.0
+margin_bottom = 33.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/Frames"]
-margin_left = 446.0
+margin_left = 434.0
 margin_top = 5.0
-margin_right = 492.0
-margin_bottom = 23.0
+margin_right = 491.0
+margin_bottom = 28.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/Frames"]
-margin_left = 496.0
-margin_right = 558.0
-margin_bottom = 28.0
+margin_left = 495.0
+margin_right = 569.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/WaterAnimation"]
 editor/display_folded = true
-margin_top = 32.0
+margin_top = 37.0
 margin_right = 1004.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/FrameDuration"]
-margin_left = 391.0
+margin_left = 380.0
 margin_top = 5.0
-margin_right = 489.0
-margin_bottom = 23.0
+margin_right = 499.0
+margin_bottom = 28.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/FrameDuration"]
-margin_left = 493.0
-margin_right = 613.0
-margin_bottom = 28.0
+margin_left = 503.0
+margin_right = 623.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 120, 0 )
 max_value = 65536.0
 suffix = "ms"
 
 [node name="MovementSpeed" type="HBoxContainer" parent="Container/WaterAnimation"]
 editor/display_folded = true
-margin_top = 64.0
+margin_top = 74.0
 margin_right = 1004.0
-margin_bottom = 92.0
+margin_bottom = 107.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/MovementSpeed"]
-margin_left = 406.0
+margin_left = 395.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 23.0
+margin_right = 504.0
+margin_bottom = 28.0
 text = "Flowing speed"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/MovementSpeed"]
-margin_left = 498.0
-margin_right = 598.0
-margin_bottom = 28.0
+margin_left = 508.0
+margin_right = 608.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 100, 0 )
 min_value = -65536.0
 max_value = 65536.0
@@ -549,9 +549,9 @@ suffix = "%"
 
 [node name="SDWaterAnimationHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 918.0
+margin_top = 993.0
 margin_right = 1004.0
-margin_bottom = 960.0
+margin_bottom = 1035.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDWaterAnimationHeader"]
 margin_right = 76.0
@@ -566,87 +566,87 @@ text = "Sudden Death Water Animation"
 
 [node name="SDWaterAnimation" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 964.0
+margin_top = 1039.0
 margin_right = 1004.0
-margin_bottom = 1056.0
+margin_bottom = 1146.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/SDWaterAnimation"]
 editor/display_folded = true
 margin_right = 1004.0
-margin_bottom = 28.0
+margin_bottom = 33.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/Frames"]
-margin_left = 446.0
+margin_left = 434.0
 margin_top = 5.0
-margin_right = 492.0
-margin_bottom = 23.0
+margin_right = 491.0
+margin_bottom = 28.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/Frames"]
-margin_left = 496.0
-margin_right = 558.0
-margin_bottom = 28.0
+margin_left = 495.0
+margin_right = 569.0
+margin_bottom = 33.0
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/SDWaterAnimation"]
 editor/display_folded = true
-margin_top = 32.0
+margin_top = 37.0
 margin_right = 1004.0
-margin_bottom = 60.0
+margin_bottom = 70.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/FrameDuration"]
-margin_left = 391.0
+margin_left = 380.0
 margin_top = 5.0
-margin_right = 489.0
-margin_bottom = 23.0
+margin_right = 499.0
+margin_bottom = 28.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/FrameDuration"]
-margin_left = 493.0
-margin_right = 613.0
-margin_bottom = 28.0
+margin_left = 503.0
+margin_right = 623.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 120, 0 )
 max_value = 65536.0
 suffix = "ms"
 
 [node name="MovementSpeed" type="HBoxContainer" parent="Container/SDWaterAnimation"]
 editor/display_folded = true
-margin_top = 64.0
+margin_top = 74.0
 margin_right = 1004.0
-margin_bottom = 92.0
+margin_bottom = 107.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/MovementSpeed"]
-margin_left = 406.0
+margin_left = 395.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 23.0
+margin_right = 504.0
+margin_bottom = 28.0
 text = "Flowing speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/MovementSpeed"]
-margin_left = 498.0
-margin_right = 598.0
-margin_bottom = 28.0
+margin_left = 508.0
+margin_right = 608.0
+margin_bottom = 33.0
 rect_min_size = Vector2( 100, 0 )
 min_value = -65536.0
 max_value = 65536.0
 suffix = "%"
 
 [node name="MiscHeader" type="Label" parent="Container"]
-margin_top = 1060.0
+margin_top = 1150.0
 margin_right = 1004.0
-margin_bottom = 1102.0
+margin_bottom = 1192.0
 custom_fonts/font = ExtResource( 6 )
 text = "Miscellaneous"
 
 [node name="FlattenFlakes" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1106.0
+margin_top = 1196.0
 margin_right = 1004.0
-margin_bottom = 1146.0
+margin_bottom = 1236.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlattenFlakes"]
 margin_right = 76.0
@@ -655,16 +655,16 @@ hint_tooltip = "Flattened flakes have constant size and layer"
 
 [node name="Label" type="Label" parent="Container/FlattenFlakes"]
 margin_left = 80.0
-margin_top = 11.0
-margin_right = 170.0
-margin_bottom = 29.0
+margin_top = 8.0
+margin_right = 189.0
+margin_bottom = 31.0
 text = "Flatten flakes?"
 
 [node name="FlattenClouds" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1150.0
+margin_top = 1240.0
 margin_right = 1004.0
-margin_bottom = 1190.0
+margin_bottom = 1280.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlattenClouds"]
 margin_right = 76.0
@@ -672,16 +672,16 @@ margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Container/FlattenClouds"]
 margin_left = 80.0
-margin_top = 11.0
-margin_right = 173.0
-margin_bottom = 29.0
+margin_top = 8.0
+margin_right = 194.0
+margin_bottom = 31.0
 text = "Flatten clouds?"
 
 [node name="Snow" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1194.0
+margin_top = 1284.0
 margin_right = 1004.0
-margin_bottom = 1234.0
+margin_bottom = 1324.0
 
 [node name="OnOff" type="CheckButton" parent="Container/Snow"]
 margin_right = 76.0
@@ -689,16 +689,16 @@ margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Container/Snow"]
 margin_left = 80.0
-margin_top = 11.0
-margin_right = 120.0
-margin_bottom = 29.0
+margin_top = 8.0
+margin_right = 129.0
+margin_bottom = 31.0
 text = "Snow?"
 
 [node name="Ice" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1238.0
+margin_top = 1328.0
 margin_right = 1004.0
-margin_bottom = 1278.0
+margin_bottom = 1368.0
 
 [node name="OnOff" type="CheckButton" parent="Container/Ice"]
 margin_right = 76.0
@@ -706,8 +706,8 @@ margin_bottom = 40.0
 
 [node name="Label" type="Label" parent="Container/Ice"]
 margin_left = 80.0
-margin_top = 11.0
-margin_right = 103.0
-margin_bottom = 29.0
+margin_top = 8.0
+margin_right = 109.0
+margin_bottom = 31.0
 text = "Ice?"
 

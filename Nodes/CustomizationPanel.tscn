@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Font/SubsectionFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Images/NoImage.png" type="Texture" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
@@ -23,6 +23,11 @@ func add_image(iname):
 	
 	get_image(images).get_node(\"ImageHeader/ImageName\").text = iname
 	get_image(images).get_node(\"ImageInfo\").text = \"\"
+	
+	var tex = Util.load_texture(HWTheme.path() + iname)
+	if tex:
+		get_image(images).get_node(\"Image\").texture = tex
+		get_image(images).get_node(\"Template\").visible = false
 
 func add_image_info(info):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
@@ -61,7 +66,7 @@ valign = 1
 [node name="Image" type="VBoxContainer" parent="Container"]
 margin_top = 73.0
 margin_right = 1010.0
-margin_bottom = 444.0
+margin_bottom = 256.0
 alignment = 1
 
 [node name="ImageHeader" type="HBoxContainer" parent="Container/Image"]
@@ -99,15 +104,15 @@ valign = 1
 [node name="Image" type="TextureRect" parent="Container/Image"]
 margin_top = 62.0
 margin_right = 1010.0
-margin_bottom = 318.0
+margin_bottom = 130.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="Template" type="HBoxContainer" parent="Container/Image"]
 editor/display_folded = true
-margin_top = 322.0
+margin_top = 134.0
 margin_right = 1010.0
-margin_bottom = 351.0
+margin_bottom = 163.0
 
 [node name="HSeparator" type="Control" parent="Container/Image/Template"]
 margin_right = 438.0
@@ -127,8 +132,8 @@ margin_bottom = 29.0
 size_flags_horizontal = 3
 
 [node name="Space" type="Control" parent="Container/Image"]
-margin_top = 355.0
+margin_top = 167.0
 margin_right = 1010.0
-margin_bottom = 371.0
+margin_bottom = 183.0
 rect_min_size = Vector2( 0, 16 )
 

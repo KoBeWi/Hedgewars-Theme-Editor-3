@@ -68,6 +68,10 @@ func _ready():
 		package_path = file.get_path_absolute().get_base_dir() + "/PackedThemes"
 
 func load_texture(file):
+	var check_exists = File.new()
+	if !check_exists.file_exists(file):
+		return null
+	
 	var image = Image.new()
 	image.load(file)
 	
