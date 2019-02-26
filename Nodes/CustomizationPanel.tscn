@@ -13,7 +13,7 @@ func _ready():
 	$Container/GeneralInfo.text = \"\"
 
 func add_info(info):
-	$Container/GeneralInfo.text += info + \"\\n\"
+	$Container/GeneralInfo.text += tr(info) + \"\\n\"
 
 func add_image(iname):
 	images += 1
@@ -29,8 +29,14 @@ func add_image(iname):
 		get_image(images).get_node(\"Image\").texture = tex
 		get_image(images).get_node(\"Template\").visible = false
 
-func add_image_info(info):
+func add_image_info(info, format = null):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
+	
+	if format:
+		info = tr(info) % format
+	else:
+		info = tr(info)
+	
 	get_image(images).get_node(\"ImageInfo\").text += new_line + info
 
 func get_image(i):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/TabCustomization.gd" type="Script" id=1]
 [ext_resource path="res://Font/HeaderFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Font/SubsectionFont.tres" type="DynamicFont" id=3]
 
 [node name="Customization" type="ScrollContainer"]
 anchor_right = 1.0
@@ -130,8 +131,17 @@ size_flags_vertical = 3
 [node name="ImagesHeader" type="Label" parent="Container"]
 margin_top = 204.0
 margin_right = 1016.0
-margin_bottom = 246.0
+margin_bottom = 271.0
 custom_fonts/font = ExtResource( 2 )
 text = "Customized theme images"
 align = 1
+
+[node name="ImagesDescrition" type="Label" parent="Container"]
+margin_top = 275.0
+margin_right = 1016.0
+margin_bottom = 340.0
+custom_fonts/font = ExtResource( 3 )
+text = "List of images you can customize in your theme. You have to do so manually in preferred image-editing program."
+align = 1
+autowrap = true
 
