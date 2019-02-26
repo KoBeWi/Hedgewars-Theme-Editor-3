@@ -8,6 +8,9 @@ func _ready():
 	$ItemLists/LeftMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Sprays/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
+	
+#	add_customization("Icon")
+#	add_customization("Land texture")
 
 func on_theme_loaded():
 	$ItemLists/Sprays/List.clear()
@@ -25,3 +28,7 @@ func move_item(from, to):
 	var item = from.get_selected_items()[0]
 	to.add_item(from.get_item_text(item))
 	from.remove_item(item)
+
+func add_customization(cname):
+	var custom = preload("res://Nodes/CustomizationPanel.tscn").instance()
+	add_child(custom)

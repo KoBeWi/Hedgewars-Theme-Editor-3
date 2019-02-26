@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/TabCustomization.gd" type="Script" id=1]
+[ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=2]
 
 [node name="Customization" type="ScrollContainer"]
 anchor_right = 1.0
@@ -14,11 +15,13 @@ size_flags_vertical = 3
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1016.0
-margin_bottom = 200.0
+margin_bottom = 555.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 1 )
 
 [node name="ItemLists" type="HBoxContainer" parent="Container"]
+editor/display_folded = true
 margin_right = 1016.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 200 )
@@ -26,101 +29,109 @@ alignment = 1
 
 [node name="Sprays" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
-margin_right = 311.0
+margin_right = 307.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Container/ItemLists/Sprays"]
-margin_right = 311.0
-margin_bottom = 18.0
+margin_right = 307.0
+margin_bottom = 23.0
 text = "Sprays"
 align = 1
 valign = 1
 
 [node name="List" type="ItemList" parent="Container/ItemLists/Sprays"]
-margin_top = 22.0
-margin_right = 311.0
+margin_top = 27.0
+margin_right = 307.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="LeftMove" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
-margin_left = 315.0
-margin_right = 348.0
+margin_left = 311.0
+margin_right = 350.0
 margin_bottom = 200.0
 alignment = 1
 
 [node name="MoveLeft" type="Button" parent="Container/ItemLists/LeftMove"]
-margin_top = 74.0
-margin_right = 33.0
+margin_top = 69.0
+margin_right = 39.0
 margin_bottom = 98.0
 text = "<<<"
 
 [node name="MoveRight" type="Button" parent="Container/ItemLists/LeftMove"]
 margin_top = 102.0
-margin_right = 33.0
-margin_bottom = 126.0
+margin_right = 39.0
+margin_bottom = 131.0
 text = ">>>"
 
 [node name="Other" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
-margin_left = 352.0
-margin_right = 663.0
+margin_left = 354.0
+margin_right = 661.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Container/ItemLists/Other"]
-margin_right = 311.0
-margin_bottom = 18.0
+margin_right = 307.0
+margin_bottom = 23.0
 text = "Unused images"
 align = 1
 valign = 1
 
 [node name="List" type="ItemList" parent="Container/ItemLists/Other"]
-margin_top = 22.0
-margin_right = 311.0
+margin_top = 27.0
+margin_right = 307.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="RightMove" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
-margin_left = 667.0
-margin_right = 700.0
+margin_left = 665.0
+margin_right = 704.0
 margin_bottom = 200.0
 alignment = 1
 
 [node name="MoveLeft" type="Button" parent="Container/ItemLists/RightMove"]
-margin_top = 74.0
-margin_right = 33.0
+margin_top = 69.0
+margin_right = 39.0
 margin_bottom = 98.0
 text = "<<<"
 
 [node name="MoveRight" type="Button" parent="Container/ItemLists/RightMove"]
 margin_top = 102.0
-margin_right = 33.0
-margin_bottom = 126.0
+margin_right = 39.0
+margin_bottom = 131.0
 text = ">>>"
 
 [node name="Objects" type="VBoxContainer" parent="Container/ItemLists"]
 editor/display_folded = true
-margin_left = 704.0
+margin_left = 708.0
 margin_right = 1016.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="Container/ItemLists/Objects"]
-margin_right = 312.0
-margin_bottom = 18.0
+margin_right = 308.0
+margin_bottom = 23.0
 text = "Objects"
 align = 1
 valign = 1
 
 [node name="List" type="ItemList" parent="Container/ItemLists/Objects"]
-margin_top = 22.0
-margin_right = 312.0
+margin_top = 27.0
+margin_right = 308.0
 margin_bottom = 200.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="ImagesHeader" type="Label" parent="Container"]
+margin_top = 204.0
+margin_right = 1016.0
+margin_bottom = 246.0
+custom_fonts/font = ExtResource( 2 )
+text = "Customized theme images"
+align = 1
 
