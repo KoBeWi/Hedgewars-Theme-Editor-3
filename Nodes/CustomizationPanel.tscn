@@ -1,105 +1,134 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Font/SubsectionFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Font/SubsectionFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
-func _ready():
-	return
-	rect_min_size.y = 512"
+var images = -1
 
-[node name="CustomizationPanel" type="Container"]
+func _ready():
+	$Container/GeneralInfo.text = \"\"
+
+func add_info(info):
+	$Container/GeneralInfo.text += info + \"\\n\"
+
+func add_image(iname):
+	images += 1
+	
+	if images > 0:
+		$Container.add_child(get_image(0).duplicate())
+	
+	get_image(images).get_node(\"ImageHeader/ImageName\").text = iname
+	get_image(images).get_node(\"ImageInfo\").text = \"\"
+
+func add_image_info(info):
+	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
+	get_image(images).get_node(\"ImageInfo\").text += new_line + info
+
+func get_image(i):
+	return $Container.get_child(i + 2)"
+
+[node name="CustomizationPanel" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
 
 [node name="Container" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_right = 216.0
-margin_bottom = 365.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1017.0
+margin_bottom = 593.0
 
 [node name="GroupName" type="Label" parent="Container"]
-margin_right = 1240.0
-margin_bottom = 31.0
+margin_right = 1010.0
+margin_bottom = 42.0
 custom_fonts/font = ExtResource( 1 )
 text = "Group name"
 align = 1
 valign = 1
 
 [node name="GeneralInfo" type="Label" parent="Container"]
-margin_top = 35.0
-margin_right = 1240.0
-margin_bottom = 58.0
+margin_top = 46.0
+margin_right = 1010.0
+margin_bottom = 69.0
 text = "Multiline general info"
 align = 1
 valign = 1
 
 [node name="Image" type="VBoxContainer" parent="Container"]
-margin_top = 62.0
-margin_right = 1240.0
-margin_bottom = 405.0
+margin_top = 73.0
+margin_right = 1010.0
+margin_bottom = 444.0
 alignment = 1
 
 [node name="ImageHeader" type="HBoxContainer" parent="Container/Image"]
-margin_right = 1240.0
-margin_bottom = 23.0
+margin_right = 1010.0
+margin_bottom = 31.0
 
 [node name="HSeparator" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_right = 569.0
-margin_bottom = 23.0
+margin_right = 434.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="ImageName" type="Label" parent="Container/Image/ImageHeader"]
-margin_left = 573.0
-margin_right = 667.0
-margin_bottom = 23.0
+margin_left = 438.0
+margin_right = 571.0
+margin_bottom = 31.0
+custom_fonts/font = ExtResource( 2 )
 text = "Image name"
 align = 1
 valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_left = 671.0
-margin_right = 1240.0
-margin_bottom = 23.0
+margin_left = 575.0
+margin_right = 1010.0
+margin_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="ImageInfo" type="Label" parent="Container/Image"]
-margin_top = 27.0
-margin_right = 1240.0
-margin_bottom = 50.0
+margin_top = 35.0
+margin_right = 1010.0
+margin_bottom = 58.0
 text = "Multiline image info"
 align = 1
 valign = 1
 
 [node name="Image" type="TextureRect" parent="Container/Image"]
-margin_top = 54.0
-margin_right = 1240.0
-margin_bottom = 310.0
-texture = ExtResource( 2 )
+margin_top = 62.0
+margin_right = 1010.0
+margin_bottom = 318.0
+texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="Template" type="HBoxContainer" parent="Container/Image"]
-margin_top = 314.0
-margin_right = 1240.0
-margin_bottom = 343.0
+editor/display_folded = true
+margin_top = 322.0
+margin_right = 1010.0
+margin_bottom = 351.0
 
 [node name="HSeparator" type="Control" parent="Container/Image/Template"]
-margin_right = 553.0
+margin_right = 438.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
 
 [node name="TemplateButton" type="Button" parent="Container/Image/Template"]
-margin_left = 557.0
-margin_right = 683.0
+margin_left = 442.0
+margin_right = 568.0
 margin_bottom = 29.0
 text = "Fetch template"
 
 [node name="HSeparator2" type="Control" parent="Container/Image/Template"]
-margin_left = 687.0
-margin_right = 1240.0
+margin_left = 572.0
+margin_right = 1010.0
 margin_bottom = 29.0
 size_flags_horizontal = 3
+
+[node name="Space" type="Control" parent="Container/Image"]
+margin_top = 355.0
+margin_right = 1010.0
+margin_bottom = 371.0
+rect_min_size = Vector2( 0, 16 )
 
