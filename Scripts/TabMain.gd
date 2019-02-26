@@ -99,10 +99,12 @@ func on_theme_loaded():
 func update_game_path():
 	Util.hedgewars_path = $FileDialog/GameDialog.current_dir
 	$GamePath/Label.text = Util.hedgewars_path
+	Util.save_settings()
 
 func update_user_path():
 	Util.hedgewars_user_path = $FileDialog/UserDialog.current_dir
 	$UserPath/Label.text = Util.hedgewars_user_path
+	Util.save_settings()
 
 func update_columns():
 	$ThemeAlign/ThemesList.columns = max(floor(get_viewport_rect().size.x / 128) - 1, 1)

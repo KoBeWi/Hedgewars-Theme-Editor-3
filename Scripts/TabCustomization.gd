@@ -213,10 +213,10 @@ func add_customization(cname):
 	custom.get_node("Container/GroupName").text = tr(cname)
 	return custom
 
-const TEMPLATE_LIST = {
-	"LandText.png": ""
-}
+func get_template_path(iname):
+	match iname:
+		"LandTex.png": return Util.hedgewars_path + "/Data/Themes/Nature/LandTex.png"
 
 func fetch_template(iname):
 	var dir = Directory.new()
-	dir.copy(TEMPLATE_LIST[iname], HWTheme.path() + iname)
+	dir.copy(get_template_path(iname), HWTheme.path() + iname)

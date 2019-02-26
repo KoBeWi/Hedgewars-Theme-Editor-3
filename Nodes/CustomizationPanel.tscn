@@ -28,6 +28,8 @@ func add_image(iname):
 	if tex:
 		get_image(images).get_node(\"Image\").texture = tex
 		get_image(images).get_node(\"Template\").visible = false
+	
+	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname])
 
 func add_image_info(info, format = null):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
