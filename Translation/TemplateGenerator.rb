@@ -1,7 +1,7 @@
 ROOT_DIRECTORY = ".."
 OUTPUT_PATH = "./en.pot"
 EXCLUDE_DIRECTORIES = [".import", ".git"]
-EXCLUDE_STRINGS = ["", "..."]
+EXCLUDE_STRINGS = ["", "...", "x1", "Image name", "Group name", "Multiline image info", "Multiline general info", ">>>", "<<<"]
 FILE_HEADER = '
 msgid ""
 msgstr ""
@@ -10,17 +10,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 '
 
-def entry_list(dir) #purely out of convenience
-    Dir.entries(dir) - [".", ".."]
-end
-
 dir_stack = [ROOT_DIRECTORY]
 visited_dirs = []
 strings = []
 
 while !dir_stack.empty?
     dir = dir_stack.pop
-    entries = entry_list(dir)
+    entries = Dir.entries(dir) - [".", ".."]
 
     entries.each do |entry|
         next if EXCLUDE_DIRECTORIES.include?(entry)
@@ -35,10 +31,14 @@ while !dir_stack.empty?
         if File.extname(entry) == ".gd"
             File.readlines(full_path).each do |line|
                 strings.concat line.scan(/[^s]tr\("([^()]*)"\)/).flatten
+                strings.concat line.scan(/add_customization\("([^()]*)"\)/).flatten
+                strings.concat line.scan(/add_info\("([^()]*)"\)/).flatten
+                strings.concat line.scan(/add_image_info\("([^()]*)"\)/).flatten
+                strings.concat line.scan(/add_image_info\("([^()]*)", \[/).flatten
             end
         elsif File.extname(entry) == ".tscn"
             File.readlines(full_path).each do |line|
-                strings.concat line.scan(/text = "([^()]*)"/).flatten
+                strings.concat line.scan(/text = "([^\"]*)"/).flatten
                 strings.concat line.scan(/hint_tooltip = "([^()]*)"/).flatten
                 strings.concat line.scan(/placeholder_text = "([^()]*)"/).flatten
             end

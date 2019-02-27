@@ -9,27 +9,41 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.1.1\n"
+"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-msgid "x1"
-msgstr ""
+msgid "Left mouse - visible rectangle (green)"
+msgstr "Lewy przycisk myszy - odkryty prostokąt (zielony)"
+
+msgid "Right mouse - buried rectangle (red)"
+msgstr "Prawy przycisk myszy - zakryty prostokąt (czerwony)"
 
 msgid "Middle mouse - move around"
-msgstr ""
+msgstr "Środkowy przycisk myszki - poruszanie się"
+
+msgid "Middle click - remove rectangle (yellow)"
+msgstr "Środkowe kliknięcie - usuń prostokąt (żółty)"
 
 msgid "Mouse wheel - zoom in/zoom out"
+msgstr "Kółko myszki - przybliż/oddal"
+
+msgid "Magenta rectangles are intersecting visible and buried rectangles."
 msgstr ""
+"Różowe prostokąty są nachodzącymi na siebie odkrytymi i przykrytymi "
+"prostokątami."
+
+msgid "This MUSTN'T happen."
+msgstr "To NIE MOŻE się stać."
 
 msgid "Apply changes"
-msgstr ""
+msgstr "Zatwierdź"
 
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
 msgid "Revert"
-msgstr ""
+msgstr "Odrzuć"
 
 msgid "Sky color"
 msgstr "Kolor nieba"
@@ -52,8 +66,27 @@ msgstr "Kolor wody Nagłej Śmierci"
 msgid "Sudden Death lower sky/horizon tint"
 msgstr "Odcień nieba/horyzontu Nagłej Śmierci"
 
-msgid "General Settings"
+msgid "Sprays"
+msgstr "Spray'e"
+
+msgid "Unused images"
+msgstr "Nieużyte obrazki"
+
+msgid "Objects"
+msgstr "Obiekty"
+
+msgid "Customized theme images"
+msgstr "Dostosowane obrazki motywu"
+
+msgid ""
+"List of images you can customize in your theme. You have to do so manually "
+"in preferred image-editing program."
 msgstr ""
+"Lista obrazków, które możesz dostosować w swoim motywie. Musisz to zrobić "
+"ręcznie, w preferowanym edytorze grafiki."
+
+msgid "Editor settings"
+msgstr "Ustawienia edytora"
 
 msgid "Game path"
 msgstr "Ścieżka gry"
@@ -62,16 +95,25 @@ msgid "User path"
 msgstr "Ścieżka użytkownika"
 
 msgid "Misc"
-msgstr ""
+msgstr "Różne"
 
 msgid "Maximize on start"
-msgstr ""
+msgstr "Maksymalizuj na starcie"
 
 msgid "Preferred language"
-msgstr ""
+msgstr "Preferowany język"
 
-msgid "System default"
-msgstr ""
+msgid "Themes"
+msgstr "Motywy"
+
+msgid "Pack themes"
+msgstr "Spakuj motywy"
+
+msgid "Create pack"
+msgstr "Stwórz paczkę"
+
+msgid "Enter package name"
+msgstr "Wprowadź nazwę paczki"
 
 msgid "Save theme"
 msgstr "Zapisz motyw"
@@ -81,6 +123,9 @@ msgstr "Włącz autozapis"
 
 msgid "Select theme"
 msgstr "Wybierz motyw"
+
+msgid "Select themes to pack"
+msgstr "Wybierz motywy do spakowania"
 
 msgid "Theme name"
 msgstr "Nazwa motywu"
@@ -148,14 +193,216 @@ msgstr "Lód?"
 msgid "Colors"
 msgstr "Kolory"
 
+msgid "Customization"
+msgstr "Dostosowanie"
+
+msgid "Icon"
+msgstr "Ikona"
+
+msgid "Themes without icon don't appear on in-game theme list"
+msgstr "Motywy bez ikony nie pojawiają się na liście motywów w grze"
+
+msgid "Size: %s"
+msgstr "Rozmiar: %s"
+
+msgid "Land texture"
+msgstr "Tekstura lądu"
+
+msgid "Texture drawn as map's terrain"
+msgstr "Tekstura rysowana jako teren mapy"
+
+msgid "This image is required"
+msgstr "Ten obrazek jest wymagany"
+
+msgid "Any size"
+msgstr "Dowolny rozmiar"
+
+msgid "Land back texture"
+msgstr "Tylna tekstura lądu"
+
+msgid "Visible when terrain is destroyed"
+msgstr "Widoczna, gdy teren jest zniszczony"
+
+msgid "Border"
+msgstr "Brzeg"
+
+msgid "Painted arround terrain"
+msgstr "Rysowany wokół terenu"
+
+msgid "Two halves, top and bottom %s pix each"
+msgstr "Dwie połówki, góra i dół każda %s pikseli"
+
+msgid "Girder"
+msgstr "Belka"
+
+msgid "Land bridges"
+msgstr "Lądowe mosty"
+
+msgid "If not provided, a default image is used"
+msgstr "Jeśli nie dodano, domyślny obrazek jest użyty"
+
+msgid "Chunk"
+msgstr "Odłamek"
+
+msgid "Particles that fall when land is destroyed"
+msgstr "Odłamki, które spadają, gdy ląd jest niszczony"
+
+msgid "If not provided, no particles will appear"
+msgstr "Jeśli nie dodano, żadne odłamki nie spadną"
+
+msgid "Each particle is %s square"
+msgstr "Każdy odłamek to kwadrat %s"
+
+msgid "Dust"
+msgstr "Kurz"
+
+msgid "Particles that fall when something hits ground or mudball flies etc."
+msgstr ""
+"Cząsteczki, które spadają, gdy coś uderzy w ziemię albo leci kula błota itp."
+
+msgid "Water"
+msgstr "Woda"
+
+msgid "Texture of water waves"
+msgstr "Tekstura wodnych fal"
+
+msgid "SD version is used during Sudden Death"
+msgstr "Wersja SD jest używana podczas Nagłej Śmierci"
+
+msgid "%s is preferred"
+msgstr "%s preferowane"
+
+msgid "Splash and droplets"
+msgstr "Plusk i krople"
+
+msgid "Used when something hits water"
+msgstr "Używane, gdy coś uderzy w wodę"
+
+msgid "Size: %s frames %s pix each"
+msgstr "Rozmiar: %s klatek, każda %s pikseli"
+
+msgid "Lined vertically in two columns"
+msgstr "Ułożone pionowo w dwóch kolumnach"
+
+msgid "Size: %s images %s pix each"
+msgstr "Rozmiar: %s klatek, każda %s pikseli"
+
+msgid "Lined vertically"
+msgstr "Ułożone pionowo"
+
+msgid "Texture for clouds that appear on top of the map"
+msgstr "Tekstura dla chmur, które latają na górze mapy"
+
+msgid "Size: %s for each cloud"
+msgstr "Rozmiar: każda chmura %s"
+
+msgid "Any number"
+msgstr "Dowolna ilość"
+
+msgid "Texture for flakes that float in background"
+msgstr "Tekstura dla płatków, które unoszą się w tle"
+
+msgid "If not provided, no flakes will appear"
+msgstr "Jeśli nie dodano, żadne płatki się nie pojawią"
+
+msgid "Size: %s for each flake"
+msgstr "Rozmiar: każdy płatek %s"
+
+msgid "Mirrored clouds/flakes"
+msgstr "Odwrócone chmury/płatki"
+
+msgid "Will replace their equivalents when wind is blowing left"
+msgstr "Podmienią swoje odpowiedniki kiedy wiatr wieje w lewo"
+
+msgid "If not provided, flakes/clouds will always appear in one direction"
+msgstr ""
+"Jeśli nie dodano, płatki/chmury zawsze będą ustawione w jednym kierunku"
+
+msgid "Snow"
+msgstr "Śnieg"
+
+msgid "Texture for snow that accumulates on map when snow is enabled"
+msgstr ""
+"Tekstura dla śniegu, który zbiera się na mapach, kiedy śnieg jest włączony"
+
+msgid "Sky"
+msgstr "Niebo"
+
+msgid "Map's background texture"
+msgstr "Tekstura tła mapy"
+
+msgid "If not provided, no sky will appear"
+msgstr "Jeśli nie dodano, niebo nie będzie widoczne"
+
+msgid "Left/right sky"
+msgstr "Lewe/prawe niebo"
+
+msgid ""
+"If SkyL exists, Sky will be centered and SkyL will be looped on both sides"
+msgstr ""
+"Jeśli SkyL istnieje, Sky będzie wyśrodkowane, a SkyL będzie zapętlone w obie "
+"strony"
+
+msgid ""
+"If both SkyL and SkyR exist, Sky will be centered, SkyL will be looped on "
+"left side and SkyR on right side"
+msgstr ""
+"Jeśli SkyL i SkyR istnieją oba, Sky będzie wyśrodkowane, a SkyL będzie "
+"zapętlone w po lewej stronie i SkyR po prawej"
+
+msgid "Height preferrably the same as %s"
+msgstr "Preferowana wysokość ta sama jak dla %s"
+
+msgid "Horizont"
+msgstr "Horyzont"
+
+msgid "Background layer between sky and terrain"
+msgstr "Warstwa tła pomiędzy niebem, a terenem"
+
+msgid "If not provided, no horizont will appear"
+msgstr "Jeśli nie dodano, horyzont nie będzie widoczny"
+
+msgid "Left/right horizont"
+msgstr "Lewy/prawy horyzont"
+
+msgid "Same as SkyL/SkyR, but for horizont"
+msgstr "To samo co SkyL/SkyR, ale dla horyzontu"
+
+msgid "Girder tool"
+msgstr "Narzędzie belki"
+
+msgid "Used as a replacement for girder tool"
+msgstr "Użyte jako zamiennik dla narzędzia belki"
+
+msgid "Any shape is allowed and will have proper collisions"
+msgstr "Każdy kształt jest dozwolony i będzie miał odpowiednie kolizje"
+
+msgid "Use template if you want proper layout"
+msgstr "Użyj szablonu, jeśli chcesz prawidłowy układ"
+
+msgid "%s grid of images"
+msgstr "Siatka obrazków %s"
+
+msgid "Each image is %s pix"
+msgstr "Każdy obrazek ma %s pikseli"
+
+msgid "Rubber tool"
+msgstr "Narzędzie gumy"
+
+msgid "Used as a replacement for rubber tool"
+msgstr "Użyte jako zamiennik dla narzędzia gumy"
+
+msgid "Mudball weapon"
+msgstr "Kula błota"
+
+msgid "Used as a replacement for mudball weapon"
+msgstr "Użyte jako zamiennik dla broni kula błota"
+
 msgid "Main"
 msgstr "Ekran główny"
 
 msgid "English"
 msgstr "Polski"
-
-msgid "Objects"
-msgstr ""
 
 msgid "Theme"
 msgstr "Motyw"
@@ -169,14 +416,25 @@ msgstr "/brak/"
 msgid "Hedgewars Theme Editor 3"
 msgstr "Edytor Motywów Hedgewars 3"
 
+msgid "Fetch template"
+msgstr "Weź szablon"
+
 msgid "Number per map"
-msgstr ""
+msgstr "Ilość na mapę"
 
 msgid "Placed on water"
-msgstr ""
+msgstr "Stawiaj na wodzie"
 
 msgid "Edit this object"
-msgstr ""
+msgstr "Edytuj ten obiekt"
+
+#~ msgid "Size: %s images %s pix each, lined vertically"
+#~ msgstr "Rozmiar: %s obrazków, każdy %s pikseli"
+
+#, fuzzy
+#~| msgid "Theme name"
+#~ msgid "Image name"
+#~ msgstr "Nazwa motywu"
 
 #~ msgid "Frame length"
 #~ msgstr "Długość klatki"

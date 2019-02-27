@@ -22,7 +22,7 @@ func on_theme_loaded():
 	var customization
 	
 	customization = add_customization("Icon")
-	customization.add_info("Themes without icons don't appear on in-game theme list")
+	customization.add_info("Themes without icon don't appear on in-game theme list")
 	customization.add_image("icon.png")
 	customization.add_image_info("Size: %s", ["33x32"])
 	customization.add_image("icon@2x.png")
@@ -85,13 +85,13 @@ func on_theme_loaded():
 	customization.add_image_info("Size: %s frames %s pix each", ["20", "80x50"])
 	customization.add_image_info("Lined vertically in two columns")
 	customization.add_image("Droplet.png")
-	customization.add_image_info("Size: %s images %s pix each, lined vertically", ["4", "16x16"])
+	customization.add_image_info("Size: %s images %s pix each", ["4", "16x16"])
 	customization.add_image_info("Lined vertically")
 	customization.add_image("SDSplash.png")
 	customization.add_image_info("Size: %s frames %s pix each", ["20", "80x50"])
 	customization.add_image_info("Lined vertically in two columns")
 	customization.add_image("SDDroplet.png")
-	customization.add_image_info("Size: %s images %s pix each, lined vertically", ["4", "16x16"])
+	customization.add_image_info("Size: %s images %s pix each", ["4", "16x16"])
 	customization.add_image_info("Lined vertically")
 	
 	customization = add_customization("Clouds")
@@ -180,7 +180,7 @@ func on_theme_loaded():
 	customization.add_info("Use template if you want proper layout")
 	customization.add_info("If not provided, a default image is used")
 	customization.add_image("amGirder.png")
-	customization.add_image_info("%s grid images", ["3x3"])
+	customization.add_image_info("%s grid of images", ["3x3"])
 	customization.add_image_info("Each image is %s pix", ["160x160"])
 	
 	customization = add_customization("Rubber tool")
@@ -189,7 +189,7 @@ func on_theme_loaded():
 	customization.add_info("Use template if you want proper layout")
 	customization.add_info("If not provided, a default image is used")
 	customization.add_image("amRubber.png")
-	customization.add_image_info("%s grid images", ["2x2"])
+	customization.add_image_info("%s grid of images", ["2x2"])
 	customization.add_image_info("Each image is %s pix", ["160x160"])
 	
 	customization = add_customization("Mudball weapon")
@@ -213,10 +213,10 @@ func add_customization(cname):
 	custom.get_node("Container/GroupName").text = tr(cname)
 	return custom
 
-func get_template_path(iname):
+func get_template_path(iname):#TODO: add all
 	match iname:
 		"LandTex.png": return Util.hedgewars_path + "/Data/Themes/Nature/LandTex.png"
 
-func fetch_template(iname):
+func fetch_template(iname):#TODO: update on fetch (or generally update images on change)
 	var dir = Directory.new()
 	dir.copy(get_template_path(iname), HWTheme.path() + iname)

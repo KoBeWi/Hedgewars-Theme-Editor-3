@@ -19,6 +19,8 @@ func _ready():
 	set_zoom(1)
 	move_view()
 	original_object = object.duplicate(true)
+	
+	$UI/Container/Help.call_deferred("set_visible", false)
 
 func _process(delta):
 	if drag: image.position = drag + get_viewport().get_mouse_position()
