@@ -8,13 +8,13 @@ script/source = "extends Panel
 var spray
 
 func _ready():
-	$Container/Controls/Amount/Value.connect(\"value_changed\", get_parent(), \"update_spray_amount\", [spray])
-	
 	var texture = Util.load_texture(str(HWTheme.path(), spray, \".png\"))
 	$Container/Image.texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
-	$Container/Controls/Amount/Value.value = HWTheme.sprays[spray]"
+	$Container/Controls/Amount/Value.value = HWTheme.sprays[spray]
+	
+	$Container/Controls/Amount/Value.connect(\"value_changed\", get_parent(), \"update_spray_amount\", [spray])"
 
 [node name="SprayPanel" type="Panel"]
 anchor_right = 1.0

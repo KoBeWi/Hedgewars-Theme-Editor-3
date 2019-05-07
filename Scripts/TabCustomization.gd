@@ -57,7 +57,7 @@ func on_theme_loaded():#TODO: sounds
 	
 	customization = add_customization("Chunk")
 	customization.add_info("Particles that fall when land is destroyed")
-	customization.add_info("If not provided, no particles will appear") #TODO: no %s will appear?
+	customization.add_info("If not provided, no particles will appear")
 	customization.add_image("Chunk.png")
 	customization.add_image_info("Size: %s", ["64x64"])
 	customization.add_image_info("Each particle is %s square", ["32x32"])
@@ -147,7 +147,7 @@ func on_theme_loaded():#TODO: sounds
 	
 	customization = add_customization("Sky")
 	customization.add_info("Map's background texture")
-	customization.add_info("If not provided, no sky will appear") #TODO: no %s will appear?
+	customization.add_info("If not provided, no sky will appear")
 	customization.add_image("Sky.png")
 	customization.add_image_info("Any size")
 	#TODO: add preferred size?
@@ -164,7 +164,7 @@ func on_theme_loaded():#TODO: sounds
 	
 	customization = add_customization("Horizont")
 	customization.add_info("Background layer between sky and terrain")
-	customization.add_info("If not provided, no horizont will appear") #TODO: no %s will appear?
+	customization.add_info("If not provided, no horizont will appear")
 	customization.add_image("horizont.png")
 	customization.add_image_info("Any size")
 	

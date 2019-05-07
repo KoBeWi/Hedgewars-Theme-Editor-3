@@ -3,7 +3,7 @@ extends Control
 var player_paused = null
 var playing_sd
 
-func _ready():
+func _ready():#TODO: tooltips
 	get_parent().name = tr("Theme")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	
@@ -14,6 +14,11 @@ func _ready():
 	$Music/Stop.connect("pressed", self, "stop_music")
 	$SDMusic/Play.connect("pressed", self, "play_music", [true])
 	$SDMusic/Stop.connect("pressed", self, "stop_music")
+	
+	$Music/List.add_item(tr("/none/")) 
+	$SDMusic/List.add_item(tr("/none/"))
+	$FallbackMusic/List.add_item(tr("/none/")) 
+	$FallbackSDMusic/List.add_item(tr("/none/"))
 	
 	for music in Util.list_directory(music_dir()):
 		$Music/List.add_item(music.get_basename())
@@ -29,6 +34,8 @@ func _ready():
 	
 	$Music/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $Music/List])
 	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])
+	$FallbackMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $FallbackMusic/List])
+	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $FallbackSDMusic/List])
 	
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
@@ -70,6 +77,8 @@ func on_theme_loaded():
 	
 	Util.select_music($Music/List, HWTheme.music)
 	Util.select_music($SDMusic/List, HWTheme.sd_music)
+	Util.select_music($FallbackMusic/List, HWTheme.fallback_music)
+	Util.select_music($FallbackSDMusic/List, HWTheme.fallback_sd_music)
 	
 	$CloudsHeader/OnOff.pressed = HWTheme.clouds_defined
 	$Clouds/Amount.value = HWTheme.clouds

@@ -72,6 +72,11 @@ signal theme_loaded
 signal output_updated
 
 func load_defaults():
+	music = null
+	sd_music = null
+	fallback_music = null
+	fallback_sd_music = null
+	
 	sky_defined = false
 	border_defined = false
 	sd_tint_defined = false
@@ -244,19 +249,21 @@ func load_theme(_theme_name):#TODO: support old format
 	emit_signal("theme_loaded")
 	
 	refresh_oputput(false)
+	stored_output = theme_output
 	is_loading = false
 
 func save_theme():
-	refresh_oputput(false)
+#	refresh_oputput(false)
 	
 	Directory.new().rename(path() + "theme.cfg", path() + "theme.bak")
 	
 	var cfg_file = File.new()
-	cfg_file.open(path() + "theme.cfg", cfg_file.WRITE)
-	cfg_file.store_string(theme_output.join("\n"))
-	cfg_file.close()
-	
-	stored_output = theme_output
+	if cfg_file.open(path() + "theme.cfg", cfg_file.WRITE) == OK:
+		cfg_file.store_string(theme_output.join("\n"))
+		cfg_file.close()
+		
+		stored_output = theme_output
+		emit_signal("output_updated", theme_output != stored_output)
 
 func path():
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
@@ -278,10 +285,10 @@ func refresh_oputput(emit_changed = true):
 	if sd_water_bottom_defined: theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
 	if sd_water_top_defined or sd_water_bottom_defined: theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
 	
-	if music != tr("/none/"): theme_output.append(str("music = ", music, ".ogg"))
-	if sd_music != tr("/none/"): theme_output.append(str("sd-music = ", sd_music, ".ogg"))
-	if fallback_music != tr("/none/"): theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
-	if fallback_sd_music != tr("/none/"): theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
+	if music and music != tr("/none/"): theme_output.append(str("music = ", music, ".ogg"))
+	if sd_music and sd_music != tr("/none/"): theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	if fallback_music and fallback_music != tr("/none/"): theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
+	if fallback_sd_music and fallback_sd_music != tr("/none/"): theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
 	
 	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
 	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
@@ -325,5 +332,6 @@ func change_property_from_list(item, property, list):
 	change_property(list.get_item_text(item), property)
 
 func apply_change():
-	if Util.enable_autosave: save_theme()
-	else: refresh_oputput()
+	refresh_oputput()
+	if Util.enable_autosave:
+		save_theme()

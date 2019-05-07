@@ -20,7 +20,7 @@ scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1004.0
-margin_bottom = 1368.0
+margin_bottom = 1436.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -84,7 +84,6 @@ text = "Music"
 margin_left = 466.0
 margin_right = 507.0
 margin_bottom = 30.0
-items = [ "/none/", null, false, -1, null ]
 selected = 0
 
 [node name="Play" type="Button" parent="Container/Music"]
@@ -116,7 +115,6 @@ text = "Sudden Death Music"
 margin_left = 522.0
 margin_right = 563.0
 margin_bottom = 30.0
-items = [ "/none/", null, false, -1, null ]
 selected = 0
 
 [node name="Play" type="Button" parent="Container/SDMusic"]
@@ -148,7 +146,6 @@ text = "Fallback Music"
 margin_left = 499.0
 margin_right = 540.0
 margin_bottom = 30.0
-items = [ "/none/", null, false, -1, null ]
 selected = 0
 
 [node name="Play" type="Button" parent="Container/FallbackMusic"]
@@ -180,7 +177,6 @@ text = "Fallback Sudden Death Music"
 margin_left = 555.0
 margin_right = 596.0
 margin_bottom = 30.0
-items = [ "/none/", null, false, -1, null ]
 selected = 0
 
 [node name="Play" type="Button" parent="Container/FallbackSDMusic"]
