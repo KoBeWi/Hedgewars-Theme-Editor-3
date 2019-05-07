@@ -9,7 +9,7 @@ func _ready():
 	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
 
-func on_theme_loaded():#TODO: sounds
+func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	$ItemLists/Sprays/List.clear()
 	$ItemLists/Objects/List.clear()
 	
@@ -112,14 +112,15 @@ func on_theme_loaded():#TODO: sounds
 	
 	customization = add_customization("Flakes")
 	customization.add_info("Texture for flakes that float in background")
-	customization.add_info("If not provided, no flakes will appear") #TODO: verify
 	customization.add_info("SD version is used during Sudden Death")
 	customization.add_image("Flake.png")
 	customization.add_image_info("Size: %s for each flake", ["64x64"])
 	customization.add_image_info("Lined vertically")
+	customization.add_image_info("Game will crash if flakes are enabled and this image is missing")
 	customization.add_image("SDFlake.png")
 	customization.add_image_info("Size: %s for each flake", ["64x64"])
 	customization.add_image_info("Lined vertically")
+	customization.add_image_info("If not provided, a default image is used")
 	
 	customization = add_customization("Mirrored clouds/flakes")
 	customization.add_info("Will replace their equivalents when wind is blowing left")
@@ -143,14 +144,15 @@ func on_theme_loaded():#TODO: sounds
 	customization.add_info("Texture for snow that accumulates on map when snow is enabled")
 	customization.add_info("If not provided, a default image is used")
 	customization.add_image("Snow.png")
-	customization.add_image_info("Any size") #TODO: verify
+	customization.add_image_info("Must be at least 2 pixels wide to appear")
+	customization.add_image_info("Height lower than 2 will crash the game")
 	
 	customization = add_customization("Sky")
 	customization.add_info("Map's background texture")
 	customization.add_info("If not provided, no sky will appear")
 	customization.add_image("Sky.png")
 	customization.add_image_info("Any size")
-	#TODO: add preferred size?
+	customization.add_image_info("Standard height is 512")
 	
 	customization = add_customization("Left/right sky")
 	customization.add_info("If SkyL exists, Sky will be centered and SkyL will be looped on both sides")

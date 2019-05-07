@@ -110,6 +110,11 @@ func on_theme_loaded():
 	$SDWaterAnimation/MovementSpeed/Value.value = HWTheme.sd_water_animation_speed
 	
 	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
+	
+	$FlattenClouds/OnOff.pressed = HWTheme.flatten_clouds
+	$FlattenFlakes/OnOff.pressed = HWTheme.flatten_flakes
+	$Snow/OnOff.pressed = HWTheme.snow
+	$Ice/OnOff.pressed = HWTheme.ice
 
 func play_music(sd): #TODO: cache music on change, also handle pause on change
 	if sd == playing_sd:
