@@ -3,7 +3,6 @@
 [ext_resource path="res://icon.png" type="Texture" id=1]
 
 [sub_resource type="GDScript" id=1]
-
 script/source = "extends Panel
 
 var spray
@@ -18,144 +17,53 @@ func _ready():
 	$Container/Controls/Amount/Value.value = HWTheme.sprays[spray]"
 
 [node name="SprayPanel" type="Panel"]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = -712.0
 margin_bottom = -472.0
 rect_min_size = Vector2( 0, 128 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 script = SubResource( 1 )
-_sections_unfolded = [ "Rect" ]
 
 [node name="Container" type="HBoxContainer" parent="."]
-anchor_left = 0.0
-anchor_top = 0.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
 [node name="Image" type="TextureRect" parent="Container"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 256.0
 margin_bottom = 256.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Separator" type="Control" parent="Container"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 260.0
 margin_right = 276.0
 margin_bottom = 256.0
 rect_min_size = Vector2( 16, 0 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
 [node name="Controls" type="VBoxContainer" parent="Container"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 280.0
 margin_right = 490.0
 margin_bottom = 256.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
 editor/display_folded = true
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_top = 111.0
 margin_right = 210.0
 margin_bottom = 144.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
 
 [node name="Value" type="SpinBox" parent="Container/Controls/Amount"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_right = 74.0
 margin_bottom = 33.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
 min_value = 1.0
 max_value = 65536.0
-step = 1.0
-page = 0.0
 value = 1.0
-exp_edit = false
-rounded = false
-allow_greater = false
-allow_lesser = false
-editable = true
-prefix = ""
-suffix = ""
 
 [node name="Label" type="Label" parent="Container/Controls/Amount"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
 margin_left = 78.0
 margin_top = 5.0
 margin_right = 210.0
 margin_bottom = 28.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
 text = "Number per map"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 

@@ -58,10 +58,10 @@ msgid "Lower water color"
 msgstr "Dolny kolor wody"
 
 msgid "Sudden Death upper water color"
-msgstr "Kolor wody Nagłej Śmierci"
+msgstr "Górny kolor wody Nagłej Śmierci"
 
 msgid "Sudden Death lower water color"
-msgstr "Kolor wody Nagłej Śmierci"
+msgstr "Dolny kolor wody Nagłej Śmierci"
 
 msgid "Sudden Death lower sky/horizon tint"
 msgstr "Odcień nieba/horyzontu Nagłej Śmierci"

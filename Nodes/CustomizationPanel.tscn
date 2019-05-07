@@ -15,7 +15,7 @@ func _ready():
 func add_info(info):
 	$Container/GeneralInfo.text += tr(info) + \"\\n\"
 
-func add_image(iname):
+func add_image(iname):#TODO: update images on change
 	images += 1
 	
 	if images > 0:
@@ -24,12 +24,9 @@ func add_image(iname):
 	get_image(images).get_node(\"ImageHeader/ImageName\").text = iname
 	get_image(images).get_node(\"ImageInfo\").text = \"\"
 	
-	var tex = Util.load_texture(HWTheme.path() + iname)
-	if tex:
-		get_image(images).get_node(\"Image\").texture = tex
-		get_image(images).get_node(\"Template\").visible = false
+	update_image(images, iname)
 	
-	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname])
+	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname, self, images])
 
 func add_image_info(info, format = null):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
@@ -42,7 +39,16 @@ func add_image_info(info, format = null):
 	get_image(images).get_node(\"ImageInfo\").text += new_line + info
 
 func get_image(i):
-	return $Container.get_child(i + 2)"
+	return $Container.get_child(i + 2)
+
+func update_image(i, iname):
+	var tex = Util.load_texture(HWTheme.path() + iname)
+	if tex:
+		get_image(i).get_node(\"Image\").texture = tex
+		get_image(i).get_node(\"Template\").visible = false
+	else:
+		get_image(i).get_node(\"Image\").texture = preload(\"res://Images/NoImage.png\")
+		get_image(i).get_node(\"Template\").visible = true"
 
 [node name="CustomizationPanel" type="PanelContainer"]
 anchor_right = 1.0

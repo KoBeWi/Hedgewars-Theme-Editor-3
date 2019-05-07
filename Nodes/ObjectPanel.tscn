@@ -46,13 +46,13 @@ rect_min_size = Vector2( 16, 0 )
 
 [node name="Controls" type="VBoxContainer" parent="Container"]
 margin_left = 280.0
-margin_right = 464.0
+margin_right = 490.0
 margin_bottom = 256.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
 margin_top = 77.0
-margin_right = 184.0
+margin_right = 210.0
 margin_bottom = 110.0
 
 [node name="Value" type="SpinBox" parent="Container/Controls/Amount"]
@@ -64,20 +64,20 @@ value = 1.0
 
 [node name="Label" type="Label" parent="Container/Controls/Amount"]
 margin_left = 78.0
-margin_top = 7.0
-margin_right = 184.0
-margin_bottom = 25.0
+margin_top = 5.0
+margin_right = 210.0
+margin_bottom = 28.0
 text = "Number per map"
 
 [node name="OnWater" type="CheckBox" parent="Container/Controls"]
 margin_top = 114.0
-margin_right = 184.0
+margin_right = 210.0
 margin_bottom = 145.0
 text = "Placed on water"
 
 [node name="EditObject" type="Button" parent="Container/Controls"]
 margin_top = 149.0
-margin_right = 184.0
+margin_right = 210.0
 margin_bottom = 178.0
 text = "Edit this object"
 
