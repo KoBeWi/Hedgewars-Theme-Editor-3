@@ -5,7 +5,7 @@ var last_dirty = false
 func _ready():
 	TranslationServer.set_locale(Util.preferred_language)
 	OS.set_window_title(tr("Hedgewars Theme Editor 3"))
-	OS.window_maximized = true #TODO: optional
+	OS.window_maximized = Util.maximize_on_start
 	
 	for i in range(1, get_child_count()):
 		set_tab_disabled(i, true)

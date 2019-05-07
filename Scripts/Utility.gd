@@ -2,6 +2,7 @@ extends Node
 
 var preferred_language
 var enable_autosave = true
+var maximize_on_start = true
 var hedgewars_path
 var hedgewars_user_path
 var package_path
@@ -14,8 +15,9 @@ func _ready():
 		var lines = config.get_as_text().split("\n")
 		preferred_language = lines[0]
 		enable_autosave = lines[1] == "True"
-		hedgewars_path = lines[2]
-		hedgewars_user_path = lines[3]
+		maximize_on_start = lines[2] == "True"
+		hedgewars_path = lines[3]
+		hedgewars_user_path = lines[4]
 		config.close()
 	else:
 		preferred_language = OS.get_locale()
@@ -121,6 +123,7 @@ func save_settings():
 	config.open("user://config", File.WRITE)
 	config.store_line(str(preferred_language))
 	config.store_line(str(enable_autosave))
+	config.store_line(str(maximize_on_start))
 	config.store_line(hedgewars_path)
 	config.store_line(hedgewars_user_path)
 	config.close()

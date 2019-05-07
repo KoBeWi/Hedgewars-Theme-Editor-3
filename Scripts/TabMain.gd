@@ -18,6 +18,7 @@ func _ready():
 	$LanguageContainer/LanguageList.connect("item_selected", self, "change_language")
 	$PackContainer/PackThemes.connect("pressed", self, "pack_start")
 	$PackContainer/CreatePack.connect("pressed", self, "pack_accept")
+	$PackContainer/Cancel.connect("pressed", self, "pack_cancel")
 	
 	$GamePath/Label.text = Util.hedgewars_path
 	$UserPath/Label.text = Util.hedgewars_user_path
@@ -26,7 +27,9 @@ func _ready():
 	$FileDialog/UserDialog.current_dir = Util.hedgewars_user_path
 	
 	$Save/EnableAutosave.pressed = Util.enable_autosave
-	$Save/EnableAutosave.connect("toggled", self, "on_autosave_changed")
+	$Save/EnableAutosave.connect("toggled", self, "on_setting_changed", ["enable_autosave"])
+	$MaximizeContainer/EnableMaximize.pressed = Util.maximize_on_start
+	$MaximizeContainer/EnableMaximize.connect("toggled", self, "on_setting_changed", ["maximize_on_start"])
 	
 	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
@@ -61,12 +64,13 @@ func deselect_themes(): for button in $ThemeAlign/ThemesList.get_children(): but
 func pack_start():
 	$PackContainer/PackThemes.visible = false
 	$PackContainer/CreatePack.visible = true
+	$PackContainer/Cancel.visible = true
 	$PackContainer/PackName.visible = true
 	$PackContainer/PackName.text = ""
 	$SelectPack.visible = true
 	pack_mode = true
 
-func pack_accept():
+func pack_accept():#TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
 		if button.pressed: selected.append(button.get_node("Name").text)
@@ -85,8 +89,12 @@ func pack_accept():
 		for file in Util.list_directory(Util.get_theme_path(theme_name), true): if not file in DONT_PACK:
 			output.copy(str(Util.get_theme_path(theme_name), "/", file), str(output_path, "/", file))
 	
+	pack_cancel()
+
+func pack_cancel():
 	$PackContainer/PackThemes.visible = true
 	$PackContainer/CreatePack.visible = false
+	$PackContainer/Cancel.visible = false
 	$PackContainer/PackName.visible = false
 	$SelectPack.visible = false
 	pack_mode = false
@@ -115,6 +123,6 @@ func change_language(item):
 	Util.size_listeners.clear()
 	get_tree().reload_current_scene()
 
-func on_autosave_changed(enabled):
-	Util.enable_autosave = enabled
+func on_setting_changed(enabled, setting):
+	Util.set(setting, enabled)
 	Util.save_settings()

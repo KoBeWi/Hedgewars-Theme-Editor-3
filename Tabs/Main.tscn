@@ -36,114 +36,115 @@ align = 1
 editor/display_folded = true
 margin_top = 117.0
 margin_right = 1024.0
-margin_bottom = 141.0
+margin_bottom = 146.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/GamePath"]
 margin_left = 498.0
 margin_top = 3.0
 margin_right = 498.0
-margin_bottom = 21.0
+margin_bottom = 26.0
 
 [node name="Button" type="Button" parent="Container/GamePath"]
 margin_left = 502.0
 margin_right = 526.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 text = "..."
 
 [node name="UserPathHeader" type="Label" parent="Container"]
-margin_top = 145.0
+margin_top = 150.0
 margin_right = 1024.0
-margin_bottom = 187.0
+margin_bottom = 192.0
 custom_fonts/font = ExtResource( 3 )
 text = "User path"
 align = 1
 
 [node name="UserPath" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 191.0
+margin_top = 196.0
 margin_right = 1024.0
-margin_bottom = 215.0
+margin_bottom = 225.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/UserPath"]
 margin_left = 498.0
 margin_top = 3.0
 margin_right = 498.0
-margin_bottom = 21.0
+margin_bottom = 26.0
 
 [node name="Button" type="Button" parent="Container/UserPath"]
 margin_left = 502.0
 margin_right = 526.0
-margin_bottom = 24.0
+margin_bottom = 29.0
 text = "..."
 
 [node name="MiscHeader" type="Label" parent="Container"]
-margin_top = 219.0
+margin_top = 229.0
 margin_right = 1024.0
-margin_bottom = 261.0
+margin_bottom = 271.0
 custom_fonts/font = ExtResource( 3 )
 text = "Misc"
 align = 1
 
 [node name="MaximizeContainer" type="HBoxContainer" parent="Container"]
-margin_top = 265.0
+editor/display_folded = true
+margin_top = 275.0
 margin_right = 1024.0
-margin_bottom = 305.0
+margin_bottom = 315.0
 alignment = 1
 
 [node name="EnableMaximize" type="CheckButton" parent="Container/MaximizeContainer"]
-margin_left = 416.0
-margin_right = 608.0
+margin_left = 403.0
+margin_right = 620.0
 margin_bottom = 40.0
 text = "Maximize on start"
 align = 1
 
 [node name="LanguageContainer" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 309.0
+margin_top = 319.0
 margin_right = 1024.0
-margin_bottom = 333.0
+margin_bottom = 348.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/LanguageContainer"]
-margin_left = 429.0
+margin_left = 416.0
 margin_top = 3.0
-margin_right = 549.0
-margin_bottom = 21.0
+margin_right = 563.0
+margin_bottom = 26.0
 text = "Preferred language"
 align = 1
 
 [node name="LanguageList" type="OptionButton" parent="Container/LanguageContainer"]
-margin_left = 553.0
-margin_right = 594.0
-margin_bottom = 24.0
+margin_left = 567.0
+margin_right = 608.0
+margin_bottom = 29.0
 
 [node name="ThemesHeader" type="Label" parent="Container"]
-margin_top = 337.0
+margin_top = 352.0
 margin_right = 1024.0
-margin_bottom = 404.0
+margin_bottom = 419.0
 custom_fonts/font = ExtResource( 2 )
 text = "Themes"
 
 [node name="PackHeader" type="Label" parent="Container"]
-margin_top = 408.0
+margin_top = 423.0
 margin_right = 1024.0
-margin_bottom = 450.0
+margin_bottom = 465.0
 custom_fonts/font = ExtResource( 3 )
 text = "Pack themes"
 align = 1
 
 [node name="PackContainer" type="HBoxContainer" parent="Container"]
-margin_top = 454.0
+margin_top = 469.0
 margin_right = 1024.0
-margin_bottom = 478.0
+margin_bottom = 498.0
 alignment = 1
 
 [node name="PackThemes" type="Button" parent="Container/PackContainer"]
-margin_left = 467.0
-margin_right = 556.0
-margin_bottom = 24.0
+margin_left = 457.0
+margin_right = 566.0
+margin_bottom = 29.0
 text = "Pack themes"
 
 [node name="CreatePack" type="Button" parent="Container/PackContainer"]
@@ -152,6 +153,13 @@ margin_left = 172.0
 margin_right = 274.0
 margin_bottom = 29.0
 text = "Create pack"
+
+[node name="Cancel" type="Button" parent="Container/PackContainer"]
+visible = false
+margin_left = 172.0
+margin_right = 274.0
+margin_bottom = 29.0
+text = "Cancel"
 
 [node name="PackName" type="LineEdit" parent="Container/PackContainer"]
 visible = false
@@ -189,9 +197,9 @@ margin_bottom = 40.0
 text = "Enable autosave"
 
 [node name="SelectThemeHeader" type="Label" parent="Container"]
-margin_top = 482.0
+margin_top = 502.0
 margin_right = 1024.0
-margin_bottom = 524.0
+margin_bottom = 544.0
 custom_fonts/font = ExtResource( 3 )
 text = "Select theme"
 align = 1
@@ -206,9 +214,9 @@ align = 1
 
 [node name="ThemeAlign" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 528.0
+margin_top = 548.0
 margin_right = 1024.0
-margin_bottom = 528.0
+margin_bottom = 548.0
 alignment = 1
 
 [node name="ThemesList" type="GridContainer" parent="Container/ThemeAlign"]
@@ -218,9 +226,9 @@ rect_clip_content = true
 
 [node name="FileDialog" type="Control" parent="Container"]
 editor/display_folded = true
-margin_top = 532.0
+margin_top = 552.0
 margin_right = 1024.0
-margin_bottom = 532.0
+margin_bottom = 552.0
 
 [node name="GameDialog" type="FileDialog" parent="Container/FileDialog"]
 margin_left = 330.0
