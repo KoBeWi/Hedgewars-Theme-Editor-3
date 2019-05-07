@@ -15,16 +15,17 @@ func _ready():
 	$SDMusic/Play.connect("pressed", self, "play_music", [true])
 	$SDMusic/Stop.connect("pressed", self, "stop_music")
 	
-	$Music/List.add_item(tr("/none/"))
-	$SDMusic/List.add_item(tr("/none/"))
-	
 	for music in Util.list_directory(music_dir()):
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
+		$FallbackMusic/List.add_item(music.get_basename())
+		$FallbackSDMusic/List.add_item(music.get_basename())
 		
-	for music in Util.list_directory(user_music_dir()):
+	for music in Util.list_directory(user_music_dir()):#TODO:refresh on directory change
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
+		$FallbackMusic/List.add_item(music.get_basename())
+		$FallbackSDMusic/List.add_item(music.get_basename())
 	
 	$Music/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $Music/List])
 	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])

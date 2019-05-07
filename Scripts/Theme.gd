@@ -4,6 +4,8 @@ var theme_name
 
 var music
 var sd_music
+var fallback_music
+var fallback_sd_music
 
 var sky_defined
 var border_defined
@@ -127,7 +129,7 @@ func load_defaults():
 	objects = {}
 	sprays = {}
 
-func load_theme(_theme_name):
+func load_theme(_theme_name):#TODO: support old format
 	load_defaults()
 	theme_name = _theme_name
 	is_loading = true
@@ -139,13 +141,15 @@ func load_theme(_theme_name):
 	var lines = cfg_file.get_as_text().split("\n")
 	
 	for line in lines:
-		var split = line.split(" = ") #TODO: probably some regex for better handling
+		var split = line.split(" = ")#TODO: probably some regex for better handling
 		var params = []
 		if split.size() > 1: params = split[1].split(", ")
 		
 		match split[0]:
 			"music": music = params[0].get_basename()
 			"sd-music": sd_music = params[0].get_basename()
+			"fallback-music": fallback_music = params[0].get_basename()
+			"fallback-sd-music": fallback_sd_music = params[0].get_basename()
 			"sky":
 				sky = Util.get_color(params)
 				sky_defined = true
@@ -276,6 +280,8 @@ func refresh_oputput(emit_changed = true):
 	
 	if music != tr("/none/"): theme_output.append(str("music = ", music, ".ogg"))
 	if sd_music != tr("/none/"): theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	if fallback_music != tr("/none/"): theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
+	if fallback_sd_music != tr("/none/"): theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
 	
 	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
 	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))

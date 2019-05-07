@@ -68,72 +68,142 @@ margin_bottom = 136.0
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="Container"]
 
 [node name="Music" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 140.0
 margin_right = 1004.0
 margin_bottom = 170.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Music"]
-margin_left = 417.0
+margin_left = 379.0
 margin_top = 3.0
-margin_right = 462.0
+margin_right = 424.0
 margin_bottom = 26.0
 text = "Music"
 
 [node name="List" type="OptionButton" parent="Container/Music"]
-margin_left = 466.0
-margin_right = 507.0
+margin_left = 428.0
+margin_right = 544.0
 margin_bottom = 30.0
+text = "Element 0"
+items = [ "/none/", null, false, -1, null ]
+selected = 0
 
 [node name="Play" type="Button" parent="Container/Music"]
-margin_left = 511.0
-margin_right = 547.0
+margin_left = 548.0
+margin_right = 584.0
 margin_bottom = 30.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/Music"]
-margin_left = 551.0
-margin_right = 587.0
+margin_left = 588.0
+margin_right = 624.0
 margin_bottom = 30.0
 icon = ExtResource( 5 )
 
 [node name="SDMusic" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 174.0
 margin_right = 1004.0
 margin_bottom = 204.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDMusic"]
-margin_left = 361.0
+margin_left = 323.0
 margin_top = 3.0
-margin_right = 518.0
+margin_right = 480.0
 margin_bottom = 26.0
 text = "Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="Container/SDMusic"]
-margin_left = 522.0
-margin_right = 563.0
+margin_left = 484.0
+margin_right = 600.0
 margin_bottom = 30.0
+text = "Element 0"
+items = [ "/none/", null, false, -1, null ]
+selected = 0
 
 [node name="Play" type="Button" parent="Container/SDMusic"]
-margin_left = 567.0
-margin_right = 603.0
+margin_left = 604.0
+margin_right = 640.0
 margin_bottom = 30.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/SDMusic"]
-margin_left = 607.0
-margin_right = 643.0
+margin_left = 644.0
+margin_right = 680.0
+margin_bottom = 30.0
+icon = ExtResource( 5 )
+
+[node name="FallbackMusic" type="HBoxContainer" parent="Container"]
+margin_top = 208.0
+margin_right = 1004.0
+margin_bottom = 238.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Container/FallbackMusic"]
+margin_left = 346.0
+margin_top = 3.0
+margin_right = 457.0
+margin_bottom = 26.0
+text = "Fallback Music"
+
+[node name="List" type="OptionButton" parent="Container/FallbackMusic"]
+margin_left = 461.0
+margin_right = 577.0
+margin_bottom = 30.0
+text = "Element 0"
+items = [ "/none/", null, false, -1, null ]
+selected = 0
+
+[node name="Play" type="Button" parent="Container/FallbackMusic"]
+margin_left = 581.0
+margin_right = 617.0
+margin_bottom = 30.0
+icon = ExtResource( 4 )
+
+[node name="Stop" type="Button" parent="Container/FallbackMusic"]
+margin_left = 621.0
+margin_right = 657.0
+margin_bottom = 30.0
+icon = ExtResource( 5 )
+
+[node name="FallbackSDMusic" type="HBoxContainer" parent="Container"]
+margin_top = 242.0
+margin_right = 1004.0
+margin_bottom = 272.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Container/FallbackSDMusic"]
+margin_left = 290.0
+margin_top = 3.0
+margin_right = 513.0
+margin_bottom = 26.0
+text = "Fallback Sudden Death Music"
+
+[node name="List" type="OptionButton" parent="Container/FallbackSDMusic"]
+margin_left = 517.0
+margin_right = 633.0
+margin_bottom = 30.0
+text = "Element 0"
+items = [ "/none/", null, false, -1, null ]
+selected = 0
+
+[node name="Play" type="Button" parent="Container/FallbackSDMusic"]
+margin_left = 637.0
+margin_right = 673.0
+margin_bottom = 30.0
+icon = ExtResource( 4 )
+
+[node name="Stop" type="Button" parent="Container/FallbackSDMusic"]
+margin_left = 677.0
+margin_right = 713.0
 margin_bottom = 30.0
 icon = ExtResource( 5 )
 
 [node name="CloudsHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 208.0
+margin_top = 276.0
 margin_right = 1004.0
-margin_bottom = 250.0
+margin_bottom = 318.0
 
 [node name="OnOff" type="CheckButton" parent="Container/CloudsHeader"]
 margin_right = 76.0
@@ -147,9 +217,9 @@ custom_fonts/font = ExtResource( 6 )
 text = "Clouds"
 
 [node name="Clouds" type="HBoxContainer" parent="Container"]
-margin_top = 254.0
+margin_top = 322.0
 margin_right = 1004.0
-margin_bottom = 287.0
+margin_bottom = 355.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Clouds"]
@@ -167,9 +237,9 @@ max_value = 65536.0
 
 [node name="SDCloudsHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 291.0
+margin_top = 359.0
 margin_right = 1004.0
-margin_bottom = 333.0
+margin_bottom = 401.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDCloudsHeader"]
 margin_right = 76.0
@@ -184,9 +254,9 @@ text = "Sudden Death Clouds"
 
 [node name="SDClouds" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 337.0
+margin_top = 405.0
 margin_right = 1004.0
-margin_bottom = 370.0
+margin_bottom = 438.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDClouds"]
@@ -204,9 +274,9 @@ max_value = 65536.0
 
 [node name="FlakesHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 374.0
+margin_top = 442.0
 margin_right = 1004.0
-margin_bottom = 416.0
+margin_bottom = 484.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlakesHeader"]
 margin_right = 76.0
@@ -221,9 +291,9 @@ text = "Flakes"
 
 [node name="Flakes" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 420.0
+margin_top = 488.0
 margin_right = 1004.0
-margin_bottom = 601.0
+margin_bottom = 669.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Flakes"]
@@ -333,9 +403,9 @@ max_value = 65536.0
 
 [node name="SDFlakesHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 605.0
+margin_top = 673.0
 margin_right = 1004.0
-margin_bottom = 647.0
+margin_bottom = 715.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDFlakesHeader"]
 margin_right = 76.0
@@ -350,9 +420,9 @@ text = "Sudden Death Flakes"
 
 [node name="SDFlakes" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 651.0
+margin_top = 719.0
 margin_right = 1004.0
-margin_bottom = 832.0
+margin_bottom = 900.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/SDFlakes"]
@@ -461,9 +531,9 @@ max_value = 65536.0
 
 [node name="WaterAnimationHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 836.0
+margin_top = 904.0
 margin_right = 1004.0
-margin_bottom = 878.0
+margin_bottom = 946.0
 
 [node name="OnOff" type="CheckButton" parent="Container/WaterAnimationHeader"]
 margin_right = 76.0
@@ -478,9 +548,9 @@ text = "Water Animation"
 
 [node name="WaterAnimation" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 882.0
+margin_top = 950.0
 margin_right = 1004.0
-margin_bottom = 989.0
+margin_bottom = 1057.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/WaterAnimation"]
@@ -549,9 +619,9 @@ suffix = "%"
 
 [node name="SDWaterAnimationHeader" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 993.0
+margin_top = 1061.0
 margin_right = 1004.0
-margin_bottom = 1035.0
+margin_bottom = 1103.0
 
 [node name="OnOff" type="CheckButton" parent="Container/SDWaterAnimationHeader"]
 margin_right = 76.0
@@ -566,9 +636,9 @@ text = "Sudden Death Water Animation"
 
 [node name="SDWaterAnimation" type="VBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1039.0
+margin_top = 1107.0
 margin_right = 1004.0
-margin_bottom = 1146.0
+margin_bottom = 1214.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/SDWaterAnimation"]
@@ -636,17 +706,17 @@ max_value = 65536.0
 suffix = "%"
 
 [node name="MiscHeader" type="Label" parent="Container"]
-margin_top = 1150.0
+margin_top = 1218.0
 margin_right = 1004.0
-margin_bottom = 1192.0
+margin_bottom = 1260.0
 custom_fonts/font = ExtResource( 6 )
 text = "Miscellaneous"
 
 [node name="FlattenFlakes" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1196.0
+margin_top = 1264.0
 margin_right = 1004.0
-margin_bottom = 1236.0
+margin_bottom = 1304.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlattenFlakes"]
 margin_right = 76.0
@@ -662,9 +732,9 @@ text = "Flatten flakes?"
 
 [node name="FlattenClouds" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1240.0
+margin_top = 1308.0
 margin_right = 1004.0
-margin_bottom = 1280.0
+margin_bottom = 1348.0
 
 [node name="OnOff" type="CheckButton" parent="Container/FlattenClouds"]
 margin_right = 76.0
@@ -679,9 +749,9 @@ text = "Flatten clouds?"
 
 [node name="Snow" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1284.0
+margin_top = 1352.0
 margin_right = 1004.0
-margin_bottom = 1324.0
+margin_bottom = 1392.0
 
 [node name="OnOff" type="CheckButton" parent="Container/Snow"]
 margin_right = 76.0
@@ -696,9 +766,9 @@ text = "Snow?"
 
 [node name="Ice" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 1328.0
+margin_top = 1396.0
 margin_right = 1004.0
-margin_bottom = 1368.0
+margin_bottom = 1436.0
 
 [node name="OnOff" type="CheckButton" parent="Container/Ice"]
 margin_right = 76.0
