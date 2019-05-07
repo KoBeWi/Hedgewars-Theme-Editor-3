@@ -1,11 +1,13 @@
 extends Node
 
 var preferred_language
-var enable_autosave = true
-var maximize_on_start = true
 var hedgewars_path
 var hedgewars_user_path
 var package_path
+
+var enable_autosave = true
+var maximize_on_start = true
+var include_music = true
 
 var temp_editor
 
@@ -16,8 +18,9 @@ func _ready():
 		preferred_language = lines[0]
 		enable_autosave = lines[1] == "True"
 		maximize_on_start = lines[2] == "True"
-		hedgewars_path = lines[3]
-		hedgewars_user_path = lines[4]
+		include_music = lines[3] == "True"
+		hedgewars_path = lines[4]
+		hedgewars_user_path = lines[5]
 		config.close()
 	else:
 		preferred_language = OS.get_locale()
@@ -124,6 +127,7 @@ func save_settings():
 	config.store_line(str(preferred_language))
 	config.store_line(str(enable_autosave))
 	config.store_line(str(maximize_on_start))
+	config.store_line(str(include_music))
 	config.store_line(hedgewars_path)
 	config.store_line(hedgewars_user_path)
 	config.close()

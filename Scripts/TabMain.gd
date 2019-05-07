@@ -26,12 +26,11 @@ func _ready():
 	$FileDialog/GameDialog.current_dir = Util.hedgewars_path
 	$FileDialog/UserDialog.current_dir = Util.hedgewars_user_path
 	
-	$Save/EnableAutosave.pressed = Util.enable_autosave
-	$Save/EnableAutosave.connect("toggled", self, "on_setting_changed", ["enable_autosave"])
-	$MaximizeContainer/EnableMaximize.pressed = Util.maximize_on_start
-	$MaximizeContainer/EnableMaximize.connect("toggled", self, "on_setting_changed", ["maximize_on_start"])
+	bind_setting($Save/EnableAutosave, "enable_autosave")
+	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
+	bind_setting($PackContainer/IncludeMusic, "include_music")
 	
-	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):
+	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		button.get_node("Name").text = theme_dir
 		button.get_node("Icon").texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
@@ -65,6 +64,7 @@ func pack_start():
 	$PackContainer/PackThemes.visible = false
 	$PackContainer/CreatePack.visible = true
 	$PackContainer/Cancel.visible = true
+	$PackContainer/IncludeMusic.visible = true
 	$PackContainer/PackName.visible = true
 	$PackContainer/PackName.text = ""
 	$SelectPack.visible = true
@@ -96,6 +96,7 @@ func pack_cancel():
 	$PackContainer/CreatePack.visible = false
 	$PackContainer/Cancel.visible = false
 	$PackContainer/PackName.visible = false
+	$PackContainer/IncludeMusic.visible = false
 	$SelectPack.visible = false
 	pack_mode = false
 	deselect_themes()
@@ -122,6 +123,10 @@ func change_language(item):
 	Util.save_settings()
 	Util.size_listeners.clear()
 	get_tree().reload_current_scene()
+
+func bind_setting(button, setting):
+	button.pressed = Util.get(setting)
+	button.connect("toggled", self, "on_setting_changed", [setting])
 
 func on_setting_changed(enabled, setting):
 	Util.set(setting, enabled)
