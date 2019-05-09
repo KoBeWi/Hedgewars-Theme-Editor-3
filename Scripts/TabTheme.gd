@@ -24,12 +24,23 @@ func _ready():#TODO: tooltips
 	$FallbackMusic/List.add_item(tr("/none/")) 
 	$FallbackSDMusic/List.add_item(tr("/none/"))
 	
+	$Music/List.add_separator()
+	$SDMusic/List.add_separator()
+	$FallbackMusic/List.add_separator()
+	$FallbackSDMusic/List.add_separator()
+	
 	for music in Util.list_directory(music_dir()):
-		$Music/List.add_item(music.get_basename())
-		$SDMusic/List.add_item(music.get_basename())
-		$FallbackMusic/List.add_item(music.get_basename())
-		$FallbackSDMusic/List.add_item(music.get_basename())
-		
+		if music.get_extension() == "ogg":
+			$Music/List.add_item(music.get_basename())
+			$SDMusic/List.add_item(music.get_basename())
+			$FallbackMusic/List.add_item(music.get_basename())
+			$FallbackSDMusic/List.add_item(music.get_basename())
+	
+	$Music/List.add_separator()
+	$SDMusic/List.add_separator()
+	$FallbackMusic/List.add_separator()
+	$FallbackSDMusic/List.add_separator()
+	
 	for music in Util.list_directory(user_music_dir()):#TODO:refresh on directory change
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
@@ -135,6 +146,8 @@ func play_music(player): #TODO: cache music on change, also handle change when p
 	var file = str(music_dir(), player.get_item_text(player.selected), ".ogg")
 	if !ogg_file.file_exists(file):
 		file = str(user_music_dir(), player.get_item_text(player.selected), ".ogg")
+	if !ogg_file.file_exists(file):
+		return
 	
 	ogg_file.open(file, File.READ)
 	
