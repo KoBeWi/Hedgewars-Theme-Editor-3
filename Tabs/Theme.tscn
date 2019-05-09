@@ -84,7 +84,6 @@ text = "Music"
 margin_left = 466.0
 margin_right = 507.0
 margin_bottom = 30.0
-selected = 0
 
 [node name="Play" type="Button" parent="Container/Music"]
 margin_left = 511.0
@@ -115,7 +114,6 @@ text = "Sudden Death Music"
 margin_left = 522.0
 margin_right = 563.0
 margin_bottom = 30.0
-selected = 0
 
 [node name="Play" type="Button" parent="Container/SDMusic"]
 margin_left = 567.0
@@ -146,7 +144,6 @@ text = "Fallback Music"
 margin_left = 499.0
 margin_right = 540.0
 margin_bottom = 30.0
-selected = 0
 
 [node name="Play" type="Button" parent="Container/FallbackMusic"]
 margin_left = 544.0
@@ -177,7 +174,6 @@ text = "Fallback Sudden Death Music"
 margin_left = 555.0
 margin_right = 596.0
 margin_bottom = 30.0
-selected = 0
 
 [node name="Play" type="Button" parent="Container/FallbackSDMusic"]
 margin_left = 600.0

@@ -31,10 +31,15 @@ func _ready():
 	bind_setting($PackContainer/IncludeMusic, "include_music")
 	
 	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
+		var v = theme_dir.split("_v")
+		
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
-		button.get_node("Name").text = theme_dir
+		button.set_meta("theme", theme_dir)
+		button.get_node("Name").text = v[0]
+		if v.size() == 2:
+			button.get_node("Version").text = str("v", int(v[1]))
 		button.get_node("Icon").texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
-		button.connect("pressed", self, "theme_selected", [theme_dir])
+		button.connect("pressed", self, "theme_selected", [button])
 		$ThemeAlign/ThemesList.add_child(button)
 	
 	language_list.append("en")
@@ -51,22 +56,16 @@ func _ready():
 	$LanguageContainer/LanguageList.selected = selected_language
 	update_columns()
 
-func theme_selected(theme):
-	if pack_mode:
-		pass
-	else:
-		HWTheme.load_theme(theme)
+func theme_selected(button):
+	if !pack_mode:
+		HWTheme.load_theme(button.get_meta("theme"))
 		deselect_themes()
 
 func deselect_themes(): for button in $ThemeAlign/ThemesList.get_children(): button.pressed = false
 
 func pack_start():
-	$PackContainer/PackThemes.visible = false
-	$PackContainer/CreatePack.visible = true
-	$PackContainer/Cancel.visible = true
-	$PackContainer/IncludeMusic.visible = true
-	$PackContainer/PackName.visible = true
-	$PackContainer/PackName.text = ""
+	for i in $PackContainer.get_child_count():
+		$PackContainer.get_child(i).visible = (i != 0)
 	$SelectPack.visible = true
 	pack_mode = true
 
@@ -92,11 +91,8 @@ func pack_accept():#TODO: pack music (optional)
 	pack_cancel()
 
 func pack_cancel():
-	$PackContainer/PackThemes.visible = true
-	$PackContainer/CreatePack.visible = false
-	$PackContainer/Cancel.visible = false
-	$PackContainer/PackName.visible = false
-	$PackContainer/IncludeMusic.visible = false
+	for i in $PackContainer.get_child_count():
+		$PackContainer.get_child(i).visible = (i == 0)
 	$SelectPack.visible = false
 	pack_mode = false
 	deselect_themes()

@@ -144,29 +144,29 @@ alignment = 1
 [node name="PackThemes" type="Button" parent="Container/PackContainer"]
 margin_left = 457.0
 margin_right = 566.0
-margin_bottom = 29.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
 text = "Pack themes"
 
 [node name="CreatePack" type="Button" parent="Container/PackContainer"]
 visible = false
-margin_left = 172.0
-margin_right = 274.0
+margin_left = 221.0
+margin_right = 323.0
 margin_bottom = 29.0
 text = "Create pack"
 
 [node name="Cancel" type="Button" parent="Container/PackContainer"]
 visible = false
-margin_left = 172.0
-margin_right = 274.0
+margin_left = 274.0
+margin_right = 336.0
 margin_bottom = 29.0
 text = "Cancel"
 
-[node name="IncludeMusic" type="CheckButton" parent="Container/PackContainer"]
+[node name="VSeparator" type="VSeparator" parent="Container/PackContainer"]
 visible = false
-margin_left = 445.0
-margin_right = 691.0
-margin_bottom = 40.0
-text = "Include custom music"
+margin_left = 307.0
+margin_right = 311.0
+margin_bottom = 29.0
 
 [node name="PackName" type="LineEdit" parent="Container/PackContainer"]
 visible = false
@@ -175,6 +175,19 @@ margin_right = 696.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 256, 0 )
 placeholder_text = "Enter package name"
+
+[node name="VSeparator2" type="VSeparator" parent="Container/PackContainer"]
+visible = false
+margin_left = 441.0
+margin_right = 445.0
+margin_bottom = 29.0
+
+[node name="IncludeMusic" type="CheckButton" parent="Container/PackContainer"]
+visible = false
+margin_left = 445.0
+margin_right = 691.0
+margin_bottom = 40.0
+text = "Include custom music"
 
 [node name="SaveHeader" type="Label" parent="Container"]
 visible = false
@@ -185,21 +198,45 @@ text = "Save theme"
 align = 1
 
 [node name="Save" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 visible = false
-margin_right = 310.0
-margin_bottom = 40.0
+margin_top = 502.0
+margin_right = 1024.0
+margin_bottom = 542.0
 alignment = 1
 
 [node name="Button" type="Button" parent="Container/Save"]
-margin_left = 353.0
-margin_right = 454.0
+margin_left = 279.0
+margin_right = 380.0
 margin_bottom = 40.0
 text = "Save theme"
 
+[node name="VSeparator" type="VSeparator" parent="Container/Save"]
+margin_left = 384.0
+margin_right = 388.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Container/Save"]
+margin_left = 392.0
+margin_top = 8.0
+margin_right = 450.0
+margin_bottom = 31.0
+text = "Version"
+
+[node name="Version" type="SpinBox" parent="Container/Save"]
+margin_left = 454.0
+margin_right = 528.0
+margin_bottom = 40.0
+hint_tooltip = "Use 0 to disable versioning."
+max_value = 10000.0
+
+[node name="VSeparator2" type="VSeparator" parent="Container/Save"]
+margin_left = 532.0
+margin_right = 536.0
+margin_bottom = 40.0
+
 [node name="EnableAutosave" type="CheckButton" parent="Container/Save"]
-margin_left = 458.0
-margin_right = 663.0
+margin_left = 540.0
+margin_right = 745.0
 margin_bottom = 40.0
 text = "Enable autosave"
 
