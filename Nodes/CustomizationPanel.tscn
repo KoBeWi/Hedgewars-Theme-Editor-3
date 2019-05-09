@@ -42,7 +42,7 @@ func get_image(i):
 	return $Container.get_child(i + 2)
 
 func update_image(i, iname):
-	var tex = Util.load_texture(HWTheme.path() + iname)
+	var tex = Util.load_texture(HWTheme.path() + iname)#TODO: sometimes there's warning
 	if tex:
 		get_image(i).get_node(\"Image\").texture = tex
 		get_image(i).get_node(\"Template\").visible = false

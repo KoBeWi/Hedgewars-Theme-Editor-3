@@ -72,6 +72,7 @@ var is_loading = false
 
 signal theme_loaded
 signal output_updated
+signal version_changed
 
 func load_defaults():
 	music = null
@@ -148,7 +149,7 @@ func load_theme(_theme_name, version):#TODO: support old format
 	var lines = []
 	var cfg_file = File.new()
 	if cfg_file.open(path() + "theme.cfg", cfg_file.READ) == OK:
-		cfg_file.get_as_text().split("\n")
+		lines = cfg_file.get_as_text().split("\n")
 	
 	for line in lines:
 		var split = line.split(" = ")#TODO: probably some regex for better handling
@@ -268,10 +269,9 @@ func save_theme():
 		cfg_file.close()
 		
 		stored_output = theme_output
-		emit_signal("output_updated", theme_output != stored_output)
 	
 	if theme_version != saved_version:
-		var new_name = theme_name.split("_v")[0]
+		var new_name = basename()
 		if theme_version > 0:
 			new_name += str("_v", theme_version)
 		
@@ -281,6 +281,8 @@ func save_theme():
 		
 		saved_version = theme_version
 		Util.refresh_themes()
+	
+	emit_signal("output_updated", theme_output != stored_output)
 
 func path():
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
@@ -355,3 +357,7 @@ func apply_change():
 
 func set_version(version):
 	theme_version = version
+	emit_signal("version_changed", version)
+
+func basename():
+	return theme_name.split("_v")[0]

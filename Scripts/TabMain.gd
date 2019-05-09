@@ -110,10 +110,9 @@ func update_user_path():
 func update_columns():
 	$ThemeAlign/ThemesList.columns = max(floor(get_viewport_rect().size.x / 128) - 1, 1)
 
-func change_language(item):
+func change_language(item):#TODO: some warning? it probably discards changes
 	Util.preferred_language = language_list[item]
 	Util.save_settings()
-	Util.size_listeners.clear()
 	get_tree().reload_current_scene()
 
 func bind_setting(button, setting):

@@ -6,6 +6,7 @@ var playing_sd
 func _ready():#TODO: tooltips
 	get_parent().name = tr("Theme")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	HWTheme.connect("version_changed", self, "update_version")
 	
 	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
@@ -34,8 +35,8 @@ func _ready():#TODO: tooltips
 	
 	$Music/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $Music/List])
 	$SDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $SDMusic/List])
-	$FallbackMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["music", $FallbackMusic/List])
-	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["sd_music", $FallbackSDMusic/List])
+	$FallbackMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_music", $FallbackMusic/List])
+	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_sd_music", $FallbackSDMusic/List])
 	
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
@@ -150,3 +151,9 @@ func music_dir():
 
 func user_music_dir():
 	return str(Util.hedgewars_user_path, "/Data/Music/")
+
+func update_version(version):
+	if version > 0:
+		$Header/Name.text = str(HWTheme.basename(), "_v", version)
+	else:
+		$Header/Name.text = HWTheme.basename()
