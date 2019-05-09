@@ -67,7 +67,7 @@ func pack_start():
 func pack_accept():#TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
-		if button.pressed: selected.append(button.get_node("Name").text)
+		if button.pressed: selected.append(button.get_meta("theme"))
 	
 	var pack_name = $PackContainer/PackName.text
 	if pack_name == "": pack_name = PoolStringArray(selected).join("+")
