@@ -1,6 +1,8 @@
 extends Node
 
 var theme_name
+var theme_version
+var saved_version
 
 var music
 var sd_music
@@ -64,8 +66,8 @@ var ice
 var objects
 var sprays
 
-var theme_output
-var stored_output
+var theme_output = ""
+var stored_output = ""
 var is_loading = false
 
 signal theme_loaded
@@ -134,16 +136,19 @@ func load_defaults():
 	objects = {}
 	sprays = {}
 
-func load_theme(_theme_name):#TODO: support old format
+func load_theme(_theme_name, version):#TODO: support old format
 	load_defaults()
 	theme_name = _theme_name
+	theme_version = version
+	saved_version = version
 	is_loading = true
 	
 	sd_clouds = null
 	
+	var lines = []
 	var cfg_file = File.new()
-	cfg_file.open(path() + "theme.cfg", cfg_file.READ)
-	var lines = cfg_file.get_as_text().split("\n")
+	if cfg_file.open(path() + "theme.cfg", cfg_file.READ) == OK:
+		cfg_file.get_as_text().split("\n")
 	
 	for line in lines:
 		var split = line.split(" = ")#TODO: probably some regex for better handling
@@ -264,6 +269,18 @@ func save_theme():
 		
 		stored_output = theme_output
 		emit_signal("output_updated", theme_output != stored_output)
+	
+	if theme_version != saved_version:
+		var new_name = theme_name.split("_v")[0]
+		if theme_version > 0:
+			new_name += str("_v", theme_version)
+		
+		var renamer = Directory.new()
+		renamer.rename(str(Util.hedgewars_user_path, "/Data/Themes/", theme_name), str(Util.hedgewars_user_path, "/Data/Themes/", new_name))
+		theme_name = new_name
+		
+		saved_version = theme_version
+		Util.refresh_themes()
 
 func path():
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
@@ -335,3 +352,6 @@ func apply_change():
 	refresh_oputput()
 	if Util.enable_autosave:
 		save_theme()
+
+func set_version(version):
+	theme_version = version

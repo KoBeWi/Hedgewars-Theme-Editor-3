@@ -138,7 +138,7 @@ align = 1
 [node name="PackContainer" type="HBoxContainer" parent="Container"]
 margin_top = 469.0
 margin_right = 1024.0
-margin_bottom = 498.0
+margin_bottom = 509.0
 alignment = 1
 
 [node name="PackThemes" type="Button" parent="Container/PackContainer"]
@@ -241,9 +241,9 @@ margin_bottom = 40.0
 text = "Enable autosave"
 
 [node name="SelectThemeHeader" type="Label" parent="Container"]
-margin_top = 502.0
+margin_top = 513.0
 margin_right = 1024.0
-margin_bottom = 544.0
+margin_bottom = 555.0
 custom_fonts/font = ExtResource( 3 )
 text = "Select theme"
 align = 1
@@ -258,9 +258,9 @@ align = 1
 
 [node name="ThemeAlign" type="HBoxContainer" parent="Container"]
 editor/display_folded = true
-margin_top = 548.0
+margin_top = 559.0
 margin_right = 1024.0
-margin_bottom = 548.0
+margin_bottom = 559.0
 alignment = 1
 
 [node name="ThemesList" type="GridContainer" parent="Container/ThemeAlign"]
@@ -270,9 +270,9 @@ rect_clip_content = true
 
 [node name="FileDialog" type="Control" parent="Container"]
 editor/display_folded = true
-margin_top = 552.0
+margin_top = 563.0
 margin_right = 1024.0
-margin_bottom = 552.0
+margin_bottom = 563.0
 
 [node name="GameDialog" type="FileDialog" parent="Container/FileDialog"]
 margin_left = 330.0

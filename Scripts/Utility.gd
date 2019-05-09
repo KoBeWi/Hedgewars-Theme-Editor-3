@@ -10,6 +10,7 @@ var maximize_on_start = true
 var include_music = true
 
 var temp_editor
+var main
 
 func _ready():
 	var config = File.new()
@@ -131,3 +132,20 @@ func save_settings():
 	config.store_line(hedgewars_path)
 	config.store_line(hedgewars_user_path)
 	config.close()
+
+func refresh_themes():
+	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
+		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
+	
+	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
+		var v = theme_dir.split("_v")
+		
+		var button = preload("res://Nodes/ThemeButton.tscn").instance()
+		button.set_meta("theme", theme_dir)
+		button.get_node("Name").text = v[0]
+		button.get_node("Icon").texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
+		if v.size() == 2:
+			button.get_node("Version").text = str("v", int(v[1]))
+		
+		button.connect("pressed", main, "theme_selected", [button])
+		main.get_node("ThemeAlign/ThemesList").add_child(button)

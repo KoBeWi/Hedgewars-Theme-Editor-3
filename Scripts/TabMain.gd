@@ -9,6 +9,7 @@ func _ready():
 	get_parent().name = tr("Main")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	get_viewport().connect("size_changed", self, "update_columns")
+	Util.main = self
 	
 	$Save/Button.connect("pressed", HWTheme, "save_theme")
 	$GamePath/Button.connect("pressed", $FileDialog/GameDialog, "popup_centered")
@@ -19,6 +20,7 @@ func _ready():
 	$PackContainer/PackThemes.connect("pressed", self, "pack_start")
 	$PackContainer/CreatePack.connect("pressed", self, "pack_accept")
 	$PackContainer/Cancel.connect("pressed", self, "pack_cancel")
+	$Save/Version.connect("value_changed", HWTheme, "set_version")
 	
 	$GamePath/Label.text = Util.hedgewars_path
 	$UserPath/Label.text = Util.hedgewars_user_path
@@ -30,21 +32,12 @@ func _ready():
 	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
 	bind_setting($PackContainer/IncludeMusic, "include_music")
 	
-	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
-		var v = theme_dir.split("_v")
-		
-		var button = preload("res://Nodes/ThemeButton.tscn").instance()
-		button.set_meta("theme", theme_dir)
-		button.get_node("Name").text = v[0]
-		if v.size() == 2:
-			button.get_node("Version").text = str("v", int(v[1]))
-		button.get_node("Icon").texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
-		button.connect("pressed", self, "theme_selected", [button])
-		$ThemeAlign/ThemesList.add_child(button)
+	Util.refresh_themes()
 	
 	language_list.append("en")
 	for language in Util.list_directory("res://Translation", true):
-		if language.get_extension() == "po": language_list.append(language.get_basename())
+		if language.get_extension() == "po":
+			language_list.append(language.get_basename())
 	
 	var selected_language = 0
 	for i in language_list.size():
@@ -58,10 +51,12 @@ func _ready():
 
 func theme_selected(button):
 	if !pack_mode:
-		HWTheme.load_theme(button.get_meta("theme"))
+		HWTheme.load_theme(button.get_meta("theme"), int(button.get_node("Version").text))
 		deselect_themes()
 
-func deselect_themes(): for button in $ThemeAlign/ThemesList.get_children(): button.pressed = false
+func deselect_themes():
+	for button in $ThemeAlign/ThemesList.get_children():
+		button.pressed = false
 
 func pack_start():
 	for i in $PackContainer.get_child_count():
@@ -100,6 +95,7 @@ func pack_cancel():
 func on_theme_loaded():
 	$SaveHeader.visible = true
 	$Save.visible = true
+	$Save/Version.value = HWTheme.theme_version
 
 func update_game_path():
 	Util.hedgewars_path = $FileDialog/GameDialog.current_dir
