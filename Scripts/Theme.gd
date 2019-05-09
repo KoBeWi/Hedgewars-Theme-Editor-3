@@ -72,7 +72,6 @@ var is_loading = false
 
 signal theme_loaded
 signal output_updated
-signal version_changed
 
 func load_defaults():
 	music = null
@@ -357,7 +356,9 @@ func apply_change():
 
 func set_version(version):
 	theme_version = version
-	emit_signal("version_changed", version)
+	
+	if !is_loading and Util.enable_autosave:
+		save_theme()
 
 func basename():
 	return theme_name.split("_v")[0]

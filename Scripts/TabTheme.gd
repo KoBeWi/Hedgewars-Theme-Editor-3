@@ -1,20 +1,23 @@
 extends Control
 
 var player_paused = null
-var playing_sd
+var current_player
 
 func _ready():#TODO: tooltips
 	get_parent().name = tr("Theme")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
-	HWTheme.connect("version_changed", self, "update_version")
 	
 	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	
-	$Music/Play.connect("pressed", self, "play_music", [false])
+	$Music/Play.connect("pressed", self, "play_music", [$Music/List])
 	$Music/Stop.connect("pressed", self, "stop_music")
-	$SDMusic/Play.connect("pressed", self, "play_music", [true])
+	$SDMusic/Play.connect("pressed", self, "play_music", [$SDMusic/List])
 	$SDMusic/Stop.connect("pressed", self, "stop_music")
+	$FallbackMusic/Play.connect("pressed", self, "play_music", [$FallbackMusic/List])
+	$FallbackMusic/Stop.connect("pressed", self, "stop_music")
+	$FallbackSDMusic/Play.connect("pressed", self, "play_music", [$FallbackSDMusic/List])
+	$FallbackSDMusic/Stop.connect("pressed", self, "stop_music")
 	
 	$Music/List.add_item(tr("/none/")) 
 	$SDMusic/List.add_item(tr("/none/"))
@@ -74,7 +77,7 @@ func _ready():#TODO: tooltips
 func on_theme_loaded():
 	$Header/Icon.texture = Util.load_texture(HWTheme.path() + "icon.png")
 	$Header/Icon2x.texture = Util.load_texture(HWTheme.path() + "icon@2x.png")
-	$Header/Name.text = HWTheme.theme_name
+	$Header/Name.text = HWTheme.basename()
 	
 	Util.select_music($Music/List, HWTheme.music)
 	Util.select_music($SDMusic/List, HWTheme.sd_music)
@@ -117,8 +120,8 @@ func on_theme_loaded():
 	$Snow/OnOff.pressed = HWTheme.snow
 	$Ice/OnOff.pressed = HWTheme.ice
 
-func play_music(sd): #TODO: cache music on change, also handle pause on change
-	if sd == playing_sd:
+func play_music(player): #TODO: cache music on change, also handle change when paused
+	if player == current_player:
 		if $MusicPlayer.playing:
 			$MusicPlayer.playing = false
 			player_paused = $MusicPlayer.get_playback_position()
@@ -126,12 +129,12 @@ func play_music(sd): #TODO: cache music on change, also handle pause on change
 		elif player_paused:
 			$MusicPlayer.play(player_paused)
 			return
-	playing_sd = sd
+	current_player = player
 	
 	var ogg_file = File.new()
-	var file = str(music_dir(), $SDMusic/List.get_item_text($SDMusic/List.selected) if sd else $Music/List.get_item_text($Music/List.selected), ".ogg")
+	var file = str(music_dir(), player.get_item_text(player.selected), ".ogg")
 	if !ogg_file.file_exists(file):
-		file = str(user_music_dir(), $SDMusic/List.get_item_text($SDMusic/List.selected) if sd else $Music/List.get_item_text($Music/List.selected), ".ogg")
+		file = str(user_music_dir(), player.get_item_text(player.selected), ".ogg")
 	
 	ogg_file.open(file, File.READ)
 	
@@ -151,9 +154,3 @@ func music_dir():
 
 func user_music_dir():
 	return str(Util.hedgewars_user_path, "/Data/Music/")
-
-func update_version(version):
-	if version > 0:
-		$Header/Name.text = str(HWTheme.basename(), "_v", version)
-	else:
-		$Header/Name.text = HWTheme.basename()

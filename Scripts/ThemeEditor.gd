@@ -13,7 +13,6 @@ func _ready():
 	
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	HWTheme.connect("output_updated", self, "on_output_updated")
-	HWTheme.connect("version_changed", self, "on_version_changed")
 
 func on_theme_loaded():
 	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.theme_name, ")"))
@@ -22,10 +21,6 @@ func on_theme_loaded():
 		set_tab_disabled(i, false)
 
 func on_output_updated(dirty):
-	if last_dirty != dirty or theme_version_changed:
+	if last_dirty != dirty:
 		last_dirty = dirty
-		theme_version_changed = false
-		OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.theme_name, ")", "*" if dirty else ""))
-
-func on_version_changed(version):
-	theme_version_changed = true
+		OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.basename(), ")", "*" if dirty else ""))
