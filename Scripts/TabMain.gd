@@ -83,7 +83,7 @@ func pack_accept():#TODO: pack music (optional)
 		for file in Util.list_directory(Util.get_theme_path(theme_name), true): if not file in DONT_PACK:
 			output.copy(str(Util.get_theme_path(theme_name), "/", file), str(output_path, "/", file))
 	
-	pack_cancel()
+	pack_cancel()#TODO: feedback if success
 
 func pack_cancel():
 	for i in $PackContainer.get_child_count():

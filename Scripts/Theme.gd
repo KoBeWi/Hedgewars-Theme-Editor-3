@@ -155,7 +155,7 @@ func load_theme(_theme_name, version):#TODO: support old format
 		var params = []
 		if split.size() > 1: params = split[1].split(", ")
 		
-		match split[0]:
+		match split[0]:#TODO: would be cool to add some metadata for editor
 			"music": music = params[0].get_basename()
 			"sd-music": sd_music = params[0].get_basename()
 			"fallback-music": fallback_music = params[0].get_basename()
