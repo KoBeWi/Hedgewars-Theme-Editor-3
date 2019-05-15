@@ -27,6 +27,7 @@ func add_image(iname):#TODO: update images on change
 	update_image(images, iname)
 	
 	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname, self, images])
+	get_parent().add_customizable_image(iname)
 
 func add_image_info(info, format = null):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")

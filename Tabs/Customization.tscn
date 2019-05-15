@@ -90,17 +90,17 @@ margin_right = 704.0
 margin_bottom = 200.0
 alignment = 1
 
-[node name="MoveLeft" type="Button" parent="Container/ItemLists/RightMove"]
+[node name="MoveRight" type="Button" parent="Container/ItemLists/RightMove"]
 margin_top = 69.0
 margin_right = 39.0
 margin_bottom = 98.0
-text = "<<<"
+text = ">>>"
 
-[node name="MoveRight" type="Button" parent="Container/ItemLists/RightMove"]
+[node name="MoveLeft" type="Button" parent="Container/ItemLists/RightMove"]
 margin_top = 102.0
 margin_right = 39.0
 margin_bottom = 131.0
-text = ">>>"
+text = "<<<"
 
 [node name="Objects" type="VBoxContainer" parent="Container/ItemLists"]
 margin_left = 708.0

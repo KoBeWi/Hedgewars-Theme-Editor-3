@@ -1,21 +1,37 @@
 extends VBoxContainer
 
+var spray_count = 0
+
 func _ready():
 	get_parent().name = tr("Objects")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	Util.connect("object_modified", self, "on_object_modified")
 	
 func on_theme_loaded():
 	for panel in get_children(): panel.free()
+	spray_count = 0
 	
 	for spray in HWTheme.sprays.keys():
-		var panel = preload("res://Nodes/SprayPanel.tscn").instance()
-		panel.spray = spray
-		add_child(panel)
+		add_spray(spray)
 	
 	for object in HWTheme.objects.values():
-		var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
-		panel.object = object
-		add_child(panel)
+		add_object(object)
+
+func on_object_modified(operation, object):
+	match operation:
+		"spray+":
+			add_spray(object)
+
+func add_spray(spray):
+	var panel = preload("res://Nodes/SprayPanel.tscn").instance()
+	panel.spray = spray
+	add_child_below_node(get_child(spray_count-1), panel)
+	spray_count += 1
+
+func add_object(object):
+	var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
+	panel.object = object
+	add_child(panel)
 
 func update_object_amount(amount, object):
 	HWTheme.objects[object].number = amount

@@ -12,6 +12,8 @@ var include_music = true
 var temp_editor
 var main
 
+signal object_modified(operation, object)
+
 func _ready():
 	var config = File.new()
 	if config.open("user://config", File.READ) == OK:
