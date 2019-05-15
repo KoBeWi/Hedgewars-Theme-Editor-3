@@ -33,7 +33,6 @@ text = "Game path"
 align = 1
 
 [node name="GamePath" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 117.0
 margin_right = 1024.0
 margin_bottom = 146.0
@@ -60,7 +59,6 @@ text = "User path"
 align = 1
 
 [node name="UserPath" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 196.0
 margin_right = 1024.0
 margin_bottom = 225.0
@@ -87,7 +85,6 @@ text = "Misc"
 align = 1
 
 [node name="MaximizeContainer" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 275.0
 margin_right = 1024.0
 margin_bottom = 315.0
@@ -101,7 +98,6 @@ text = "Maximize on start"
 align = 1
 
 [node name="LanguageContainer" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 319.0
 margin_right = 1024.0
 margin_bottom = 348.0
@@ -257,7 +253,6 @@ text = "Select themes to pack"
 align = 1
 
 [node name="ThemeAlign" type="HBoxContainer" parent="Container"]
-editor/display_folded = true
 margin_top = 559.0
 margin_right = 1024.0
 margin_bottom = 559.0
@@ -269,7 +264,6 @@ margin_right = 512.0
 rect_clip_content = true
 
 [node name="FileDialog" type="Control" parent="Container"]
-editor/display_folded = true
 margin_top = 563.0
 margin_right = 1024.0
 margin_bottom = 563.0

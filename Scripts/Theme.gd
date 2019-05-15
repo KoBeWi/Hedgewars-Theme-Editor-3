@@ -314,7 +314,7 @@ func refresh_oputput(emit_changed = true):
 	if clouds_defined: theme_output.append(str("clouds = ", clouds))
 	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
 	
-	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01)) #TODO: make sure floats have 2 decimal digits
+	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01))
 	if sd_water_animation_defined: theme_output.append(str("sd-water-animation = ", sd_water_animation_frames, ", ", sd_water_animation_duration, ", ", sd_water_animation_speed * 0.01))
 	
 	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))

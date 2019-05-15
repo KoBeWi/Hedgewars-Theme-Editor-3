@@ -16,7 +16,7 @@ scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1179.0
-margin_bottom = 3671.0
+margin_bottom = 3874.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 1 )
@@ -29,7 +29,7 @@ anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 1179.0
-margin_bottom = 521.0
+margin_bottom = 550.0
 text = "Sky color"
 
 [node name="Border" parent="Container" instance=ExtResource( 2 )]
@@ -38,9 +38,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 525.0
+margin_top = 554.0
 margin_right = 1179.0
-margin_bottom = 1046.0
+margin_bottom = 1104.0
 text = "Border/Mudgun color"
 
 [node name="UpperWater" parent="Container" instance=ExtResource( 2 )]
@@ -49,9 +49,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1050.0
+margin_top = 1108.0
 margin_right = 1179.0
-margin_bottom = 1571.0
+margin_bottom = 1658.0
 text = "Upper water color"
 edit_alpha = true
 
@@ -61,9 +61,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1575.0
+margin_top = 1662.0
 margin_right = 1179.0
-margin_bottom = 2096.0
+margin_bottom = 2212.0
 text = "Lower water color"
 edit_alpha = true
 
@@ -73,9 +73,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2100.0
+margin_top = 2216.0
 margin_right = 1179.0
-margin_bottom = 2621.0
+margin_bottom = 2766.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
@@ -85,9 +85,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2625.0
+margin_top = 2770.0
 margin_right = 1179.0
-margin_bottom = 3146.0
+margin_bottom = 3320.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
@@ -97,9 +97,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 3150.0
+margin_top = 3324.0
 margin_right = 1179.0
-margin_bottom = 3671.0
+margin_bottom = 3874.0
 text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
 

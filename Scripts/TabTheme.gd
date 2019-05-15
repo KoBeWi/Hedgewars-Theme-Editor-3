@@ -3,12 +3,9 @@ extends Control
 var player_paused = null
 var current_player
 
-func _ready():#TODO: tooltips
+func _ready():#TODO: disabled
 	get_parent().name = tr("Theme")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
-	
-	$CloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
-	$SDCloudsHeader/OnOff.hint_tooltip = tr("When off, related key will not appear in theme.cfg")
 	
 	$Music/Play.connect("pressed", self, "play_music", [$Music/List])
 	$Music/Stop.connect("pressed", self, "stop_music")
@@ -50,6 +47,7 @@ func _ready():#TODO: tooltips
 	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_sd_music", $FallbackSDMusic/List])
 	
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
+	$CloudsHeader/OnOff.connect("toggled", $Clouds/Amount, "set_editable")
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
 	$SDCloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_clouds_defined"])
 	$SDClouds/Amount.connect("value_changed", HWTheme, "change_property", ["sd_clouds"])
@@ -93,6 +91,7 @@ func on_theme_loaded():
 	Util.select_music($FallbackSDMusic/List, HWTheme.fallback_sd_music)
 	
 	$CloudsHeader/OnOff.pressed = HWTheme.clouds_defined
+	$Clouds/Amount.editable = HWTheme.clouds_defined
 	$Clouds/Amount.value = HWTheme.clouds
 	$SDCloudsHeader/OnOff.pressed = HWTheme.sd_clouds_defined
 	$SDClouds/Amount.value = HWTheme.clouds

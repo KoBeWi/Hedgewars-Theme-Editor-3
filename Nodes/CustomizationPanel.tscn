@@ -123,7 +123,6 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="Template" type="HBoxContainer" parent="Container/Image"]
-editor/display_folded = true
 margin_top = 134.0
 margin_right = 1010.0
 margin_bottom = 163.0
