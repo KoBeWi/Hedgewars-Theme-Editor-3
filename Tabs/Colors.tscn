@@ -27,85 +27,90 @@ margin_bottom = 23.0
 text = "If a color is disabled, related key will not appear in theme.cfg"
 align = 1
 
-[node name="Sky" parent="Container" instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
+[node name="PickerContainer" type="VBoxContainer" parent="Container"]
 margin_top = 27.0
 margin_right = 1179.0
-margin_bottom = 577.0
+margin_bottom = 3901.0
+
+[node name="Sky" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1179.0
+margin_bottom = 550.0
 text = "Sky color"
 
-[node name="Border" parent="Container" instance=ExtResource( 2 )]
+[node name="Border" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 581.0
+margin_top = 554.0
 margin_right = 1179.0
-margin_bottom = 1131.0
+margin_bottom = 1104.0
 text = "Border/Mudgun color"
 
-[node name="UpperWater" parent="Container" instance=ExtResource( 2 )]
+[node name="UpperWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1135.0
+margin_top = 1108.0
 margin_right = 1179.0
-margin_bottom = 1685.0
+margin_bottom = 1658.0
 text = "Upper water color"
 edit_alpha = true
 
-[node name="LowerWater" parent="Container" instance=ExtResource( 2 )]
+[node name="LowerWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1689.0
+margin_top = 1662.0
 margin_right = 1179.0
-margin_bottom = 2239.0
+margin_bottom = 2212.0
 text = "Lower water color"
 edit_alpha = true
 
-[node name="SDUpperWater" parent="Container" instance=ExtResource( 2 )]
+[node name="SDUpperWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2243.0
+margin_top = 2216.0
 margin_right = 1179.0
-margin_bottom = 2793.0
+margin_bottom = 2766.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
-[node name="SDLowerWater" parent="Container" instance=ExtResource( 2 )]
+[node name="SDLowerWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2797.0
+margin_top = 2770.0
 margin_right = 1179.0
-margin_bottom = 3347.0
+margin_bottom = 3320.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
-[node name="SDTint" parent="Container" instance=ExtResource( 2 )]
+[node name="SDTint" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 3351.0
+margin_top = 3324.0
 margin_right = 1179.0
-margin_bottom = 3901.0
+margin_bottom = 3874.0
 text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
 
