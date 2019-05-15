@@ -3,7 +3,7 @@ extends Control
 var player_paused = null
 var current_player
 
-func _ready():#TODO: disabled
+func _ready():
 	get_parent().name = tr("Theme")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	
