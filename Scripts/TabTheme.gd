@@ -47,7 +47,6 @@ func _ready():#TODO: disabled
 	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_sd_music", $FallbackSDMusic/List])
 	
 	$CloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
-	$CloudsHeader/OnOff.connect("toggled", $Clouds/Amount, "set_editable")
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
 	$SDCloudsHeader/OnOff.connect("toggled", HWTheme, "change_property", ["sd_clouds_defined"])
 	$SDClouds/Amount.connect("value_changed", HWTheme, "change_property", ["sd_clouds"])
@@ -95,9 +94,15 @@ func on_theme_loaded():
 	$Clouds/Amount.editable = HWTheme.clouds_defined
 	$Clouds/Amount.value = HWTheme.clouds
 	$SDCloudsHeader/OnOff.pressed = HWTheme.sd_clouds_defined
+	$SDClouds/Amount.editable = HWTheme.sd_clouds_defined
 	$SDClouds/Amount.value = HWTheme.clouds
 	
 	$FlakesHeader/OnOff.pressed = HWTheme.flakes_defined
+	$Flakes/Amount/Value.editable = HWTheme.flakes_defined
+	$Flakes/Frames/Value.editable = HWTheme.flakes_defined
+	$Flakes/FrameDuration/Value.editable = HWTheme.flakes_defined
+	$Flakes/RotationSpeed/Value.editable = HWTheme.flakes_defined
+	$Flakes/FallingSpeed/Value.editable = HWTheme.flakes_defined
 	$Flakes/Amount/Value.value = HWTheme.flakes_amount
 	$Flakes/Frames/Value.value = HWTheme.flakes_frames
 	$Flakes/FrameDuration/Value.value = HWTheme.flakes_duration
@@ -105,6 +110,11 @@ func on_theme_loaded():
 	$Flakes/FallingSpeed/Value.value = HWTheme.flakes_speed
 	
 	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
+	$SDFlakes/Amount/Value.editable = HWTheme.sd_flakes_defined
+	$SDFlakes/Frames/Value.editable = HWTheme.sd_flakes_defined
+	$SDFlakes/FrameDuration/Value.editable = HWTheme.sd_flakes_defined
+	$SDFlakes/RotationSpeed/Value.editable = HWTheme.sd_flakes_defined
+	$SDFlakes/FallingSpeed/Value.editable = HWTheme.sd_flakes_defined
 	$SDFlakes/Amount/Value.value = HWTheme.sd_flakes_amount
 	$SDFlakes/Frames/Value.value = HWTheme.sd_flakes_frames
 	$SDFlakes/FrameDuration/Value.value = HWTheme.sd_flakes_duration
@@ -112,16 +122,20 @@ func on_theme_loaded():
 	$SDFlakes/FallingSpeed/Value.value = HWTheme.sd_flakes_speed
 	
 	$WaterAnimationHeader/OnOff.pressed = HWTheme.water_animation_defined
+	$WaterAnimation/Frames/Value.editable = HWTheme.water_animation_defined
+	$WaterAnimation/FrameDuration/Value.editable = HWTheme.water_animation_defined
+	$WaterAnimation/MovementSpeed/Value.editable = HWTheme.water_animation_defined
 	$WaterAnimation/Frames/Value.value = HWTheme.water_animation_frames
 	$WaterAnimation/FrameDuration/Value.value = HWTheme.water_animation_duration
 	$WaterAnimation/MovementSpeed/Value.value = HWTheme.water_animation_speed
 	
 	$SDWaterAnimationHeader/OnOff.pressed = HWTheme.sd_water_animation_defined
+	$SDWaterAnimation/Frames/Value.editable = HWTheme.sd_water_animation_defined
+	$SDWaterAnimation/FrameDuration/Value.editable = HWTheme.sd_water_animation_defined
+	$SDWaterAnimation/MovementSpeed/Value.editable = HWTheme.sd_water_animation_defined
 	$SDWaterAnimation/Frames/Value.value = HWTheme.sd_water_animation_frames
 	$SDWaterAnimation/FrameDuration/Value.value = HWTheme.sd_water_animation_duration
 	$SDWaterAnimation/MovementSpeed/Value.value = HWTheme.sd_water_animation_speed
-	
-	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
 	
 	$Hidden/OnOff.pressed = HWTheme.hidden
 	$FlattenFlakes/OnOff.pressed = HWTheme.flatten_flakes
