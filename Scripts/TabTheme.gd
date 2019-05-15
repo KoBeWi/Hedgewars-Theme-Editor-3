@@ -75,6 +75,7 @@ func _ready():#TODO: disabled
 	$SDWaterAnimation/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_duration"])
 	$SDWaterAnimation/MovementSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_speed"])
 	
+	$Hidden/OnOff.connect("toggled", HWTheme, "change_property", ["hidden"])
 	$FlattenFlakes/OnOff.connect("toggled", HWTheme, "change_property", ["flatten_flakes"])
 	$FlattenClouds/OnOff.connect("toggled", HWTheme, "change_property", ["flatten_clouds"])
 	$Snow/OnOff.connect("toggled", HWTheme, "change_property", ["snow"])
@@ -122,8 +123,9 @@ func on_theme_loaded():
 	
 	$SDFlakesHeader/OnOff.pressed = HWTheme.sd_flakes_defined
 	
-	$FlattenClouds/OnOff.pressed = HWTheme.flatten_clouds
+	$Hidden/OnOff.pressed = HWTheme.hidden
 	$FlattenFlakes/OnOff.pressed = HWTheme.flatten_flakes
+	$FlattenClouds/OnOff.pressed = HWTheme.flatten_clouds
 	$Snow/OnOff.pressed = HWTheme.snow
 	$Ice/OnOff.pressed = HWTheme.ice
 

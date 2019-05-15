@@ -58,6 +58,7 @@ var sd_water_animation_frames
 var sd_water_animation_duration
 var sd_water_animation_speed
 
+var hidden
 var flatten_clouds
 var flatten_flakes
 var snow
@@ -128,6 +129,7 @@ func load_defaults():
 	sd_water_animation_duration = 0
 	sd_water_animation_speed = 100
 	
+	hidden = false
 	flatten_clouds = false
 	flatten_flakes = false
 	snow = false
@@ -215,6 +217,7 @@ func load_theme(_theme_name, version):#TODO: support old format
 				sd_water_animation_duration = int(params[1])
 				sd_water_animation_speed = float(params[2]) * 100
 				sd_water_animation_defined = true
+			"hidden": hidden = true
 			"flatten-clouds": flatten_clouds = true
 			"flatten-flakes": flatten_flakes = true
 			"snow": snow = true
@@ -333,6 +336,7 @@ func refresh_oputput(emit_changed = true):
 		
 		theme_output.append("object = " + line.join(""))
 	
+	if hidden: theme_output.append("hidden = true")
 	if flatten_flakes: theme_output.append("flatten-flakes = true")
 	if flatten_clouds: theme_output.append("flatten-clouds = true")
 	if snow: theme_output.append("snow = true")

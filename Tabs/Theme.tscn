@@ -728,19 +728,19 @@ margin_left = 80.0
 margin_top = 8.0
 margin_right = 189.0
 margin_bottom = 31.0
-text = "Hide theme?"
+text = "Hidden?"
 
-[node name="FlattenFlakes2" type="HBoxContainer" parent="Container"]
+[node name="FlattenFlakes" type="HBoxContainer" parent="Container"]
 margin_top = 1343.0
 margin_right = 1004.0
 margin_bottom = 1383.0
 
-[node name="OnOff" type="CheckButton" parent="Container/FlattenFlakes2"]
+[node name="OnOff" type="CheckButton" parent="Container/FlattenFlakes"]
 margin_right = 76.0
 margin_bottom = 40.0
 hint_tooltip = "If enabled, all flakes have the same size and are on the same layer: In front of the sky and horizont and behind the terrain"
 
-[node name="Label" type="Label" parent="Container/FlattenFlakes2"]
+[node name="Label" type="Label" parent="Container/FlattenFlakes"]
 margin_left = 80.0
 margin_top = 8.0
 margin_right = 189.0
@@ -772,7 +772,7 @@ margin_bottom = 1471.0
 [node name="OnOff" type="CheckButton" parent="Container/Snow"]
 margin_right = 76.0
 margin_bottom = 40.0
-hint_tooltip = "If enabled, the flakes which are normally purely decorational now behave like snowflakes. When they collide with terrain, they become a part of the landscape"
+hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape"
 
 [node name="Label" type="Label" parent="Container/Snow"]
 margin_left = 80.0
