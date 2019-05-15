@@ -45,6 +45,10 @@ msgstr "Pomoc"
 msgid "Revert"
 msgstr "Odrzuć"
 
+msgid "If a color is disabled, related key will not appear in theme.cfg"
+msgstr ""
+"Jeśli kolor jest wyłączony, odpowiedni klucz nie pojawi się w theme.cfg"
+
 msgid "Sky color"
 msgstr "Kolor nieba"
 
@@ -163,7 +167,7 @@ msgstr "Muzyka grająca, gdy brakuje pliku domyślnej muzyki"
 msgid "Fallback Sudden Death Music"
 msgstr "Awaryjna muzyka Nagłej Śmierci"
 
-msgid "If property is disabled, related key will not appear in theme.cfg"
+msgid "If a property is disabled, related key will not appear in theme.cfg"
 msgstr ""
 "Jeśli właściwość jest wyłączona, odpowiedni klucz nie pojawi się w theme.cfg"
 

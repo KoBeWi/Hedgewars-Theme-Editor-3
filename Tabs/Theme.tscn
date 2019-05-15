@@ -195,11 +195,11 @@ margin_top = 276.0
 margin_right = 1004.0
 margin_bottom = 280.0
 
-[node name="Label2" type="Label" parent="Container"]
+[node name="Info" type="Label" parent="Container"]
 margin_top = 284.0
 margin_right = 1004.0
 margin_bottom = 307.0
-text = "If property is disabled, related key will not appear in theme.cfg"
+text = "If a property is disabled, related key will not appear in theme.cfg"
 align = 1
 
 [node name="CloudsHeader" type="HBoxContainer" parent="Container"]
