@@ -145,7 +145,7 @@ func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	customization.add_info("If not provided, a default image is used")
 	customization.add_image("Snow.png")
 	customization.add_image_info("Must be at least 2 pixels wide to appear")
-	customization.add_image_info("Height lower than 2 will crash the game")
+	customization.add_image_info("Height lower than 2 pixels will crash the game")
 	
 	customization = add_customization("Sky")
 	customization.add_info("Map's background texture")

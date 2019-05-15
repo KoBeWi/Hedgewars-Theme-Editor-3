@@ -222,7 +222,7 @@ text = "Version"
 margin_left = 454.0
 margin_right = 528.0
 margin_bottom = 40.0
-hint_tooltip = "Use 0 to disable versioning."
+hint_tooltip = "Use 0 to disable versioning"
 max_value = 10000.0
 
 [node name="VSeparator2" type="VSeparator" parent="Container/Save"]

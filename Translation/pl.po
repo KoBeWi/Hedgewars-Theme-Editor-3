@@ -112,11 +112,23 @@ msgstr "Spakuj motywy"
 msgid "Create pack"
 msgstr "Stwórz paczkę"
 
+msgid "Cancel"
+msgstr "Anuluj"
+
 msgid "Enter package name"
 msgstr "Wprowadź nazwę paczki"
 
+msgid "Include custom music"
+msgstr "Dołącz własną muzykę"
+
 msgid "Save theme"
 msgstr "Zapisz motyw"
+
+msgid "Version"
+msgstr "Wersja"
+
+msgid "Use 0 to disable versioning"
+msgstr "Użyj 0, by wyłączyć wersjonowanie"
 
 msgid "Enable autosave"
 msgstr "Włącz autozapis"
@@ -133,8 +145,30 @@ msgstr "Nazwa motywu"
 msgid "Music"
 msgstr "Muzyka"
 
+msgid "Music that plays before Sudden Death"
+msgstr "Muzyka grająca przed Nagłą Śmiercią"
+
 msgid "Sudden Death Music"
 msgstr "Muzyka Nagłej Śmierci"
+
+msgid "Music that plays in Sudden Death"
+msgstr "Muzyka grające podczas Nagłej Śmierci"
+
+msgid "Fallback Music"
+msgstr "Awaryjna muzyka"
+
+msgid "Music that plays if default music file is missing"
+msgstr "Muzyka grająca, gdy brakuje pliku domyślnej muzyki"
+
+msgid "Fallback Sudden Death Music"
+msgstr "Awaryjna muzyka Nagłej Śmierci"
+
+msgid "If property is disabled, related key will not appear in theme.cfg"
+msgstr ""
+"Jeśli właściwość jest wyłączona, odpowiedni klucz nie pojawi się w theme.cfg"
+
+msgid "Clouds floating atop the map before Sudden Death"
+msgstr "Chmury na szczycie mapy przed Nagłą Śmiercią"
 
 msgid "Clouds"
 msgstr "Chmury"
@@ -142,14 +176,29 @@ msgstr "Chmury"
 msgid "Amount"
 msgstr "Ilość"
 
+msgid "Number of clouds to create"
+msgstr "Liczba chmur, które się tworzą"
+
+msgid "Clouds floating atop the map in Sudden Death"
+msgstr "Chmury na szczycie mapy podczas Nagłej Śmierci"
+
 msgid "Sudden Death Clouds"
 msgstr "Chmury Nagłej Śmierci"
+
+msgid "Flakes appearing in background before Sudden Death"
+msgstr "Płatki widoczne w tle przed Nagłą Śmiercią"
 
 msgid "Flakes"
 msgstr "Płatki"
 
+msgid "Amount of visible flakes"
+msgstr "Liczba widocznych płatków"
+
 msgid "Frames"
 msgstr "Klatki"
+
+msgid "Number of frames used in  Flake.png"
+msgstr "Liczba klatek używanych w pliku Flake.png"
 
 msgid "Frame duration"
 msgstr "Długość klatki"
@@ -157,17 +206,65 @@ msgstr "Długość klatki"
 msgid "Rotation speed"
 msgstr "Szybkość obracania"
 
+msgid ""
+"How fast the flakes rotate. With any value other than 0, flakes will rotate "
+"and also spawn with a random rotation"
+msgstr ""
+"Jak szybko płatki się obracają. Z dowolną wartością różną od 0, płatki będą "
+"się obracać oraz pojawiać z losowym obrotem"
+
 msgid "Falling speed"
 msgstr "Szybkość spadania"
+
+msgid ""
+"Vertical speed of the flakes. A positive value makes the flakes fall, while "
+"a negative value makes them rise"
+msgstr ""
+"Pionowa prędkość płatków. Wartość dodatnia sprawi, że płatki będą spadać, a "
+"ujemna, że będą się unosić"
+
+msgid "Flakes appearing in background in Sudden Death"
+msgstr "Płatki widoczne w tle podczas Nagłej Śmierci"
 
 msgid "Sudden Death Flakes"
 msgstr "Płatki Nagłej Śmierci"
 
+msgid ""
+"Specified a custom water animation and flowing speed before Sudden Death"
+msgstr ""
+"Określona wartość szybkości płynięcia i animacji wody przed Nagłą Śmiercią"
+
 msgid "Water Animation"
 msgstr "Animacja wody"
 
+msgid ""
+"Number of frames in BlueWater.png. The frames in this image should be "
+"stacked vertically. The height of this image must be divisible by number of "
+"frames"
+msgstr ""
+"Liczba klatek w pliku BlueWater.png. Klatki w tym obrazki powinny być "
+"ułożone pionowo. Wysokość tego obrazka musi być podzielna przez liczbę klatek"
+
+msgid ""
+"Duration of a single frame. Must be greater than 0 if frames are greater "
+"than 1, otherwise it is ignored"
+msgstr ""
+"Czas trwania jednej klatki. Musi być większy od 0 jeśli klatki są większe od "
+"1, inaczej jest zignorowany"
+
 msgid "Flowing speed"
 msgstr "Szybkość płynięcia"
+
+msgid ""
+"How fast the water moves to the right. Higher values means faster movement. "
+"If negative, it moves to the left. Use 0 to stop movement"
+msgstr ""
+"Jak szybko woda porusza się w prawo. Większe wartości oznaczają szybszy "
+"ruch. Jeśli ujemne, woda porusza się w lewo. Użyj 0, by zatrzymać ruch"
+
+msgid "Specified a custom water animation and flowing speed in Sudden Death"
+msgstr ""
+"Określona wartość szybkości płynięcia i animacji wody podczas Nagłej Śmierci"
 
 msgid "Sudden Death Water Animation"
 msgstr "Animacja wody Nagłej Śmierci"
@@ -175,17 +272,48 @@ msgstr "Animacja wody Nagłej Śmierci"
 msgid "Miscellaneous"
 msgstr "Różne"
 
-msgid "Flattened flakes have constant size and layer"
-msgstr "Spłaszczone płatki mają stały rozmiar i warstwę"
+msgid ""
+"If enabled, the theme will be hidden from the in-game theme selection menu"
+msgstr "Jeśli włączone, motyw będzie ukryty w menu wyboru motywów w grze"
+
+msgid "Hidden?"
+msgstr "Ukryty?"
+
+msgid ""
+"If enabled, all flakes have the same size and are on the same layer: In "
+"front of the sky and horizont and behind the terrain"
+msgstr ""
+"Jeśli włączone, wszystkie płatki będą miały ten sam rozmiar i będą na tej "
+"samej warstwie: przed niebem i horyzontem, a za terenem"
 
 msgid "Flatten flakes?"
 msgstr "Spłaszcz płatki?"
 
+msgid ""
+"If enabled, all clouds have the same size and are on the same layer: "
+"background"
+msgstr ""
+"Jeśli włączone, wszystkie chmury  będą miały ten sam rozmiar i będą na tej "
+"samej warstwie: tle"
+
 msgid "Flatten clouds?"
 msgstr "Spłaszcz chmury?"
 
+msgid ""
+"If enabled, when flakes collide with terrain, they become a part of the "
+"landscape"
+msgstr ""
+"Jeśli włączone, kiedy płatki kolidują z terenem, stają się częścią krajobrazu"
+
 msgid "Snow?"
 msgstr "Śnieg?"
+
+msgid ""
+"If enabled, girders become slippery like ice. This also applies to placed "
+"girders"
+msgstr ""
+"Jeśli włączone, belki stają się śliskie jak lód. Działa również na stawiane "
+"belki"
 
 msgid "Ice?"
 msgstr "Lód?"
@@ -302,11 +430,11 @@ msgstr "Dowolna ilość"
 msgid "Texture for flakes that float in background"
 msgstr "Tekstura dla płatków, które unoszą się w tle"
 
-msgid "If not provided, no flakes will appear"
-msgstr "Jeśli nie dodano, żadne płatki się nie pojawią"
-
 msgid "Size: %s for each flake"
 msgstr "Rozmiar: każdy płatek %s"
+
+msgid "Game will crash if flakes are enabled and this image is missing"
+msgstr "Gra się crashuje, jeśli płatki są włączone, a brakuje tego obrazka"
 
 msgid "Mirrored clouds/flakes"
 msgstr "Odwrócone chmury/płatki"
@@ -325,6 +453,12 @@ msgid "Texture for snow that accumulates on map when snow is enabled"
 msgstr ""
 "Tekstura dla śniegu, który zbiera się na mapach, kiedy śnieg jest włączony"
 
+msgid "Must be at least 2 pixels wide to appear"
+msgstr "Musi mieć co najmniej 2 piksele szerokości, by się pojawić"
+
+msgid "Height lower than 2 pixels will crash the game"
+msgstr "Wysokość mniejsza niż 2 piksele spowoduje crash gry"
+
 msgid "Sky"
 msgstr "Niebo"
 
@@ -333,6 +467,9 @@ msgstr "Tekstura tła mapy"
 
 msgid "If not provided, no sky will appear"
 msgstr "Jeśli nie dodano, niebo nie będzie widoczne"
+
+msgid "Standard height is 512"
+msgstr "Standardowa wysokość to 512"
 
 msgid "Left/right sky"
 msgstr "Lewe/prawe niebo"
@@ -407,9 +544,6 @@ msgstr "Polski"
 msgid "Theme"
 msgstr "Motyw"
 
-msgid "When off, related key will not appear in theme.cfg"
-msgstr "Kiedy wyłączone, odpowiedni klucz nie pojawi się w theme.cfg"
-
 msgid "/none/"
 msgstr "/brak/"
 
@@ -427,6 +561,17 @@ msgstr "Stawiaj na wodzie"
 
 msgid "Edit this object"
 msgstr "Edytuj ten obiekt"
+
+#~ msgid ""
+#~ "How fast the flakes rotate. 0 is no rotation, and all flakes spawn "
+#~ "unrotated. With any other value, flakes also spawn with a random rotation"
+#~ msgstr "Jak szybko płatki się obracają. "
+
+#~ msgid "Flattened flakes have constant size and layer"
+#~ msgstr "Spłaszczone płatki mają stały rozmiar i warstwę"
+
+#~ msgid "If not provided, no flakes will appear"
+#~ msgstr "Jeśli nie dodano, żadne płatki się nie pojawią"
 
 #~ msgid "Size: %s images %s pix each, lined vertically"
 #~ msgstr "Rozmiar: %s obrazków, każdy %s pikseli"
