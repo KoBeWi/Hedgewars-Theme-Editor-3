@@ -83,20 +83,20 @@ func remove_rectangles():
 		get_parent().object.visible.erase(rect)
 		get_parent().object.buried.erase(rect)"
 
-[sub_resource type="InputEventAction" id=2]
-action = "ui_accept"
+[sub_resource type="InputEventKey" id=2]
+scancode = 16777221
 
 [sub_resource type="ShortCut" id=3]
 shortcut = SubResource( 2 )
 
-[sub_resource type="InputEventAction" id=4]
-action = "ui_help"
+[sub_resource type="InputEventKey" id=4]
+scancode = 72
 
 [sub_resource type="ShortCut" id=5]
 shortcut = SubResource( 4 )
 
-[sub_resource type="InputEventAction" id=6]
-action = "ui_cancel"
+[sub_resource type="InputEventKey" id=6]
+scancode = 16777217
 
 [sub_resource type="ShortCut" id=7]
 shortcut = SubResource( 6 )

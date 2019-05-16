@@ -48,7 +48,6 @@ margin_bottom = 256.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
-editor/display_folded = true
 margin_top = 111.0
 margin_right = 210.0
 margin_bottom = 144.0

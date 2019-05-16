@@ -10,6 +10,10 @@ func _ready():
 	$ItemLists/LeftMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Sprays/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
+	
+	$ItemLists/Sprays/List.connect("item_selected", self, "on_sprays_click")
+	$ItemLists/Other/List.connect("item_selected", self, "on_other_click")
+	$ItemLists/Objects/List.connect("item_selected", self, "on_objects_click")
 
 func on_theme_loaded():#TODO: implement others, sounds, error detection, jump to error
 	$ItemLists/Sprays/List.clear()
@@ -209,18 +213,54 @@ func on_theme_loaded():#TODO: implement others, sounds, error detection, jump to
 	customization.add_image_info("Size: %s", ["128x128"])
 	
 	for file in Util.list_directory(HWTheme.path(), true):
-		if file.get_extension() == "png" and not file in customizable_list:
+		if file.get_extension() == "png" and not file in customizable_list and not file.get_basename() in HWTheme.sprays and not file.get_basename() in HWTheme.objects:
 			$ItemLists/Other/List.add_item(file.get_basename())
 
 func move_item(from, to):
 	if from.get_item_count() == 0 or from.get_selected_items().size() == 0: return
 	
+	$ItemLists/LeftMove/MoveLeft.disabled = true
+	$ItemLists/LeftMove/MoveRight.disabled = true
+	$ItemLists/RightMove/MoveLeft.disabled = true
+	$ItemLists/RightMove/MoveRight.disabled = true
+	
 	var item = from.get_selected_items()[0]
+	var item_name = from.get_item_text(item)
 	to.add_item(from.get_item_text(item))
 	from.remove_item(item)
 	
-	if from == $ItemLists/Other and to == $ItemLists/Sprays:
-		Util.emit_signal("object_modified", "spray+", item)
+	if from == $ItemLists/Other/List and to == $ItemLists/Sprays/List:
+		Util.emit_signal("object_modified", "spray+", item_name)
+	elif from == $ItemLists/Sprays/List and to == $ItemLists/Other/List:
+		Util.emit_signal("object_modified", "spray-", item_name)
+	elif from == $ItemLists/Other/List and to == $ItemLists/Objects/List:
+		Util.emit_signal("object_modified", "object+", item_name)
+	elif from == $ItemLists/Objects/List and to == $ItemLists/Other/List:
+		Util.emit_signal("object_modified", "object-", item_name)
+
+func on_sprays_click(item):
+	$ItemLists/Objects/List.unselect_all()
+	$ItemLists/Other/List.unselect_all()
+	$ItemLists/LeftMove/MoveLeft.disabled = true
+	$ItemLists/LeftMove/MoveRight.disabled = false
+	$ItemLists/RightMove/MoveLeft.disabled = true
+	$ItemLists/RightMove/MoveRight.disabled = true
+
+func on_other_click(item):
+	$ItemLists/Sprays/List.unselect_all()
+	$ItemLists/Objects/List.unselect_all()
+	$ItemLists/LeftMove/MoveLeft.disabled = false
+	$ItemLists/LeftMove/MoveRight.disabled = true
+	$ItemLists/RightMove/MoveLeft.disabled = true
+	$ItemLists/RightMove/MoveRight.disabled = false
+
+func on_objects_click(item):
+	$ItemLists/Sprays/List.unselect_all()
+	$ItemLists/Other/List.unselect_all()
+	$ItemLists/LeftMove/MoveLeft.disabled = true
+	$ItemLists/LeftMove/MoveRight.disabled = true
+	$ItemLists/RightMove/MoveLeft.disabled = false
+	$ItemLists/RightMove/MoveRight.disabled = true
 
 func add_customization(cname):
 	var custom = preload("res://Nodes/CustomizationPanel.tscn").instance()
@@ -228,13 +268,13 @@ func add_customization(cname):
 	custom.get_node("Container/GroupName").text = tr(cname)
 	return custom
 
+func add_customizable_image(iname):
+	customizable_list[iname] = true
+
 func fetch_template(iname, customization, index):
 	var dir = Directory.new()
 	dir.copy(get_template_path(iname), HWTheme.path() + iname)
 	customization.update_image(index, iname)
-
-func add_customizable_image(iname):
-	customizable_list[iname] = true
 
 func get_template_path(iname):
 	match iname:

@@ -20,18 +20,51 @@ func on_theme_loaded():
 func on_object_modified(operation, object):
 	match operation:
 		"spray+":
+			HWTheme.sprays[object] = 1
 			add_spray(object)
+		"spray-":
+			HWTheme.sprays.erase(object)
+			remove_spray(object)
+		"object+":
+			object = {name = object, number = 1, buried = [], visible = [], on_water = false}
+			HWTheme.objects[object.name] = object
+			var panel = add_object(object)
+			object.buried.append(Rect2(Vector2(), panel.get_node("Container/Image").texture.get_size()))
+		"object-":
+			HWTheme.objects.erase(object)
+			remove_object(object)
+	
+	HWTheme.apply_change()
 
 func add_spray(spray):
 	var panel = preload("res://Nodes/SprayPanel.tscn").instance()
 	panel.spray = spray
-	add_child_below_node(get_child(spray_count-1), panel)
+	if spray_count > 0:
+		add_child_below_node(get_child(spray_count-1), panel)
+	else:
+		add_child(panel)
+		move_child(panel, 0)
 	spray_count += 1
+	return panel
+
+func remove_spray(spray):
+	for i in spray_count:
+		if get_child(i).spray == spray:
+			get_child(i).queue_free()
+			spray_count -= 1
+			return
 
 func add_object(object):
 	var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
 	panel.object = object
 	add_child(panel)
+	return panel
+
+func remove_object(object):
+	for i in range(spray_count, get_child_count()):
+		if get_child(i).object.name == object:
+			get_child(i).queue_free()
+			return
 
 func update_object_amount(amount, object):
 	HWTheme.objects[object].number = amount

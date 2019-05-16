@@ -56,12 +56,14 @@ alignment = 1
 margin_top = 69.0
 margin_right = 39.0
 margin_bottom = 98.0
+disabled = true
 text = "<<<"
 
 [node name="MoveRight" type="Button" parent="Container/ItemLists/LeftMove"]
 margin_top = 102.0
 margin_right = 39.0
 margin_bottom = 131.0
+disabled = true
 text = ">>>"
 
 [node name="Other" type="VBoxContainer" parent="Container/ItemLists"]
@@ -94,12 +96,14 @@ alignment = 1
 margin_top = 69.0
 margin_right = 39.0
 margin_bottom = 98.0
+disabled = true
 text = ">>>"
 
 [node name="MoveLeft" type="Button" parent="Container/ItemLists/RightMove"]
 margin_top = 102.0
 margin_right = 39.0
 margin_bottom = 131.0
+disabled = true
 text = "<<<"
 
 [node name="Objects" type="VBoxContainer" parent="Container/ItemLists"]
