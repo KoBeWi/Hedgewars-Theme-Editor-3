@@ -798,6 +798,10 @@ margin_right = 109.0
 margin_bottom = 31.0
 text = "Ice?"
 
+[connection signal="pressed" from="Container/Music/Stop" to="Container" method="stop_music"]
+[connection signal="pressed" from="Container/SDMusic/Stop" to="Container" method="stop_music"]
+[connection signal="pressed" from="Container/FallbackMusic/Stop" to="Container" method="stop_music"]
+[connection signal="pressed" from="Container/FallbackSDMusic/Stop" to="Container" method="stop_music"]
 [connection signal="toggled" from="Container/CloudsHeader/OnOff" to="Container/Clouds/Amount" method="set_editable"]
 [connection signal="toggled" from="Container/SDCloudsHeader/OnOff" to="Container/SDClouds/Amount" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/RotationSpeed/Value" method="set_editable"]

@@ -8,13 +8,9 @@ func _ready():
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	
 	$Music/Play.connect("pressed", self, "play_music", [$Music/List])
-	$Music/Stop.connect("pressed", self, "stop_music")
 	$SDMusic/Play.connect("pressed", self, "play_music", [$SDMusic/List])
-	$SDMusic/Stop.connect("pressed", self, "stop_music")
 	$FallbackMusic/Play.connect("pressed", self, "play_music", [$FallbackMusic/List])
-	$FallbackMusic/Stop.connect("pressed", self, "stop_music")
 	$FallbackSDMusic/Play.connect("pressed", self, "play_music", [$FallbackSDMusic/List])
-	$FallbackSDMusic/Stop.connect("pressed", self, "stop_music")
 	
 	$Music/List.add_item(tr("/none/")) 
 	$SDMusic/List.add_item(tr("/none/"))

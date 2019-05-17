@@ -10,11 +10,7 @@ var moved = false
 
 func _ready():
 	connect("resized", self, "move_view")
-	$UI/Zoom.connect("value_changed", self, "set_zoom")
 	$UI/Zoom.connect("resized", self, "set_zoom", [zoom])
-	$UI/Container/Buttons/Apply.connect("pressed", self, "on_apply")
-	$UI/Container/Buttons/Help.connect("pressed", self, "on_help")
-	$UI/Container/Buttons/Revert.connect("pressed", self, "on_revert")
 	
 	set_zoom(1)
 	move_view()
@@ -22,7 +18,7 @@ func _ready():
 	
 	$UI/Container/Help.call_deferred("set_visible", false)
 
-func _process(delta):
+func _process(delta):#TODO: some label with cursor pixel position
 	if drag: image.position = drag + get_viewport().get_mouse_position()
 	
 	for rect in object.buried: if rect.has_point(image.mouse()): image.selected_rects.append(rect)

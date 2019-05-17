@@ -10,10 +10,6 @@ func _ready():
 	$ItemLists/LeftMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Sprays/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
-	
-	$ItemLists/Sprays/List.connect("item_selected", self, "on_sprays_click")
-	$ItemLists/Other/List.connect("item_selected", self, "on_other_click")
-	$ItemLists/Objects/List.connect("item_selected", self, "on_objects_click")
 
 func on_theme_loaded():#TODO: implement others, sounds, error detection, jump to error
 	$ItemLists/Sprays/List.clear()

@@ -235,3 +235,7 @@ margin_bottom = 153.0
 shortcut = SubResource( 7 )
 text = "Revert"
 
+[connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
+[connection signal="pressed" from="UI/Container/Buttons/Apply" to="." method="on_apply"]
+[connection signal="pressed" from="UI/Container/Buttons/Help" to="." method="on_help"]
+[connection signal="pressed" from="UI/Container/Buttons/Revert" to="." method="on_revert"]
