@@ -89,15 +89,15 @@ func load_defaults():
 	
 	water_top_defined = false
 	water_bottom_defined = false
-	water_top = Color("545C9D")
-	water_bottom = Color("343C7D")
-	water_opacity = 128
+	water_top = Color("80545C9D")
+	water_bottom = Color("80343C7D")
+	water_opacity = 0.5
 	
 	sd_water_top_defined = false
 	sd_water_bottom_defined = false
-	sd_water_top = Color("9670A9")
-	sd_water_bottom = Color("B972C9")
-	sd_water_opacity = 128
+	sd_water_top = Color("809670A9")
+	sd_water_bottom = Color("80B972C9")
+	sd_water_opacity = 0.5
 	
 	clouds_defined = false
 	clouds = 9
