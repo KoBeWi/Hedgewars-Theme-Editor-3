@@ -142,7 +142,6 @@ custom_fonts/font = ExtResource( 3 )
 text = "List of images you can customize in your theme. You have to do so manually in preferred image-editing program."
 align = 1
 autowrap = true
-
 [connection signal="item_selected" from="Container/ItemLists/Sprays/List" to="Container" method="on_sprays_click"]
 [connection signal="item_selected" from="Container/ItemLists/Other/List" to="Container" method="on_other_click"]
 [connection signal="item_selected" from="Container/ItemLists/Objects/List" to="Container" method="on_objects_click"]

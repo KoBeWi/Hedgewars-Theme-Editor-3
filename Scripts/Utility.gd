@@ -143,11 +143,11 @@ func refresh_themes():
 		var v = theme_dir.split("_v")
 		
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
+		main.get_node("ThemeAlign/ThemesList").add_child(button)
 		button.set_meta("theme", theme_dir)
-		button.get_node("Name").text = v[0]
-		button.get_node("Icon").texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
+		button.theme_name.text = v[0]
+		button.theme_icon.texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
 		if v.size() == 2:
-			button.get_node("Version").text = str("v", int(v[1]))
+			button.theme_version.text = str("v", int(v[1]))
 		
 		button.connect("pressed", main, "theme_selected", [button])
-		main.get_node("ThemeAlign/ThemesList").add_child(button)

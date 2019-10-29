@@ -51,7 +51,7 @@ func _ready():
 
 func theme_selected(button):
 	if !pack_mode:
-		HWTheme.load_theme(button.get_meta("theme"), int(button.get_node("Version").text))
+		HWTheme.load_theme(button.get_meta("theme"), int(button.theme_version.text))
 		deselect_themes()
 
 func deselect_themes():

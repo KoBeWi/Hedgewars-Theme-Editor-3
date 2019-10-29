@@ -32,10 +32,6 @@ gdscript/warnings/enable=false
 
 window/dpi/allow_hidpi=true
 
-[gui]
-
-theme/custom_font="res://Font/DefaultFont.tres"
-
 [input]
 
 ui_help={

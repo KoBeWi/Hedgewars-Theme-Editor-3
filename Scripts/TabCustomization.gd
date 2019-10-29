@@ -11,7 +11,7 @@ func _ready():
 	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
 	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
 
-func on_theme_loaded():#TODO: implement others, sounds, error detection, jump to error
+func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	$ItemLists/Sprays/List.clear()
 	$ItemLists/Other/List.clear()
 	$ItemLists/Objects/List.clear()

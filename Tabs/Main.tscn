@@ -11,6 +11,9 @@ anchor_bottom = 1.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1012.0
@@ -27,13 +30,28 @@ custom_fonts/font = ExtResource( 2 )
 text = "Hedgewars Theme Editor 3"
 align = 1
 
-[node name="Version" type="Label" parent="Container"]
+[node name="VersionContainer" type="HBoxContainer" parent="Container"]
 margin_top = 71.0
 margin_right = 1012.0
 margin_bottom = 94.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="Container/VersionContainer"]
+margin_right = 1000.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 3 )
 text = "v0.7beta"
 align = 2
+
+[node name="Spacing" type="Control" parent="Container/VersionContainer"]
+margin_left = 1004.0
+margin_right = 1012.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 8, 0 )
 
 [node name="HSeparator" type="HSeparator" parent="Container"]
 margin_top = 98.0
@@ -317,4 +335,3 @@ current_path = "X:/Inne/Hedgewars/Theme Editor 3/"
 margin_top = 673.0
 margin_right = 1012.0
 margin_bottom = 673.0
-
