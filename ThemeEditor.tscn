@@ -15,6 +15,9 @@ anchor_bottom = 1.0
 theme = ExtResource( 8 )
 texture = ExtResource( 7 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ThemeEditor" type="TabContainer" parent="."]
 anchor_right = 1.0
@@ -33,27 +36,26 @@ margin_bottom = -8.0
 
 [node name="Theme" parent="ThemeEditor" instance=ExtResource( 3 )]
 visible = false
-margin_left = 3.0
-margin_top = 36.0
-margin_right = -3.0
-margin_bottom = -3.0
+margin_left = 8.0
+margin_top = 41.0
+margin_right = -8.0
+margin_bottom = -8.0
 
 [node name="Colors" parent="ThemeEditor" instance=ExtResource( 4 )]
 visible = false
-margin_left = 3.0
-margin_top = 36.0
-margin_right = -3.0
-margin_bottom = -3.0
+margin_left = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
 
 [node name="Customization" parent="ThemeEditor" instance=ExtResource( 5 )]
 visible = false
-margin_left = 3.0
-margin_top = 36.0
-margin_right = -3.0
-margin_bottom = -3.0
+margin_left = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
 
 [node name="Objects" parent="ThemeEditor" instance=ExtResource( 6 )]
 visible = false
-margin_left = 3.0
-margin_right = -3.0
-margin_bottom = -3.0
+margin_left = 8.0
+margin_top = 41.0
+margin_right = -8.0
+margin_bottom = -8.0

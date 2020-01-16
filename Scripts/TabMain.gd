@@ -122,3 +122,6 @@ func bind_setting(button, setting):
 func on_setting_changed(enabled, setting):
 	Util.set(setting, enabled)
 	Util.save_settings()
+
+func open_theme_directory():
+	OS.shell_open(HWTheme.path())
