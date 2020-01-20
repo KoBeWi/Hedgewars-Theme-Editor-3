@@ -3,8 +3,8 @@
 [ext_resource path="res://Scripts/TabTheme.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Font/HeaderFont.tres" type="DynamicFont" id=3]
-[ext_resource path="res://Images/Play.png" type="Texture" id=4]
-[ext_resource path="res://Images/Stop.png" type="Texture" id=5]
+[ext_resource path="res://Images/Icons/Play.png" type="Texture" id=4]
+[ext_resource path="res://Images/Icons/Stop.png" type="Texture" id=5]
 [ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=6]
 
 [node name="Theme" type="ScrollContainer"]
@@ -20,7 +20,7 @@ scroll_horizontal_enabled = false
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1004.0
-margin_bottom = 1515.0
+margin_bottom = 1319.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -69,550 +69,545 @@ margin_bottom = 136.0
 [node name="Music" type="HBoxContainer" parent="Container"]
 margin_top = 140.0
 margin_right = 1004.0
-margin_bottom = 170.0
+margin_bottom = 180.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Music"]
-margin_left = 417.0
-margin_top = 3.0
-margin_right = 462.0
-margin_bottom = 26.0
+margin_left = 422.0
+margin_top = 13.0
+margin_right = 460.0
+margin_bottom = 27.0
 text = "Music"
 
 [node name="List" type="OptionButton" parent="Container/Music"]
-margin_left = 466.0
-margin_right = 507.0
-margin_bottom = 30.0
+margin_left = 464.0
+margin_right = 493.0
+margin_bottom = 40.0
 hint_tooltip = "Music that plays before Sudden Death"
 
 [node name="Play" type="Button" parent="Container/Music"]
-margin_left = 511.0
-margin_right = 547.0
-margin_bottom = 30.0
+margin_left = 497.0
+margin_right = 537.0
+margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/Music"]
-margin_left = 551.0
-margin_right = 587.0
-margin_bottom = 30.0
+margin_left = 541.0
+margin_right = 581.0
+margin_bottom = 40.0
 icon = ExtResource( 5 )
 
 [node name="SDMusic" type="HBoxContainer" parent="Container"]
-margin_top = 174.0
+margin_top = 184.0
 margin_right = 1004.0
-margin_bottom = 204.0
+margin_bottom = 224.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDMusic"]
-margin_left = 361.0
-margin_top = 3.0
-margin_right = 518.0
-margin_bottom = 26.0
+margin_left = 376.0
+margin_top = 13.0
+margin_right = 507.0
+margin_bottom = 27.0
 text = "Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="Container/SDMusic"]
-margin_left = 522.0
-margin_right = 563.0
-margin_bottom = 30.0
+margin_left = 511.0
+margin_right = 540.0
+margin_bottom = 40.0
 hint_tooltip = "Music that plays in Sudden Death"
 
 [node name="Play" type="Button" parent="Container/SDMusic"]
-margin_left = 567.0
-margin_right = 603.0
-margin_bottom = 30.0
+margin_left = 544.0
+margin_right = 584.0
+margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/SDMusic"]
-margin_left = 607.0
-margin_right = 643.0
-margin_bottom = 30.0
+margin_left = 588.0
+margin_right = 628.0
+margin_bottom = 40.0
 icon = ExtResource( 5 )
 
 [node name="FallbackMusic" type="HBoxContainer" parent="Container"]
-margin_top = 208.0
+margin_top = 228.0
 margin_right = 1004.0
-margin_bottom = 238.0
+margin_bottom = 268.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/FallbackMusic"]
-margin_left = 384.0
-margin_top = 3.0
-margin_right = 495.0
-margin_bottom = 26.0
+margin_left = 395.0
+margin_top = 13.0
+margin_right = 488.0
+margin_bottom = 27.0
 text = "Fallback Music"
 
 [node name="List" type="OptionButton" parent="Container/FallbackMusic"]
-margin_left = 499.0
-margin_right = 540.0
-margin_bottom = 30.0
+margin_left = 492.0
+margin_right = 521.0
+margin_bottom = 40.0
 hint_tooltip = "Music that plays if default music file is missing"
 
 [node name="Play" type="Button" parent="Container/FallbackMusic"]
-margin_left = 544.0
-margin_right = 580.0
-margin_bottom = 30.0
+margin_left = 525.0
+margin_right = 565.0
+margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/FallbackMusic"]
-margin_left = 584.0
-margin_right = 620.0
-margin_bottom = 30.0
+margin_left = 569.0
+margin_right = 609.0
+margin_bottom = 40.0
 icon = ExtResource( 5 )
 
 [node name="FallbackSDMusic" type="HBoxContainer" parent="Container"]
-margin_top = 242.0
+margin_top = 272.0
 margin_right = 1004.0
-margin_bottom = 272.0
+margin_bottom = 312.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/FallbackSDMusic"]
-margin_left = 328.0
-margin_top = 3.0
-margin_right = 551.0
-margin_bottom = 26.0
+margin_left = 348.0
+margin_top = 13.0
+margin_right = 534.0
+margin_bottom = 27.0
 text = "Fallback Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="Container/FallbackSDMusic"]
-margin_left = 555.0
-margin_right = 596.0
-margin_bottom = 30.0
+margin_left = 538.0
+margin_right = 567.0
+margin_bottom = 40.0
 hint_tooltip = "Music that plays if default music file is missing"
 
 [node name="Play" type="Button" parent="Container/FallbackSDMusic"]
-margin_left = 600.0
-margin_right = 636.0
-margin_bottom = 30.0
+margin_left = 571.0
+margin_right = 611.0
+margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Container/FallbackSDMusic"]
-margin_left = 640.0
-margin_right = 676.0
-margin_bottom = 30.0
+margin_left = 615.0
+margin_right = 655.0
+margin_bottom = 40.0
 icon = ExtResource( 5 )
 
 [node name="Separator2" type="HSeparator" parent="Container"]
-margin_top = 276.0
+margin_top = 316.0
 margin_right = 1004.0
-margin_bottom = 280.0
+margin_bottom = 320.0
 
 [node name="Info" type="Label" parent="Container"]
-margin_top = 284.0
+margin_top = 324.0
 margin_right = 1004.0
-margin_bottom = 307.0
+margin_bottom = 338.0
 text = "If a property is disabled, related key will not appear in theme.cfg"
 align = 1
 
 [node name="CloudsHeader" type="HBoxContainer" parent="Container"]
-margin_top = 311.0
+margin_top = 342.0
 margin_right = 1004.0
-margin_bottom = 353.0
+margin_bottom = 384.0
 
-[node name="OnOff" type="CheckButton" parent="Container/CloudsHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/CloudsHeader"]
+margin_right = 130.0
 margin_bottom = 42.0
 hint_tooltip = "Clouds floating atop the map before Sudden Death"
-
-[node name="Label" type="Label" parent="Container/CloudsHeader"]
-margin_left = 80.0
-margin_right = 178.0
-margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Clouds"
 
 [node name="Clouds" type="HBoxContainer" parent="Container"]
-margin_top = 357.0
+margin_top = 388.0
 margin_right = 1004.0
-margin_bottom = 390.0
+margin_bottom = 412.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Clouds"]
-margin_left = 432.0
+margin_left = 437.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Amount"
 
 [node name="Amount" type="SpinBox" parent="Container/Clouds"]
-margin_left = 498.0
-margin_right = 572.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 566.0
+margin_bottom = 24.0
 hint_tooltip = "Number of clouds to create"
 max_value = 65536.0
 
 [node name="SDCloudsHeader" type="HBoxContainer" parent="Container"]
-margin_top = 394.0
+margin_top = 416.0
 margin_right = 1004.0
-margin_bottom = 436.0
+margin_bottom = 458.0
 
-[node name="OnOff" type="CheckButton" parent="Container/SDCloudsHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/SDCloudsHeader"]
+margin_right = 28.0
 margin_bottom = 42.0
 hint_tooltip = "Clouds floating atop the map in Sudden Death"
 
 [node name="Label" type="Label" parent="Container/SDCloudsHeader"]
-margin_left = 80.0
-margin_right = 391.0
+margin_left = 32.0
+margin_right = 343.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Clouds"
 
 [node name="SDClouds" type="HBoxContainer" parent="Container"]
-margin_top = 440.0
+margin_top = 462.0
 margin_right = 1004.0
-margin_bottom = 473.0
+margin_bottom = 486.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDClouds"]
-margin_left = 432.0
+margin_left = 437.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Amount"
 
 [node name="Amount" type="SpinBox" parent="Container/SDClouds"]
-margin_left = 498.0
-margin_right = 572.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 566.0
+margin_bottom = 24.0
 hint_tooltip = "Number of clouds to create"
 max_value = 65536.0
 
 [node name="FlakesHeader" type="HBoxContainer" parent="Container"]
-margin_top = 477.0
+margin_top = 490.0
 margin_right = 1004.0
-margin_bottom = 519.0
+margin_bottom = 532.0
 
-[node name="OnOff" type="CheckButton" parent="Container/FlakesHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/FlakesHeader"]
+margin_right = 28.0
 margin_bottom = 42.0
 hint_tooltip = "Flakes appearing in background before Sudden Death"
 
 [node name="Label" type="Label" parent="Container/FlakesHeader"]
-margin_left = 80.0
-margin_right = 170.0
+margin_left = 32.0
+margin_right = 122.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Flakes"
 
 [node name="Flakes" type="VBoxContainer" parent="Container"]
-margin_top = 523.0
+margin_top = 536.0
 margin_right = 1004.0
-margin_bottom = 704.0
+margin_bottom = 672.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Flakes"]
 margin_right = 1004.0
-margin_bottom = 33.0
+margin_bottom = 24.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/Amount"]
-margin_left = 432.0
+margin_left = 437.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Amount"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/Amount"]
-margin_left = 498.0
-margin_right = 572.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 566.0
+margin_bottom = 24.0
 hint_tooltip = "Amount of visible flakes"
 max_value = 65536.0
 
 [node name="Frames" type="HBoxContainer" parent="Container/Flakes"]
-margin_top = 37.0
+margin_top = 28.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 52.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/Frames"]
-margin_left = 434.0
+margin_left = 439.0
 margin_top = 5.0
-margin_right = 491.0
-margin_bottom = 28.0
+margin_right = 486.0
+margin_bottom = 19.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/Frames"]
-margin_left = 495.0
-margin_right = 569.0
-margin_bottom = 33.0
+margin_left = 490.0
+margin_right = 564.0
+margin_bottom = 24.0
 hint_tooltip = "Number of frames used in  Flake.png"
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/Flakes"]
-margin_top = 74.0
+margin_top = 56.0
 margin_right = 1004.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/FrameDuration"]
-margin_left = 390.0
+margin_left = 401.0
 margin_top = 5.0
-margin_right = 509.0
-margin_bottom = 28.0
+margin_right = 498.0
+margin_bottom = 19.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/FrameDuration"]
-margin_left = 513.0
-margin_right = 613.0
-margin_bottom = 33.0
+margin_left = 502.0
+margin_right = 602.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "Number of ticks a frame is shown, after that the next frame is shown (a tick currently equals 1 millisecond). A value of 0 indicates that each flake should keep displaying the exact frame that was selected randomly when the flake was created"
 max_value = 65536.0
 suffix = "ms"
 
 [node name="RotationSpeed" type="HBoxContainer" parent="Container/Flakes"]
-margin_top = 111.0
+margin_top = 84.0
 margin_right = 1004.0
-margin_bottom = 144.0
+margin_bottom = 108.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/RotationSpeed"]
-margin_left = 402.0
+margin_left = 412.0
 margin_top = 5.0
-margin_right = 517.0
-margin_bottom = 28.0
+margin_right = 508.0
+margin_bottom = 19.0
 text = "Rotation speed"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/RotationSpeed"]
-margin_left = 521.0
-margin_right = 601.0
-margin_bottom = 33.0
+margin_left = 512.0
+margin_right = 592.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 80, 0 )
 hint_tooltip = "How fast the flakes rotate. With any value other than 0, flakes will rotate and also spawn with a random rotation"
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="FallingSpeed" type="HBoxContainer" parent="Container/Flakes"]
-margin_top = 148.0
+margin_top = 112.0
 margin_right = 1004.0
-margin_bottom = 181.0
+margin_bottom = 136.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/Flakes/FallingSpeed"]
-margin_left = 410.0
+margin_left = 418.0
 margin_top = 5.0
-margin_right = 509.0
-margin_bottom = 28.0
+margin_right = 502.0
+margin_bottom = 19.0
 text = "Falling speed"
 
 [node name="Value" type="SpinBox" parent="Container/Flakes/FallingSpeed"]
-margin_left = 513.0
-margin_right = 593.0
-margin_bottom = 33.0
+margin_left = 506.0
+margin_right = 586.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 80, 0 )
 hint_tooltip = "Vertical speed of the flakes. A positive value makes the flakes fall, while a negative value makes them rise"
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="SDFlakesHeader" type="HBoxContainer" parent="Container"]
-margin_top = 708.0
+margin_top = 676.0
 margin_right = 1004.0
-margin_bottom = 750.0
+margin_bottom = 718.0
 
-[node name="OnOff" type="CheckButton" parent="Container/SDFlakesHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/SDFlakesHeader"]
+margin_right = 28.0
 margin_bottom = 42.0
 hint_tooltip = "Flakes appearing in background in Sudden Death"
 
 [node name="Label" type="Label" parent="Container/SDFlakesHeader"]
-margin_left = 80.0
-margin_right = 383.0
+margin_left = 32.0
+margin_right = 335.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Flakes"
 
 [node name="SDFlakes" type="VBoxContainer" parent="Container"]
-margin_top = 754.0
+margin_top = 722.0
 margin_right = 1004.0
-margin_bottom = 935.0
+margin_bottom = 858.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/SDFlakes"]
 margin_right = 1004.0
-margin_bottom = 33.0
+margin_bottom = 24.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/Amount"]
-margin_left = 432.0
+margin_left = 437.0
 margin_top = 5.0
-margin_right = 494.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Amount"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/Amount"]
-margin_left = 498.0
-margin_right = 572.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 566.0
+margin_bottom = 24.0
 hint_tooltip = "Amount of visible flakes"
 max_value = 65536.0
 
 [node name="Frames" type="HBoxContainer" parent="Container/SDFlakes"]
-margin_top = 37.0
+margin_top = 28.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 52.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/Frames"]
-margin_left = 434.0
+margin_left = 439.0
 margin_top = 5.0
-margin_right = 491.0
-margin_bottom = 28.0
+margin_right = 486.0
+margin_bottom = 19.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/Frames"]
-margin_left = 495.0
-margin_right = 569.0
-margin_bottom = 33.0
+margin_left = 490.0
+margin_right = 564.0
+margin_bottom = 24.0
 hint_tooltip = "Number of frames used in  Flake.png"
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/SDFlakes"]
-margin_top = 74.0
+margin_top = 56.0
 margin_right = 1004.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/FrameDuration"]
-margin_left = 390.0
+margin_left = 401.0
 margin_top = 5.0
-margin_right = 509.0
-margin_bottom = 28.0
+margin_right = 498.0
+margin_bottom = 19.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/FrameDuration"]
-margin_left = 513.0
-margin_right = 613.0
-margin_bottom = 33.0
+margin_left = 502.0
+margin_right = 602.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "Number of ticks a frame is shown, after that the next frame is shown (a tick currently equals 1 millisecond). A value of 0 indicates that each flake should keep displaying the exact frame that was selected randomly when the flake was created"
 max_value = 65536.0
 suffix = "ms"
 
 [node name="RotationSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
-margin_top = 111.0
+margin_top = 84.0
 margin_right = 1004.0
-margin_bottom = 144.0
+margin_bottom = 108.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/RotationSpeed"]
-margin_left = 402.0
+margin_left = 412.0
 margin_top = 5.0
-margin_right = 517.0
-margin_bottom = 28.0
+margin_right = 508.0
+margin_bottom = 19.0
 text = "Rotation speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/RotationSpeed"]
-margin_left = 521.0
-margin_right = 601.0
-margin_bottom = 33.0
+margin_left = 512.0
+margin_right = 592.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 80, 0 )
 hint_tooltip = "How fast the flakes rotate. With any value other than 0, flakes will rotate and also spawn with a random rotation"
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="FallingSpeed" type="HBoxContainer" parent="Container/SDFlakes"]
-margin_top = 148.0
+margin_top = 112.0
 margin_right = 1004.0
-margin_bottom = 181.0
+margin_bottom = 136.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDFlakes/FallingSpeed"]
-margin_left = 410.0
+margin_left = 418.0
 margin_top = 5.0
-margin_right = 509.0
-margin_bottom = 28.0
+margin_right = 502.0
+margin_bottom = 19.0
 text = "Falling speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDFlakes/FallingSpeed"]
-margin_left = 513.0
-margin_right = 593.0
-margin_bottom = 33.0
+margin_left = 506.0
+margin_right = 586.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 80, 0 )
 hint_tooltip = "Vertical speed of the flakes. A positive value makes the flakes fall, while a negative value makes them rise"
 min_value = -65536.0
 max_value = 65536.0
 
 [node name="WaterAnimationHeader" type="HBoxContainer" parent="Container"]
-margin_top = 939.0
+margin_top = 862.0
 margin_right = 1004.0
-margin_bottom = 981.0
+margin_bottom = 904.0
 
-[node name="OnOff" type="CheckButton" parent="Container/WaterAnimationHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/WaterAnimationHeader"]
+margin_right = 28.0
 margin_bottom = 42.0
 hint_tooltip = "Specified a custom water animation and flowing speed before Sudden Death"
 
 [node name="Label" type="Label" parent="Container/WaterAnimationHeader"]
-margin_left = 80.0
-margin_right = 325.0
+margin_left = 32.0
+margin_right = 277.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Water Animation"
 
 [node name="WaterAnimation" type="VBoxContainer" parent="Container"]
-margin_top = 985.0
+margin_top = 908.0
 margin_right = 1004.0
-margin_bottom = 1092.0
+margin_bottom = 988.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/WaterAnimation"]
 margin_right = 1004.0
-margin_bottom = 33.0
+margin_bottom = 24.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/Frames"]
-margin_left = 434.0
+margin_left = 439.0
 margin_top = 5.0
-margin_right = 491.0
-margin_bottom = 28.0
+margin_right = 486.0
+margin_bottom = 19.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/Frames"]
-margin_left = 495.0
-margin_right = 569.0
-margin_bottom = 33.0
+margin_left = 490.0
+margin_right = 564.0
+margin_bottom = 24.0
 hint_tooltip = "Number of frames in BlueWater.png. The frames in this image should be stacked vertically. The height of this image must be divisible by number of frames"
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/WaterAnimation"]
-margin_top = 37.0
+margin_top = 28.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 52.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/FrameDuration"]
-margin_left = 380.0
+margin_left = 391.0
 margin_top = 5.0
-margin_right = 499.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/FrameDuration"]
-margin_left = 503.0
-margin_right = 623.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 612.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
 hint_tooltip = "Duration of a single frame. Must be greater than 0 if frames are greater than 1, otherwise it is ignored"
 max_value = 65536.0
 suffix = "ms"
 
 [node name="MovementSpeed" type="HBoxContainer" parent="Container/WaterAnimation"]
-margin_top = 74.0
+margin_top = 56.0
 margin_right = 1004.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/WaterAnimation/MovementSpeed"]
-margin_left = 395.0
+margin_left = 404.0
 margin_top = 5.0
-margin_right = 504.0
-margin_bottom = 28.0
+margin_right = 495.0
+margin_bottom = 19.0
 text = "Flowing speed"
 
 [node name="Value" type="SpinBox" parent="Container/WaterAnimation/MovementSpeed"]
-margin_left = 508.0
-margin_right = 608.0
-margin_bottom = 33.0
+margin_left = 499.0
+margin_right = 599.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "How fast the water moves to the right. Higher values means faster movement. If negative, it moves to the left. Use 0 to stop movement"
 min_value = -65536.0
@@ -620,86 +615,86 @@ max_value = 65536.0
 suffix = "%"
 
 [node name="SDWaterAnimationHeader" type="HBoxContainer" parent="Container"]
-margin_top = 1096.0
+margin_top = 992.0
 margin_right = 1004.0
-margin_bottom = 1138.0
+margin_bottom = 1034.0
 
-[node name="OnOff" type="CheckButton" parent="Container/SDWaterAnimationHeader"]
-margin_right = 76.0
+[node name="OnOff" type="CheckBox" parent="Container/SDWaterAnimationHeader"]
+margin_right = 28.0
 margin_bottom = 42.0
 hint_tooltip = "Specified a custom water animation and flowing speed in Sudden Death"
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimationHeader"]
-margin_left = 80.0
-margin_right = 538.0
+margin_left = 32.0
+margin_right = 490.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Water Animation"
 
 [node name="SDWaterAnimation" type="VBoxContainer" parent="Container"]
-margin_top = 1142.0
+margin_top = 1038.0
 margin_right = 1004.0
-margin_bottom = 1249.0
+margin_bottom = 1118.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="Container/SDWaterAnimation"]
 margin_right = 1004.0
-margin_bottom = 33.0
+margin_bottom = 24.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/Frames"]
-margin_left = 434.0
+margin_left = 439.0
 margin_top = 5.0
-margin_right = 491.0
-margin_bottom = 28.0
+margin_right = 486.0
+margin_bottom = 19.0
 text = "Frames"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/Frames"]
-margin_left = 495.0
-margin_right = 569.0
-margin_bottom = 33.0
+margin_left = 490.0
+margin_right = 564.0
+margin_bottom = 24.0
 hint_tooltip = "Number of frames in BlueWater.png. The frames in this image should be stacked vertically. The height of this image must be divisible by number of frames"
 max_value = 65536.0
 
 [node name="FrameDuration" type="HBoxContainer" parent="Container/SDWaterAnimation"]
-margin_top = 37.0
+margin_top = 28.0
 margin_right = 1004.0
-margin_bottom = 70.0
+margin_bottom = 52.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/FrameDuration"]
-margin_left = 380.0
+margin_left = 391.0
 margin_top = 5.0
-margin_right = 499.0
-margin_bottom = 28.0
+margin_right = 488.0
+margin_bottom = 19.0
 text = "Frame duration"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/FrameDuration"]
-margin_left = 503.0
-margin_right = 623.0
-margin_bottom = 33.0
+margin_left = 492.0
+margin_right = 612.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 120, 0 )
 hint_tooltip = "Duration of a single frame. Must be greater than 0 if frames are greater than 1, otherwise it is ignored"
 max_value = 65536.0
 suffix = "ms"
 
 [node name="MovementSpeed" type="HBoxContainer" parent="Container/SDWaterAnimation"]
-margin_top = 74.0
+margin_top = 56.0
 margin_right = 1004.0
-margin_bottom = 107.0
+margin_bottom = 80.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/SDWaterAnimation/MovementSpeed"]
-margin_left = 395.0
+margin_left = 404.0
 margin_top = 5.0
-margin_right = 504.0
-margin_bottom = 28.0
+margin_right = 495.0
+margin_bottom = 19.0
 text = "Flowing speed"
 
 [node name="Value" type="SpinBox" parent="Container/SDWaterAnimation/MovementSpeed"]
-margin_left = 508.0
-margin_right = 608.0
-margin_bottom = 33.0
+margin_left = 499.0
+margin_right = 599.0
+margin_bottom = 24.0
 rect_min_size = Vector2( 100, 0 )
 hint_tooltip = "How fast the water moves to the right. Higher values means faster movement. If negative, it moves to the left. Use 0 to stop movement"
 min_value = -65536.0
@@ -707,95 +702,95 @@ max_value = 65536.0
 suffix = "%"
 
 [node name="MiscHeader" type="Label" parent="Container"]
-margin_top = 1253.0
+margin_top = 1122.0
 margin_right = 1004.0
-margin_bottom = 1295.0
+margin_bottom = 1164.0
 custom_fonts/font = ExtResource( 6 )
 text = "Miscellaneous"
 
 [node name="Hidden" type="HBoxContainer" parent="Container"]
-margin_top = 1299.0
+margin_top = 1168.0
 margin_right = 1004.0
-margin_bottom = 1339.0
+margin_bottom = 1195.0
 
-[node name="OnOff" type="CheckButton" parent="Container/Hidden"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="OnOff" type="CheckBox" parent="Container/Hidden"]
+margin_right = 28.0
+margin_bottom = 27.0
 hint_tooltip = "If enabled, the theme will be hidden from the in-game theme selection menu"
 
 [node name="Label" type="Label" parent="Container/Hidden"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 142.0
-margin_bottom = 31.0
+margin_left = 32.0
+margin_top = 6.0
+margin_right = 84.0
+margin_bottom = 20.0
 text = "Hidden?"
 
 [node name="FlattenFlakes" type="HBoxContainer" parent="Container"]
-margin_top = 1343.0
+margin_top = 1199.0
 margin_right = 1004.0
-margin_bottom = 1383.0
+margin_bottom = 1226.0
 
-[node name="OnOff" type="CheckButton" parent="Container/FlattenFlakes"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="OnOff" type="CheckBox" parent="Container/FlattenFlakes"]
+margin_right = 28.0
+margin_bottom = 27.0
 hint_tooltip = "If enabled, all flakes have the same size and are on the same layer: In front of the sky and horizont and behind the terrain"
 
 [node name="Label" type="Label" parent="Container/FlattenFlakes"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 189.0
-margin_bottom = 31.0
+margin_left = 32.0
+margin_top = 6.0
+margin_right = 123.0
+margin_bottom = 20.0
 text = "Flatten flakes?"
 
 [node name="FlattenClouds" type="HBoxContainer" parent="Container"]
-margin_top = 1387.0
+margin_top = 1230.0
 margin_right = 1004.0
-margin_bottom = 1427.0
+margin_bottom = 1257.0
 
-[node name="OnOff" type="CheckButton" parent="Container/FlattenClouds"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="OnOff" type="CheckBox" parent="Container/FlattenClouds"]
+margin_right = 28.0
+margin_bottom = 27.0
 hint_tooltip = "If enabled, all clouds have the same size and are on the same layer: background"
 
 [node name="Label" type="Label" parent="Container/FlattenClouds"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 194.0
-margin_bottom = 31.0
+margin_left = 32.0
+margin_top = 6.0
+margin_right = 128.0
+margin_bottom = 20.0
 text = "Flatten clouds?"
 
 [node name="Snow" type="HBoxContainer" parent="Container"]
-margin_top = 1431.0
+margin_top = 1261.0
 margin_right = 1004.0
-margin_bottom = 1471.0
+margin_bottom = 1288.0
 
-[node name="OnOff" type="CheckButton" parent="Container/Snow"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="OnOff" type="CheckBox" parent="Container/Snow"]
+margin_right = 28.0
+margin_bottom = 27.0
 hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape"
 
 [node name="Label" type="Label" parent="Container/Snow"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 129.0
-margin_bottom = 31.0
+margin_left = 32.0
+margin_top = 6.0
+margin_right = 71.0
+margin_bottom = 20.0
 text = "Snow?"
 
 [node name="Ice" type="HBoxContainer" parent="Container"]
-margin_top = 1475.0
+margin_top = 1292.0
 margin_right = 1004.0
-margin_bottom = 1515.0
+margin_bottom = 1319.0
 
-[node name="OnOff" type="CheckButton" parent="Container/Ice"]
-margin_right = 76.0
-margin_bottom = 40.0
+[node name="OnOff" type="CheckBox" parent="Container/Ice"]
+margin_right = 28.0
+margin_bottom = 27.0
 hint_tooltip = "If enabled, girders become slippery like ice. This also applies to placed girders"
 
 [node name="Label" type="Label" parent="Container/Ice"]
-margin_left = 80.0
-margin_top = 8.0
-margin_right = 109.0
-margin_bottom = 31.0
+margin_left = 32.0
+margin_top = 6.0
+margin_right = 58.0
+margin_bottom = 20.0
 text = "Ice?"
 [connection signal="pressed" from="Container/Music/Stop" to="Container" method="stop_music"]
 [connection signal="pressed" from="Container/SDMusic/Stop" to="Container" method="stop_music"]
@@ -804,18 +799,18 @@ text = "Ice?"
 [connection signal="toggled" from="Container/CloudsHeader/OnOff" to="Container/Clouds/Amount" method="set_editable"]
 [connection signal="toggled" from="Container/SDCloudsHeader/OnOff" to="Container/SDClouds/Amount" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/FallingSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/RotationSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/FrameDuration/Value" method="set_editable"]
-[connection signal="toggled" from="Container/FlakesHeader/OnOff" to="Container/Flakes/RotationSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/RotationSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesHeader/OnOff" to="Container/SDFlakes/FallingSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/WaterAnimationHeader/OnOff" to="Container/WaterAnimation/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="Container/WaterAnimationHeader/OnOff" to="Container/WaterAnimation/MovementSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/WaterAnimationHeader/OnOff" to="Container/WaterAnimation/Frames/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDWaterAnimationHeader/OnOff" to="Container/SDWaterAnimation/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDWaterAnimationHeader/OnOff" to="Container/SDWaterAnimation/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDWaterAnimationHeader/OnOff" to="Container/SDWaterAnimation/MovementSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDWaterAnimationHeader/OnOff" to="Container/SDWaterAnimation/Frames/Value" method="set_editable"]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Stop.png-faf3c95d09bc665a07b717c3d325ac2f.stex"
+path="res://.import/CheckboxOffHover.png-cb966fd1502a1135420a9bd4bd987138.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Images/Stop.png"
-dest_files=[ "res://.import/Stop.png-faf3c95d09bc665a07b717c3d325ac2f.stex" ]
+source_file="res://Images/Icons/CheckboxOffHover.png"
+dest_files=[ "res://.import/CheckboxOffHover.png-cb966fd1502a1135420a9bd4bd987138.stex" ]
 
 [params]
 

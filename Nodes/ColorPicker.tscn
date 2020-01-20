@@ -30,7 +30,7 @@ margin_right = 298.0
 margin_bottom = 67.0
 alignment = 1
 
-[node name="OnOff" type="CheckButton" parent="Header"]
+[node name="OnOff" type="CheckBox" parent="Header"]
 margin_left = 5.0
 margin_right = 81.0
 margin_bottom = 67.0

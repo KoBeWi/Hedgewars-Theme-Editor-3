@@ -32,6 +32,10 @@ gdscript/warnings/enable=false
 
 window/dpi/allow_hidpi=true
 
+[gui]
+
+theme/custom="res://UITheme.theme"
+
 [input]
 
 ui_help={
