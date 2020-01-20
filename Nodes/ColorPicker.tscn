@@ -9,8 +9,9 @@ export(String) var text = \"\"
 export(bool) var edit_alpha = false
 
 func _ready():
-	$Header/Label.text = tr(text)
-	$ColorContainer/Color.edit_alpha = edit_alpha"
+	$OnOff.text = tr(text)
+	$ColorContainer/Color.edit_alpha = edit_alpha
+"
 
 [node name="Sky" type="VBoxContainer"]
 anchor_left = 0.5
@@ -23,35 +24,28 @@ margin_right = 149.0
 margin_bottom = 273.0
 alignment = 1
 script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Header" type="HBoxContainer" parent="."]
-editor/display_folded = true
-margin_right = 298.0
-margin_bottom = 67.0
-alignment = 1
-
-[node name="OnOff" type="CheckBox" parent="Header"]
-margin_left = 5.0
-margin_right = 81.0
-margin_bottom = 67.0
-
-[node name="Label" type="Label" parent="Header"]
-margin_left = 85.0
-margin_right = 292.0
-margin_bottom = 67.0
+[node name="OnOff" type="CheckBox" parent="."]
+margin_left = 35.0
+margin_top = 4.0
+margin_right = 278.0
+margin_bottom = 71.0
+size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 1 )
 text = "Sky color"
+align = 1
 
 [node name="ColorContainer" type="HBoxContainer" parent="."]
-margin_top = 71.0
-margin_right = 298.0
-margin_bottom = 550.0
+margin_top = 75.0
+margin_right = 314.0
+margin_bottom = 541.0
 alignment = 1
 
 [node name="Color" type="ColorPicker" parent="ColorContainer"]
-margin_left = 4.0
-margin_right = 294.0
-margin_bottom = 479.0
+margin_right = 314.0
+margin_bottom = 466.0
 alignment = 1
 edit_alpha = false
-

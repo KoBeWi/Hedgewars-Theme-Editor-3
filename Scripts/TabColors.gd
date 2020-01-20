@@ -13,7 +13,7 @@ func _ready():
 	
 	for i in $PickerContainer.get_child_count():
 		var picker = $PickerContainer.get_child(i)
-		picker.get_node("Header/OnOff").connect("toggled", HWTheme, "change_property", [str(colors[i], "_defined")])
+		picker.get_node("OnOff").connect("toggled", HWTheme, "change_property", [str(colors[i], "_defined")])
 		picker.get_node("ColorContainer/Color").connect("color_changed", HWTheme, "change_property", [colors[i]])
 
 func synchronize_water_alpha(new_color, twin):
@@ -23,5 +23,5 @@ func on_theme_loaded():
 	for i in $PickerContainer.get_child_count():
 		var picker = $PickerContainer.get_child(i)
 		
-		picker.get_node("Header/OnOff").pressed = HWTheme.get(str(colors[i], "_defined"))
+		picker.get_node("OnOff").pressed = HWTheme.get(str(colors[i], "_defined"))
 		picker.get_node("ColorContainer/Color").color = HWTheme.get(colors[i])

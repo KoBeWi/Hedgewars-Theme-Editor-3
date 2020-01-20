@@ -132,8 +132,8 @@ margin_bottom = 410.0
 alignment = 1
 
 [node name="EnableMaximize" type="CheckBox" parent="Container/MaximizeContainer"]
-margin_left = 432.0
-margin_right = 579.0
+margin_left = 430.0
+margin_right = 581.0
 margin_bottom = 27.0
 text = "Maximize on start"
 align = 1
@@ -145,16 +145,16 @@ margin_bottom = 434.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/LanguageContainer"]
-margin_left = 430.0
+margin_left = 413.0
 margin_top = 3.0
-margin_right = 549.0
+margin_right = 532.0
 margin_bottom = 17.0
 text = "Preferred language"
 align = 1
 
 [node name="LanguageList" type="OptionButton" parent="Container/LanguageContainer"]
-margin_left = 553.0
-margin_right = 582.0
+margin_left = 536.0
+margin_right = 599.0
 margin_bottom = 20.0
 
 [node name="ThemesHeader" type="Label" parent="Container"]
