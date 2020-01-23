@@ -60,7 +60,7 @@ func set_zoom(new_zoom):
 	
 	$UI/Zoom.value = new_zoom
 	$UI/Zoom/Label.text = str("x", zoom)
-	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 20
+	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 16
 	$ObjectImage.update_checker()
 
 func move_view():

@@ -29,23 +29,22 @@ __meta__ = {
 }
 
 [node name="OnOff" type="CheckBox" parent="."]
-margin_left = 35.0
-margin_top = 4.0
-margin_right = 278.0
-margin_bottom = 71.0
+margin_left = 42.0
+margin_right = 285.0
+margin_bottom = 67.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 1 )
 text = "Sky color"
 align = 1
 
 [node name="ColorContainer" type="HBoxContainer" parent="."]
-margin_top = 75.0
-margin_right = 314.0
-margin_bottom = 541.0
+margin_top = 71.0
+margin_right = 327.0
+margin_bottom = 578.0
 alignment = 1
 
 [node name="Color" type="ColorPicker" parent="ColorContainer"]
-margin_right = 314.0
-margin_bottom = 466.0
+margin_right = 327.0
+margin_bottom = 507.0
 alignment = 1
 edit_alpha = false

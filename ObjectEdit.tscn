@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/ObjectEdit.gd" type="Script" id=1]
 [ext_resource path="res://Images/Checker.png" type="Texture" id=2]
@@ -83,23 +83,29 @@ func remove_rectangles():
 		get_parent().object.visible.erase(rect)
 		get_parent().object.buried.erase(rect)"
 
-[sub_resource type="InputEventKey" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 4.0
+content_margin_right = 2.0
+content_margin_top = 2.0
+bg_color = Color( 0, 0, 0, 0.501961 )
+
+[sub_resource type="InputEventKey" id=3]
 scancode = 16777221
 
-[sub_resource type="ShortCut" id=3]
-shortcut = SubResource( 2 )
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
 
-[sub_resource type="InputEventKey" id=4]
+[sub_resource type="InputEventKey" id=5]
 scancode = 72
 
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
 
-[sub_resource type="InputEventKey" id=6]
+[sub_resource type="InputEventKey" id=7]
 scancode = 16777217
 
-[sub_resource type="ShortCut" id=7]
-shortcut = SubResource( 6 )
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
 [node name="ObjectEdit" type="Panel"]
 anchor_right = 1.0
@@ -108,7 +114,6 @@ mouse_filter = 2
 script = ExtResource( 1 )
 
 [node name="ObjectImage" type="Sprite" parent="."]
-editor/display_folded = true
 z_index = 1
 script = SubResource( 1 )
 
@@ -120,10 +125,11 @@ region_enabled = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Zoom" type="VSlider" parent="UI"]
-editor/display_folded = true
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_right = 32.0
+margin_top = 16.0
+margin_right = 34.0
+margin_bottom = -16.0
 max_value = 20.0
 step = 0.1
 value = 1.0
@@ -134,58 +140,74 @@ ticks_on_borders = true
 [node name="Label" type="Label" parent="UI/Zoom"]
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 24.0
-margin_top = -300.0
-margin_right = 42.0
-margin_bottom = -276.0
+margin_left = 27.0
+margin_top = -282.0
+margin_right = 46.0
+margin_bottom = -266.0
+custom_styles/normal = SubResource( 2 )
 text = "x1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="HBoxContainer" parent="UI"]
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -564.0
+margin_left = -480.0
 margin_top = -105.0
-margin_bottom = 106.0
+margin_right = -10.0
+margin_bottom = 108.0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Help" type="VBoxContainer" parent="UI/Container"]
-margin_right = 299.0
-margin_bottom = 211.0
+[node name="Help" type="PanelContainer" parent="UI/Container"]
+margin_right = 305.0
+margin_bottom = 213.0
+custom_styles/panel = SubResource( 2 )
+
+[node name="Layout" type="VBoxContainer" parent="UI/Container/Help"]
+margin_left = 4.0
+margin_top = 2.0
+margin_right = 303.0
+margin_bottom = 213.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/Container/Help"]
+[node name="Label" type="Label" parent="UI/Container/Help/Layout"]
 margin_right = 299.0
 margin_bottom = 23.0
 text = "Left mouse - visible rectangle (green)"
 
-[node name="Label2" type="Label" parent="UI/Container/Help"]
+[node name="Label2" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 27.0
 margin_right = 299.0
 margin_bottom = 50.0
 text = "Right mouse - buried rectangle (red)"
 
-[node name="Label3" type="Label" parent="UI/Container/Help"]
+[node name="Label3" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 54.0
 margin_right = 299.0
 margin_bottom = 77.0
 text = "Middle mouse - move around"
 
-[node name="Label4" type="Label" parent="UI/Container/Help"]
+[node name="Label4" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 81.0
 margin_right = 299.0
 margin_bottom = 104.0
 text = "Middle click - remove rectangle (yellow)"
 
-[node name="Label5" type="Label" parent="UI/Container/Help"]
+[node name="Label5" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 108.0
 margin_right = 299.0
 margin_bottom = 131.0
 text = "Mouse wheel - zoom in/zoom out"
 
-[node name="Label6" type="Label" parent="UI/Container/Help"]
+[node name="Label6" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 135.0
 margin_right = 299.0
 margin_bottom = 184.0
@@ -193,7 +215,7 @@ custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "Magenta rectangles are intersecting visible and buried rectangles."
 autowrap = true
 
-[node name="Label7" type="Label" parent="UI/Container/Help"]
+[node name="Label7" type="Label" parent="UI/Container/Help/Layout"]
 margin_top = 188.0
 margin_right = 299.0
 margin_bottom = 211.0
@@ -201,40 +223,39 @@ custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "This MUSTN'T happen."
 
 [node name="Separator" type="Control" parent="UI/Container"]
-margin_left = 303.0
-margin_right = 437.0
-margin_bottom = 211.0
-rect_min_size = Vector2( 50, 0 )
+margin_left = 309.0
+margin_right = 339.0
+margin_bottom = 213.0
+rect_min_size = Vector2( 30, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Buttons" type="VBoxContainer" parent="UI/Container"]
-margin_left = 441.0
-margin_right = 564.0
-margin_bottom = 211.0
+margin_left = 343.0
+margin_right = 470.0
+margin_bottom = 213.0
 alignment = 1
 
 [node name="Apply" type="Button" parent="UI/Container/Buttons"]
-margin_top = 58.0
-margin_right = 123.0
-margin_bottom = 87.0
-shortcut = SubResource( 3 )
+margin_top = 44.0
+margin_right = 127.0
+margin_bottom = 83.0
+shortcut = SubResource( 4 )
 text = "Apply changes"
 
 [node name="Help" type="Button" parent="UI/Container/Buttons"]
-margin_top = 91.0
-margin_right = 123.0
-margin_bottom = 120.0
-shortcut = SubResource( 5 )
+margin_top = 87.0
+margin_right = 127.0
+margin_bottom = 126.0
+shortcut = SubResource( 6 )
 text = "Help"
 
 [node name="Revert" type="Button" parent="UI/Container/Buttons"]
-margin_top = 124.0
-margin_right = 123.0
-margin_bottom = 153.0
-shortcut = SubResource( 7 )
+margin_top = 130.0
+margin_right = 127.0
+margin_bottom = 169.0
+shortcut = SubResource( 8 )
 text = "Revert"
-
 [connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
 [connection signal="pressed" from="UI/Container/Buttons/Apply" to="." method="on_apply"]
 [connection signal="pressed" from="UI/Container/Buttons/Help" to="." method="on_help"]

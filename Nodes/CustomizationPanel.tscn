@@ -56,15 +56,18 @@ func update_image(i, iname):
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="VBoxContainer" parent="."]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1017.0
-margin_bottom = 593.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 1016.0
+margin_bottom = 592.0
 
 [node name="GroupName" type="Label" parent="Container"]
-margin_right = 1010.0
+margin_right = 1008.0
 margin_bottom = 42.0
 custom_fonts/font = ExtResource( 1 )
 text = "Group name"
@@ -73,30 +76,30 @@ valign = 1
 
 [node name="GeneralInfo" type="Label" parent="Container"]
 margin_top = 46.0
-margin_right = 1010.0
-margin_bottom = 60.0
+margin_right = 1008.0
+margin_bottom = 69.0
 text = "Multiline general info"
 align = 1
 valign = 1
 
 [node name="Image" type="VBoxContainer" parent="Container"]
-margin_top = 64.0
-margin_right = 1010.0
-margin_bottom = 239.0
+margin_top = 73.0
+margin_right = 1008.0
+margin_bottom = 266.0
 alignment = 1
 
 [node name="ImageHeader" type="HBoxContainer" parent="Container/Image"]
-margin_right = 1010.0
+margin_right = 1008.0
 margin_bottom = 31.0
 
 [node name="HSeparator" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_right = 434.0
+margin_right = 433.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="ImageName" type="Label" parent="Container/Image/ImageHeader"]
-margin_left = 438.0
-margin_right = 571.0
+margin_left = 437.0
+margin_right = 570.0
 margin_bottom = 31.0
 custom_fonts/font = ExtResource( 2 )
 text = "Image name"
@@ -104,50 +107,50 @@ align = 1
 valign = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_left = 575.0
-margin_right = 1010.0
+margin_left = 574.0
+margin_right = 1008.0
 margin_bottom = 31.0
 size_flags_horizontal = 3
 
 [node name="ImageInfo" type="Label" parent="Container/Image"]
 margin_top = 35.0
-margin_right = 1010.0
-margin_bottom = 49.0
+margin_right = 1008.0
+margin_bottom = 58.0
 text = "Multiline image info"
 align = 1
 valign = 1
 
 [node name="Image" type="TextureRect" parent="Container/Image"]
-margin_top = 53.0
-margin_right = 1010.0
-margin_bottom = 121.0
+margin_top = 62.0
+margin_right = 1008.0
+margin_bottom = 130.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="Template" type="HBoxContainer" parent="Container/Image"]
-margin_top = 125.0
-margin_right = 1010.0
-margin_bottom = 155.0
+margin_top = 134.0
+margin_right = 1008.0
+margin_bottom = 173.0
 
 [node name="HSeparator" type="Control" parent="Container/Image/Template"]
-margin_right = 444.0
-margin_bottom = 30.0
+margin_right = 435.0
+margin_bottom = 39.0
 size_flags_horizontal = 3
 
 [node name="TemplateButton" type="Button" parent="Container/Image/Template"]
-margin_left = 448.0
-margin_right = 561.0
-margin_bottom = 30.0
+margin_left = 439.0
+margin_right = 569.0
+margin_bottom = 39.0
 text = "Fetch template"
 
 [node name="HSeparator2" type="Control" parent="Container/Image/Template"]
-margin_left = 565.0
-margin_right = 1010.0
-margin_bottom = 30.0
+margin_left = 573.0
+margin_right = 1008.0
+margin_bottom = 39.0
 size_flags_horizontal = 3
 
 [node name="Space" type="Control" parent="Container/Image"]
-margin_top = 159.0
-margin_right = 1010.0
-margin_bottom = 175.0
+margin_top = 177.0
+margin_right = 1008.0
+margin_bottom = 193.0
 rect_min_size = Vector2( 0, 16 )
