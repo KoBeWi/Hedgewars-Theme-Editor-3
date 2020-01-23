@@ -75,7 +75,7 @@ func _ready():
 		file.open("res://icon.png", file.READ)
 		package_path = file.get_path_absolute().get_base_dir() + "/PackedThemes"
 
-func load_texture(file):
+func load_texture(file) -> Texture:
 	var check_exists = File.new()
 	if !check_exists.file_exists(file):
 		return null
