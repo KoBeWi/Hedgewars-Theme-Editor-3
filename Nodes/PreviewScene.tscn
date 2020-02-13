@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scripts/PreviewScene.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Preview/PreviewScene.gd" type="Script" id=1]
 [ext_resource path="res://Images/Preview/Arrow.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Preview/Clouds.gd" type="Script" id=3]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
 [node name="PreviewScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -20,7 +27,35 @@ __meta__ = {
 centered = false
 region_enabled = true
 
+[node name="Horizont" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureRect" parent="Horizont"]
+stretch_mode = 2
+
+[node name="Middle" type="TextureRect" parent="Horizont"]
+margin_left = 4.0
+margin_right = 4.0
+stretch_mode = 2
+
+[node name="Right" type="TextureRect" parent="Horizont"]
+margin_left = 8.0
+margin_right = 8.0
+stretch_mode = 2
+
+[node name="Clouds" type="Node2D" parent="."]
+material = SubResource( 1 )
+z_index = 1
+script = ExtResource( 3 )
+
 [node name="Arrow" type="Sprite" parent="."]
+position = Vector2( 400, 400 )
+z_index = 1000
 texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Arrow"]
