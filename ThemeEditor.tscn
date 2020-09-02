@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/ThemeEditor.gd" type="Script" id=1]
 [ext_resource path="res://Tabs/Main.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Tabs/Objects.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Images/Background.png" type="Texture" id=7]
 [ext_resource path="res://UITheme.theme" type="Theme" id=8]
-[ext_resource path="res://Tabs/Preview.tscn" type="PackedScene" id=9]
 
 [node name="EditorBackground" type="TextureRect"]
 anchor_right = 1.0
@@ -57,13 +56,6 @@ margin_right = -8.0
 margin_bottom = -8.0
 
 [node name="Objects" parent="ThemeEditor" instance=ExtResource( 6 )]
-visible = false
-margin_left = 8.0
-margin_top = 47.0
-margin_right = -8.0
-margin_bottom = -8.0
-
-[node name="Preview" parent="ThemeEditor" instance=ExtResource( 9 )]
 visible = false
 margin_left = 8.0
 margin_top = 47.0
