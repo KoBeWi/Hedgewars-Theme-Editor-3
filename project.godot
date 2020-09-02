@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 Util="*res://Scripts/Utility.gd"
 HWTheme="*res://Scripts/Theme.gd"
+DirectoryScanner="*res://Scripts/DirectoryScanner.gd"
 
 [debug]
 
