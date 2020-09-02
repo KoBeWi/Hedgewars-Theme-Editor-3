@@ -151,3 +151,5 @@ func refresh_themes():
 			button.theme_version.text = str("v", int(v[1]))
 		
 		button.connect("pressed", main, "theme_selected", [button])
+	
+	main.select_theme_button()

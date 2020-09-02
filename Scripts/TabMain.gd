@@ -2,8 +2,9 @@ extends Control
 
 const DONT_PACK = ["theme.bak", "desktop.ini", "thumbs.db"]
 
-var language_list = []
-var pack_mode = false
+var language_list: Array
+var pack_mode: bool
+var selected_theme: String
 
 func _ready():
 	get_parent().name = tr("Main")
@@ -51,10 +52,26 @@ func _ready():
 	$LanguageContainer/LanguageList.selected = selected_language
 	update_columns()
 
-func theme_selected(button):
+func theme_selected(button: Button):
 	if not pack_mode:
 		HWTheme.load_theme(button.get_meta("theme"), int(button.theme_version.text))
+		selected_theme = button.theme_name.text
+		select_theme_button()
 		deselect_themes()
+
+func select_theme_button():
+	var style := preload("res://Resources/ThemeButtonSelected.stylebox") as StyleBox
+	for button in $ThemeAlign/ThemesList.get_children():
+		if not button.name.ends_with("New") and button.theme_name.text == selected_theme:
+			button.add_stylebox_override("normal", style)
+			button.add_stylebox_override("pressed", style)
+			button.add_stylebox_override("focus", style)
+			button.add_stylebox_override("hover", style)
+		else:
+			button.add_stylebox_override("normal", null)
+			button.add_stylebox_override("pressed", null)
+			button.add_stylebox_override("focus", null)
+			button.add_stylebox_override("hover", null)
 
 func deselect_themes():
 	for button in $ThemeAlign/ThemesList.get_children():

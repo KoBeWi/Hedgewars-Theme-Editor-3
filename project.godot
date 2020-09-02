@@ -34,7 +34,7 @@ window/dpi/allow_hidpi=true
 
 [gui]
 
-theme/custom="res://UITheme.theme"
+theme/custom="res://Resources/UITheme.theme"
 theme/custom_font="res://Font/DefaultFont.tres"
 
 [input]
