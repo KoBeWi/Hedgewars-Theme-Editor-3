@@ -1,84 +1,82 @@
 extends Node
 
-var theme_name
-var theme_version
-var saved_version
+var theme_name: String
+var theme_version: int
+var saved_version: int
 
-var music
-var sd_music
-var fallback_music
-var fallback_sd_music
+var music: String
+var sd_music: String
+var fallback_music: String
+var fallback_sd_music: String
 
-var sky_defined
-var border_defined
-var sd_tint_defined
-var sky
-var border
-var sd_tint
+var sky_defined: bool
+var border_defined: bool
+var sd_tint_defined: bool
+var sky: Color
+var border: Color
+var sd_tint: Color
 
-var water_top_defined
-var water_bottom_defined
-var water_top
-var water_bottom
-var water_opacity
+var water_top_defined: bool
+var water_bottom_defined: bool
+var water_top: Color
+var water_bottom: Color
 
-var sd_water_top_defined
-var sd_water_bottom_defined
-var sd_water_top
-var sd_water_bottom
-var sd_water_opacity
+var sd_water_top_defined: bool
+var sd_water_bottom_defined: bool
+var sd_water_top: Color
+var sd_water_bottom: Color
 
-var clouds_defined
-var clouds
+var clouds_defined: bool
+var clouds: int
 
-var sd_clouds_defined
-var sd_clouds
+var sd_clouds_defined: bool
+var sd_clouds: int
 
-var flakes_defined
-var flakes_amount
-var flakes_frames
-var flakes_duration
-var flakes_rotation
-var flakes_speed
+var flakes_defined: bool
+var flakes_amount: int
+var flakes_frames: int
+var flakes_duration: int
+var flakes_rotation: int
+var flakes_speed: int
 
-var sd_flakes_defined
-var sd_flakes_amount
-var sd_flakes_frames
-var sd_flakes_duration
-var sd_flakes_rotation
-var sd_flakes_speed
+var sd_flakes_defined: bool
+var sd_flakes_amount: int
+var sd_flakes_frames: int
+var sd_flakes_duration: int
+var sd_flakes_rotation: int
+var sd_flakes_speed: int
 
-var water_animation_defined
-var water_animation_frames
-var water_animation_duration
-var water_animation_speed
+var water_animation_defined: bool
+var water_animation_frames: int
+var water_animation_duration: int
+var water_animation_speed: int
 
-var sd_water_animation_defined
-var sd_water_animation_frames
-var sd_water_animation_duration
-var sd_water_animation_speed
+var sd_water_animation_defined: bool
+var sd_water_animation_frames: int
+var sd_water_animation_duration: int
+var sd_water_animation_speed: int
 
-var hidden
-var flatten_clouds
-var flatten_flakes
-var snow
-var ice
+var hidden: bool
+var flatten_clouds: bool
+var flatten_flakes: bool
+var snow: bool
+var ice: bool
 
-var objects
-var sprays
+var objects: Dictionary
+var sprays: Dictionary
 
-var theme_output = ""
-var stored_output = ""
-var is_loading = false
+var theme_output: PoolStringArray
+var stored_output: PoolStringArray
+var is_loading: bool
 
 signal theme_loaded
 signal output_updated
 
 func load_defaults():
-	music = null
-	sd_music = null
-	fallback_music = null
-	fallback_sd_music = null
+	music = ""
+	sd_music = ""
+	fallback_music = ""
+	fallback_sd_music = ""
 	
 	sky_defined = false
 	border_defined = false
@@ -91,13 +89,11 @@ func load_defaults():
 	water_bottom_defined = false
 	water_top = Color("80545C9D")
 	water_bottom = Color("80343C7D")
-	water_opacity = 0.5
 	
 	sd_water_top_defined = false
 	sd_water_bottom_defined = false
 	sd_water_top = Color("809670A9")
 	sd_water_bottom = Color("80B972C9")
-	sd_water_opacity = 0.5
 	
 	clouds_defined = false
 	clouds = 9
@@ -145,13 +141,13 @@ func load_theme(_theme_name, version):
 	saved_version = version
 	is_loading = true
 	
-	sd_clouds = null
-	
 	var lines = []
 	var cfg_file = File.new()
 	if cfg_file.open(path() + "theme.cfg", cfg_file.READ) == OK:
 		lines = cfg_file.get_as_text().split("\n")
 	
+	var water_opacity := 0.5
+	var sd_water_opacity := 0.5
 	for line in lines:
 		var split = line.split(" = ")#TODO: probably some regex for better handling
 		var params = []
@@ -251,7 +247,8 @@ func load_theme(_theme_name, version):
 	sd_water_top.a = sd_water_opacity
 	sd_water_bottom.a = sd_water_opacity
 	
-	if sd_clouds == null: sd_clouds = clouds
+	if not sd_clouds_defined:
+		sd_clouds = clouds
 	
 	cfg_file.close()
 	emit_signal("theme_loaded")
