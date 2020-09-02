@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/TabMain.gd" type="Script" id=1]
 [ext_resource path="res://Font/HeaderFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Font/DefaultFont.tres" type="DynamicFont" id=3]
 [ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Nodes/ThemeButtonNew.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="ScrollContainer"]
 anchor_right = 1.0
@@ -17,7 +18,7 @@ __meta__ = {
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1009.0
-margin_bottom = 680.0
+margin_bottom = 808.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -312,18 +313,29 @@ align = 1
 [node name="ThemeAlign" type="HBoxContainer" parent="Container"]
 margin_top = 672.0
 margin_right = 1009.0
-margin_bottom = 672.0
+margin_bottom = 800.0
 alignment = 1
 
 [node name="ThemesList" type="GridContainer" parent="Container/ThemeAlign"]
-margin_left = 504.0
-margin_right = 504.0
+margin_left = 440.0
+margin_right = 568.0
+margin_bottom = 128.0
 rect_clip_content = true
 
+[node name="ThemeButtonNew" parent="Container/ThemeAlign/ThemesList" instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 128.0
+margin_bottom = 128.0
+
 [node name="FileDialog" type="Control" parent="Container"]
-margin_top = 676.0
+margin_top = 804.0
 margin_right = 1009.0
-margin_bottom = 676.0
+margin_bottom = 804.0
 
 [node name="GameDialog" type="FileDialog" parent="Container/FileDialog"]
 margin_left = 330.0
@@ -347,8 +359,19 @@ access = 2
 current_dir = "/Inne/Hedgewars/Theme Editor 3"
 current_path = "/Inne/Hedgewars/Theme Editor 3/"
 
+[node name="ErrorDialog" type="AcceptDialog" parent="Container/FileDialog"]
+margin_left = 112.921
+margin_top = -571.56
+margin_right = 346.921
+margin_bottom = -428.56
+window_title = "Error"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Control" type="Control" parent="Container"]
-margin_top = 680.0
+margin_top = 808.0
 margin_right = 1009.0
-margin_bottom = 680.0
+margin_bottom = 808.0
 [connection signal="pressed" from="Container/Save/OpenDir" to="Container" method="open_theme_directory"]

@@ -136,8 +136,8 @@ func save_settings():
 	config.close()
 
 func refresh_themes():
-	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
-		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
+	for i in range(1, main.get_node("ThemeAlign/ThemesList").get_child_count()):
+		main.get_node("ThemeAlign/ThemesList").get_child(1).free()
 	
 	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
 		var v = theme_dir.split("_v")

@@ -32,6 +32,8 @@ func _ready():
 	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
 	bind_setting($PackContainer/IncludeMusic, "include_music")
 	
+	$ThemeAlign/ThemesList/ThemeButtonNew.connect("pressed", self, "new_theme")
+	
 	Util.refresh_themes()
 	
 	language_list.append("en")
@@ -50,7 +52,7 @@ func _ready():
 	update_columns()
 
 func theme_selected(button):
-	if !pack_mode:
+	if not pack_mode:
 		HWTheme.load_theme(button.get_meta("theme"), int(button.theme_version.text))
 		deselect_themes()
 
@@ -67,7 +69,8 @@ func pack_start():
 func pack_accept():#TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
-		if button.pressed: selected.append(button.get_meta("theme"))
+		if button.pressed:
+			selected.append(button.get_meta("theme"))
 	
 	var pack_name = $PackContainer/PackName.text
 	if pack_name == "": pack_name = PoolStringArray(selected).join("+")
@@ -125,3 +128,30 @@ func on_setting_changed(enabled, setting):
 
 func open_theme_directory():
 	OS.shell_open(HWTheme.path())
+
+func new_theme():
+	var theme_path := str(Util.hedgewars_user_path, "/Data/Themes/", $ThemeAlign/ThemesList/ThemeButtonNew.theme_name.text)
+	var dir := Directory.new()
+	
+	var err := dir.make_dir(theme_path)
+	if err == OK:
+		$ThemeAlign/ThemesList/ThemeButtonNew.theme_name.clear()
+		
+		var file := File.new()
+		file.open(theme_path + "/theme.cfg", file.WRITE)
+		file.close()
+		
+		Util.refresh_themes()
+	else:
+		var error := str(err)
+		match err:
+			ERR_CANT_CREATE:
+				error = "can't create directory. Check the name and try again"
+			ERR_ALREADY_EXISTS:
+				error = "directory already exists"
+		
+		if err == ERR_ALREADY_EXISTS and $ThemeAlign/ThemesList/ThemeButtonNew.theme_name.text == "":
+			error = "name can't be empty"
+		
+		$FileDialog/ErrorDialog.dialog_text = str("\nError creating theme: ", error, ".")
+		$FileDialog/ErrorDialog.popup_centered()
