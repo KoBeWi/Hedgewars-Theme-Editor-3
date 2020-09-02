@@ -17,7 +17,7 @@ __meta__ = {
 
 [node name="Container" type="VBoxContainer" parent="."]
 margin_right = 1009.0
-margin_bottom = 653.0
+margin_bottom = 680.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
@@ -76,111 +76,111 @@ align = 1
 [node name="GamePath" type="HBoxContainer" parent="Container"]
 margin_top = 223.0
 margin_right = 1009.0
-margin_bottom = 253.0
+margin_bottom = 262.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/GamePath"]
 margin_left = 488.0
 margin_top = 8.0
 margin_right = 488.0
-margin_bottom = 22.0
+margin_bottom = 31.0
 
 [node name="Button" type="Button" parent="Container/GamePath"]
 margin_left = 492.0
 margin_right = 520.0
-margin_bottom = 30.0
+margin_bottom = 39.0
 text = "..."
 
 [node name="UserPathHeader" type="Label" parent="Container"]
-margin_top = 257.0
+margin_top = 266.0
 margin_right = 1009.0
-margin_bottom = 299.0
+margin_bottom = 308.0
 custom_fonts/font = ExtResource( 4 )
 text = "User path"
 align = 1
 
 [node name="UserPath" type="HBoxContainer" parent="Container"]
-margin_top = 303.0
+margin_top = 312.0
 margin_right = 1009.0
-margin_bottom = 333.0
+margin_bottom = 351.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/UserPath"]
 margin_left = 488.0
 margin_top = 8.0
 margin_right = 488.0
-margin_bottom = 22.0
+margin_bottom = 31.0
 
 [node name="Button" type="Button" parent="Container/UserPath"]
 margin_left = 492.0
 margin_right = 520.0
-margin_bottom = 30.0
+margin_bottom = 39.0
 text = "..."
 
 [node name="MiscHeader" type="Label" parent="Container"]
-margin_top = 337.0
+margin_top = 355.0
 margin_right = 1009.0
-margin_bottom = 379.0
+margin_bottom = 397.0
 custom_fonts/font = ExtResource( 4 )
 text = "Misc"
 align = 1
 
 [node name="MaximizeContainer" type="HBoxContainer" parent="Container"]
-margin_top = 383.0
+margin_top = 401.0
 margin_right = 1009.0
-margin_bottom = 410.0
+margin_bottom = 428.0
 alignment = 1
 
 [node name="EnableMaximize" type="CheckBox" parent="Container/MaximizeContainer"]
-margin_left = 429.0
-margin_right = 580.0
+margin_left = 418.0
+margin_right = 591.0
 margin_bottom = 27.0
 text = "Maximize on start"
 align = 1
 
 [node name="LanguageContainer" type="HBoxContainer" parent="Container"]
-margin_top = 414.0
+margin_top = 432.0
 margin_right = 1009.0
-margin_bottom = 434.0
+margin_bottom = 461.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Container/LanguageContainer"]
-margin_left = 411.0
+margin_left = 408.0
 margin_top = 3.0
-margin_right = 530.0
-margin_bottom = 17.0
+margin_right = 555.0
+margin_bottom = 26.0
 text = "Preferred language"
 align = 1
 
 [node name="LanguageList" type="OptionButton" parent="Container/LanguageContainer"]
-margin_left = 534.0
-margin_right = 597.0
-margin_bottom = 20.0
+margin_left = 559.0
+margin_right = 600.0
+margin_bottom = 29.0
 
 [node name="ThemesHeader" type="Label" parent="Container"]
-margin_top = 438.0
+margin_top = 465.0
 margin_right = 1009.0
-margin_bottom = 505.0
+margin_bottom = 532.0
 custom_fonts/font = ExtResource( 2 )
 text = "Themes"
 
 [node name="PackHeader" type="Label" parent="Container"]
-margin_top = 509.0
+margin_top = 536.0
 margin_right = 1009.0
-margin_bottom = 551.0
+margin_bottom = 578.0
 custom_fonts/font = ExtResource( 4 )
 text = "Pack themes"
 align = 1
 
 [node name="PackContainer" type="HBoxContainer" parent="Container"]
-margin_top = 555.0
+margin_top = 582.0
 margin_right = 1009.0
-margin_bottom = 595.0
+margin_bottom = 622.0
 alignment = 1
 
 [node name="PackThemes" type="Button" parent="Container/PackContainer"]
-margin_left = 455.0
-margin_right = 553.0
+margin_left = 448.0
+margin_right = 561.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 40 )
 text = "Pack themes"
@@ -294,9 +294,9 @@ margin_bottom = 40.0
 text = "Open theme directory"
 
 [node name="SelectThemeHeader" type="Label" parent="Container"]
-margin_top = 599.0
+margin_top = 626.0
 margin_right = 1009.0
-margin_bottom = 641.0
+margin_bottom = 668.0
 custom_fonts/font = ExtResource( 4 )
 text = "Select theme"
 align = 1
@@ -310,9 +310,9 @@ text = "Select themes to pack"
 align = 1
 
 [node name="ThemeAlign" type="HBoxContainer" parent="Container"]
-margin_top = 645.0
+margin_top = 672.0
 margin_right = 1009.0
-margin_bottom = 645.0
+margin_bottom = 672.0
 alignment = 1
 
 [node name="ThemesList" type="GridContainer" parent="Container/ThemeAlign"]
@@ -321,34 +321,34 @@ margin_right = 504.0
 rect_clip_content = true
 
 [node name="FileDialog" type="Control" parent="Container"]
-margin_top = 649.0
+margin_top = 676.0
 margin_right = 1009.0
-margin_bottom = 649.0
+margin_bottom = 676.0
 
 [node name="GameDialog" type="FileDialog" parent="Container/FileDialog"]
 margin_left = 330.0
 margin_top = -228.0
 margin_right = 836.0
 margin_bottom = 192.0
-window_title = "Open a Directory"
+window_title = "Otwórz katalog"
 mode = 2
 access = 2
-current_dir = "X:/Inne/Hedgewars/Theme Editor 3"
-current_path = "X:/Inne/Hedgewars/Theme Editor 3/"
+current_dir = "/Inne/Hedgewars/Theme Editor 3"
+current_path = "/Inne/Hedgewars/Theme Editor 3/"
 
 [node name="UserDialog" type="FileDialog" parent="Container/FileDialog"]
 margin_left = 330.0
 margin_top = -228.0
 margin_right = 836.0
 margin_bottom = 192.0
-window_title = "Open a Directory"
+window_title = "Otwórz katalog"
 mode = 2
 access = 2
-current_dir = "X:/Inne/Hedgewars/Theme Editor 3"
-current_path = "X:/Inne/Hedgewars/Theme Editor 3/"
+current_dir = "/Inne/Hedgewars/Theme Editor 3"
+current_path = "/Inne/Hedgewars/Theme Editor 3/"
 
 [node name="Control" type="Control" parent="Container"]
-margin_top = 653.0
+margin_top = 680.0
 margin_right = 1009.0
-margin_bottom = 653.0
+margin_bottom = 680.0
 [connection signal="pressed" from="Container/Save/OpenDir" to="Container" method="open_theme_directory"]

@@ -138,7 +138,7 @@ func load_defaults():
 	objects = {}
 	sprays = {}
 
-func load_theme(_theme_name, version):#TODO: support old format
+func load_theme(_theme_name, version):
 	load_defaults()
 	theme_name = _theme_name
 	theme_version = version

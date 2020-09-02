@@ -30,16 +30,14 @@ func _ready() -> void:
 		$Horizont/Middle.texture = horizont_texture
 		if not horizont_textureL:
 			$Horizont/Middle.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
+			$Horizont/Left.size_flags_horizontal |= Control.SIZE_FILL
+			$Horizont/Right.size_flags_horizontal |= Control.SIZE_FILL
 		elif not horizont_textureR:
 			$Horizont/Left.texture = horizont_textureL
-			$Horizont/Left.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
 			$Horizont/Right.texture = horizont_textureL
-			$Horizont/Right.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
 		else:
 			$Horizont/Left.texture = horizont_textureL
-			$Horizont/Left.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
 			$Horizont/Right.texture = horizont_textureR
-			$Horizont/Right.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
 		
 		$Horizont.rect_size.x = PREVIEW_SIZE.x
 		$Horizont.rect_size.y = horizont_texture.get_height()
@@ -51,6 +49,20 @@ func _ready() -> void:
 		$Clouds.amount = HWTheme.clouds
 		$Clouds.position.y = PREVIEW_SIZE.y / 2
 		$Clouds.enable(PREVIEW_SIZE.x)
+	
+	var water_texture := Util.load_texture(HWTheme.path() + "BlueWater.png")
+	if not water_texture:
+		water_texture = Util.load_texture(Util.hedgewars_path + "Graphics/BlueWater.png")
+	water_texture.flags |= Texture.FLAG_REPEAT
+	
+	$WaterGradient.material.set_shader_param("top_color", HWTheme.water_top)
+	$WaterGradient.material.set_shader_param("water_bottom", HWTheme.water_bottom)
+	$WaterGradient.rect_size.x = PREVIEW_SIZE.x
+	$WaterGradient.rect_position.y = PREVIEW_SIZE.y - $WaterGradient.rect_size.y
+	
+	$Water.texture = water_texture
+	$Water.region_rect = Rect2(0, 0, PREVIEW_SIZE.x, 48)
+	$Water.position.y = PREVIEW_SIZE.y - $WaterGradient.rect_size.y - water_texture.get_height() * 0.5
 
 func steal_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

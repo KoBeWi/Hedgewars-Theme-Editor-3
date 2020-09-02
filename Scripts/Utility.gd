@@ -77,7 +77,7 @@ func _ready():
 
 func load_texture(file) -> Texture:
 	var check_exists = File.new()
-	if !check_exists.file_exists(file):
+	if not check_exists.file_exists(file):
 		return null
 	
 	var image = Image.new()

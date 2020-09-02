@@ -236,7 +236,7 @@ max_value = 65536.0
 margin_top = 496.0
 margin_right = 1001.0
 margin_bottom = 538.0
-hint_tooltip = "Clouds floating atop the map in Sudden Death"
+hint_tooltip = "Clouds floating atop the map during Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Clouds"
 
@@ -264,7 +264,7 @@ max_value = 65536.0
 margin_top = 585.0
 margin_right = 1001.0
 margin_bottom = 627.0
-hint_tooltip = "Flakes appearing in background before Sudden Death"
+hint_tooltip = "Flakes appearing in the background before Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Flakes"
 
@@ -383,7 +383,7 @@ max_value = 65536.0
 margin_top = 846.0
 margin_right = 1001.0
 margin_bottom = 888.0
-hint_tooltip = "Flakes appearing in background in Sudden Death"
+hint_tooltip = "Flakes appearing in the background during Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Flakes"
 
@@ -502,7 +502,7 @@ max_value = 65536.0
 margin_top = 1107.0
 margin_right = 1001.0
 margin_bottom = 1149.0
-hint_tooltip = "Specified a custom water animation and flowing speed before Sudden Death"
+hint_tooltip = "Specifies a custom water animation and flowing speed before Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Water Animation"
 
@@ -580,7 +580,7 @@ suffix = "%"
 margin_top = 1282.0
 margin_right = 1001.0
 margin_bottom = 1324.0
-hint_tooltip = "Specified a custom water animation and flowing speed in Sudden Death"
+hint_tooltip = "Specifies a custom water animation and flowing speed in Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Water Animation"
 
@@ -686,7 +686,7 @@ text = "Flatten clouds?"
 margin_top = 1596.0
 margin_right = 1001.0
 margin_bottom = 1623.0
-hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape"
+hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape. Use Snow.png to change the appearance of the snow"
 text = "Snow?"
 
 [node name="Ice" type="CheckBox" parent="Container"]
@@ -701,19 +701,19 @@ text = "Ice?"
 [connection signal="pressed" from="Container/FallbackSDMusic/Stop" to="Container" method="stop_music"]
 [connection signal="toggled" from="Container/CloudsOnOff" to="Container/Clouds/Amount" method="set_editable"]
 [connection signal="toggled" from="Container/SDCloudsOnOff" to="Container/SDClouds/Amount" method="set_editable"]
-[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/FallingSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/RotationSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/FallingSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/FrameDuration/Value" method="set_editable"]
+[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/FrameDuration/Value" method="set_editable"]
+[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/RotationSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/FlakesOnOff" to="Container/Flakes/FallingSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/RotationSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="Container/WaterAnimationOnOff" to="Container/WaterAnimation/MovementSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/FallingSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/Amount/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDFlakesOnOff" to="Container/SDFlakes/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="Container/WaterAnimationOnOff" to="Container/WaterAnimation/Frames/Value" method="set_editable"]
+[connection signal="toggled" from="Container/WaterAnimationOnOff" to="Container/WaterAnimation/MovementSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/WaterAnimationOnOff" to="Container/WaterAnimation/FrameDuration/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDWaterAnimationOnOff" to="Container/SDWaterAnimation/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="Container/SDWaterAnimationOnOff" to="Container/SDWaterAnimation/MovementSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="Container/SDWaterAnimationOnOff" to="Container/SDWaterAnimation/FrameDuration/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDWaterAnimationOnOff" to="Container/SDWaterAnimation/MovementSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="Container/SDWaterAnimationOnOff" to="Container/SDWaterAnimation/Frames/Value" method="set_editable"]

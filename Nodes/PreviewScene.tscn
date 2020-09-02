@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Preview/PreviewScene.gd" type="Script" id=1]
 [ext_resource path="res://Images/Preview/Arrow.png" type="Texture" id=2]
@@ -9,6 +9,22 @@ particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec4 top_color : hint_color;
+uniform vec4 bottom_color : hint_color;
+
+void fragment() {
+	COLOR = mix(top_color, bottom_color, UV.y);
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/top_color = Color( 0, 0, 0, 1 )
+shader_param/bottom_color = null
 
 [node name="PreviewScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,6 +52,7 @@ __meta__ = {
 }
 
 [node name="Left" type="TextureRect" parent="Horizont"]
+size_flags_horizontal = 3
 stretch_mode = 2
 
 [node name="Middle" type="TextureRect" parent="Horizont"]
@@ -46,6 +63,7 @@ stretch_mode = 2
 [node name="Right" type="TextureRect" parent="Horizont"]
 margin_left = 8.0
 margin_right = 8.0
+size_flags_horizontal = 3
 stretch_mode = 2
 
 [node name="Clouds" type="Node2D" parent="."]
@@ -60,3 +78,14 @@ texture = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Arrow"]
 current = true
+
+[node name="Water" type="Sprite" parent="."]
+centered = false
+region_enabled = true
+
+[node name="WaterGradient" type="ColorRect" parent="."]
+material = SubResource( 3 )
+margin_bottom = 256.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
