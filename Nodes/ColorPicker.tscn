@@ -10,10 +10,10 @@ export(bool) var edit_alpha = false
 
 func _ready():
 	$OnOff.text = tr(text)
-	$ColorContainer/Color.edit_alpha = edit_alpha
+	$ColorPickerButton.edit_alpha = edit_alpha
 "
 
-[node name="Sky" type="VBoxContainer"]
+[node name="Sky" type="HBoxContainer"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -21,7 +21,7 @@ anchor_bottom = 0.5
 margin_left = -149.0
 margin_top = -273.0
 margin_right = 149.0
-margin_bottom = 273.0
+margin_bottom = -206.0
 alignment = 1
 script = SubResource( 1 )
 __meta__ = {
@@ -29,22 +29,16 @@ __meta__ = {
 }
 
 [node name="OnOff" type="CheckBox" parent="."]
-margin_left = 42.0
-margin_right = 285.0
+margin_left = 16.0
+margin_right = 259.0
 margin_bottom = 67.0
 size_flags_horizontal = 4
 custom_fonts/font = ExtResource( 1 )
 text = "Sky color"
 align = 1
 
-[node name="ColorContainer" type="HBoxContainer" parent="."]
-margin_top = 71.0
-margin_right = 327.0
-margin_bottom = 578.0
-alignment = 1
-
-[node name="Color" type="ColorPicker" parent="ColorContainer"]
-margin_right = 327.0
-margin_bottom = 507.0
-alignment = 1
-edit_alpha = false
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+margin_left = 263.0
+margin_right = 330.0
+margin_bottom = 67.0
+rect_min_size = Vector2( 67, 0 )

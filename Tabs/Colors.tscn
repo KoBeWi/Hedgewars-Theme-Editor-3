@@ -18,22 +18,23 @@ __meta__ = {
 }
 
 [node name="Container" type="VBoxContainer" parent="."]
-margin_right = 1179.0
-margin_bottom = 3801.0
+margin_right = 1191.0
+margin_bottom = 688.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 1 )
 
 [node name="Info" type="Label" parent="Container"]
-margin_right = 1179.0
-margin_bottom = 14.0
+margin_right = 1191.0
+margin_bottom = 23.0
 text = "If a color is disabled, related key will not appear in theme.cfg"
 align = 1
 
 [node name="PickerContainer" type="VBoxContainer" parent="Container"]
-margin_top = 18.0
-margin_right = 1179.0
-margin_bottom = 3801.0
+margin_top = 27.0
+margin_right = 1191.0
+margin_bottom = 688.0
+custom_constants/separation = 32
 
 [node name="Sky" parent="Container/PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
@@ -42,8 +43,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
-margin_right = 1179.0
-margin_bottom = 537.0
+margin_right = 1191.0
+margin_bottom = 67.0
 text = "Sky color"
 
 [node name="Border" parent="Container/PickerContainer" instance=ExtResource( 2 )]
@@ -52,9 +53,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 541.0
-margin_right = 1179.0
-margin_bottom = 1078.0
+margin_top = 99.0
+margin_right = 1191.0
+margin_bottom = 166.0
 text = "Border/Mudgun color"
 
 [node name="UpperWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
@@ -63,9 +64,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1082.0
-margin_right = 1179.0
-margin_bottom = 1619.0
+margin_top = 198.0
+margin_right = 1191.0
+margin_bottom = 265.0
 text = "Upper water color"
 edit_alpha = true
 
@@ -75,9 +76,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 1623.0
-margin_right = 1179.0
-margin_bottom = 2160.0
+margin_top = 297.0
+margin_right = 1191.0
+margin_bottom = 364.0
 text = "Lower water color"
 edit_alpha = true
 
@@ -87,9 +88,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2164.0
-margin_right = 1179.0
-margin_bottom = 2701.0
+margin_top = 396.0
+margin_right = 1191.0
+margin_bottom = 463.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
@@ -99,9 +100,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 2705.0
-margin_right = 1179.0
-margin_bottom = 3242.0
+margin_top = 495.0
+margin_right = 1191.0
+margin_bottom = 562.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
@@ -111,8 +112,8 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 3246.0
-margin_right = 1179.0
-margin_bottom = 3783.0
+margin_top = 594.0
+margin_right = 1191.0
+margin_bottom = 661.0
 text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
