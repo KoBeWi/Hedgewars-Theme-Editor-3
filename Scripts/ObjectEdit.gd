@@ -1,12 +1,16 @@
 extends Panel
 
-onready var image = $ObjectImage
+const NO_DRAW = Vector2(-1, -1)
 
-var object
-var original_object
-var zoom = 1 setget set_zoom
-var drag
-var moved = false
+onready var image := $ObjectImage as Sprite
+
+enum {VISIBLE, BURIED, ANCHORS, OVERLAYS}
+var draw_mode: int
+
+var object: Dictionary
+var original_object: Dictionary
+var zoom := 1.0 setget set_zoom
+var drag: Vector2
 
 func _ready():
 	connect("resized", self, "move_view")
@@ -16,45 +20,43 @@ func _ready():
 	move_view()
 	original_object = object.duplicate(true)
 	
-	$UI/Container/Help.call_deferred("set_visible", false)
-
-func _process(delta):#TODO: some label with cursor pixel position
-	if drag: image.position = drag + get_viewport().get_mouse_position()
+func _process(delta: float):#TODO: some label with cursor pixel position
+	if drag:
+		image.position = drag + get_viewport().get_mouse_position()
 	
-	for rect in object.buried: if rect.has_point(image.mouse()): image.selected_rects.append(rect)
-	for rect in object.visible: if rect.has_point(image.mouse()): image.selected_rects.append(rect)
+	for rect in object.buried:
+		if rect.has_point(image.get_mouse_pos()):
+			image.selected_rects.append(rect)
+	
+	for rect in object.visible:
+		if rect.has_point(image.get_mouse_pos()):
+			image.selected_rects.append(rect)
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == BUTTON_WHEEL_UP:
+		if event.pressed:
+			if event.button_index == BUTTON_LEFT:
+				image.start_rectangle()
+			elif event.button_index == BUTTON_WHEEL_UP:
 				self.zoom = min(zoom + 0.5, 20)
 			elif event.button_index == BUTTON_WHEEL_DOWN:
 				self.zoom = max(zoom - 0.5, 0)
 			elif event.button_index == BUTTON_MIDDLE:
 				drag = image.position - get_viewport().get_mouse_position()
-				moved = false
-		elif event.button_index == BUTTON_MIDDLE:
-			drag = null
-			if !moved: image.remove_rectangles()
-		elif event.button_index == BUTTON_LEFT and image.drawing != null:
-			object.visible.append(image.get_drawn_rectangle())
-			image.stop_rectangle()
-		elif event.button_index == BUTTON_RIGHT and image.drawing != null:
-			object.buried.append(image.get_drawn_rectangle())
-			image.stop_rectangle()
-	
-	if event is InputEventMouseMotion: moved = true
-
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.is_pressed():
-			if event.button_index == BUTTON_LEFT:
-				image.start_rectangle(false)
+		else:
+			if event.button_index == BUTTON_MIDDLE:
+				drag = Vector2()
+			elif event.button_index == BUTTON_LEFT and image.drawing != NO_DRAW:
+				if draw_mode == VISIBLE:
+					object.visible.append(image.get_drawn_rectangle())
+				elif draw_mode == BURIED:
+					object.buried.append(image.get_drawn_rectangle())
+				
+				image.stop_rectangle()
 			elif event.button_index == BUTTON_RIGHT:
-				image.start_rectangle(true)
+				image.remove_rectangles()
 
-func set_zoom(new_zoom):
+func set_zoom(new_zoom: float):
 	zoom = new_zoom
 	image.scale = Vector2(new_zoom, new_zoom)
 	
@@ -62,6 +64,9 @@ func set_zoom(new_zoom):
 	$UI/Zoom/Label.text = str("x", zoom)
 	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 16
 	$ObjectImage.update_checker()
+
+func set_mode(mode: int):
+	draw_mode = mode
 
 func move_view():
 	image.position = rect_position + rect_size/2

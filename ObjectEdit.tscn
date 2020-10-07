@@ -1,93 +1,16 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/ObjectEdit.gd" type="Script" id=1]
 [ext_resource path="res://Images/Checker.png" type="Texture" id=2]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends Sprite
-
-var drawing
-var drawing_buried
-var selected_rects = []
-var was_selected
-
-func _ready():
-	texture = Util.load_texture(str(HWTheme.path(), get_parent().object.name, \".png\"))
-	$Checker.region_rect.size = texture.get_size()
-
-func _process(delta):
-	if drawing != null or !selected_rects.empty() or was_selected:
-		update()
-
-func _draw():
-	draw_set_transform(origin(), 0, Vector2(1, 1))
-	
-	var intersecting = []
-	for rect in get_parent().object.buried:
-		var intersect = false
-		for rect2 in get_parent().object.visible:
-			if rect.intersects(rect2):
-				intersect = true
-				intersecting.append(rect2)
-		
-		var color = Color.yellow if rect in selected_rects else Color.magenta if intersect else Color.red
-		draw_rect(rect, color, false)
-		draw_rect(rect, fill_color(color))
-	
-	for rect in get_parent().object.visible:
-		var color = Color.yellow if rect in selected_rects else Color.magenta if rect in intersecting else Color.green
-		draw_rect(rect, color, false)
-		draw_rect(rect, fill_color(color))
-	
-	if drawing != null:
-		draw_rect(get_drawn_rectangle(), Color.red if drawing_buried else Color.green, false)
-		draw_rect(get_drawn_rectangle(), fill_color(Color.red) if drawing_buried else fill_color(Color.green), true)
-	
-	draw_set_transform(Vector2(), 0, Vector2(1, 1))
-	if !selected_rects.empty(): was_selected = selected_rects.duplicate()
-	else: was_selected = null
-	selected_rects.clear()
-
-func origin(): return -texture.get_size()/2
-func mouse(): return (get_local_mouse_position() - origin()).floor()
-func fill_color(color): return Color(color.r, color.g, color.b, 0.25)
-
-func get_drawn_rectangle():
-	var start = Vector2(drawing.x if drawing.x < mouse().x else mouse().x, drawing.y if drawing.y < mouse().y else mouse().y)
-	start.x = clamp(start.x, 0, texture.get_size().x-1)
-	start.y = clamp(start.y, 0, texture.get_size().y-1)
-	
-	var end = Vector2(drawing.x if drawing.x > mouse().x else mouse().x, drawing.y if drawing.y > mouse().y else mouse().y)
-	end.x = clamp(end.x, start.x + 1, texture.get_size().x)
-	end.y = clamp(end.y, start.y + 1, texture.get_size().y)
-	
-	return Rect2(start, end - start)
-
-func start_rectangle(buried):
-	drawing = mouse()
-	drawing.x = max(drawing.x, 0)
-	drawing.y = max(drawing.y, 0)
-	drawing_buried = buried
-
-func stop_rectangle():
-	drawing = null
-	drawing_buried = null
-	update()
-
-func update_checker():
-	$Checker.global_scale = Vector2(1, 1)
-	$Checker.region_rect.size = texture.get_size() * scale
-
-func remove_rectangles():
-	if was_selected: for rect in was_selected:
-		get_parent().object.visible.erase(rect)
-		get_parent().object.buried.erase(rect)"
+[ext_resource path="res://Scripts/ObjectImageEdit.gd" type="Script" id=3]
 
 [sub_resource type="StyleBoxFlat" id=2]
 content_margin_left = 4.0
 content_margin_right = 2.0
 content_margin_top = 2.0
 bg_color = Color( 0, 0, 0, 0.501961 )
+
+[sub_resource type="ButtonGroup" id=9]
 
 [sub_resource type="InputEventKey" id=3]
 scancode = 16777221
@@ -112,10 +35,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
 [node name="ObjectImage" type="Sprite" parent="."]
 z_index = 1
-script = SubResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Checker" type="Sprite" parent="ObjectImage"]
 show_behind_parent = true
@@ -151,63 +78,135 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Container" type="HBoxContainer" parent="UI"]
+[node name="HBoxContainer" type="PanelContainer" parent="UI"]
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-margin_left = -480.0
-margin_top = -105.0
-margin_right = -10.0
-margin_bottom = 108.0
+anchor_bottom = 1.0
+margin_left = -143.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 135.0
+margin_bottom = 592.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Help" type="PanelContainer" parent="UI/Container"]
-margin_right = 305.0
-margin_bottom = 213.0
-custom_styles/panel = SubResource( 2 )
+[node name="Button" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 139.0
+margin_right = 127.0
+margin_bottom = 178.0
+toggle_mode = true
+pressed = true
+group = SubResource( 9 )
+text = "Visible"
 
-[node name="Layout" type="VBoxContainer" parent="UI/Container/Help"]
+[node name="Button2" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 182.0
+margin_right = 127.0
+margin_bottom = 221.0
+toggle_mode = true
+group = SubResource( 9 )
+text = "Buried"
+
+[node name="Button3" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 225.0
+margin_right = 127.0
+margin_bottom = 264.0
+toggle_mode = true
+group = SubResource( 9 )
+text = "Anchor"
+
+[node name="Button4" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 268.0
+margin_right = 127.0
+margin_bottom = 307.0
+toggle_mode = true
+group = SubResource( 9 )
+text = "Overlay"
+
+[node name="HSeparator" type="HSeparator" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 311.0
+margin_right = 127.0
+margin_bottom = 315.0
+
+[node name="Apply" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 319.0
+margin_right = 127.0
+margin_bottom = 358.0
+shortcut = SubResource( 4 )
+text = "Apply changes"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Help" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 362.0
+margin_right = 127.0
+margin_bottom = 401.0
+shortcut = SubResource( 6 )
+text = "Help"
+
+[node name="Revert" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
+margin_top = 405.0
+margin_right = 127.0
+margin_bottom = 444.0
+shortcut = SubResource( 8 )
+text = "Revert"
+
+[node name="Help" type="PanelContainer" parent="UI"]
+margin_left = 975.627
+margin_top = -272.358
+margin_right = 1280.63
+margin_bottom = -59.3583
+custom_styles/panel = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Layout" type="VBoxContainer" parent="UI/Help"]
 margin_left = 4.0
 margin_top = 2.0
-margin_right = 303.0
+margin_right = 303.003
 margin_bottom = 213.0
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label" type="Label" parent="UI/Help/Layout"]
 margin_right = 299.0
 margin_bottom = 23.0
 text = "Left mouse - visible rectangle (green)"
 
-[node name="Label2" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label2" type="Label" parent="UI/Help/Layout"]
 margin_top = 27.0
 margin_right = 299.0
 margin_bottom = 50.0
 text = "Right mouse - buried rectangle (red)"
 
-[node name="Label3" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label3" type="Label" parent="UI/Help/Layout"]
 margin_top = 54.0
 margin_right = 299.0
 margin_bottom = 77.0
 text = "Middle mouse - move around"
 
-[node name="Label4" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label4" type="Label" parent="UI/Help/Layout"]
 margin_top = 81.0
 margin_right = 299.0
 margin_bottom = 104.0
 text = "Middle click - remove rectangle (yellow)"
 
-[node name="Label5" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label5" type="Label" parent="UI/Help/Layout"]
 margin_top = 108.0
 margin_right = 299.0
 margin_bottom = 131.0
 text = "Mouse wheel - zoom in/zoom out"
 
-[node name="Label6" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label6" type="Label" parent="UI/Help/Layout"]
 margin_top = 135.0
 margin_right = 299.0
 margin_bottom = 184.0
@@ -215,48 +214,17 @@ custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "Magenta rectangles are intersecting visible and buried rectangles."
 autowrap = true
 
-[node name="Label7" type="Label" parent="UI/Container/Help/Layout"]
+[node name="Label7" type="Label" parent="UI/Help/Layout"]
 margin_top = 188.0
 margin_right = 299.0
 margin_bottom = 211.0
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "This MUSTN'T happen."
-
-[node name="Separator" type="Control" parent="UI/Container"]
-margin_left = 309.0
-margin_right = 339.0
-margin_bottom = 213.0
-rect_min_size = Vector2( 30, 0 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Buttons" type="VBoxContainer" parent="UI/Container"]
-margin_left = 343.0
-margin_right = 470.0
-margin_bottom = 213.0
-alignment = 1
-
-[node name="Apply" type="Button" parent="UI/Container/Buttons"]
-margin_top = 44.0
-margin_right = 127.0
-margin_bottom = 83.0
-shortcut = SubResource( 4 )
-text = "Apply changes"
-
-[node name="Help" type="Button" parent="UI/Container/Buttons"]
-margin_top = 87.0
-margin_right = 127.0
-margin_bottom = 126.0
-shortcut = SubResource( 6 )
-text = "Help"
-
-[node name="Revert" type="Button" parent="UI/Container/Buttons"]
-margin_top = 130.0
-margin_right = 127.0
-margin_bottom = 169.0
-shortcut = SubResource( 8 )
-text = "Revert"
 [connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
-[connection signal="pressed" from="UI/Container/Buttons/Apply" to="." method="on_apply"]
-[connection signal="pressed" from="UI/Container/Buttons/Help" to="." method="on_help"]
-[connection signal="pressed" from="UI/Container/Buttons/Revert" to="." method="on_revert"]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button" to="." method="set_mode" binds= [ 0 ]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button2" to="." method="set_mode" binds= [ 1 ]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button3" to="." method="set_mode" binds= [ 2 ]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button4" to="." method="set_mode" binds= [ 3 ]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Apply" to="." method="on_apply"]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Help" to="." method="on_help"]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Revert" to="." method="on_revert"]

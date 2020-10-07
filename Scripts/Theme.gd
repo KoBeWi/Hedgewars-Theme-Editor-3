@@ -225,6 +225,10 @@ func load_theme(_theme_name, version):
 			"object":
 				var object = {name = params[0], number = int(params[1]), buried = [], visible = [], on_water = false}
 				
+				if params.size() == 3:
+					objects[params[0]] = object
+					continue
+				
 				var rects = 1
 				var i = 2
 				if params.size() % 2 == 0:
