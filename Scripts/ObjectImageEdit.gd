@@ -3,80 +3,127 @@ extends Sprite
 onready var edit := get_parent()
 
 var drawing: Vector2
+
 var selected_rects: Array
-var was_selected: Array
+var intersecting_rects: Array
 
 func _ready():
 	texture = Util.load_texture(str(HWTheme.path(), edit.object.name, ".png"))
 	$Checker.region_rect.size = texture.get_size()
 	drawing = edit.NO_DRAW
 
-func _process(delta):
-	if drawing != edit.NO_DRAW or not selected_rects.empty() or was_selected:
-		update()
-
 func _draw():
-	draw_set_transform(origin(), 0, Vector2(1, 1))
+	draw_set_transform(get_origin(), 0, Vector2(1, 1))
+	update_intersecting()
 	
-	var intersecting := []
 	for rect in edit.object.buried:
-		var intersect = false
-		for rect2 in edit.object.visible:
-			if rect.intersects(rect2):
-				intersect = true
-				intersecting.append(rect2)
-		
-		var color = Color.yellow if rect in selected_rects else Color.magenta if intersect else Color.red
+		var color := get_rect_color(rect, edit.Colors.BURIED)
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color))
 	
 	for rect in edit.object.visible:
-		var color = Color.yellow if rect in selected_rects else Color.magenta if rect in intersecting else Color.green
+		var color := get_rect_color(rect, edit.Colors.VISIBLE)
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color))
 	
-	if drawing != edit.NO_DRAW:
-		var color := Color.green
+	for rect in edit.object.anchors:
+		var color := get_rect_color(rect, edit.Colors.ANCHOR)
+		draw_rect(rect, color, false)
+		draw_rect(rect, fill_color(color))
+	
+	if is_drawing():
+		var color: Color = edit.Colors.VISIBLE
 		if edit.draw_mode == edit.BURIED:
-			color = Color.red
+			color = edit.Colors.BURIED
+		elif edit.draw_mode == edit.ANCHORS:
+			color = edit.Colors.ANCHOR
 		
-		draw_rect(get_drawn_rectangle(), color, false)
-		draw_rect(get_drawn_rectangle(), fill_color(color), true)
+		var rect := get_drawn_rectangle(edit.draw_mode != edit.ANCHORS)
+		draw_rect(rect, color, false)
+		draw_rect(rect, fill_color(color), true)
 	
 	draw_set_transform(Vector2(), 0, Vector2(1, 1))
-	if not selected_rects.empty():
-		was_selected = selected_rects.duplicate()
-	else:
-		was_selected = []
-	selected_rects.clear()
 
-func origin() -> Vector2:
+func update_selected():
+	var old_selected := selected_rects
+	selected_rects = []
+	
+	if is_drawing():
+		update()
+		return
+	
+	for rect in edit.object.buried:
+		if rect.has_point(get_mouse_pos()):
+			selected_rects.append(rect)
+	
+	for rect in edit.object.visible:
+		if rect.has_point(get_mouse_pos()):
+			selected_rects.append(rect)
+	
+	for rect in edit.object.anchors:
+		if rect.has_point(get_mouse_pos()):
+			selected_rects.append(rect)
+	
+	if old_selected != selected_rects:
+		update()
+
+func update_intersecting():
+	intersecting_rects.clear()
+	
+	for rect in edit.object.visible:
+		var intersecting: bool
+		
+		for rect2 in edit.object.buried:
+			if rect.intersects(rect2):
+				intersecting = true
+				intersecting_rects.append(rect2)
+		
+		for rect2 in edit.object.anchors:
+			if rect.intersects(rect2):
+				intersecting = true
+				intersecting_rects.append(rect2)
+		
+		if intersecting:
+			intersecting_rects.append(rect)
+
+func get_origin() -> Vector2:
 	return -texture.get_size() / 2
 
 func get_mouse_pos() -> Vector2:
-	return (get_local_mouse_position() - origin()).floor()
+	return (get_local_mouse_position() - get_origin()).floor()
+
+func get_rect_color(rect: Rect2, default: Color) -> Color:
+	if rect in selected_rects:
+		return Color.white
+	elif rect in intersecting_rects:
+		return Color.magenta
+	else:
+		return default
 
 func fill_color(color: Color):
 	color.a = 0.25
 	return color
 
-func get_drawn_rectangle() -> Rect2:
+func get_drawn_rectangle(clamped := true) -> Rect2:
 	var mouse := get_mouse_pos()
 	
 	var start := Vector2(drawing.x if drawing.x < mouse.x else mouse.x, drawing.y if drawing.y < mouse.y else mouse.y)
-	start.x = clamp(start.x, 0, texture.get_width() - 1)
-	start.y = clamp(start.y, 0, texture.get_height() - 1)
-	
 	var end := Vector2(drawing.x if drawing.x > mouse.x else mouse.x, drawing.y if drawing.y > mouse.y else mouse.y)
-	end.x = clamp(end.x, start.x + 1, texture.get_width())
-	end.y = clamp(end.y, start.y + 1, texture.get_height())
+	
+	if clamped:
+		start.x = clamp(start.x, 0, texture.get_width() - 1)
+		start.y = clamp(start.y, 0, texture.get_height() - 1)
+		end.x = clamp(end.x, start.x + 1, texture.get_width())
+		end.y = clamp(end.y, start.y + 1, texture.get_height())
 	
 	return Rect2(start, end - start)
 
 func start_rectangle():
 	drawing = get_mouse_pos()
-	drawing.x = max(drawing.x, 0)
-	drawing.y = max(drawing.y, 0)
+	update_selected()
+
+func is_drawing() -> bool:
+	return drawing != edit.NO_DRAW
 
 func stop_rectangle():
 	drawing = edit.NO_DRAW
@@ -87,6 +134,7 @@ func update_checker():
 	$Checker.region_rect.size = texture.get_size() * scale
 
 func remove_rectangles():
-	if was_selected: for rect in was_selected:
+	for rect in selected_rects:
 		edit.object.visible.erase(rect)
 		edit.object.buried.erase(rect)
+		edit.object.anchors.erase(rect)

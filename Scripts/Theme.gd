@@ -223,14 +223,22 @@ func load_theme(_theme_name, version):
 			"snow": snow = true
 			"ice": ice = true
 			"object":
-				var object = {name = params[0], number = int(params[1]), buried = [], visible = [], on_water = false}
+				var object := {
+					name = params[0],
+					number = int(params[1]),
+					buried = [],
+					visible = [],
+					anchors = [],
+					overlays = [],
+					on_water = false
+				}
 				
 				if params.size() == 3:
 					objects[params[0]] = object
 					continue
 				
-				var rects = 1
-				var i = 2
+				var rects := 1
+				var i := 2
 				if params.size() % 2 == 0:
 					rects = int(params[2])
 					i = 3
@@ -247,8 +255,18 @@ func load_theme(_theme_name, version):
 					rects -= 1
 					i += 4
 				
-				objects[params[0]] = object
-			"spray": sprays[params[0]] = int(params[1])
+				objects[object.name] = object
+			"spray":
+				sprays[params[0]] = int(params[1])
+			"anchors":
+				var object: Dictionary = objects[params[0]]
+				var rects := int(params[1])
+				var i := 2
+				
+				while rects > 0:
+					object.anchors.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					rects -= 1
+					i += 4
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
@@ -271,7 +289,7 @@ func save_theme():
 	Directory.new().rename(path() + "theme.cfg", path() + "theme.bak")
 	
 	var cfg_file = File.new()
-	if cfg_file.open(path() + "theme.cfg", cfg_file.WRITE) == OK:
+	if cfg_file.open(path() + "theme.cfg", cfg_file.WRITE) == OK: ##TODO: show error if fails
 		cfg_file.store_string(theme_output.join("\n"))
 		cfg_file.close()
 		
@@ -328,18 +346,29 @@ func refresh_oputput(emit_changed = true):
 	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
 	
 	for object in objects.keys():
-		var line = PoolStringArray()
+		var line := PoolStringArray()
 		line.append(str(object, ", ", objects[object].number, ", "))
 		
-		if objects[object].buried.size() > 1: line.append(str(objects[object].buried.size(), ", "))
+		if objects[object].buried.size() != 1:
+			line.append(str(objects[object].buried.size(), ", "))
 		for buried in objects[object].buried:
-			line.append(str(buried.position.x, ", ", buried.position.y, ", ", buried.size.x, ", ", buried.size.y, ", "))
+			line.append(Util.get_rect_string(buried) +  ", ")
 		
 		line.append(str(objects[object].visible.size()))
 		for visible in objects[object].visible:
-			line.append(str(", ", visible.position.x, ", ", visible.position.y, ", ", visible.size.x, ", ", visible.size.y))
+			line.append(", " + Util.get_rect_string(visible))
 		
 		theme_output.append("object = " + line.join(""))
+		
+		var anchors: Array = objects[object].anchors
+		if not anchors.empty():
+			line = PoolStringArray()
+			line.append(str(object, ", ", anchors.size()))
+			
+			for anchor in objects[object].anchors:
+				line.append(", " + Util.get_rect_string(anchor))
+			
+			theme_output.append("anchors = " + line.join(""))
 	
 	if hidden: theme_output.append("hidden = true")
 	if flatten_flakes: theme_output.append("flatten-flakes = true")

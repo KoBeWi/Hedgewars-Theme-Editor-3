@@ -1,6 +1,7 @@
 extends Panel
 
 const NO_DRAW = Vector2(-1, -1)
+const Colors = {VISIBLE = Color.green, BURIED = Color.red, ANCHOR = Color.blue, OVERLAY = Color.yellow, SELECTED = Color.white, INTERSECTING = Color.magenta}
 
 onready var image := $ObjectImage as Sprite
 
@@ -19,18 +20,6 @@ func _ready():
 	set_zoom(1)
 	move_view()
 	original_object = object.duplicate(true)
-	
-func _process(delta: float):#TODO: some label with cursor pixel position
-	if drag:
-		image.position = drag + get_viewport().get_mouse_position()
-	
-	for rect in object.buried:
-		if rect.has_point(image.get_mouse_pos()):
-			image.selected_rects.append(rect)
-	
-	for rect in object.visible:
-		if rect.has_point(image.get_mouse_pos()):
-			image.selected_rects.append(rect)
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -46,15 +35,22 @@ func _unhandled_input(event):
 		else:
 			if event.button_index == BUTTON_MIDDLE:
 				drag = Vector2()
-			elif event.button_index == BUTTON_LEFT and image.drawing != NO_DRAW:
-				if draw_mode == VISIBLE:
-					object.visible.append(image.get_drawn_rectangle())
-				elif draw_mode == BURIED:
-					object.buried.append(image.get_drawn_rectangle())
+			elif event.button_index == BUTTON_LEFT and image.is_drawing():
+				match draw_mode:
+					VISIBLE:
+						object.visible.append(image.get_drawn_rectangle())
+					BURIED:
+						object.buried.append(image.get_drawn_rectangle())
+					ANCHORS:
+						object.anchors.append(image.get_drawn_rectangle(false))
 				
 				image.stop_rectangle()
 			elif event.button_index == BUTTON_RIGHT:
 				image.remove_rectangles()
+	elif event is InputEventMouseMotion:
+		image.update_selected()
+		if drag:
+			image.position = drag + get_viewport().get_mouse_position()
 
 func set_zoom(new_zoom: float):
 	zoom = new_zoom
@@ -63,7 +59,7 @@ func set_zoom(new_zoom: float):
 	$UI/Zoom.value = new_zoom
 	$UI/Zoom/Label.text = str("x", zoom)
 	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 16
-	$ObjectImage.update_checker()
+	image.update_checker()
 
 func set_mode(mode: int):
 	draw_mode = mode

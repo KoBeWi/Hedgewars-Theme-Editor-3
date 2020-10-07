@@ -113,6 +113,9 @@ func get_color(rgb):
 	for i in 3: result.append(get_color_value(rgb[i]))
 	return Color(result[0], result[1], result[2])
 
+func get_rect_string(rect: Rect2) -> String:
+	return str(rect.position.x, ", ", rect.position.y, ", ", rect.size.x, ", ", rect.size.y)
+
 func get_color_value(val):
 	if val.begins_with("$"): return val.substr(1, 2).hex_to_int() / 255.0
 	else: return int(val) / 255.0
