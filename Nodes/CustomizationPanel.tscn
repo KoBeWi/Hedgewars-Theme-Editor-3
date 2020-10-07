@@ -7,29 +7,33 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Control
 
-var images = -1
+var images := -1
 
 func _ready():
 	$Container/GeneralInfo.text = \"\"
+	DirectoryScanner.connect(\"files_created\", self, \"files_changed\")
+	DirectoryScanner.connect(\"files_modified\", self, \"files_changed\")
+	DirectoryScanner.connect(\"files_deleted\", self, \"files_changed\")
 
-func add_info(info):
+func add_info(info: String):
 	$Container/GeneralInfo.text += tr(info) + \"\\n\"
 
-func add_image(iname):#TODO: update images on change
+func add_image(iname: String):
 	images += 1
 	
 	if images > 0:
 		$Container.add_child(get_image(0).duplicate())
 	
+	get_image(images).set_meta(\"image_name\", iname)
 	get_image(images).get_node(\"ImageHeader/ImageName\").text = iname
 	get_image(images).get_node(\"ImageInfo\").text = \"\"
 	
-	update_image(images, iname)
+	update_image(images)
 	
 	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname, self, images])
 	get_parent().add_customizable_image(iname)
 
-func add_image_info(info, format = null):
+func add_image_info(info: String, format := []):
 	var new_line = (\"\" if get_image(images).get_node(\"ImageInfo\").text.length() == 0 else \"\\n\")
 	
 	if format:
@@ -39,17 +43,27 @@ func add_image_info(info, format = null):
 	
 	get_image(images).get_node(\"ImageInfo\").text += new_line + info
 
-func get_image(i):
-	return $Container.get_child(i + 2)
+func get_image(i) -> Control:
+	return $Container.get_child(i + 2) as Control
 
-func update_image(i, iname):
-	var tex = Util.load_texture(HWTheme.path() + iname)#TODO: sometimes there's warning
+func update_image(idx: int):
+	var image_container := get_image(idx)
+	var tex := Util.load_texture(HWTheme.path() + image_container.get_meta(\"image_name\"))
+	
 	if tex:
-		get_image(i).get_node(\"Image\").texture = tex
-		get_image(i).get_node(\"Template\").visible = false
+		image_container.get_node(\"Image\").texture = tex
+		image_container.get_node(\"Template\").hide()
 	else:
-		get_image(i).get_node(\"Image\").texture = preload(\"res://Images/NoImage.png\")
-		get_image(i).get_node(\"Template\").visible = true
+		image_container.get_node(\"Image\").texture = preload(\"res://Images/NoImage.png\")
+		image_container.get_node(\"Template\").show()
+
+func files_changed(file_list: Array):
+	for file in file_list:
+		var file_name: String = file.get_file()
+		
+		for idx in images + 1:
+			if get_image(idx).get_meta(\"image_name\") == file_name:
+				update_image(idx)
 "
 
 [node name="CustomizationPanel" type="PanelContainer"]

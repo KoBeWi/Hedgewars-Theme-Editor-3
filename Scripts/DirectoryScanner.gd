@@ -18,11 +18,17 @@ func refresh_paths():
 	current_directory = 0
 	
 	add_scan_directory(Util.hedgewars_user_path.plus_file("Data/Themes"))
-#	add_scan_directory(Util.hedgewars_user_path.plus_file("Data/Music"))
+	add_scan_directory(Util.hedgewars_user_path.plus_file("Data/Music"))
 
 func add_scan_directory(directory: String):
 	var scan_data := DirectoryScanData.new(directory)
 	scan_list.append(scan_data)
+
+func remove_scan_directory(directory: String):
+	for scan_data in scan_list:
+		if scan_data.directory.get_current_dir() == directory:
+			scan_list.erase(scan_data)
+			return
 
 func _process(delta: float) -> void:
 	if not scan_list[current_directory].step(1):
@@ -102,7 +108,6 @@ class DirectoryScanData:
 		return DirectoryScanner.file_util.get_modified_time(directory.get_current_dir() + "/" + file)
 	
 	func notify_files(notify_type: String, files: Array):
-		print(notify_type)
 		var full_files: Array
 		
 		for file in files:

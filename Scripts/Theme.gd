@@ -135,11 +135,15 @@ func load_defaults():
 	sprays = {}
 
 func load_theme(_theme_name, version):
+	if theme_name:
+		DirectoryScanner.remove_scan_directory(path())
+	
 	load_defaults()
 	theme_name = _theme_name
 	theme_version = version
 	saved_version = version
 	is_loading = true
+	DirectoryScanner.add_scan_directory(path())
 	
 	var lines = []
 	var cfg_file = File.new()
@@ -283,7 +287,7 @@ func save_theme():
 	
 	emit_signal("output_updated", theme_output != stored_output)
 
-func path():
+func path(): ##TODO: get_directory() would be better name
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
 
 func refresh_oputput(emit_changed = true):
