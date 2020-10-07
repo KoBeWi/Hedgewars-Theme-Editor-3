@@ -16,6 +16,8 @@ To edit the project, either run `godot -e` inside the project directory or add t
 
 <img src="https://i.imgur.com/J7mo8if.gif" data-canonical-src="https://i.imgur.com/J7mo8if.gif" width="207" height="117" />
 
+IMPORTANT: you need to open the project in the Godot editor at least once, to import all resources. Otherwise it won't run.
+
 ## Contributing
 
 *Coming soon...*
