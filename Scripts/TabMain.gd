@@ -13,10 +13,10 @@ func _ready():
 	Util.main = self
 	
 	$Save/Button.connect("pressed", HWTheme, "save_theme")
-	$GamePath/Button.connect("pressed", $FileDialog/GameDialog, "popup_centered")
-	$UserPath/Button.connect("pressed", $FileDialog/UserDialog, "popup_centered")
-	$FileDialog/GameDialog.connect("confirmed", self, "update_game_path")
-	$FileDialog/UserDialog.connect("confirmed", self, "update_user_path")
+	$GamePath/Button.connect("pressed", $Dialogs/GameDialog, "popup_centered")
+	$UserPath/Button.connect("pressed", $Dialogs/UserDialog, "popup_centered")
+	$Dialogs/GameDialog.connect("confirmed", self, "update_game_path")
+	$Dialogs/UserDialog.connect("confirmed", self, "update_user_path")
 	$LanguageContainer/LanguageList.connect("item_selected", self, "change_language")
 	$PackContainer/PackThemes.connect("pressed", self, "pack_start")
 	$PackContainer/CreatePack.connect("pressed", self, "pack_accept")
@@ -26,14 +26,12 @@ func _ready():
 	$GamePath/Label.text = Util.hedgewars_path
 	$UserPath/Label.text = Util.hedgewars_user_path
 	
-	$FileDialog/GameDialog.current_dir = Util.hedgewars_path
-	$FileDialog/UserDialog.current_dir = Util.hedgewars_user_path
+	$Dialogs/GameDialog.current_dir = Util.hedgewars_path
+	$Dialogs/UserDialog.current_dir = Util.hedgewars_user_path
 	
 	bind_setting($Save/EnableAutosave, "enable_autosave")
 	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
 	bind_setting($PackContainer/IncludeMusic, "include_music")
-	
-	$ThemeAlign/ThemesList/ThemeButtonNew.connect("pressed", self, "new_theme")
 	
 	Util.refresh_themes()
 	
@@ -62,7 +60,7 @@ func theme_selected(button: Button):
 func select_theme_button():
 	var style := preload("res://Resources/ThemeButtonSelected.stylebox") as StyleBox
 	for button in $ThemeAlign/ThemesList.get_children():
-		if not button.name.ends_with("New") and button.theme_name.text == selected_theme:
+		if button.theme_name.text == selected_theme:
 			button.add_stylebox_override("normal", style)
 			button.add_stylebox_override("pressed", style)
 			button.add_stylebox_override("focus", style)
@@ -118,12 +116,12 @@ func on_theme_loaded():
 	$Save/Version.value = HWTheme.theme_version
 
 func update_game_path():
-	Util.hedgewars_path = $FileDialog/GameDialog.current_dir
+	Util.hedgewars_path = $Dialogs/GameDialog.current_dir
 	$GamePath/Label.text = Util.hedgewars_path
 	Util.save_settings()
 
 func update_user_path():
-	Util.hedgewars_user_path = $FileDialog/UserDialog.current_dir
+	Util.hedgewars_user_path = $Dialogs/UserDialog.current_dir
 	$UserPath/Label.text = Util.hedgewars_user_path
 	Util.save_settings()
 
@@ -147,12 +145,13 @@ func open_theme_directory():
 	OS.shell_open(HWTheme.path())
 
 func new_theme():
-	var theme_path := str(Util.hedgewars_user_path, "/Data/Themes/", $ThemeAlign/ThemesList/ThemeButtonNew.theme_name.text)
+	var name_edit := $Dialogs/NewThemeDialog/LineEdit as LineEdit
+	var theme_path := str(Util.hedgewars_user_path, "/Data/Themes/", name_edit.text)
 	var dir := Directory.new()
 	
 	var err := dir.make_dir(theme_path)
 	if err == OK:
-		$ThemeAlign/ThemesList/ThemeButtonNew.theme_name.clear()
+		name_edit.clear()
 		
 		var file := File.new()
 		file.open(theme_path + "/theme.cfg", file.WRITE)
@@ -167,8 +166,11 @@ func new_theme():
 			ERR_ALREADY_EXISTS:
 				error = "directory already exists"
 		
-		if err == ERR_ALREADY_EXISTS and $ThemeAlign/ThemesList/ThemeButtonNew.theme_name.text == "":
+		if err == ERR_ALREADY_EXISTS and name_edit.text == "":
 			error = "name can't be empty"
 		
-		$FileDialog/ErrorDialog.dialog_text = str("\nError creating theme: ", error, ".")
-		$FileDialog/ErrorDialog.popup_centered()
+		$Dialogs/ErrorDialog.dialog_text = str("\nError creating theme: ", error, ".")
+		$Dialogs/ErrorDialog.popup_centered()
+
+func on_new_theme_pressed():
+	$Dialogs/NewThemeDialog.popup_centered()
