@@ -75,17 +75,21 @@ func _ready():
 		file.open("res://icon.png", file.READ)
 		package_path = file.get_path_absolute().get_base_dir() + "/PackedThemes"
 
-func load_texture(file) -> Texture:
-	var check_exists = File.new()
-	if not check_exists.file_exists(file):
-		return null
+var texture_cache: Dictionary
+
+func load_texture(file: String) -> Texture: ##TODO: reload if image changes
+	if not file in texture_cache:
+		if not File.new().file_exists(file):
+			return null
+		
+		var image := Image.new()
+		image.load(file)
+		
+		var texture := ImageTexture.new()
+		texture.create_from_image(image, 0)
+		texture_cache[file] = texture
 	
-	var image = Image.new()
-	image.load(file)
-	
-	var texture = ImageTexture.new()
-	texture.create_from_image(image, 0)
-	return texture
+	return texture_cache[file]
 
 func list_directory(path, for_files = true):
 	var list = []

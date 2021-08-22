@@ -88,6 +88,9 @@ value = 1.0
 scrollable = false
 tick_count = 21
 ticks_on_borders = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="UI/Zoom"]
 anchor_top = 0.5
@@ -259,6 +262,37 @@ dialog_text = "Discard changes?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Overlays" type="PanelContainer" parent="UI"]
+anchor_bottom = 1.0
+margin_left = 86.4296
+margin_right = 102.43
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Overlays"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 108.0
+margin_bottom = 592.0
+
+[node name="Label" type="Label" parent="UI/Overlays/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 23.0
+text = "Select image"
+autowrap = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Overlays/VBoxContainer"]
+margin_top = 27.0
+margin_right = 100.0
+margin_bottom = 584.0
+size_flags_vertical = 3
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Overlays/VBoxContainer/ScrollContainer"]
+margin_right = 100.0
+rect_min_size = Vector2( 100, 0 )
 
 [connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button" to="." method="set_mode" binds= [ 0 ]]

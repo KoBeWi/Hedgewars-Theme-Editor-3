@@ -1,15 +1,17 @@
 extends Panel
 
-const NO_DRAW = Vector2(-1, -1)
+const NO_DRAW = Vector2(-INF, -INF)
 const Colors = {VISIBLE = Color.green, BURIED = Color.red, ANCHOR = Color.blue, OVERLAY = Color.yellow, SELECTED = Color.white, INTERSECTING = Color.magenta}
 
 onready var image := $ObjectImage as Sprite
+onready var overlays_container = $UI/Overlays/VBoxContainer/ScrollContainer/VBoxContainer
+onready var overlay_panel = $UI/Overlays
 
 enum {VISIBLE, BURIED, ANCHORS, OVERLAYS}
 var draw_mode: int
 
-var object: Dictionary
-var original_object: Dictionary
+var object: HWTheme.ThemeObject
+var original_object: HWTheme.ThemeObject
 var zoom := 1.0 setget set_zoom
 var drag: Vector2
 var dirty: bool
@@ -21,7 +23,15 @@ func _ready():
 	
 	set_zoom(1)
 	move_view()
-	original_object = object.duplicate(true)
+	original_object = object.clone()
+	
+	var overlay_buttons := ButtonGroup.new()
+	for image in HWTheme.image_list:
+		var overlay_item := preload("res://Nodes/OverlayItem.tscn").instance() as Button
+		overlay_item.set_image(str(HWTheme.get_theme_path(), image, ".png"))
+		overlay_item.group = overlay_buttons
+		overlays_container.add_child(overlay_item)
+	overlay_panel.hide()
 
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
@@ -67,6 +77,12 @@ func set_zoom(new_zoom: float):
 
 func set_mode(mode: int):
 	draw_mode = mode
+	if mode == OVERLAYS:
+		overlay_panel.show()
+		for button in overlays_container.get_children():
+			button.pressed = false
+	else:
+		overlay_panel.hide()
 
 func move_view():
 	image.position = rect_position + rect_size/2

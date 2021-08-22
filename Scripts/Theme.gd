@@ -64,6 +64,7 @@ var ice: bool
 
 var objects: Dictionary
 var sprays: Dictionary
+var image_list: Array
 
 var theme_output: PoolStringArray
 var stored_output: PoolStringArray
@@ -137,6 +138,7 @@ func load_defaults():
 func load_theme(_theme_name, version):
 	if theme_name:
 		DirectoryScanner.remove_scan_directory(get_theme_path())
+		Util.texture_cache.clear()
 	
 	load_defaults()
 	theme_name = _theme_name
@@ -223,18 +225,10 @@ func load_theme(_theme_name, version):
 			"snow": snow = true
 			"ice": ice = true
 			"object":
-				var object := {
-					name = params[0],
-					number = int(params[1]),
-					buried = [],
-					visible = [],
-					anchors = [],
-					overlays = [],
-					on_water = false
-				}
+				var object := ThemeObject.new(params[0], int(params[1]))
+				objects[object.name] = object
 				
 				if params.size() == 3:
-					objects[params[0]] = object
 					continue
 				
 				var rects := 1
@@ -254,12 +248,10 @@ func load_theme(_theme_name, version):
 					object.visible.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
 					rects -= 1
 					i += 4
-				
-				objects[object.name] = object
 			"spray":
 				sprays[params[0]] = int(params[1])
 			"anchors":
-				var object: Dictionary = objects[params[0]]
+				var object: ThemeObject = objects[params[0]]
 				var rects := int(params[1])
 				var i := 2
 				
@@ -267,6 +259,15 @@ func load_theme(_theme_name, version):
 					object.anchors.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
 					rects -= 1
 					i += 4
+			"overlays":
+				var object: ThemeObject = objects[params[0]]
+				var rects := int(params[1])
+				var i := 2
+				
+				while rects > 0:
+					object.overlays.append(ThemeObject.Overlay.new(Vector2(int(params[i+0]), int(params[i+1])), params[i+2]))
+					rects -= 1
+					i += 3
 	
 	water_top.a = water_opacity
 	water_bottom.a = water_opacity
@@ -275,6 +276,11 @@ func load_theme(_theme_name, version):
 	
 	if not sd_clouds_defined:
 		sd_clouds = clouds
+	
+	image_list.clear()
+	for file in Util.list_directory(HWTheme.get_theme_path(), true):
+		if file.get_extension() == "png":
+			image_list.append(file.get_basename().get_file())
 	
 	cfg_file.close()
 	emit_signal("theme_loaded")
@@ -365,10 +371,20 @@ func refresh_oputput(emit_changed = true):
 			line = PoolStringArray()
 			line.append(str(object, ", ", anchors.size()))
 			
-			for anchor in objects[object].anchors:
+			for anchor in anchors:
 				line.append(", " + Util.get_rect_string(anchor))
 			
 			theme_output.append("anchors = " + line.join(""))
+		
+		var overlays: Array = objects[object].overlays
+		if not overlays.empty():
+			line = PoolStringArray()
+			line.append(str(object, ", ", overlays.size()))
+			
+			for overlay in overlays:
+				line.append(str(", ", overlay.position.x, ", ", overlay.position.y, ", ", overlay.image))
+			
+			theme_output.append("overlays = " + line.join(""))
 	
 	if hidden: theme_output.append("hidden = true")
 	if flatten_flakes: theme_output.append("flatten-flakes = true")
@@ -395,8 +411,50 @@ func apply_change():
 func set_version(version):
 	theme_version = version
 	
-	if !is_loading and Util.enable_autosave:
+	if not is_loading and Util.enable_autosave:
 		save_theme()
 
 func basename():
 	return theme_name.split("_v")[0]
+
+class ThemeObject:
+	var name: String
+	var number: int
+	var buried: Array
+	var visible: Array
+	var anchors: Array
+	var overlays: Array
+	var on_water: bool
+	
+	func _init(p_name: String, p_number: int):
+		name = p_name
+		number = p_number
+	
+	func clone() -> ThemeObject:
+		var cloned := ThemeObject.new(name, number)
+		cloned.buried = buried.duplicate()
+		cloned.visible = visible.duplicate()
+		cloned.anchors = anchors.duplicate()
+		cloned.overlays = overlays.duplicate()
+		cloned.on_water = on_water
+		return cloned
+	
+	func has_overlay(overlay: String) -> bool:
+		for o in overlays:
+			if o.image == overlay:
+				return true
+		return false
+	
+	class Overlay:
+		var position: Vector2
+		var image: String
+		
+		func _init(p_position: Vector2, p_image: String):
+			position = p_position
+			image = p_image
+		
+		func get_texture() -> Texture:
+			return Util.load_texture(str(HWTheme.get_theme_path(), image, ".png"))
+		
+		func get_rect() -> Rect2:
+			return Rect2(position, get_texture().get_size())

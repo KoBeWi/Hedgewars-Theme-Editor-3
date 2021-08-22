@@ -31,6 +31,13 @@ func _draw():
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color))
 	
+	for overlay in edit.object.overlays:
+		draw_texture(overlay.get_texture(), overlay.position)
+		var rect = overlay.get_rect()
+		var color := get_rect_color(rect, edit.Colors.OVERLAY)
+		draw_rect(rect, color, false)
+		draw_rect(rect, fill_color(color))
+	
 	if is_drawing():
 		var color: Color = edit.Colors.VISIBLE
 		if edit.draw_mode == edit.BURIED:
@@ -61,6 +68,11 @@ func update_selected():
 			selected_rects.append(rect)
 	
 	for rect in edit.object.anchors:
+		if rect.has_point(get_mouse_pos()):
+			selected_rects.append(rect)
+	
+	for overlay in edit.object.overlays:
+		var rect = overlay.get_rect()
 		if rect.has_point(get_mouse_pos()):
 			selected_rects.append(rect)
 	
