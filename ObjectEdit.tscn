@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/ObjectEdit.gd" type="Script" id=1]
 [ext_resource path="res://Images/Checker.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/ObjectImageEdit.gd" type="Script" id=3]
+[ext_resource path="res://Resources/UITheme.theme" type="Theme" id=4]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 4.0
@@ -10,7 +11,31 @@ content_margin_right = 2.0
 content_margin_top = 2.0
 bg_color = Color( 0, 0, 0, 0.501961 )
 
+[sub_resource type="InputEventKey" id=9]
+scancode = 49
+
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
+
 [sub_resource type="ButtonGroup" id=2]
+
+[sub_resource type="InputEventKey" id=11]
+scancode = 50
+
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 11 )
+
+[sub_resource type="InputEventKey" id=13]
+scancode = 51
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
+
+[sub_resource type="InputEventKey" id=15]
+scancode = 52
+
+[sub_resource type="ShortCut" id=16]
+shortcut = SubResource( 15 )
 
 [sub_resource type="InputEventKey" id=3]
 scancode = 16777221
@@ -103,6 +128,7 @@ margin_right = 127.0
 margin_bottom = 178.0
 toggle_mode = true
 pressed = true
+shortcut = SubResource( 10 )
 group = SubResource( 2 )
 text = "Visible"
 
@@ -111,6 +137,7 @@ margin_top = 182.0
 margin_right = 127.0
 margin_bottom = 221.0
 toggle_mode = true
+shortcut = SubResource( 12 )
 group = SubResource( 2 )
 text = "Buried"
 
@@ -119,6 +146,7 @@ margin_top = 225.0
 margin_right = 127.0
 margin_bottom = 264.0
 toggle_mode = true
+shortcut = SubResource( 14 )
 group = SubResource( 2 )
 text = "Anchor"
 
@@ -127,6 +155,7 @@ margin_top = 268.0
 margin_right = 127.0
 margin_bottom = 307.0
 toggle_mode = true
+shortcut = SubResource( 16 )
 group = SubResource( 2 )
 text = "Overlay"
 
@@ -160,10 +189,12 @@ shortcut = SubResource( 8 )
 text = "Revert"
 
 [node name="Help" type="PanelContainer" parent="UI"]
-margin_left = 975.627
-margin_top = -272.358
-margin_right = 1280.63
-margin_bottom = -59.3583
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -451.0
+margin_top = 7.0
+margin_right = -145.997
+margin_bottom = 220.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -178,48 +209,56 @@ size_flags_horizontal = 3
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Help/Layout"]
+margin_top = 13.0
 margin_right = 299.0
-margin_bottom = 23.0
-text = "Left mouse - visible rectangle (green)"
+margin_bottom = 36.0
+text = "LMB - draw rectangle"
 
 [node name="Label2" type="Label" parent="UI/Help/Layout"]
-margin_top = 27.0
+margin_top = 40.0
 margin_right = 299.0
-margin_bottom = 50.0
-text = "Right mouse - buried rectangle (red)"
+margin_bottom = 63.0
+text = "RMB - delete rectangle"
 
 [node name="Label3" type="Label" parent="UI/Help/Layout"]
-margin_top = 54.0
+margin_top = 67.0
 margin_right = 299.0
-margin_bottom = 77.0
-text = "Middle mouse - move around"
-
-[node name="Label4" type="Label" parent="UI/Help/Layout"]
-margin_top = 81.0
-margin_right = 299.0
-margin_bottom = 104.0
-text = "Middle click - remove rectangle (yellow)"
+margin_bottom = 90.0
+text = "MMB - pan view"
 
 [node name="Label5" type="Label" parent="UI/Help/Layout"]
-margin_top = 108.0
+margin_top = 94.0
 margin_right = 299.0
-margin_bottom = 131.0
+margin_bottom = 117.0
 text = "Mouse wheel - zoom in/zoom out"
 
 [node name="Label6" type="Label" parent="UI/Help/Layout"]
-margin_top = 135.0
+margin_top = 121.0
 margin_right = 299.0
-margin_bottom = 184.0
+margin_bottom = 170.0
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "Magenta rectangles are intersecting visible and buried rectangles."
 autowrap = true
 
 [node name="Label7" type="Label" parent="UI/Help/Layout"]
-margin_top = 188.0
+margin_top = 174.0
 margin_right = 299.0
-margin_bottom = 211.0
+margin_bottom = 197.0
 custom_colors/font_color = Color( 1, 0, 1, 1 )
 text = "This MUSTN'T happen."
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="UI"]
+visible = true
+margin_left = 82.0553
+margin_top = -196.219
+margin_right = 282.055
+margin_bottom = -110.219
+theme = ExtResource( 4 )
+window_title = "Proszę potwierdzić..."
+dialog_text = "Discard changes?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button" to="." method="set_mode" binds= [ 0 ]]
@@ -229,3 +268,4 @@ text = "This MUSTN'T happen."
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Apply" to="." method="on_apply"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Help" to="." method="on_help"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Revert" to="." method="on_revert"]
+[connection signal="confirmed" from="UI/ConfirmationDialog" to="." method="do_revert"]

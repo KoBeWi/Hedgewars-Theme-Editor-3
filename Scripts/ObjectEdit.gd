@@ -12,10 +12,12 @@ var object: Dictionary
 var original_object: Dictionary
 var zoom := 1.0 setget set_zoom
 var drag: Vector2
+var dirty: bool
 
 func _ready():
 	connect("resized", self, "move_view")
 	$UI/Zoom.connect("resized", self, "set_zoom", [zoom])
+	$UI/Help.hide()
 	
 	set_zoom(1)
 	move_view()
@@ -36,6 +38,7 @@ func _unhandled_input(event):
 			if event.button_index == BUTTON_MIDDLE:
 				drag = Vector2()
 			elif event.button_index == BUTTON_LEFT and image.is_drawing():
+				dirty = true
 				match draw_mode:
 					VISIBLE:
 						object.visible.append(image.get_drawn_rectangle())
@@ -46,7 +49,8 @@ func _unhandled_input(event):
 				
 				image.stop_rectangle()
 			elif event.button_index == BUTTON_RIGHT:
-				image.remove_rectangles()
+				if image.remove_rectangles():
+					dirty = true
 	elif event is InputEventMouseMotion:
 		image.update_selected()
 		if drag:
@@ -72,15 +76,22 @@ func on_apply():
 	exit()
 
 func on_help():
-	$UI/Container/Help.visible = !$UI/Container/Help.visible
+	$UI/Help.visible = not $UI/Help.visible
 
 func on_revert():
-	object.buried = original_object.buried
-	object.visible = original_object.visible
-	exit()
+	if dirty:
+		$UI/ConfirmationDialog.popup_centered()
+	else:
+		do_revert()
 
 func exit():
 	queue_free()
 	$"/root".add_child(Util.temp_editor)
 	get_tree().current_scene = Util.temp_editor
 	Util.temp_editor = null
+
+func do_revert():
+	object.buried = original_object.buried
+	object.visible = original_object.visible
+	object.anchors = original_object.anchors
+	exit()

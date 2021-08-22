@@ -133,8 +133,9 @@ func update_checker():
 	$Checker.global_scale = Vector2(1, 1)
 	$Checker.region_rect.size = texture.get_size() * scale
 
-func remove_rectangles():
+func remove_rectangles() -> bool:
 	for rect in selected_rects:
 		edit.object.visible.erase(rect)
 		edit.object.buried.erase(rect)
 		edit.object.anchors.erase(rect)
+	return not selected_rects.empty()
