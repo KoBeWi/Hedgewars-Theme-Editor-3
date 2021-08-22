@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://Font/HeaderFont.tres" type="DynamicFont" id=1]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends BoxContainer
@@ -11,6 +9,9 @@ export(bool) var edit_alpha = false
 func _ready():
 	$OnOff.text = tr(text)
 	$ColorPickerButton.edit_alpha = edit_alpha
+
+func on_color_changed(color):
+	$OnOff.pressed = true
 "
 
 [node name="Sky" type="HBoxContainer"]
@@ -22,23 +23,28 @@ margin_left = -149.0
 margin_top = -273.0
 margin_right = 149.0
 margin_bottom = -206.0
-alignment = 1
 script = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="OnOff" type="CheckBox" parent="."]
-margin_left = 16.0
-margin_right = 259.0
+margin_right = 106.0
 margin_bottom = 67.0
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 1 )
 text = "Sky color"
 align = 1
 
+[node name="Spacer" type="Control" parent="."]
+margin_left = 110.0
+margin_right = 227.0
+margin_bottom = 67.0
+size_flags_horizontal = 3
+
 [node name="ColorPickerButton" type="ColorPickerButton" parent="."]
-margin_left = 263.0
-margin_right = 330.0
+margin_left = 231.0
+margin_right = 298.0
 margin_bottom = 67.0
 rect_min_size = Vector2( 67, 0 )
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="on_color_changed"]

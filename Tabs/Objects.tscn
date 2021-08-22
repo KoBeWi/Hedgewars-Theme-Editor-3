@@ -2,20 +2,12 @@
 
 [ext_resource path="res://Scripts/TabObjects.gd" type="Script" id=1]
 
-[node name="Objects" type="ScrollContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 36.0
-margin_right = -4.0
-margin_bottom = -4.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_horizontal_enabled = false
-
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer"]
 margin_right = 1016.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -3,40 +3,29 @@
 [ext_resource path="res://Scripts/TabColors.gd" type="Script" id=1]
 [ext_resource path="res://Nodes/ColorPicker.tscn" type="PackedScene" id=2]
 
-[node name="Colors" type="ScrollContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 41.0
-margin_right = 171.0
-margin_bottom = 462.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-scroll_horizontal_enabled = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer"]
 margin_right = 1191.0
 margin_bottom = 688.0
 size_flags_horizontal = 3
 alignment = 1
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Info" type="Label" parent="Container"]
+[node name="Info" type="Label" parent="."]
 margin_right = 1191.0
 margin_bottom = 23.0
 text = "If a color is disabled, related key will not appear in theme.cfg"
 align = 1
 
-[node name="PickerContainer" type="VBoxContainer" parent="Container"]
+[node name="PickerContainer" type="VBoxContainer" parent="."]
 margin_top = 27.0
 margin_right = 1191.0
 margin_bottom = 688.0
 custom_constants/separation = 32
 
-[node name="Sky" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="Sky" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -47,7 +36,7 @@ margin_right = 1191.0
 margin_bottom = 67.0
 text = "Sky color"
 
-[node name="Border" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="Border" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -58,7 +47,7 @@ margin_right = 1191.0
 margin_bottom = 166.0
 text = "Border/Mudgun color"
 
-[node name="UpperWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="UpperWater" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -70,7 +59,7 @@ margin_bottom = 265.0
 text = "Upper water color"
 edit_alpha = true
 
-[node name="LowerWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="LowerWater" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -82,7 +71,7 @@ margin_bottom = 364.0
 text = "Lower water color"
 edit_alpha = true
 
-[node name="SDUpperWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="SDUpperWater" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -94,7 +83,7 @@ margin_bottom = 463.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
-[node name="SDLowerWater" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="SDLowerWater" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -106,7 +95,7 @@ margin_bottom = 562.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
-[node name="SDTint" parent="Container/PickerContainer" instance=ExtResource( 2 )]
+[node name="SDTint" parent="PickerContainer" instance=ExtResource( 2 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

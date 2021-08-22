@@ -81,4 +81,5 @@ render_target_update_mode = 3
 gui_disable_input = true
 
 [node name="PreviewScene" parent="ViewportContainer/Viewport" instance=ExtResource( 2 )]
+
 [connection signal="pressed" from="Container/VBoxContainer/Button" to="." method="refresh_preview"]

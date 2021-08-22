@@ -1,5 +1,7 @@
 extends Control
 
+const COLORS = ["sky", "border", "water_top", "water_bottom", "sd_water_top", "sd_water_bottom", "sd_tint"]
+
 var player_paused = null
 var current_player
 
@@ -42,6 +44,18 @@ func _ready():
 	$FallbackMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_music", $FallbackMusic/List])
 	$FallbackSDMusic/List.connect("item_selected", HWTheme, "change_property_from_list", ["fallback_sd_music", $FallbackSDMusic/List])
 	
+	
+	$Colors/UpperWater/ColorPickerButton.connect("color_changed", self, "synchronize_water_alpha", [$Colors/LowerWater/ColorPickerButton])
+	$Colors/LowerWater/ColorPickerButton.connect("color_changed", self, "synchronize_water_alpha", [$Colors/UpperWater/ColorPickerButton])
+	$Colors/SDUpperWater/ColorPickerButton.connect("color_changed", self, "synchronize_water_alpha", [$Colors/SDLowerWater/ColorPickerButton])
+	$Colors/SDLowerWater/ColorPickerButton.connect("color_changed", self, "synchronize_water_alpha", [$Colors/SDUpperWater/ColorPickerButton])
+	
+	for i in $Colors.get_child_count():
+		var picker = $Colors.get_child(i)
+		picker.get_node("OnOff").connect("toggled", HWTheme, "change_property", [str(COLORS[i], "_defined")])
+		picker.get_node("ColorPickerButton").connect("color_changed", HWTheme, "change_property", [COLORS[i]])
+	
+	
 	$CloudsOnOff.connect("toggled", HWTheme, "change_property", ["clouds_defined"])
 	$Clouds/Amount.connect("value_changed", HWTheme, "change_property", ["clouds"])
 	$SDCloudsOnOff.connect("toggled", HWTheme, "change_property", ["sd_clouds_defined"])
@@ -70,6 +84,7 @@ func _ready():
 	$SDWaterAnimation/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_duration"])
 	$SDWaterAnimation/MovementSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_speed"])
 	
+	
 	$Hidden.connect("toggled", HWTheme, "change_property", ["hidden"])
 	$FlattenFlakes.connect("toggled", HWTheme, "change_property", ["flatten_flakes"])
 	$FlattenClouds.connect("toggled", HWTheme, "change_property", ["flatten_clouds"])
@@ -85,6 +100,11 @@ func on_theme_loaded():
 	Util.select_music($SDMusic/List, HWTheme.sd_music)
 	Util.select_music($FallbackMusic/List, HWTheme.fallback_music)
 	Util.select_music($FallbackSDMusic/List, HWTheme.fallback_sd_music)
+	
+	for i in $Colors.get_child_count():
+		var picker = $Colors.get_child(i)
+		picker.get_node("OnOff").pressed = HWTheme.get(str(COLORS[i], "_defined"))
+		picker.get_node("ColorPickerButton").color = HWTheme.get(COLORS[i])
 	
 	$CloudsOnOff.pressed = HWTheme.clouds_defined
 	$Clouds/Amount.editable = HWTheme.clouds_defined
@@ -152,9 +172,9 @@ func play_music(player): #TODO: cache music on change, also handle change when p
 	
 	var ogg_file = File.new()
 	var file = str(music_dir(), player.get_item_text(player.selected), ".ogg")
-	if !ogg_file.file_exists(file):
+	if not ogg_file.file_exists(file):
 		file = str(user_music_dir(), player.get_item_text(player.selected), ".ogg")
-	if !ogg_file.file_exists(file):
+	if not ogg_file.file_exists(file):
 		return
 	
 	ogg_file.open(file, File.READ)
@@ -175,3 +195,6 @@ func music_dir():
 
 func user_music_dir():
 	return str(Util.hedgewars_user_path, "/Data/Music/")
+
+func synchronize_water_alpha(new_color, twin):
+	twin.color.a = new_color.a
