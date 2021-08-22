@@ -16,6 +16,9 @@ var zoom := 1.0 setget set_zoom
 var drag: Vector2
 var dirty: bool
 
+var current_overlay: Texture
+var current_overlay_name: String
+
 func _ready():
 	connect("resized", self, "move_view")
 	$UI/Zoom.connect("resized", self, "set_zoom", [zoom])
@@ -30,6 +33,7 @@ func _ready():
 		var overlay_item := preload("res://Nodes/OverlayItem.tscn").instance() as Button
 		overlay_item.set_image(str(HWTheme.get_theme_path(), image, ".png"))
 		overlay_item.group = overlay_buttons
+		overlay_item.connect("pressed", self, "select_overlay", [image])
 		overlays_container.add_child(overlay_item)
 	overlay_panel.hide()
 
@@ -37,11 +41,16 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if event.button_index == BUTTON_LEFT:
-				image.start_rectangle()
+				if draw_mode == OVERLAYS:
+					if current_overlay:
+						dirty = true
+						object.overlays.append(HWTheme.ThemeObject.Overlay.new(image.get_mouse_pos(), current_overlay_name))
+				else:
+					image.start_rectangle()
 			elif event.button_index == BUTTON_WHEEL_UP:
 				self.zoom = min(zoom + 0.5, 20)
 			elif event.button_index == BUTTON_WHEEL_DOWN:
-				self.zoom = max(zoom - 0.5, 0)
+				self.zoom = max(zoom - 0.5, 1)
 			elif event.button_index == BUTTON_MIDDLE:
 				drag = image.position - get_viewport().get_mouse_position()
 		else:
@@ -85,6 +94,7 @@ func set_mode(mode: int):
 			button.pressed = false
 	else:
 		overlay_panel.hide()
+	image.update()
 
 func move_view():
 	image.position = rect_position + rect_size/2
@@ -112,4 +122,9 @@ func do_revert():
 	object.buried = original_object.buried
 	object.visible = original_object.visible
 	object.anchors = original_object.anchors
+	object.overlays = original_object.overlays
 	exit()
+
+func select_overlay(image: String):
+	current_overlay_name = image
+	current_overlay = Util.load_texture(str(HWTheme.get_theme_path(), image, ".png"))

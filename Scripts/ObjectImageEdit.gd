@@ -51,12 +51,18 @@ func _draw():
 	
 	var start: Vector2 = global_transform.affine_inverse().xform(Vector2())
 	var size := Vector2(999999999, 999999999)
-	var center1 := (get_local_mouse_position() - get_origin()).floor()
+	var center1 := get_mouse_pos().floor()
 	var center2 := center1 + Vector2.ONE
 	var cross_color := Color(1, 1, 1, 0.2)
 	
 	draw_rect(Rect2(start.x, center1.y, size.x, center2.y - center1.y), cross_color)
 	draw_rect(Rect2(center1.x, start.y, center2.x - center1.x, size.y), cross_color)
+	
+	if edit.draw_mode == edit.OVERLAYS:
+		if edit.current_overlay:
+			draw_texture(edit.current_overlay, get_mouse_pos())
+		else:
+			draw_string(edit.get_font("font", "Label"), get_mouse_pos(), tr("Select overlay image"), edit.get_color("font_color", "Label"))
 	
 	draw_set_transform(Vector2(), 0, Vector2(1, 1))
 
@@ -159,4 +165,13 @@ func remove_rectangles() -> bool:
 		edit.object.visible.erase(rect)
 		edit.object.buried.erase(rect)
 		edit.object.anchors.erase(rect)
+	
+	var to_erase: Array
+	for overlay in edit.object.overlays:
+		if overlay.get_rect() in selected_rects:
+			to_erase.append(overlay)
+	
+	for overlay in to_erase:
+		edit.object.overlays.erase(overlay)
+	
 	return not selected_rects.empty()
