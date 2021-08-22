@@ -63,6 +63,7 @@ func _unhandled_input(event):
 					dirty = true
 	elif event is InputEventMouseMotion:
 		image.update_selected()
+		image.update()
 		if drag:
 			image.position = drag + get_viewport().get_mouse_position()
 
@@ -74,6 +75,7 @@ func set_zoom(new_zoom: float):
 	$UI/Zoom/Label.text = str("x", zoom)
 	$UI/Zoom/Label.rect_position.y = $UI/Zoom.rect_size.y - zoom/20.0 * ($UI/Zoom.rect_size.y-16) - 16
 	image.update_checker()
+	image.update()
 
 func set_mode(mode: int):
 	draw_mode = mode

@@ -49,6 +49,15 @@ func _draw():
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color), true)
 	
+	var start: Vector2 = global_transform.affine_inverse().xform(Vector2())
+	var size := Vector2(999999999, 999999999)
+	var center1 := (get_local_mouse_position() - get_origin()).floor()
+	var center2 := center1 + Vector2.ONE
+	var cross_color := Color(1, 1, 1, 0.2)
+	
+	draw_rect(Rect2(start.x, center1.y, size.x, center2.y - center1.y), cross_color)
+	draw_rect(Rect2(center1.x, start.y, center2.x - center1.x, size.y), cross_color)
+	
 	draw_set_transform(Vector2(), 0, Vector2(1, 1))
 
 func update_selected():
@@ -120,7 +129,7 @@ func get_drawn_rectangle(clamped := true) -> Rect2:
 	var mouse := get_mouse_pos()
 	
 	var start := Vector2(drawing.x if drawing.x < mouse.x else mouse.x, drawing.y if drawing.y < mouse.y else mouse.y)
-	var end := Vector2(drawing.x if drawing.x > mouse.x else mouse.x, drawing.y if drawing.y > mouse.y else mouse.y)
+	var end := Vector2(drawing.x if drawing.x > mouse.x else mouse.x, drawing.y if drawing.y > mouse.y else mouse.y) + Vector2.ONE
 	
 	if clamped:
 		start.x = clamp(start.x, 0, texture.get_width() - 1)
