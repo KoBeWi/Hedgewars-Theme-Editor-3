@@ -136,18 +136,18 @@ func load_defaults():
 
 func load_theme(_theme_name, version):
 	if theme_name:
-		DirectoryScanner.remove_scan_directory(path())
+		DirectoryScanner.remove_scan_directory(get_theme_path())
 	
 	load_defaults()
 	theme_name = _theme_name
 	theme_version = version
 	saved_version = version
 	is_loading = true
-	DirectoryScanner.add_scan_directory(path())
+	DirectoryScanner.add_scan_directory(get_theme_path())
 	
 	var lines = []
 	var cfg_file = File.new()
-	if cfg_file.open(path() + "theme.cfg", cfg_file.READ) == OK:
+	if cfg_file.open(get_theme_path() + "theme.cfg", cfg_file.READ) == OK:
 		lines = cfg_file.get_as_text().split("\n")
 	
 	var water_opacity := 0.5
@@ -286,10 +286,10 @@ func load_theme(_theme_name, version):
 func save_theme():
 #	refresh_oputput(false)
 	
-	Directory.new().rename(path() + "theme.cfg", path() + "theme.bak")
+	Directory.new().rename(get_theme_path() + "theme.cfg", get_theme_path() + "theme.bak")
 	
 	var cfg_file = File.new()
-	if cfg_file.open(path() + "theme.cfg", cfg_file.WRITE) == OK: ##TODO: show error if fails
+	if cfg_file.open(get_theme_path() + "theme.cfg", cfg_file.WRITE) == OK: ##TODO: show error if fails
 		cfg_file.store_string(theme_output.join("\n"))
 		cfg_file.close()
 		
@@ -309,7 +309,7 @@ func save_theme():
 	
 	emit_signal("output_updated", theme_output != stored_output)
 
-func path(): ##TODO: get_directory() would be better name
+func get_theme_path():
 	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
 
 func refresh_oputput(emit_changed = true):

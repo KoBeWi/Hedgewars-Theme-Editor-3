@@ -32,6 +32,10 @@ gdscript/warnings/enable=false
 
 window/dpi/allow_hidpi=true
 
+[editor]
+
+search_in_file_extensions=PoolStringArray( "gd", "gdshader", "shader", "tscn" )
+
 [gui]
 
 theme/custom="res://Resources/UITheme.theme"

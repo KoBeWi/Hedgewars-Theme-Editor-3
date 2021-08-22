@@ -48,7 +48,7 @@ func get_image(i) -> Control:
 
 func update_image(idx: int):
 	var image_container := get_image(idx)
-	var tex := Util.load_texture(HWTheme.path() + image_container.get_meta(\"image_name\"))
+	var tex := Util.load_texture(HWTheme.get_theme_path() + image_container.get_meta(\"image_name\"))
 	
 	if tex:
 		image_container.get_node(\"Image\").texture = tex

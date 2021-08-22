@@ -208,7 +208,7 @@ func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	customization.add_image("amSnowball.png")
 	customization.add_image_info("Size: %s", ["128x128"])
 	
-	for file in Util.list_directory(HWTheme.path(), true):
+	for file in Util.list_directory(HWTheme.get_theme_path(), true):
 		if file.get_extension() == "png" and not file in customizable_list and not file.get_basename() in HWTheme.sprays and not file.get_basename() in HWTheme.objects:
 			$ItemLists/Other/List.add_item(file.get_basename())
 
@@ -269,7 +269,7 @@ func add_customizable_image(iname):
 
 func fetch_template(iname, customization, index):
 	var dir = Directory.new()
-	dir.copy(get_template_path(iname), HWTheme.path() + iname)
+	dir.copy(get_template_path(iname), HWTheme.get_theme_path() + iname)
 	customization.update_image(index, iname)
 
 func get_template_path(iname):

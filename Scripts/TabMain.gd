@@ -142,7 +142,7 @@ func on_setting_changed(enabled, setting):
 	Util.save_settings()
 
 func open_theme_directory():
-	OS.shell_open(HWTheme.path())
+	OS.shell_open(HWTheme.get_theme_path())
 
 func new_theme():
 	var name_edit := $Dialogs/NewThemeDialog/LineEdit as LineEdit
