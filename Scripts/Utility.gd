@@ -54,30 +54,27 @@ func _ready():
 		
 		hedgewars_path = path
 	
-	if !hedgewars_user_path:
-		var path
-		var test_directory = Directory.new()
+	if hedgewars_user_path.empty():
+		var path: String
 		
 		match OS.get_name():
 			"Windows":
-				path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS) + "/Hedgewars"
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DOCUMENTS).plus_file("Hedgewars")
 			
 			"X11":
-				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir() + "/home"
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir().plus_file("home")
 			
 			"OSX": #TODO: really?
-				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir() + "/home"
+				path = OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP).get_base_dir().plus_file("home")
 		
 		hedgewars_user_path = path
 	
-	if !package_path:
-		var file = File.new()
-		file.open("res://icon.png", file.READ)
-		package_path = file.get_path_absolute().get_base_dir() + "/PackedThemes"
+	if package_path.empty():
+		package_path = ProjectSettings.globalize_path("res://").plus_file("PackedThemes")
 
 var texture_cache: Dictionary
 
-func load_texture(file: String) -> Texture: ##TODO: reload if image changes
+func load_texture(file: String) -> Texture: ## TODO: reload if image changes
 	if not file in texture_cache:
 		if not File.new().file_exists(file):
 			return null
@@ -91,16 +88,16 @@ func load_texture(file: String) -> Texture: ##TODO: reload if image changes
 	
 	return texture_cache[file]
 
-func list_directory(path, for_files = true):
-	var list = []
+func list_directory(path: String, for_files := true):
+	var list := []
 	
 	var dir = Directory.new()
 	dir.open(path)
 	dir.list_dir_begin(true)
 	
 	var entry = dir.get_next()
-	while entry != "":
-		if for_files == dir.dir_exists(str(path, "/", entry)):
+	while not entry.empty():
+		if for_files == dir.current_is_dir():
 			entry = dir.get_next()
 			continue
 		
@@ -108,9 +105,6 @@ func list_directory(path, for_files = true):
 		entry = dir.get_next()
 	
 	return list
-
-func get_theme_path(theme: String) -> String:
-	return hedgewars_user_path.plus_file("Data/Themes").plus_file(theme)
 
 func get_color(rgb):
 	var result = []
@@ -146,17 +140,29 @@ func refresh_themes():
 	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
 		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
 	
-	for theme_dir in Util.list_directory(Util.hedgewars_user_path + "/Data/Themes", false):#TODO: handle invalid user path
+	for theme_dir in Util.list_directory(Util.get_themes_directory(), false): # TODO: handle invalid user path
 		var v = theme_dir.split("_v")
 		
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		main.get_node("ThemeAlign/ThemesList").add_child(button)
 		button.set_meta("theme", theme_dir)
 		button.theme_name.text = v[0]
-		button.theme_icon.texture = Util.load_texture(str(Util.hedgewars_user_path, "/Data/Themes/", theme_dir, "/", "icon@2x.png"))
+		button.theme_icon.texture = Util.load_texture(Util.get_themes_directory().plus_file(theme_dir).plus_file("icon@2x.png"))
 		if v.size() == 2:
 			button.theme_version.text = str("v", int(v[1]))
 		
 		button.connect("pressed", main, "theme_selected", [button])
 	
 	main.select_theme_button()
+
+func get_themes_directory() -> String:
+	return hedgewars_user_path.plus_file("Data/Themes")
+
+func get_game_music_directory() -> String:
+	return hedgewars_path.plus_file("Data/Music")
+
+func get_user_music_directory() -> String:
+	return hedgewars_user_path.plus_file("Data/Music")
+
+func get_theme_path(theme: String) -> String:
+	return get_themes_directory().plus_file(theme)

@@ -307,7 +307,7 @@ func save_theme():
 			new_name += str("_v", theme_version)
 		
 		var renamer = Directory.new()
-		renamer.rename(str(Util.hedgewars_user_path, "/Data/Themes/", theme_name), str(Util.hedgewars_user_path, "/Data/Themes/", new_name))
+		renamer.rename(Util.get_themes_directory().plus_file(theme_name), Util.get_themes_directory().plus_file(new_name))
 		theme_name = new_name
 		
 		saved_version = theme_version
@@ -316,7 +316,7 @@ func save_theme():
 	emit_signal("output_updated", theme_output != stored_output)
 
 func get_theme_path() -> String:
-	return Util.hedgewars_user_path.plus_file("Data/Themes").plus_file(theme_name)
+	return Util.get_themes_directory().plus_file(theme_name)
 
 func refresh_oputput(emit_changed = true):
 	theme_output = PoolStringArray()

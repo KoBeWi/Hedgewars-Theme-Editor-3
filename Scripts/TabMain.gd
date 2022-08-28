@@ -146,7 +146,7 @@ func open_theme_directory():
 
 func new_theme():
 	var name_edit := $Dialogs/NewThemeDialog/LineEdit as LineEdit
-	var theme_path := str(Util.hedgewars_user_path, "/Data/Themes/", name_edit.text)
+	var theme_path := Util.get_themes_directory().plus_file(name_edit.text)
 	var dir := Directory.new()
 	
 	var err := dir.make_dir(theme_path)

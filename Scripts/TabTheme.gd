@@ -24,7 +24,7 @@ func _ready():
 	$FallbackMusic/List.add_separator()
 	$FallbackSDMusic/List.add_separator()
 	
-	for music in Util.list_directory(music_dir()):
+	for music in Util.list_directory(Util.get_game_music_directory()):
 		if music.get_extension() == "ogg":
 			$Music/List.add_item(music.get_basename())
 			$SDMusic/List.add_item(music.get_basename())
@@ -34,7 +34,7 @@ func _ready():
 	$Music/List.add_separator()
 	$SDMusic/List.add_separator()
 	
-	for music in Util.list_directory(user_music_dir()):#TODO:refresh on directory change
+	for music in Util.list_directory(Util.get_user_music_directory()): # TODO:refresh on directory change
 		if music.get_extension() == "ogg":
 			$Music/List.add_item(music.get_basename())
 			$SDMusic/List.add_item(music.get_basename())
@@ -171,9 +171,9 @@ func play_music(player): #TODO: cache music on change, also handle change when p
 	current_player = player
 	
 	var ogg_file = File.new()
-	var file = str(music_dir(), player.get_item_text(player.selected), ".ogg")
+	var file := Util.get_game_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
 	if not ogg_file.file_exists(file):
-		file = str(user_music_dir(), player.get_item_text(player.selected), ".ogg")
+		file = Util.get_user_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
 	if not ogg_file.file_exists(file):
 		return
 	
@@ -189,12 +189,6 @@ func play_music(player): #TODO: cache music on change, also handle change when p
 func stop_music():
 	$MusicPlayer.stop()
 	player_paused = false
-
-func music_dir():
-	return str(Util.hedgewars_path, "/Data/Music/")
-
-func user_music_dir():
-	return str(Util.hedgewars_user_path, "/Data/Music/")
 
 func synchronize_water_alpha(new_color, twin):
 	twin.color.a = new_color.a
