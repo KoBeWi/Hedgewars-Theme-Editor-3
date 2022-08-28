@@ -768,7 +768,7 @@ unique_name_in_owner = true
 margin_left = 522.0
 margin_right = 596.0
 margin_bottom = 39.0
-hint_tooltip = "Number of frames in BlueWater.png. The frames in this image should be stacked vertically. The height of this image must be divisible by number of frames"
+hint_tooltip = "Changes the distance between rope pieces. Use together with RopeNode.png in Customization tab."
 max_value = 65536.0
 
 [node name="FlagsHeader" type="Label" parent="."]
