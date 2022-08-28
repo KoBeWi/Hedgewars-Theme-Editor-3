@@ -11,9 +11,9 @@ var images := -1
 
 func _ready():
 	$Container/GeneralInfo.text = \"\"
-	DirectoryScanner.connect(\"files_created\", self, \"files_changed\")
-	DirectoryScanner.connect(\"files_modified\", self, \"files_changed\")
-	DirectoryScanner.connect(\"files_deleted\", self, \"files_changed\")
+	Utils.dir_watcher.connect(\"files_created\", self, \"files_changed\")
+	Utils.dir_watcher.connect(\"files_modified\", self, \"files_changed\")
+	Utils.dir_watcher.connect(\"files_deleted\", self, \"files_changed\")
 
 func add_info(info: String):
 	$Container/GeneralInfo.text += tr(info) + \"\\n\"
@@ -48,7 +48,7 @@ func get_image(i) -> Control:
 
 func update_image(idx: int):
 	var image_container := get_image(idx)
-	var tex := Utils.load_texture(HWTheme.get_theme_path().plus_file(image_container.get_meta(\"image_name\")))
+	var tex := Utils.load_texture(HWTheme.get_theme_path().plus_file(image_container.get_meta(\"image_name\")), true)
 	
 	if tex:
 		image_container.get_node(\"Image\").texture = tex
@@ -60,10 +60,10 @@ func update_image(idx: int):
 func files_changed(file_list: Array):
 	for file in file_list:
 		var file_name: String = file.get_file()
-		
 		for idx in images + 1:
 			if get_image(idx).get_meta(\"image_name\") == file_name:
 				update_image(idx)
+				break
 "
 
 [node name="CustomizationPanel" type="PanelContainer"]

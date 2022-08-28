@@ -53,7 +53,7 @@ scroll_horizontal_enabled = false
 
 [node name="Container" parent="ThemeEditor/Theme" instance=ExtResource( 3 )]
 margin_right = 1008.0
-margin_bottom = 2001.0
+margin_bottom = 2090.0
 
 [node name="Customization" type="ScrollContainer" parent="ThemeEditor"]
 visible = false

@@ -143,7 +143,7 @@ func load_defaults():
 
 func load_theme(_theme_name, version):
 	if theme_name:
-		DirectoryScanner.remove_scan_directory(get_theme_path())
+		Utils.dir_watcher.remove_scan_directory(get_theme_path())
 		Utils.texture_cache.clear()
 	
 	load_defaults()
@@ -151,7 +151,7 @@ func load_theme(_theme_name, version):
 	theme_version = version
 	saved_version = version
 	is_loading = true
-	DirectoryScanner.add_scan_directory(get_theme_path())
+	Utils.dir_watcher.add_scan_directory(get_theme_path())
 	
 	var lines = []
 	var cfg_file = File.new()

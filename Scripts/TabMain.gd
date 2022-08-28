@@ -9,14 +9,13 @@ var selected_theme: String
 func _ready():
 	get_parent().name = tr("Main")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
-	get_viewport().connect("size_changed", self, "update_columns")
 	Utils.main = self
 	
 	$Save/Button.connect("pressed", HWTheme, "save_theme")
 	$GamePath/Button.connect("pressed", $Dialogs/GameDialog, "popup_centered")
 	$UserPath/Button.connect("pressed", $Dialogs/UserDialog, "popup_centered")
-	$Dialogs/GameDialog.connect("confirmed", self, "update_game_path")
-	$Dialogs/UserDialog.connect("confirmed", self, "update_user_path")
+	$Dialogs/GameDialog.connect("dir_selected", self, "set_game_path")
+	$Dialogs/UserDialog.connect("dir_selected", self, "set_user_path")
 	$LanguageContainer/LanguageList.connect("item_selected", self, "change_language")
 	$PackContainer/PackThemes.connect("pressed", self, "pack_start")
 	$PackContainer/CreatePack.connect("pressed", self, "pack_accept")
@@ -48,7 +47,6 @@ func _ready():
 	
 	TranslationServer.set_locale(Utils.preferred_language)
 	$LanguageContainer/LanguageList.selected = selected_language
-	update_columns()
 
 func theme_selected(button: Button):
 	if not pack_mode:
@@ -115,20 +113,17 @@ func on_theme_loaded():
 	$Save.visible = true
 	$Save/Version.value = HWTheme.theme_version
 
-func update_game_path():
-	Utils.hedgewars_path = $Dialogs/GameDialog.current_dir
+func set_game_path(path: String):
+	Utils.hedgewars_path = path
 	$GamePath/Label.text = Utils.hedgewars_path
 	Utils.save_settings()
 
-func update_user_path():
-	Utils.hedgewars_user_path = $Dialogs/UserDialog.current_dir
+func set_user_path(path: String):
+	Utils.hedgewars_user_path = path
 	$UserPath/Label.text = Utils.hedgewars_user_path
 	Utils.save_settings()
 
-func update_columns():
-	$ThemeAlign/ThemesList.columns = max(floor(get_viewport_rect().size.x / 128) - 1, 1)
-
-func change_language(item):#TODO: some warning? it probably discards changes
+func change_language(item): # TODO: some warning? it probably discards changes
 	Utils.preferred_language = language_list[item]
 	Utils.save_settings()
 	get_tree().reload_current_scene()

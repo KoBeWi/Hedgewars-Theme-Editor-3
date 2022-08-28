@@ -1,5 +1,8 @@
 extends Node
 
+var dir_watcher: DirectoryWatcher
+var texture_cache: Dictionary
+
 var preferred_language: String
 var hedgewars_path: String
 var hedgewars_user_path: String
@@ -28,29 +31,34 @@ func _ready():
 	else:
 		preferred_language = OS.get_locale()
 	
-	if !hedgewars_path:
-		var path
-		var test_directory = Directory.new()
+	if hedgewars_path.empty():
+		var path: String
+		var test_directory := Directory.new()
 		
 		match OS.get_name():
 			"Windows":
 				for dir in Utils.list_directory("C:/Program Files (x86)", false):
 					if dir.begins_with("Hedgewars"):
-						path = "C:/Program Files (x86)/" + dir
+						path = "C:/Program Files (x86)".plus_file(dir)
 						break
 				
-				if !path: for dir in Utils.list_directory("C:/Program Files", false):
-					if dir.begins_with("Hedgewars"):
-						path = "C:/Program Files/" + dir
-						break
+				if path.empty():
+					for dir in Utils.list_directory("C:/Program Files", false):
+						if dir.begins_with("Hedgewars"):
+							path = "C:/Program Files".plus_file(dir)
+							break
 			
 			"X11":
-				if test_directory.dir_exists("/usr/share/hedgewars"): path = "/usr/share/hedgewars"
-				else: path = "/usr/share/games/hedgewars"
+				if test_directory.dir_exists("/usr/share/hedgewars"):
+					path = "/usr/share/hedgewars"
+				else:
+					path = "/usr/share/games/hedgewars"
 			
 			"OSX": #TODO: really?
-				if test_directory.dir_exists("/usr/share/hedgewars"): path = "/usr/share/hedgewars"
-				else: path = "/usr/share/games/hedgewars"
+				if test_directory.dir_exists("/usr/share/hedgewars"):
+					path = "/usr/share/hedgewars"
+				else:
+					path = "/usr/share/games/hedgewars"
 		
 		hedgewars_path = path
 	
@@ -71,11 +79,14 @@ func _ready():
 	
 	if package_path.empty():
 		package_path = ProjectSettings.globalize_path("res://").plus_file("PackedThemes")
+	
+	dir_watcher = DirectoryWatcher.new()
+	add_child(dir_watcher)
+	dir_watcher.add_scan_directory(Utils.get_themes_directory())
+	dir_watcher.add_scan_directory(Utils.get_user_music_directory())
 
-var texture_cache: Dictionary
-
-func load_texture(file: String) -> Texture: ## TODO: reload if image changes
-	if not file in texture_cache:
+func load_texture(file: String, ignore_cache := false) -> Texture: ## TODO: reload if image changes
+	if not file in texture_cache or ignore_cache:
 		if not File.new().file_exists(file):
 			return null
 		
