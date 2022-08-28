@@ -9,21 +9,39 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Poedit 3.1.1\n"
 
-msgid "Left mouse - visible rectangle (green)"
-msgstr "Lewy przycisk myszy - odkryty prostokąt (zielony)"
+msgid "Visible"
+msgstr "Widoczne"
 
-msgid "Right mouse - buried rectangle (red)"
-msgstr "Prawy przycisk myszy - zakryty prostokąt (czerwony)"
+msgid "Buried"
+msgstr "Zakopane"
 
-msgid "Middle mouse - move around"
-msgstr "Środkowy przycisk myszki - poruszanie się"
+msgid "Anchor"
+msgstr "Kotwica"
 
-msgid "Middle click - remove rectangle (yellow)"
-msgstr "Środkowe kliknięcie - usuń prostokąt (żółty)"
+msgid "Overlay"
+msgstr "Nakładka"
+
+msgid "Apply changes"
+msgstr "Zatwierdź"
+
+msgid "Help"
+msgstr "Pomoc"
+
+msgid "Revert"
+msgstr "Odrzuć"
+
+msgid "LMB - draw rectangle"
+msgstr "LPM - rysuj prostokąt"
+
+msgid "RMB - delete rectangle"
+msgstr "PPM - usuń prostokąt"
+
+msgid "MMB - pan view"
+msgstr "ŚPM - przesuń widok"
 
 msgid "Mouse wheel - zoom in/zoom out"
 msgstr "Kółko myszki - przybliż/oddal"
@@ -36,14 +54,11 @@ msgstr ""
 msgid "This MUSTN'T happen."
 msgstr "To NIE MOŻE się stać."
 
-msgid "Apply changes"
-msgstr "Zatwierdź"
+msgid "Discard changes?"
+msgstr "Odrzucić zmiany?"
 
-msgid "Help"
-msgstr "Pomoc"
-
-msgid "Revert"
-msgstr "Odrzuć"
+msgid "Select image"
+msgstr "Wybierz obrazek"
 
 msgid "If a color is disabled, related key will not appear in theme.cfg"
 msgstr ""
@@ -88,6 +103,9 @@ msgid ""
 msgstr ""
 "Lista obrazków, które możesz dostosować w swoim motywie. Musisz to zrobić "
 "ręcznie, w preferowanym edytorze grafiki."
+
+msgid "Hedgewars Theme Editor 3"
+msgstr "Edytor Motywów Hedgewars 3"
 
 msgid "Editor settings"
 msgstr "Ustawienia edytora"
@@ -137,11 +155,29 @@ msgstr "Użyj 0, by wyłączyć wersjonowanie"
 msgid "Enable autosave"
 msgstr "Włącz autozapis"
 
+msgid "Open theme directory"
+msgstr "Otwórz folder motywu"
+
 msgid "Select theme"
 msgstr "Wybierz motyw"
 
+msgid "New theme"
+msgstr "Nowy motyw"
+
 msgid "Select themes to pack"
 msgstr "Wybierz motywy do spakowania"
+
+msgid "Enter name"
+msgstr "Wprowadź nazwę"
+
+msgid "Auto-Refresh on theme change."
+msgstr "Autoodświeżanie przy zmianie motywu."
+
+msgid "Reset Preview"
+msgstr "Zresetuj podgląd"
+
+msgid "Click the preview area to lock mouse and control camera."
+msgstr "Kliknij obszar podglądu, by zablokować myszkę i kontrolować kamerę."
 
 msgid "Theme name"
 msgstr "Nazwa motywu"
@@ -167,9 +203,16 @@ msgstr "Muzyka grająca, gdy brakuje pliku domyślnej muzyki"
 msgid "Fallback Sudden Death Music"
 msgstr "Awaryjna muzyka Nagłej Śmierci"
 
+msgid "Music that plays in Sudden Death if default music file is missing"
+msgstr ""
+"Muzyka grająca podczas Nagłej Śmierci, gdy brakuje pliku domyślnej muzyki"
+
 msgid "If a property is disabled, related key will not appear in theme.cfg"
 msgstr ""
 "Jeśli właściwość jest wyłączona, odpowiedni klucz nie pojawi się w theme.cfg"
+
+msgid "Colors"
+msgstr "Kolory"
 
 msgid "Clouds floating atop the map before Sudden Death"
 msgstr "Chmury na szczycie mapy przed Nagłą Śmiercią"
@@ -183,13 +226,13 @@ msgstr "Ilość"
 msgid "Number of clouds to create"
 msgstr "Liczba chmur, które się tworzą"
 
-msgid "Clouds floating atop the map in Sudden Death"
+msgid "Clouds floating atop the map during Sudden Death"
 msgstr "Chmury na szczycie mapy podczas Nagłej Śmierci"
 
 msgid "Sudden Death Clouds"
 msgstr "Chmury Nagłej Śmierci"
 
-msgid "Flakes appearing in background before Sudden Death"
+msgid "Flakes appearing in the background before Sudden Death"
 msgstr "Płatki widoczne w tle przed Nagłą Śmiercią"
 
 msgid "Flakes"
@@ -227,16 +270,15 @@ msgstr ""
 "Pionowa prędkość płatków. Wartość dodatnia sprawi, że płatki będą spadać, a "
 "ujemna, że będą się unosić"
 
-msgid "Flakes appearing in background in Sudden Death"
+msgid "Flakes appearing in the background during Sudden Death"
 msgstr "Płatki widoczne w tle podczas Nagłej Śmierci"
 
 msgid "Sudden Death Flakes"
 msgstr "Płatki Nagłej Śmierci"
 
 msgid ""
-"Specified a custom water animation and flowing speed before Sudden Death"
-msgstr ""
-"Określona wartość szybkości płynięcia i animacji wody przed Nagłą Śmiercią"
+"Specifies a custom water animation and flowing speed before Sudden Death"
+msgstr "Określa własną szybkość animacji i płynięcia wody przed Nagłą Śmiercią"
 
 msgid "Water Animation"
 msgstr "Animacja wody"
@@ -266,15 +308,28 @@ msgstr ""
 "Jak szybko woda porusza się w prawo. Większe wartości oznaczają szybszy "
 "ruch. Jeśli ujemne, woda porusza się w lewo. Użyj 0, by zatrzymać ruch"
 
-msgid "Specified a custom water animation and flowing speed in Sudden Death"
+msgid "Specifies a custom water animation and flowing speed in Sudden Death"
 msgstr ""
-"Określona wartość szybkości płynięcia i animacji wody podczas Nagłej Śmierci"
+"Określa własną szybkość animacji i płynięcia wody podczas Nagłej Śmierci"
 
 msgid "Sudden Death Water Animation"
 msgstr "Animacja wody Nagłej Śmierci"
 
 msgid "Miscellaneous"
 msgstr "Różne"
+
+msgid "Rope Step"
+msgstr "Krok liny"
+
+msgid ""
+"Changes the distance between rope pieces. Use together with RopeNode.png in "
+"Customization tab."
+msgstr ""
+"Zmienia dystans pomiędzy kawałkami liny. Użyj razem z RopeNode.png w "
+"zakładce Dostosowanie."
+
+msgid "Flags"
+msgstr "Flagi"
 
 msgid ""
 "If enabled, the theme will be hidden from the in-game theme selection menu"
@@ -305,9 +360,10 @@ msgstr "Spłaszcz chmury?"
 
 msgid ""
 "If enabled, when flakes collide with terrain, they become a part of the "
-"landscape"
+"landscape. Use Snow.png to change the appearance of the snow"
 msgstr ""
-"Jeśli włączone, kiedy płatki kolidują z terenem, stają się częścią krajobrazu"
+"Jeśli włączone, kiedy płatki kolidują z terenem, stają się częścią "
+"krajobrazu. Użyj Snow.png, żeby zmienić wygląd śniegu"
 
 msgid "Snow?"
 msgstr "Śnieg?"
@@ -322,8 +378,8 @@ msgstr ""
 msgid "Ice?"
 msgstr "Lód?"
 
-msgid "Colors"
-msgstr "Kolory"
+msgid "Select overlay image"
+msgstr "Wybierz obrazek nakładki"
 
 msgid "Customization"
 msgstr "Dostosowanie"
@@ -539,6 +595,12 @@ msgstr "Kula błota"
 msgid "Used as a replacement for mudball weapon"
 msgstr "Użyte jako zamiennik dla broni kula błota"
 
+msgid "Rope"
+msgstr "Lina"
+
+msgid "Replaces piece of rope. Use together with Rope Step in Theme tab."
+msgstr "Podmienia kawałek liny. Użyj razem z Krokiem Liny w zakładce Motyw."
+
 msgid "Main"
 msgstr "Ekran główny"
 
@@ -551,9 +613,6 @@ msgstr "Motyw"
 msgid "/none/"
 msgstr "/brak/"
 
-msgid "Hedgewars Theme Editor 3"
-msgstr "Edytor Motywów Hedgewars 3"
-
 msgid "Fetch template"
 msgstr "Weź szablon"
 
@@ -565,6 +624,21 @@ msgstr "Stawiaj na wodzie"
 
 msgid "Edit this object"
 msgstr "Edytuj ten obiekt"
+
+msgid "overlay"
+msgstr "nakładka"
+
+#~ msgid "Left mouse - visible rectangle (green)"
+#~ msgstr "Lewy przycisk myszy - odkryty prostokąt (zielony)"
+
+#~ msgid "Right mouse - buried rectangle (red)"
+#~ msgstr "Prawy przycisk myszy - zakryty prostokąt (czerwony)"
+
+#~ msgid "Middle mouse - move around"
+#~ msgstr "Środkowy przycisk myszki - poruszanie się"
+
+#~ msgid "Middle click - remove rectangle (yellow)"
+#~ msgstr "Środkowe kliknięcie - usuń prostokąt (żółty)"
 
 #~ msgid ""
 #~ "How fast the flakes rotate. 0 is no rotation, and all flakes spawn "

@@ -2,5 +2,4 @@
 .builds/
 .vscode/
 PackedThemes/
-*.pot
 *.mo

@@ -1,5 +1,5 @@
-ROOT_DIRECTORY = ".."
-OUTPUT_PATH = "./en.pot"
+ROOT_DIRECTORY = "."
+OUTPUT_PATH = "./Translation/en.pot"
 EXCLUDE_DIRECTORIES = [".import", ".git"]
 EXCLUDE_STRINGS = ["", "...", "x1", "Image name", "Group name", "Multiline image info", "Multiline general info", ">>>", "<<<"]
 FILE_HEADER = '
@@ -48,7 +48,7 @@ end
 
 output = FILE_HEADER
 
-strings.uniq.reject{|string| EXCLUDE_STRINGS.include?(string)}.each do |string|
+strings.uniq.reject{|string| EXCLUDE_STRINGS.include?(string) or string.start_with?("v") && string.include?(".")}.each do |string|
     output.concat('
 msgid "' + string + '"
 msgstr ""

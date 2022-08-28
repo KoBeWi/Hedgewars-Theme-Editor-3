@@ -1,0 +1,558 @@
+
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Visible"
+msgstr ""
+
+msgid "Buried"
+msgstr ""
+
+msgid "Anchor"
+msgstr ""
+
+msgid "Overlay"
+msgstr ""
+
+msgid "Apply changes"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Revert"
+msgstr ""
+
+msgid "LMB - draw rectangle"
+msgstr ""
+
+msgid "RMB - delete rectangle"
+msgstr ""
+
+msgid "MMB - pan view"
+msgstr ""
+
+msgid "Mouse wheel - zoom in/zoom out"
+msgstr ""
+
+msgid "Magenta rectangles are intersecting visible and buried rectangles."
+msgstr ""
+
+msgid "This MUSTN'T happen."
+msgstr ""
+
+msgid "Discard changes?"
+msgstr ""
+
+msgid "Select image"
+msgstr ""
+
+msgid "If a color is disabled, related key will not appear in theme.cfg"
+msgstr ""
+
+msgid "Sky color"
+msgstr ""
+
+msgid "Border/Mudgun color"
+msgstr ""
+
+msgid "Upper water color"
+msgstr ""
+
+msgid "Lower water color"
+msgstr ""
+
+msgid "Sudden Death upper water color"
+msgstr ""
+
+msgid "Sudden Death lower water color"
+msgstr ""
+
+msgid "Sudden Death lower sky/horizon tint"
+msgstr ""
+
+msgid "Sprays"
+msgstr ""
+
+msgid "Unused images"
+msgstr ""
+
+msgid "Objects"
+msgstr ""
+
+msgid "Customized theme images"
+msgstr ""
+
+msgid "List of images you can customize in your theme. You have to do so manually in preferred image-editing program."
+msgstr ""
+
+msgid "Hedgewars Theme Editor 3"
+msgstr ""
+
+msgid "Editor settings"
+msgstr ""
+
+msgid "Game path"
+msgstr ""
+
+msgid "User path"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Maximize on start"
+msgstr ""
+
+msgid "Preferred language"
+msgstr ""
+
+msgid "Themes"
+msgstr ""
+
+msgid "Pack themes"
+msgstr ""
+
+msgid "Create pack"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Enter package name"
+msgstr ""
+
+msgid "Include custom music"
+msgstr ""
+
+msgid "Save theme"
+msgstr ""
+
+msgid "Version"
+msgstr ""
+
+msgid "Use 0 to disable versioning"
+msgstr ""
+
+msgid "Enable autosave"
+msgstr ""
+
+msgid "Open theme directory"
+msgstr ""
+
+msgid "Select theme"
+msgstr ""
+
+msgid "New theme"
+msgstr ""
+
+msgid "Select themes to pack"
+msgstr ""
+
+msgid "Enter name"
+msgstr ""
+
+msgid "Auto-Refresh on theme change."
+msgstr ""
+
+msgid "Reset Preview"
+msgstr ""
+
+msgid "Click the preview area to lock mouse and control camera."
+msgstr ""
+
+msgid "Theme name"
+msgstr ""
+
+msgid "Music"
+msgstr ""
+
+msgid "Music that plays before Sudden Death"
+msgstr ""
+
+msgid "Sudden Death Music"
+msgstr ""
+
+msgid "Music that plays in Sudden Death"
+msgstr ""
+
+msgid "Fallback Music"
+msgstr ""
+
+msgid "Music that plays if default music file is missing"
+msgstr ""
+
+msgid "Fallback Sudden Death Music"
+msgstr ""
+
+msgid "Music that plays in Sudden Death if default music file is missing"
+msgstr ""
+
+msgid "If a property is disabled, related key will not appear in theme.cfg"
+msgstr ""
+
+msgid "Colors"
+msgstr ""
+
+msgid "Clouds floating atop the map before Sudden Death"
+msgstr ""
+
+msgid "Clouds"
+msgstr ""
+
+msgid "Amount"
+msgstr ""
+
+msgid "Number of clouds to create"
+msgstr ""
+
+msgid "Clouds floating atop the map during Sudden Death"
+msgstr ""
+
+msgid "Sudden Death Clouds"
+msgstr ""
+
+msgid "Flakes appearing in the background before Sudden Death"
+msgstr ""
+
+msgid "Flakes"
+msgstr ""
+
+msgid "Amount of visible flakes"
+msgstr ""
+
+msgid "Frames"
+msgstr ""
+
+msgid "Number of frames used in  Flake.png"
+msgstr ""
+
+msgid "Frame duration"
+msgstr ""
+
+msgid "Rotation speed"
+msgstr ""
+
+msgid "How fast the flakes rotate. With any value other than 0, flakes will rotate and also spawn with a random rotation"
+msgstr ""
+
+msgid "Falling speed"
+msgstr ""
+
+msgid "Vertical speed of the flakes. A positive value makes the flakes fall, while a negative value makes them rise"
+msgstr ""
+
+msgid "Flakes appearing in the background during Sudden Death"
+msgstr ""
+
+msgid "Sudden Death Flakes"
+msgstr ""
+
+msgid "Specifies a custom water animation and flowing speed before Sudden Death"
+msgstr ""
+
+msgid "Water Animation"
+msgstr ""
+
+msgid "Number of frames in BlueWater.png. The frames in this image should be stacked vertically. The height of this image must be divisible by number of frames"
+msgstr ""
+
+msgid "Duration of a single frame. Must be greater than 0 if frames are greater than 1, otherwise it is ignored"
+msgstr ""
+
+msgid "Flowing speed"
+msgstr ""
+
+msgid "How fast the water moves to the right. Higher values means faster movement. If negative, it moves to the left. Use 0 to stop movement"
+msgstr ""
+
+msgid "Specifies a custom water animation and flowing speed in Sudden Death"
+msgstr ""
+
+msgid "Sudden Death Water Animation"
+msgstr ""
+
+msgid "Miscellaneous"
+msgstr ""
+
+msgid "Rope Step"
+msgstr ""
+
+msgid "Changes the distance between rope pieces. Use together with RopeNode.png in Customization tab."
+msgstr ""
+
+msgid "Flags"
+msgstr ""
+
+msgid "If enabled, the theme will be hidden from the in-game theme selection menu"
+msgstr ""
+
+msgid "Hidden?"
+msgstr ""
+
+msgid "If enabled, all flakes have the same size and are on the same layer: In front of the sky and horizont and behind the terrain"
+msgstr ""
+
+msgid "Flatten flakes?"
+msgstr ""
+
+msgid "If enabled, all clouds have the same size and are on the same layer: background"
+msgstr ""
+
+msgid "Flatten clouds?"
+msgstr ""
+
+msgid "If enabled, when flakes collide with terrain, they become a part of the landscape. Use Snow.png to change the appearance of the snow"
+msgstr ""
+
+msgid "Snow?"
+msgstr ""
+
+msgid "If enabled, girders become slippery like ice. This also applies to placed girders"
+msgstr ""
+
+msgid "Ice?"
+msgstr ""
+
+msgid "Select overlay image"
+msgstr ""
+
+msgid "Customization"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Themes without icon don't appear on in-game theme list"
+msgstr ""
+
+msgid "Size: %s"
+msgstr ""
+
+msgid "Land texture"
+msgstr ""
+
+msgid "Texture drawn as map's terrain"
+msgstr ""
+
+msgid "This image is required"
+msgstr ""
+
+msgid "Any size"
+msgstr ""
+
+msgid "Land back texture"
+msgstr ""
+
+msgid "Visible when terrain is destroyed"
+msgstr ""
+
+msgid "Border"
+msgstr ""
+
+msgid "Painted arround terrain"
+msgstr ""
+
+msgid "Two halves, top and bottom %s pix each"
+msgstr ""
+
+msgid "Girder"
+msgstr ""
+
+msgid "Land bridges"
+msgstr ""
+
+msgid "If not provided, a default image is used"
+msgstr ""
+
+msgid "Chunk"
+msgstr ""
+
+msgid "Particles that fall when land is destroyed"
+msgstr ""
+
+msgid "If not provided, no particles will appear"
+msgstr ""
+
+msgid "Each particle is %s square"
+msgstr ""
+
+msgid "Dust"
+msgstr ""
+
+msgid "Particles that fall when something hits ground or mudball flies etc."
+msgstr ""
+
+msgid "Water"
+msgstr ""
+
+msgid "Texture of water waves"
+msgstr ""
+
+msgid "SD version is used during Sudden Death"
+msgstr ""
+
+msgid "%s is preferred"
+msgstr ""
+
+msgid "Splash and droplets"
+msgstr ""
+
+msgid "Used when something hits water"
+msgstr ""
+
+msgid "Size: %s frames %s pix each"
+msgstr ""
+
+msgid "Lined vertically in two columns"
+msgstr ""
+
+msgid "Size: %s images %s pix each"
+msgstr ""
+
+msgid "Lined vertically"
+msgstr ""
+
+msgid "Texture for clouds that appear on top of the map"
+msgstr ""
+
+msgid "Size: %s for each cloud"
+msgstr ""
+
+msgid "Any number"
+msgstr ""
+
+msgid "Texture for flakes that float in background"
+msgstr ""
+
+msgid "Size: %s for each flake"
+msgstr ""
+
+msgid "Game will crash if flakes are enabled and this image is missing"
+msgstr ""
+
+msgid "Mirrored clouds/flakes"
+msgstr ""
+
+msgid "Will replace their equivalents when wind is blowing left"
+msgstr ""
+
+msgid "If not provided, flakes/clouds will always appear in one direction"
+msgstr ""
+
+msgid "Snow"
+msgstr ""
+
+msgid "Texture for snow that accumulates on map when snow is enabled"
+msgstr ""
+
+msgid "Must be at least 2 pixels wide to appear"
+msgstr ""
+
+msgid "Height lower than 2 pixels will crash the game"
+msgstr ""
+
+msgid "Sky"
+msgstr ""
+
+msgid "Map's background texture"
+msgstr ""
+
+msgid "If not provided, no sky will appear"
+msgstr ""
+
+msgid "Standard height is 512"
+msgstr ""
+
+msgid "Left/right sky"
+msgstr ""
+
+msgid "If SkyL exists, Sky will be centered and SkyL will be looped on both sides"
+msgstr ""
+
+msgid "If both SkyL and SkyR exist, Sky will be centered, SkyL will be looped on left side and SkyR on right side"
+msgstr ""
+
+msgid "Height preferrably the same as %s"
+msgstr ""
+
+msgid "Horizont"
+msgstr ""
+
+msgid "Background layer between sky and terrain"
+msgstr ""
+
+msgid "If not provided, no horizont will appear"
+msgstr ""
+
+msgid "Left/right horizont"
+msgstr ""
+
+msgid "Same as SkyL/SkyR, but for horizont"
+msgstr ""
+
+msgid "Girder tool"
+msgstr ""
+
+msgid "Used as a replacement for girder tool"
+msgstr ""
+
+msgid "Any shape is allowed and will have proper collisions"
+msgstr ""
+
+msgid "Use template if you want proper layout"
+msgstr ""
+
+msgid "%s grid of images"
+msgstr ""
+
+msgid "Each image is %s pix"
+msgstr ""
+
+msgid "Rubber tool"
+msgstr ""
+
+msgid "Used as a replacement for rubber tool"
+msgstr ""
+
+msgid "Mudball weapon"
+msgstr ""
+
+msgid "Used as a replacement for mudball weapon"
+msgstr ""
+
+msgid "Rope"
+msgstr ""
+
+msgid "Replaces piece of rope. Use together with Rope Step in Theme tab."
+msgstr ""
+
+msgid "Main"
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Theme"
+msgstr ""
+
+msgid "/none/"
+msgstr ""
+
+msgid "Fetch template"
+msgstr ""
+
+msgid "Number per map"
+msgstr ""
+
+msgid "Placed on water"
+msgstr ""
+
+msgid "Edit this object"
+msgstr ""
+
+msgid "overlay"
+msgstr ""
