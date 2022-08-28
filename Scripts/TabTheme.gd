@@ -24,7 +24,7 @@ func _ready():
 	$FallbackMusic/List.add_separator()
 	$FallbackSDMusic/List.add_separator()
 	
-	for music in Util.list_directory(Util.get_game_music_directory()):
+	for music in Utils.list_directory(Utils.get_game_music_directory()):
 		if music.get_extension() == "ogg":
 			$Music/List.add_item(music.get_basename())
 			$SDMusic/List.add_item(music.get_basename())
@@ -34,7 +34,7 @@ func _ready():
 	$Music/List.add_separator()
 	$SDMusic/List.add_separator()
 	
-	for music in Util.list_directory(Util.get_user_music_directory()): # TODO:refresh on directory change
+	for music in Utils.list_directory(Utils.get_user_music_directory()): # TODO:refresh on directory change
 		if music.get_extension() == "ogg":
 			$Music/List.add_item(music.get_basename())
 			$SDMusic/List.add_item(music.get_basename())
@@ -92,14 +92,14 @@ func _ready():
 	$Ice.connect("toggled", HWTheme, "change_property", ["ice"])
 
 func on_theme_loaded():
-	$Header/Icon.texture = Util.load_texture(HWTheme.get_theme_path().plus_file("icon.png"))
-	$Header/Icon2x.texture = Util.load_texture(HWTheme.get_theme_path().plus_file("icon@2x.png"))
+	$Header/Icon.texture = Utils.load_texture(HWTheme.get_theme_path().plus_file("icon.png"))
+	$Header/Icon2x.texture = Utils.load_texture(HWTheme.get_theme_path().plus_file("icon@2x.png"))
 	$Header/Name.text = HWTheme.basename()
 	
-	Util.select_music($Music/List, HWTheme.music)
-	Util.select_music($SDMusic/List, HWTheme.sd_music)
-	Util.select_music($FallbackMusic/List, HWTheme.fallback_music)
-	Util.select_music($FallbackSDMusic/List, HWTheme.fallback_sd_music)
+	Utils.select_music($Music/List, HWTheme.music)
+	Utils.select_music($SDMusic/List, HWTheme.sd_music)
+	Utils.select_music($FallbackMusic/List, HWTheme.fallback_music)
+	Utils.select_music($FallbackSDMusic/List, HWTheme.fallback_sd_music)
 	
 	for i in $Colors.get_child_count():
 		var picker = $Colors.get_child(i)
@@ -171,9 +171,9 @@ func play_music(player): #TODO: cache music on change, also handle change when p
 	current_player = player
 	
 	var ogg_file = File.new()
-	var file := Util.get_game_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
+	var file := Utils.get_game_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
 	if not ogg_file.file_exists(file):
-		file = Util.get_user_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
+		file = Utils.get_user_music_directory().plus_file(player.get_item_text(player.selected) + ".ogg")
 	if not ogg_file.file_exists(file):
 		return
 	

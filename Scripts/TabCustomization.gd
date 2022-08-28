@@ -226,13 +226,13 @@ func move_item(from, to):
 	from.remove_item(item)
 	
 	if from == $ItemLists/Other/List and to == $ItemLists/Sprays/List:
-		Util.emit_signal("object_modified", "spray+", item_name)
+		Utils.emit_signal("object_modified", "spray+", item_name)
 	elif from == $ItemLists/Sprays/List and to == $ItemLists/Other/List:
-		Util.emit_signal("object_modified", "spray-", item_name)
+		Utils.emit_signal("object_modified", "spray-", item_name)
 	elif from == $ItemLists/Other/List and to == $ItemLists/Objects/List:
-		Util.emit_signal("object_modified", "object+", item_name)
+		Utils.emit_signal("object_modified", "object+", item_name)
 	elif from == $ItemLists/Objects/List and to == $ItemLists/Other/List:
-		Util.emit_signal("object_modified", "object-", item_name)
+		Utils.emit_signal("object_modified", "object-", item_name)
 
 func on_sprays_click(item):
 	$ItemLists/Objects/List.unselect_all()
@@ -274,36 +274,36 @@ func fetch_template(iname, customization, index):
 
 func get_template_path(iname):
 	match iname:
-		"icon.png": return Util.hedgewars_path + "/Data/Themes/Nature/icon.png"
-		"icon@2x.png": return Util.hedgewars_path + "/Data/Themes/Nature/icon@2x.png"
-		"LandTex.png": return Util.hedgewars_path + "/Data/Themes/Nature/LandTex.png"
-		"LandBackTex.png": return Util.hedgewars_path + "/Data/Themes/Nature/LandBackTex.png"
-		"Border.png": return Util.hedgewars_path + "/Data/Themes/Jungle/Border.png"
-		"Girder.png": return Util.hedgewars_path + "/Data/Graphics/Girder.png"
-		"Chunk.png": return Util.hedgewars_path + "/Data/Themes/EarthRise/Chunk.png"
-		"Dust.png": return Util.hedgewars_path + "/Data/Graphics/Dust.png"
-		"BlueWater.png": return Util.hedgewars_path + "/Data/Graphics/BlueWater.png"
-		"SDWater.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDWater.png"
-		"Splash.png": return Util.hedgewars_path + "/Data/Graphics/Splash.png"
-		"Droplet.png": return Util.hedgewars_path + "/Data/Graphics/Droplet.png"
-		"SDSplash.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDSplash.png"
-		"SDDroplet.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDDroplet.png"
-		"Clouds.png": return Util.hedgewars_path + "/Data/Graphics/Clouds.png"
-		"CloudsL.png": return Util.hedgewars_path + "/Data/Graphics/Clouds.png"#TODO: a proper template
-		"SDClouds.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDClouds.png"
-		"SDCloudsL.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDClouds.png"#TODO: a proper template
-		"Flake.png": return Util.hedgewars_path + "/Data/Themes/Snow/Flake.png"
-		"FlakeL.png": return Util.hedgewars_path + "/Data/Themes/Snow/Flake.png"#TODO: a proper template
-		"SDFlake.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDFlake.png"
-		"SDFlakeL.png": return Util.hedgewars_path + "/Data/Graphics/SuddenDeath/SDFlake.png"#TODO: a proper template
-		"Snow.png": return Util.hedgewars_path + "/Data/Graphics/Snow.png"
-		"Sky.png": return Util.hedgewars_path + "/Data/Themes/Castle/Sky.png"
-		"SkyL.png": return Util.hedgewars_path + "/Data/Themes/Castle/SkyL.png"
-		"SkyR.png": return Util.hedgewars_path + "/Data/Themes/Castle/SkyR.png"
-		"horizont.png": return Util.hedgewars_path + "/Data/Themes/Bath/horizont.png"
-		"horizontL.png": return Util.hedgewars_path + "/Data/Themes/Bath/horizontL.png"
-		"horizontR.png": return Util.hedgewars_path + "/Data/Themes/Bath/horizontR.png"
-		"amGirder.png": return Util.hedgewars_path + "/Data/Graphics/amGirder.png"
-		"amRubber.png": return Util.hedgewars_path + "/Data/Graphics/amRubber.png"
-		"Snowball.png": return Util.hedgewars_path + "/Data/Graphics/Snowball.png"
-		"amSnowball.png": return Util.hedgewars_path + "/Data/Graphics/Hedgehog/amSnowball.png"
+		"icon.png": return Utils.hedgewars_path + "/Data/Themes/Nature/icon.png"
+		"icon@2x.png": return Utils.hedgewars_path + "/Data/Themes/Nature/icon@2x.png"
+		"LandTex.png": return Utils.hedgewars_path + "/Data/Themes/Nature/LandTex.png"
+		"LandBackTex.png": return Utils.hedgewars_path + "/Data/Themes/Nature/LandBackTex.png"
+		"Border.png": return Utils.hedgewars_path + "/Data/Themes/Jungle/Border.png"
+		"Girder.png": return Utils.hedgewars_path + "/Data/Graphics/Girder.png"
+		"Chunk.png": return Utils.hedgewars_path + "/Data/Themes/EarthRise/Chunk.png"
+		"Dust.png": return Utils.hedgewars_path + "/Data/Graphics/Dust.png"
+		"BlueWater.png": return Utils.hedgewars_path + "/Data/Graphics/BlueWater.png"
+		"SDWater.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDWater.png"
+		"Splash.png": return Utils.hedgewars_path + "/Data/Graphics/Splash.png"
+		"Droplet.png": return Utils.hedgewars_path + "/Data/Graphics/Droplet.png"
+		"SDSplash.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDSplash.png"
+		"SDDroplet.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDDroplet.png"
+		"Clouds.png": return Utils.hedgewars_path + "/Data/Graphics/Clouds.png"
+		"CloudsL.png": return Utils.hedgewars_path + "/Data/Graphics/Clouds.png"#TODO: a proper template
+		"SDClouds.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDClouds.png"
+		"SDCloudsL.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDClouds.png"#TODO: a proper template
+		"Flake.png": return Utils.hedgewars_path + "/Data/Themes/Snow/Flake.png"
+		"FlakeL.png": return Utils.hedgewars_path + "/Data/Themes/Snow/Flake.png"#TODO: a proper template
+		"SDFlake.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDFlake.png"
+		"SDFlakeL.png": return Utils.hedgewars_path + "/Data/Graphics/SuddenDeath/SDFlake.png"#TODO: a proper template
+		"Snow.png": return Utils.hedgewars_path + "/Data/Graphics/Snow.png"
+		"Sky.png": return Utils.hedgewars_path + "/Data/Themes/Castle/Sky.png"
+		"SkyL.png": return Utils.hedgewars_path + "/Data/Themes/Castle/SkyL.png"
+		"SkyR.png": return Utils.hedgewars_path + "/Data/Themes/Castle/SkyR.png"
+		"horizont.png": return Utils.hedgewars_path + "/Data/Themes/Bath/horizont.png"
+		"horizontL.png": return Utils.hedgewars_path + "/Data/Themes/Bath/horizontL.png"
+		"horizontR.png": return Utils.hedgewars_path + "/Data/Themes/Bath/horizontR.png"
+		"amGirder.png": return Utils.hedgewars_path + "/Data/Graphics/amGirder.png"
+		"amRubber.png": return Utils.hedgewars_path + "/Data/Graphics/amRubber.png"
+		"Snowball.png": return Utils.hedgewars_path + "/Data/Graphics/Snowball.png"
+		"amSnowball.png": return Utils.hedgewars_path + "/Data/Graphics/Hedgehog/amSnowball.png"

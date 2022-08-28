@@ -14,7 +14,7 @@ func _ready() -> void:
 	$Arrow/Camera2D.limit_bottom = PREVIEW_SIZE.y
 	$SkyCanvas/SkyColor.color = HWTheme.sky
 	
-	var sky_texture := Util.load_texture(HWTheme.get_theme_path().plus_file("Sky.png"))
+	var sky_texture := Utils.load_texture(HWTheme.get_theme_path().plus_file("Sky.png"))
 	if sky_texture:
 		sky_texture.flags |= Texture.FLAG_REPEAT
 		$Sky.texture = sky_texture
@@ -22,9 +22,9 @@ func _ready() -> void:
 		$Sky.region_rect.size.y = sky_texture.get_height()
 		$Sky.position.y = PREVIEW_SIZE.y - sky_texture.get_height()
 	
-	var horizont_texture := Util.load_texture(HWTheme.get_theme_path().plus_file("horizont.png"))
-	var horizont_textureL := Util.load_texture(HWTheme.get_theme_path().plus_file("horizontL.png"))
-	var horizont_textureR := Util.load_texture(HWTheme.get_theme_path().plus_file("horizontR.png"))
+	var horizont_texture := Utils.load_texture(HWTheme.get_theme_path().plus_file("horizont.png"))
+	var horizont_textureL := Utils.load_texture(HWTheme.get_theme_path().plus_file("horizontL.png"))
+	var horizont_textureR := Utils.load_texture(HWTheme.get_theme_path().plus_file("horizontR.png"))
 	if horizont_texture:
 		horizont_texture.flags |= Texture.FLAG_REPEAT
 		$Horizont/Middle.texture = horizont_texture
@@ -43,16 +43,16 @@ func _ready() -> void:
 		$Horizont.rect_size.y = horizont_texture.get_height()
 		$Horizont.rect_position.y = PREVIEW_SIZE.y - horizont_texture.get_height()
 	
-	var cloud_texture := Util.load_texture(HWTheme.get_theme_path().plus_file("Clouds.png"))
+	var cloud_texture := Utils.load_texture(HWTheme.get_theme_path().plus_file("Clouds.png"))
 	if cloud_texture:
 		$Clouds.texture = cloud_texture
 		$Clouds.amount = HWTheme.clouds
 		$Clouds.position.y = PREVIEW_SIZE.y / 2
 		$Clouds.enable(PREVIEW_SIZE.x)
 	
-	var water_texture := Util.load_texture(HWTheme.get_theme_path().plus_file("BlueWater.png"))
+	var water_texture := Utils.load_texture(HWTheme.get_theme_path().plus_file("BlueWater.png"))
 	if not water_texture:
-		water_texture = Util.load_texture(Util.hedgewars_path.plus_file("Graphics/BlueWater.png"))
+		water_texture = Utils.load_texture(Utils.hedgewars_path.plus_file("Graphics/BlueWater.png"))
 	water_texture.flags |= Texture.FLAG_REPEAT
 	
 	$WaterGradient.material.set_shader_param("top_color", HWTheme.water_top)

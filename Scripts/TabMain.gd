@@ -10,7 +10,7 @@ func _ready():
 	get_parent().name = tr("Main")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	get_viewport().connect("size_changed", self, "update_columns")
-	Util.main = self
+	Utils.main = self
 	
 	$Save/Button.connect("pressed", HWTheme, "save_theme")
 	$GamePath/Button.connect("pressed", $Dialogs/GameDialog, "popup_centered")
@@ -23,30 +23,30 @@ func _ready():
 	$PackContainer/Cancel.connect("pressed", self, "pack_cancel")
 	$Save/Version.connect("value_changed", HWTheme, "set_version")
 	
-	$GamePath/Label.text = Util.hedgewars_path
-	$UserPath/Label.text = Util.hedgewars_user_path
+	$GamePath/Label.text = Utils.hedgewars_path
+	$UserPath/Label.text = Utils.hedgewars_user_path
 	
-	$Dialogs/GameDialog.current_dir = Util.hedgewars_path
-	$Dialogs/UserDialog.current_dir = Util.hedgewars_user_path
+	$Dialogs/GameDialog.current_dir = Utils.hedgewars_path
+	$Dialogs/UserDialog.current_dir = Utils.hedgewars_user_path
 	
 	bind_setting($Save/EnableAutosave, "enable_autosave")
 	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
 	bind_setting($PackContainer/IncludeMusic, "include_music")
 	
-	Util.refresh_themes()
+	Utils.refresh_themes()
 	
 	language_list.append("en")
-	for language in Util.list_directory("res://Translation", true):
+	for language in Utils.list_directory("res://Translation", true):
 		if language.get_extension() == "po":
 			language_list.append(language.get_basename())
 	
 	var selected_language = 0
 	for i in language_list.size():
-		if language_list[i] == Util.preferred_language: selected_language = i
+		if language_list[i] == Utils.preferred_language: selected_language = i
 		TranslationServer.set_locale(language_list[i])
 		$LanguageContainer/LanguageList.add_item(tr("English") + "​")
 	
-	TranslationServer.set_locale(Util.preferred_language)
+	TranslationServer.set_locale(Utils.preferred_language)
 	$LanguageContainer/LanguageList.selected = selected_language
 	update_columns()
 
@@ -90,7 +90,7 @@ func pack_accept():#TODO: pack music (optional)
 	var pack_name = $PackContainer/PackName.text
 	if pack_name == "": pack_name = PoolStringArray(selected).join("+")
 	
-	var root := Util.package_path.plus_file(pack_name)
+	var root := Utils.package_path.plus_file(pack_name)
 	
 	var output = Directory.new()
 	output.make_dir_recursive(root.plus_file("Data/Themes"))
@@ -98,8 +98,8 @@ func pack_accept():#TODO: pack music (optional)
 	for theme_name in selected:
 		var output_path := root.plus_file("Data/Themes").plus_file(theme_name)
 		output.make_dir_recursive(output_path)
-		for file in Util.list_directory(Util.get_theme_path(theme_name), true): if not file in DONT_PACK:
-			output.copy(Util.get_theme_path(theme_name).plus_file(file), output_path.plus_file(file))
+		for file in Utils.list_directory(Utils.get_theme_path(theme_name), true): if not file in DONT_PACK:
+			output.copy(Utils.get_theme_path(theme_name).plus_file(file), output_path.plus_file(file))
 	
 	pack_cancel()#TODO: feedback if success
 
@@ -116,37 +116,37 @@ func on_theme_loaded():
 	$Save/Version.value = HWTheme.theme_version
 
 func update_game_path():
-	Util.hedgewars_path = $Dialogs/GameDialog.current_dir
-	$GamePath/Label.text = Util.hedgewars_path
-	Util.save_settings()
+	Utils.hedgewars_path = $Dialogs/GameDialog.current_dir
+	$GamePath/Label.text = Utils.hedgewars_path
+	Utils.save_settings()
 
 func update_user_path():
-	Util.hedgewars_user_path = $Dialogs/UserDialog.current_dir
-	$UserPath/Label.text = Util.hedgewars_user_path
-	Util.save_settings()
+	Utils.hedgewars_user_path = $Dialogs/UserDialog.current_dir
+	$UserPath/Label.text = Utils.hedgewars_user_path
+	Utils.save_settings()
 
 func update_columns():
 	$ThemeAlign/ThemesList.columns = max(floor(get_viewport_rect().size.x / 128) - 1, 1)
 
 func change_language(item):#TODO: some warning? it probably discards changes
-	Util.preferred_language = language_list[item]
-	Util.save_settings()
+	Utils.preferred_language = language_list[item]
+	Utils.save_settings()
 	get_tree().reload_current_scene()
 
 func bind_setting(button, setting):
-	button.pressed = Util.get(setting)
+	button.pressed = Utils.get(setting)
 	button.connect("toggled", self, "on_setting_changed", [setting])
 
 func on_setting_changed(enabled, setting):
-	Util.set(setting, enabled)
-	Util.save_settings()
+	Utils.set(setting, enabled)
+	Utils.save_settings()
 
 func open_theme_directory():
 	OS.shell_open(HWTheme.get_theme_path())
 
 func new_theme():
 	var name_edit := $Dialogs/NewThemeDialog/LineEdit as LineEdit
-	var theme_path := Util.get_themes_directory().plus_file(name_edit.text)
+	var theme_path := Utils.get_themes_directory().plus_file(name_edit.text)
 	var dir := Directory.new()
 	
 	var err := dir.make_dir(theme_path)
@@ -157,7 +157,7 @@ func new_theme():
 		file.open(theme_path + "/theme.cfg", file.WRITE)
 		file.close()
 		
-		Util.refresh_themes()
+		Utils.refresh_themes()
 	else:
 		var error := str(err)
 		match err:

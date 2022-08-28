@@ -8,7 +8,7 @@ script/source = "extends Panel
 var spray: String
 
 func _ready():
-	var texture = Util.load_texture(HWTheme.get_theme_path().plus_file(spray + \".png\"))
+	var texture = Utils.load_texture(HWTheme.get_theme_path().plus_file(spray + \".png\"))
 	$\"%Image\".texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	

@@ -36,7 +36,7 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Container" parent="ThemeEditor/Main" instance=ExtResource( 2 )]
-margin_right = 993.0
+margin_right = 620.0
 margin_bottom = 733.0
 
 [node name="Theme" type="ScrollContainer" parent="ThemeEditor"]
@@ -52,7 +52,7 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Container" parent="ThemeEditor/Theme" instance=ExtResource( 3 )]
-margin_right = 1008.0
+margin_right = 493.0
 margin_bottom = 2001.0
 
 [node name="Customization" type="ScrollContainer" parent="ThemeEditor"]
@@ -68,8 +68,8 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Container" parent="ThemeEditor/Customization" instance=ExtResource( 5 )]
-margin_right = 1008.0
-margin_bottom = 545.0
+margin_right = 611.0
+margin_bottom = 340.0
 
 [node name="Objects" type="ScrollContainer" parent="ThemeEditor"]
 visible = false
@@ -84,5 +84,5 @@ size_flags_vertical = 3
 scroll_horizontal_enabled = false
 
 [node name="Container" parent="ThemeEditor/Objects" instance=ExtResource( 6 )]
-margin_right = 1008.0
-margin_bottom = 545.0
+margin_right = 0.0
+margin_bottom = 0.0

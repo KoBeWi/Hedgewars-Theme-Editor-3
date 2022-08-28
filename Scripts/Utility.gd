@@ -34,12 +34,12 @@ func _ready():
 		
 		match OS.get_name():
 			"Windows":
-				for dir in Util.list_directory("C:/Program Files (x86)", false):
+				for dir in Utils.list_directory("C:/Program Files (x86)", false):
 					if dir.begins_with("Hedgewars"):
 						path = "C:/Program Files (x86)/" + dir
 						break
 				
-				if !path: for dir in Util.list_directory("C:/Program Files", false):
+				if !path: for dir in Utils.list_directory("C:/Program Files", false):
 					if dir.begins_with("Hedgewars"):
 						path = "C:/Program Files/" + dir
 						break
@@ -140,14 +140,14 @@ func refresh_themes():
 	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
 		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
 	
-	for theme_dir in Util.list_directory(Util.get_themes_directory(), false): # TODO: handle invalid user path
+	for theme_dir in Utils.list_directory(Utils.get_themes_directory(), false): # TODO: handle invalid user path
 		var v = theme_dir.split("_v")
 		
 		var button = preload("res://Nodes/ThemeButton.tscn").instance()
 		main.get_node("ThemeAlign/ThemesList").add_child(button)
 		button.set_meta("theme", theme_dir)
 		button.theme_name.text = v[0]
-		button.theme_icon.texture = Util.load_texture(Util.get_themes_directory().plus_file(theme_dir).plus_file("icon@2x.png"))
+		button.theme_icon.texture = Utils.load_texture(Utils.get_themes_directory().plus_file(theme_dir).plus_file("icon@2x.png"))
 		if v.size() == 2:
 			button.theme_version.text = str("v", int(v[1]))
 		

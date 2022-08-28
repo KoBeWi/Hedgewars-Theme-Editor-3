@@ -138,7 +138,7 @@ func load_defaults():
 func load_theme(_theme_name, version):
 	if theme_name:
 		DirectoryScanner.remove_scan_directory(get_theme_path())
-		Util.texture_cache.clear()
+		Utils.texture_cache.clear()
 	
 	load_defaults()
 	theme_name = _theme_name
@@ -165,28 +165,28 @@ func load_theme(_theme_name, version):
 			"fallback-music": fallback_music = params[0].get_basename()
 			"fallback-sd-music": fallback_sd_music = params[0].get_basename()
 			"sky":
-				sky = Util.get_color(params)
+				sky = Utils.get_color(params)
 				sky_defined = true
 			"border":
-				border = Util.get_color(params)
+				border = Utils.get_color(params)
 				border_defined = true
 			"sd-tint":
-				sd_tint = Util.get_color(params)
+				sd_tint = Utils.get_color(params)
 				sd_tint_defined = true
 			"water-top":
-				water_top = Util.get_color(params)
+				water_top = Utils.get_color(params)
 				water_top_defined = true
 			"water-bottom":
-				water_bottom = Util.get_color(params)
+				water_bottom = Utils.get_color(params)
 				water_bottom_defined = true
-			"water-opacity": water_opacity = Util.get_color_value(params[0])
+			"water-opacity": water_opacity = Utils.get_color_value(params[0])
 			"sd-water-top":
-				sd_water_top = Util.get_color(params)
+				sd_water_top = Utils.get_color(params)
 				sd_water_top_defined = true
 			"sd-water-bottom":
-				sd_water_bottom = Util.get_color(params)
+				sd_water_bottom = Utils.get_color(params)
 				sd_water_bottom_defined = true
-			"sd-water-opacity": sd_water_opacity = Util.get_color_value(params[0])
+			"sd-water-opacity": sd_water_opacity = Utils.get_color_value(params[0])
 			"clouds":
 				clouds = int(params[0])
 				clouds_defined = true
@@ -278,7 +278,7 @@ func load_theme(_theme_name, version):
 		sd_clouds = clouds
 	
 	image_list.clear()
-	for file in Util.list_directory(HWTheme.get_theme_path(), true):
+	for file in Utils.list_directory(HWTheme.get_theme_path(), true):
 		if file.get_extension() == "png":
 			image_list.append(file.get_basename().get_file())
 	
@@ -307,16 +307,16 @@ func save_theme():
 			new_name += str("_v", theme_version)
 		
 		var renamer = Directory.new()
-		renamer.rename(Util.get_themes_directory().plus_file(theme_name), Util.get_themes_directory().plus_file(new_name))
+		renamer.rename(Utils.get_themes_directory().plus_file(theme_name), Utils.get_themes_directory().plus_file(new_name))
 		theme_name = new_name
 		
 		saved_version = theme_version
-		Util.refresh_themes()
+		Utils.refresh_themes()
 	
 	emit_signal("output_updated", theme_output != stored_output)
 
 func get_theme_path() -> String:
-	return Util.get_themes_directory().plus_file(theme_name)
+	return Utils.get_themes_directory().plus_file(theme_name)
 
 func refresh_oputput(emit_changed = true):
 	theme_output = PoolStringArray()
@@ -358,11 +358,11 @@ func refresh_oputput(emit_changed = true):
 		if objects[object].buried.size() != 1:
 			line.append(str(objects[object].buried.size(), ", "))
 		for buried in objects[object].buried:
-			line.append(Util.get_rect_string(buried) +  ", ")
+			line.append(Utils.get_rect_string(buried) +  ", ")
 		
 		line.append(str(objects[object].visible.size()))
 		for visible in objects[object].visible:
-			line.append(", " + Util.get_rect_string(visible))
+			line.append(", " + Utils.get_rect_string(visible))
 		
 		theme_output.append("object = " + line.join(""))
 		
@@ -372,7 +372,7 @@ func refresh_oputput(emit_changed = true):
 			line.append(str(object, ", ", anchors.size()))
 			
 			for anchor in anchors:
-				line.append(", " + Util.get_rect_string(anchor))
+				line.append(", " + Utils.get_rect_string(anchor))
 			
 			theme_output.append("anchors = " + line.join(""))
 		
@@ -416,13 +416,13 @@ func change_property_from_list(item: int, property: String, list: OptionButton):
 
 func apply_change():
 	refresh_oputput()
-	if Util.enable_autosave:
+	if Utils.enable_autosave:
 		save_theme()
 
 func set_version(version):
 	theme_version = version
 	
-	if not is_loading and Util.enable_autosave:
+	if not is_loading and Utils.enable_autosave:
 		save_theme()
 
 func basename() -> String:
@@ -465,7 +465,7 @@ class ThemeObject:
 			image = p_image
 		
 		func get_texture() -> Texture:
-			return Util.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))
+			return Utils.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))
 		
 		func get_rect() -> Rect2:
 			return Rect2(position, get_texture().get_size())

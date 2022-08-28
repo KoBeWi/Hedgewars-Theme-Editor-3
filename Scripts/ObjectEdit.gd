@@ -114,9 +114,9 @@ func on_revert():
 
 func exit():
 	queue_free()
-	$"/root".add_child(Util.temp_editor)
-	get_tree().current_scene = Util.temp_editor
-	Util.temp_editor = null
+	$"/root".add_child(Utils.temp_editor)
+	get_tree().current_scene = Utils.temp_editor
+	Utils.temp_editor = null
 
 func do_revert():
 	object.buried = original_object.buried
@@ -127,4 +127,4 @@ func do_revert():
 
 func select_overlay(image: String):
 	current_overlay_name = image
-	current_overlay = Util.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))
+	current_overlay = Utils.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))

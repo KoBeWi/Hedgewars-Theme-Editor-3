@@ -17,8 +17,8 @@ func refresh_paths():
 	scan_list.clear()
 	current_directory = 0
 	
-	add_scan_directory(Util.get_themes_directory())
-	add_scan_directory(Util.get_user_music_directory())
+	add_scan_directory(Utils.get_themes_directory())
+	add_scan_directory(Utils.get_user_music_directory())
 
 func add_scan_directory(directory: String):
 	var scan_data := DirectoryScanData.new(directory)
