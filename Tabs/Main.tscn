@@ -134,41 +134,41 @@ align = 1
 [node name="LanguageContainer" type="HBoxContainer" parent="."]
 margin_top = 432.0
 margin_right = 1024.0
-margin_bottom = 461.0
+margin_bottom = 471.0
 alignment = 1
 
 [node name="Label" type="Label" parent="LanguageContainer"]
-margin_left = 416.0
-margin_top = 3.0
-margin_right = 563.0
-margin_bottom = 26.0
+margin_left = 415.0
+margin_top = 8.0
+margin_right = 562.0
+margin_bottom = 31.0
 text = "Preferred language"
 align = 1
 
 [node name="LanguageList" type="OptionButton" parent="LanguageContainer"]
-margin_left = 567.0
+margin_left = 566.0
 margin_right = 608.0
-margin_bottom = 29.0
+margin_bottom = 39.0
 
 [node name="ThemesHeader" type="Label" parent="."]
-margin_top = 465.0
+margin_top = 475.0
 margin_right = 1024.0
-margin_bottom = 532.0
+margin_bottom = 542.0
 custom_fonts/font = ExtResource( 2 )
 text = "Themes"
 
 [node name="PackHeader" type="Label" parent="."]
-margin_top = 536.0
+margin_top = 546.0
 margin_right = 1024.0
-margin_bottom = 578.0
+margin_bottom = 588.0
 custom_fonts/font = ExtResource( 4 )
 text = "Pack themes"
 align = 1
 
 [node name="PackContainer" type="HBoxContainer" parent="."]
-margin_top = 582.0
+margin_top = 592.0
 margin_right = 1024.0
-margin_bottom = 622.0
+margin_bottom = 632.0
 alignment = 1
 
 [node name="PackThemes" type="Button" parent="PackContainer"]
@@ -287,18 +287,18 @@ margin_bottom = 40.0
 text = "Open theme directory"
 
 [node name="SelectThemeHeader" type="Label" parent="."]
-margin_top = 626.0
+margin_top = 636.0
 margin_right = 1024.0
-margin_bottom = 668.0
+margin_bottom = 678.0
 custom_fonts/font = ExtResource( 4 )
 text = "Select theme"
 align = 1
 
 [node name="NewTheme" type="Button" parent="."]
 margin_left = 460.0
-margin_top = 672.0
+margin_top = 682.0
 margin_right = 564.0
-margin_bottom = 711.0
+margin_bottom = 721.0
 size_flags_horizontal = 4
 text = "New theme"
 
@@ -311,9 +311,9 @@ text = "Select themes to pack"
 align = 1
 
 [node name="ThemeAlign" type="HBoxContainer" parent="."]
-margin_top = 715.0
+margin_top = 725.0
 margin_right = 1024.0
-margin_bottom = 715.0
+margin_bottom = 725.0
 alignment = 1
 
 [node name="ThemesList" type="GridContainer" parent="ThemeAlign"]
@@ -322,9 +322,9 @@ margin_right = 512.0
 rect_clip_content = true
 
 [node name="Dialogs" type="Control" parent="."]
-margin_top = 719.0
+margin_top = 729.0
 margin_right = 1024.0
-margin_bottom = 719.0
+margin_bottom = 729.0
 
 [node name="GameDialog" type="FileDialog" parent="Dialogs"]
 margin_left = 330.0
@@ -334,8 +334,6 @@ margin_bottom = 192.0
 window_title = "Otwórz katalog"
 mode = 2
 access = 2
-current_dir = "/Inne/Hedgewars/Theme Editor 3"
-current_path = "/Inne/Hedgewars/Theme Editor 3/"
 
 [node name="UserDialog" type="FileDialog" parent="Dialogs"]
 margin_left = 330.0
@@ -345,8 +343,6 @@ margin_bottom = 192.0
 window_title = "Otwórz katalog"
 mode = 2
 access = 2
-current_dir = "/Inne/Hedgewars/Theme Editor 3"
-current_path = "/Inne/Hedgewars/Theme Editor 3/"
 
 [node name="ErrorDialog" type="AcceptDialog" parent="Dialogs"]
 margin_left = 112.921
@@ -384,9 +380,9 @@ __meta__ = {
 }
 
 [node name="Control" type="Control" parent="."]
-margin_top = 723.0
+margin_top = 733.0
 margin_right = 1024.0
-margin_bottom = 723.0
+margin_bottom = 733.0
 
 [connection signal="pressed" from="Save/OpenDir" to="." method="open_theme_directory"]
 [connection signal="pressed" from="NewTheme" to="." method="on_new_theme_pressed"]

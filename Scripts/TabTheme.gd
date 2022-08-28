@@ -92,8 +92,8 @@ func _ready():
 	$Ice.connect("toggled", HWTheme, "change_property", ["ice"])
 
 func on_theme_loaded():
-	$Header/Icon.texture = Util.load_texture(HWTheme.get_theme_path() + "icon.png")
-	$Header/Icon2x.texture = Util.load_texture(HWTheme.get_theme_path() + "icon@2x.png")
+	$Header/Icon.texture = Util.load_texture(HWTheme.get_theme_path().plus_file("icon.png"))
+	$Header/Icon2x.texture = Util.load_texture(HWTheme.get_theme_path().plus_file("icon@2x.png"))
 	$Header/Name.text = HWTheme.basename()
 	
 	Util.select_music($Music/List, HWTheme.music)

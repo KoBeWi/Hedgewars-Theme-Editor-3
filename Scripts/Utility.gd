@@ -1,9 +1,9 @@
 extends Node
 
-var preferred_language
-var hedgewars_path
-var hedgewars_user_path
-var package_path
+var preferred_language: String
+var hedgewars_path: String
+var hedgewars_user_path: String
+var package_path: String
 
 var enable_autosave = true
 var maximize_on_start = true
@@ -109,8 +109,8 @@ func list_directory(path, for_files = true):
 	
 	return list
 
-func get_theme_path(theme):
-	return str(hedgewars_user_path, "/Data/Themes/", theme, "/")
+func get_theme_path(theme: String) -> String:
+	return hedgewars_user_path.plus_file("Data/Themes").plus_file(theme)
 
 func get_color(rgb):
 	var result = []

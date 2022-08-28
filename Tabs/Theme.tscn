@@ -14,9 +14,6 @@ margin_bottom = 1654.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Header" type="HBoxContainer" parent="."]
 margin_right = 1001.0
@@ -75,19 +72,19 @@ text = "Music"
 
 [node name="List" type="OptionButton" parent="Music"]
 margin_left = 460.0
-margin_right = 501.0
+margin_right = 502.0
 margin_bottom = 40.0
 hint_tooltip = "Music that plays before Sudden Death"
 
 [node name="Play" type="Button" parent="Music"]
-margin_left = 505.0
-margin_right = 545.0
+margin_left = 506.0
+margin_right = 546.0
 margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="Music"]
-margin_left = 549.0
-margin_right = 589.0
+margin_left = 550.0
+margin_right = 590.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 
@@ -106,19 +103,19 @@ text = "Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="SDMusic"]
 margin_left = 516.0
-margin_right = 557.0
+margin_right = 558.0
 margin_bottom = 40.0
 hint_tooltip = "Music that plays in Sudden Death"
 
 [node name="Play" type="Button" parent="SDMusic"]
-margin_left = 561.0
-margin_right = 601.0
+margin_left = 562.0
+margin_right = 602.0
 margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="SDMusic"]
-margin_left = 605.0
-margin_right = 645.0
+margin_left = 606.0
+margin_right = 646.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 
@@ -137,19 +134,19 @@ text = "Fallback Music"
 
 [node name="List" type="OptionButton" parent="FallbackMusic"]
 margin_left = 493.0
-margin_right = 534.0
+margin_right = 535.0
 margin_bottom = 40.0
 hint_tooltip = "Music that plays if default music file is missing"
 
 [node name="Play" type="Button" parent="FallbackMusic"]
-margin_left = 538.0
-margin_right = 578.0
+margin_left = 539.0
+margin_right = 579.0
 margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="FallbackMusic"]
-margin_left = 582.0
-margin_right = 622.0
+margin_left = 583.0
+margin_right = 623.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 
@@ -168,19 +165,19 @@ text = "Fallback Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="FallbackSDMusic"]
 margin_left = 549.0
-margin_right = 590.0
+margin_right = 591.0
 margin_bottom = 40.0
 hint_tooltip = "Music that plays in Sudden Death if default music file is missing"
 
 [node name="Play" type="Button" parent="FallbackSDMusic"]
-margin_left = 594.0
-margin_right = 634.0
+margin_left = 595.0
+margin_right = 635.0
 margin_bottom = 40.0
 icon = ExtResource( 4 )
 
 [node name="Stop" type="Button" parent="FallbackSDMusic"]
-margin_left = 638.0
-margin_right = 678.0
+margin_left = 639.0
+margin_right = 679.0
 margin_bottom = 40.0
 icon = ExtResource( 5 )
 
@@ -208,7 +205,7 @@ text = "Colors"
 margin_left = 410.0
 margin_top = 453.0
 margin_right = 591.0
-margin_bottom = 680.0
+margin_bottom = 750.0
 size_flags_horizontal = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -222,7 +219,7 @@ anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 181.0
-margin_bottom = 29.0
+margin_bottom = 39.0
 text = "Sky color"
 
 [node name="Border" parent="Colors" instance=ExtResource( 7 )]
@@ -231,9 +228,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 33.0
+margin_top = 43.0
 margin_right = 181.0
-margin_bottom = 62.0
+margin_bottom = 82.0
 text = "Border/Mudgun color"
 
 [node name="UpperWater" parent="Colors" instance=ExtResource( 7 )]
@@ -242,9 +239,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 66.0
+margin_top = 86.0
 margin_right = 181.0
-margin_bottom = 95.0
+margin_bottom = 125.0
 text = "Upper water color"
 edit_alpha = true
 
@@ -254,9 +251,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 99.0
+margin_top = 129.0
 margin_right = 181.0
-margin_bottom = 128.0
+margin_bottom = 168.0
 text = "Lower water color"
 edit_alpha = true
 
@@ -266,9 +263,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 132.0
+margin_top = 172.0
 margin_right = 181.0
-margin_bottom = 161.0
+margin_bottom = 211.0
 text = "Sudden Death upper water color"
 edit_alpha = true
 
@@ -278,9 +275,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 165.0
+margin_top = 215.0
 margin_right = 181.0
-margin_bottom = 194.0
+margin_bottom = 254.0
 text = "Sudden Death lower water color"
 edit_alpha = true
 
@@ -290,24 +287,24 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 198.0
+margin_top = 258.0
 margin_right = 181.0
-margin_bottom = 227.0
+margin_bottom = 297.0
 text = "Sudden Death lower sky/horizon tint"
 edit_alpha = true
 
 [node name="CloudsOnOff" type="CheckBox" parent="."]
-margin_top = 684.0
+margin_top = 754.0
 margin_right = 1001.0
-margin_bottom = 726.0
+margin_bottom = 796.0
 hint_tooltip = "Clouds floating atop the map before Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Clouds"
 
 [node name="Clouds" type="HBoxContainer" parent="."]
-margin_top = 730.0
+margin_top = 800.0
 margin_right = 1001.0
-margin_bottom = 769.0
+margin_bottom = 839.0
 alignment = 1
 
 [node name="Label" type="Label" parent="Clouds"]
@@ -325,17 +322,17 @@ hint_tooltip = "Number of clouds to create"
 max_value = 65536.0
 
 [node name="SDCloudsOnOff" type="CheckBox" parent="."]
-margin_top = 773.0
+margin_top = 843.0
 margin_right = 1001.0
-margin_bottom = 815.0
+margin_bottom = 885.0
 hint_tooltip = "Clouds floating atop the map during Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Clouds"
 
 [node name="SDClouds" type="HBoxContainer" parent="."]
-margin_top = 819.0
+margin_top = 889.0
 margin_right = 1001.0
-margin_bottom = 858.0
+margin_bottom = 928.0
 alignment = 1
 
 [node name="Label" type="Label" parent="SDClouds"]
@@ -353,17 +350,17 @@ hint_tooltip = "Number of clouds to create"
 max_value = 65536.0
 
 [node name="FlakesOnOff" type="CheckBox" parent="."]
-margin_top = 862.0
+margin_top = 932.0
 margin_right = 1001.0
-margin_bottom = 904.0
+margin_bottom = 974.0
 hint_tooltip = "Flakes appearing in the background before Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Flakes"
 
 [node name="Flakes" type="VBoxContainer" parent="."]
-margin_top = 908.0
+margin_top = 978.0
 margin_right = 1001.0
-margin_bottom = 1119.0
+margin_bottom = 1189.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Flakes"]
@@ -472,17 +469,17 @@ min_value = -65536.0
 max_value = 65536.0
 
 [node name="SDFlakesOnOff" type="CheckBox" parent="."]
-margin_top = 1123.0
+margin_top = 1193.0
 margin_right = 1001.0
-margin_bottom = 1165.0
+margin_bottom = 1235.0
 hint_tooltip = "Flakes appearing in the background during Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Flakes"
 
 [node name="SDFlakes" type="VBoxContainer" parent="."]
-margin_top = 1169.0
+margin_top = 1239.0
 margin_right = 1001.0
-margin_bottom = 1380.0
+margin_bottom = 1450.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="SDFlakes"]
@@ -591,17 +588,17 @@ min_value = -65536.0
 max_value = 65536.0
 
 [node name="WaterAnimationOnOff" type="CheckBox" parent="."]
-margin_top = 1384.0
+margin_top = 1454.0
 margin_right = 1001.0
-margin_bottom = 1426.0
+margin_bottom = 1496.0
 hint_tooltip = "Specifies a custom water animation and flowing speed before Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Water Animation"
 
 [node name="WaterAnimation" type="VBoxContainer" parent="."]
-margin_top = 1430.0
+margin_top = 1500.0
 margin_right = 1001.0
-margin_bottom = 1555.0
+margin_bottom = 1625.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="WaterAnimation"]
@@ -669,17 +666,17 @@ max_value = 65536.0
 suffix = "%"
 
 [node name="SDWaterAnimationOnOff" type="CheckBox" parent="."]
-margin_top = 1559.0
+margin_top = 1629.0
 margin_right = 1001.0
-margin_bottom = 1601.0
+margin_bottom = 1671.0
 hint_tooltip = "Specifies a custom water animation and flowing speed in Sudden Death"
 custom_fonts/font = ExtResource( 6 )
 text = "Sudden Death Water Animation"
 
 [node name="SDWaterAnimation" type="VBoxContainer" parent="."]
-margin_top = 1605.0
+margin_top = 1675.0
 margin_right = 1001.0
-margin_bottom = 1730.0
+margin_bottom = 1800.0
 alignment = 1
 
 [node name="Frames" type="HBoxContainer" parent="SDWaterAnimation"]
@@ -747,44 +744,44 @@ max_value = 65536.0
 suffix = "%"
 
 [node name="MiscHeader" type="Label" parent="."]
-margin_top = 1734.0
+margin_top = 1804.0
 margin_right = 1001.0
-margin_bottom = 1776.0
+margin_bottom = 1846.0
 custom_fonts/font = ExtResource( 6 )
 text = "Miscellaneous"
 
 [node name="Hidden" type="CheckBox" parent="."]
-margin_top = 1780.0
+margin_top = 1850.0
 margin_right = 1001.0
-margin_bottom = 1807.0
+margin_bottom = 1877.0
 hint_tooltip = "If enabled, the theme will be hidden from the in-game theme selection menu"
 text = "Hidden?"
 
 [node name="FlattenFlakes" type="CheckBox" parent="."]
-margin_top = 1811.0
+margin_top = 1881.0
 margin_right = 1001.0
-margin_bottom = 1838.0
+margin_bottom = 1908.0
 hint_tooltip = "If enabled, all flakes have the same size and are on the same layer: In front of the sky and horizont and behind the terrain"
 text = "Flatten flakes?"
 
 [node name="FlattenClouds" type="CheckBox" parent="."]
-margin_top = 1842.0
+margin_top = 1912.0
 margin_right = 1001.0
-margin_bottom = 1869.0
+margin_bottom = 1939.0
 hint_tooltip = "If enabled, all clouds have the same size and are on the same layer: background"
 text = "Flatten clouds?"
 
 [node name="Snow" type="CheckBox" parent="."]
-margin_top = 1873.0
+margin_top = 1943.0
 margin_right = 1001.0
-margin_bottom = 1900.0
+margin_bottom = 1970.0
 hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape. Use Snow.png to change the appearance of the snow"
 text = "Snow?"
 
 [node name="Ice" type="CheckBox" parent="."]
-margin_top = 1904.0
+margin_top = 1974.0
 margin_right = 1001.0
-margin_bottom = 1931.0
+margin_bottom = 2001.0
 hint_tooltip = "If enabled, girders become slippery like ice. This also applies to placed girders"
 text = "Ice?"
 
@@ -794,19 +791,19 @@ text = "Ice?"
 [connection signal="pressed" from="FallbackSDMusic/Stop" to="." method="stop_music"]
 [connection signal="toggled" from="CloudsOnOff" to="Clouds/Amount" method="set_editable"]
 [connection signal="toggled" from="SDCloudsOnOff" to="SDClouds/Amount" method="set_editable"]
+[connection signal="toggled" from="FlakesOnOff" to="Flakes/Amount/Value" method="set_editable"]
+[connection signal="toggled" from="FlakesOnOff" to="Flakes/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="FlakesOnOff" to="Flakes/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="FlakesOnOff" to="Flakes/RotationSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="FlakesOnOff" to="Flakes/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="FlakesOnOff" to="Flakes/Amount/Value" method="set_editable"]
 [connection signal="toggled" from="FlakesOnOff" to="Flakes/FallingSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/Frames/Value" method="set_editable"]
-[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/RotationSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/Amount/Value" method="set_editable"]
+[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/Frames/Value" method="set_editable"]
+[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/FrameDuration/Value" method="set_editable"]
+[connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/RotationSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="SDFlakesOnOff" to="SDFlakes/FallingSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="WaterAnimationOnOff" to="WaterAnimation/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="WaterAnimationOnOff" to="WaterAnimation/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="WaterAnimationOnOff" to="WaterAnimation/MovementSpeed/Value" method="set_editable"]
-[connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/MovementSpeed/Value" method="set_editable"]
 [connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/FrameDuration/Value" method="set_editable"]
+[connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/MovementSpeed/Value" method="set_editable"]

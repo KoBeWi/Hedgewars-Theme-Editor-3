@@ -269,7 +269,7 @@ func add_customizable_image(iname):
 
 func fetch_template(iname, customization, index):
 	var dir = Directory.new()
-	dir.copy(get_template_path(iname), HWTheme.get_theme_path() + iname)
+	dir.copy(get_template_path(iname), HWTheme.get_theme_path().plus_file(iname))
 	customization.update_image(index, iname)
 
 func get_template_path(iname):

@@ -149,7 +149,7 @@ func load_theme(_theme_name, version):
 	
 	var lines = []
 	var cfg_file = File.new()
-	if cfg_file.open(get_theme_path() + "theme.cfg", cfg_file.READ) == OK:
+	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.READ) == OK:
 		lines = cfg_file.get_as_text().split("\n")
 	
 	var water_opacity := 0.5
@@ -292,10 +292,10 @@ func load_theme(_theme_name, version):
 func save_theme():
 #	refresh_oputput(false)
 	
-	Directory.new().rename(get_theme_path() + "theme.cfg", get_theme_path() + "theme.bak")
+	Directory.new().rename(get_theme_path().plus_file("theme.cfg"), get_theme_path().plus_file("theme.bak"))
 	
 	var cfg_file = File.new()
-	if cfg_file.open(get_theme_path() + "theme.cfg", cfg_file.WRITE) == OK: ##TODO: show error if fails
+	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.WRITE) == OK: ##TODO: show error if fails
 		cfg_file.store_string(theme_output.join("\n"))
 		cfg_file.close()
 		
@@ -315,8 +315,8 @@ func save_theme():
 	
 	emit_signal("output_updated", theme_output != stored_output)
 
-func get_theme_path():
-	return str(Util.hedgewars_user_path, "/Data/Themes/", theme_name, "/")
+func get_theme_path() -> String:
+	return Util.hedgewars_user_path.plus_file("Data/Themes").plus_file(theme_name)
 
 func refresh_oputput(emit_changed = true):
 	theme_output = PoolStringArray()
@@ -386,21 +386,32 @@ func refresh_oputput(emit_changed = true):
 			
 			theme_output.append("overlays = " + line.join(""))
 	
-	if hidden: theme_output.append("hidden = true")
-	if flatten_flakes: theme_output.append("flatten-flakes = true")
-	if flatten_clouds: theme_output.append("flatten-clouds = true")
-	if snow: theme_output.append("snow = true")
-	if ice: theme_output.append("ice = true")
+	if hidden:
+		theme_output.append("hidden = true")
 	
-	if emit_changed: emit_signal("output_updated", theme_output != stored_output)
+	if flatten_flakes:
+		theme_output.append("flatten-flakes = true")
+	
+	if flatten_clouds:
+		theme_output.append("flatten-clouds = true")
+	
+	if snow:
+		theme_output.append("snow = true")
+	
+	if ice:
+		theme_output.append("ice = true")
+	
+	if emit_changed:
+		emit_signal("output_updated", theme_output != stored_output)
 
-func change_property(value, property):
-	if is_loading: return
+func change_property(value, property: String):
+	if is_loading:
+		return
 	
 	set(property, value)
 	apply_change()
 	
-func change_property_from_list(item, property, list):
+func change_property_from_list(item: int, property: String, list: OptionButton):
 	change_property(list.get_item_text(item), property)
 
 func apply_change():
@@ -414,7 +425,7 @@ func set_version(version):
 	if not is_loading and Util.enable_autosave:
 		save_theme()
 
-func basename():
+func basename() -> String:
 	return theme_name.split("_v")[0]
 
 class ThemeObject:
@@ -454,7 +465,7 @@ class ThemeObject:
 			image = p_image
 		
 		func get_texture() -> Texture:
-			return Util.load_texture(str(HWTheme.get_theme_path(), image, ".png"))
+			return Util.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))
 		
 		func get_rect() -> Rect2:
 			return Rect2(position, get_texture().get_size())

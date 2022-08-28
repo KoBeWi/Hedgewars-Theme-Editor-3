@@ -8,7 +8,7 @@ var selected_rects: Array
 var intersecting_rects: Array
 
 func _ready():
-	texture = Util.load_texture(str(HWTheme.get_theme_path(), edit.object.name, ".png"))
+	texture = Util.load_texture(HWTheme.get_theme_path().plus_file(edit.object.name + ".png"))
 	$Checker.region_rect.size = texture.get_size()
 	drawing = edit.NO_DRAW
 

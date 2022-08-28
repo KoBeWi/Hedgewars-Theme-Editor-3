@@ -31,7 +31,7 @@ func _ready():
 	var overlay_buttons := ButtonGroup.new()
 	for image in HWTheme.image_list:
 		var overlay_item := preload("res://Nodes/OverlayItem.tscn").instance() as Button
-		overlay_item.set_image(str(HWTheme.get_theme_path(), image, ".png"))
+		overlay_item.set_image(HWTheme.get_theme_path().plus_file(image + ".png"))
 		overlay_item.group = overlay_buttons
 		overlay_item.connect("pressed", self, "select_overlay", [image])
 		overlays_container.add_child(overlay_item)
@@ -127,4 +127,4 @@ func do_revert():
 
 func select_overlay(image: String):
 	current_overlay_name = image
-	current_overlay = Util.load_texture(str(HWTheme.get_theme_path(), image, ".png"))
+	current_overlay = Util.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))

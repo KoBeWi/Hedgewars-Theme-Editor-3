@@ -90,16 +90,16 @@ func pack_accept():#TODO: pack music (optional)
 	var pack_name = $PackContainer/PackName.text
 	if pack_name == "": pack_name = PoolStringArray(selected).join("+")
 	
-	var root = str(Util.package_path, "/", pack_name, "/")
+	var root := Util.package_path.plus_file(pack_name)
 	
 	var output = Directory.new()
-	output.make_dir_recursive(root + "Data/Themes")
+	output.make_dir_recursive(root.plus_file("Data/Themes"))
 	
 	for theme_name in selected:
-		var output_path = str(root, "Data/Themes/", theme_name)
+		var output_path := root.plus_file("Data/Themes").plus_file(theme_name)
 		output.make_dir_recursive(output_path)
 		for file in Util.list_directory(Util.get_theme_path(theme_name), true): if not file in DONT_PACK:
-			output.copy(str(Util.get_theme_path(theme_name), "/", file), str(output_path, "/", file))
+			output.copy(Util.get_theme_path(theme_name).plus_file(file), output_path.plus_file(file))
 	
 	pack_cancel()#TODO: feedback if success
 

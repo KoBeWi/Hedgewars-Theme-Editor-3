@@ -5,19 +5,20 @@
 [sub_resource type="GDScript" id=1]
 script/source = "extends Panel
 
-var object
+var object: HWTheme.ThemeObject
 
 func _ready():
-	var texture = Util.load_texture(str(HWTheme.get_theme_path(), object.name, \".png\"))
-	$Container/Image.texture = texture
+	var texture = Util.load_texture(HWTheme.get_theme_path().plus_file(object.name + \".png\"))
+	$\"%Image\".texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
-	$Container/Controls/Amount/Value.value = object.number
-	$Container/Controls/OnWater.pressed = (!object.buried.empty() and object.buried[0] == Rect2())
+	$\"%Amount\".value = object.number
+	$\"%OnWater\".pressed = (not object.buried.empty() and object.buried[0] == Rect2())
 	
-	$Container/Controls/EditObject.connect(\"pressed\", get_parent(), \"edit_object\", [object])
-	$Container/Controls/Amount/Value.connect(\"value_changed\", get_parent(), \"update_object_amount\", [object.name])
-	$Container/Controls/OnWater.connect(\"toggled\", get_parent(), \"update_object_on_water\", [object.name])"
+	$\"%EditObject\".connect(\"pressed\", get_parent(), \"edit_object\", [object])
+	$\"%Amount\".connect(\"value_changed\", get_parent(), \"update_object_amount\", [object.name])
+	$\"%OnWater\".connect(\"toggled\", get_parent(), \"update_object_on_water\", [object.name])
+"
 
 [node name="ObjectPanel" type="Panel"]
 anchor_right = 1.0
@@ -33,6 +34,7 @@ anchor_bottom = 1.0
 alignment = 1
 
 [node name="Image" type="TextureRect" parent="Container"]
+unique_name_in_owner = true
 margin_right = 256.0
 margin_bottom = 256.0
 texture = ExtResource( 1 )
@@ -51,33 +53,35 @@ margin_bottom = 256.0
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
-margin_top = 77.0
+margin_top = 71.0
 margin_right = 210.0
 margin_bottom = 110.0
 
-[node name="Value" type="SpinBox" parent="Container/Controls/Amount"]
+[node name="Amount" type="SpinBox" parent="Container/Controls/Amount"]
+unique_name_in_owner = true
 margin_right = 74.0
-margin_bottom = 33.0
+margin_bottom = 39.0
 min_value = 1.0
 max_value = 65536.0
 value = 1.0
 
 [node name="Label" type="Label" parent="Container/Controls/Amount"]
 margin_left = 78.0
-margin_top = 5.0
+margin_top = 8.0
 margin_right = 210.0
-margin_bottom = 28.0
+margin_bottom = 31.0
 text = "Number per map"
 
 [node name="OnWater" type="CheckBox" parent="Container/Controls"]
+unique_name_in_owner = true
 margin_top = 114.0
 margin_right = 210.0
-margin_bottom = 145.0
+margin_bottom = 141.0
 text = "Placed on water"
 
 [node name="EditObject" type="Button" parent="Container/Controls"]
-margin_top = 149.0
+unique_name_in_owner = true
+margin_top = 145.0
 margin_right = 210.0
-margin_bottom = 178.0
+margin_bottom = 184.0
 text = "Edit this object"
-
