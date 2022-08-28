@@ -208,6 +208,11 @@ func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	customization.add_image("amSnowball.png")
 	customization.add_image_info("Size: %s", ["128x128"])
 	
+	customization = add_customization("Rope")
+	customization.add_info("Replaces piece of rope. Use together with Rope Step in Theme tab.")
+	customization.add_image("RopeNode.png")
+	customization.add_image_info("Any size")
+	
 	for file in HWTheme.image_list:
 		if not file in customizable_list and not file in HWTheme.sprays and not file in HWTheme.objects:
 			$ItemLists/Other/List.add_item(file)
@@ -267,12 +272,12 @@ func add_customization(cname):
 func add_customizable_image(iname):
 	customizable_list[iname] = true
 
-func fetch_template(iname, customization, index):
+func fetch_template(iname: String, customization, index: int):
 	var dir = Directory.new()
 	dir.copy(get_template_path(iname), HWTheme.get_theme_path().plus_file(iname))
-	customization.update_image(index, iname)
+	customization.update_image(index)
 
-func get_template_path(iname):
+func get_template_path(iname: String) -> String:
 	match iname:
 		"icon.png": return Utils.hedgewars_path + "/Data/Themes/Nature/icon.png"
 		"icon@2x.png": return Utils.hedgewars_path + "/Data/Themes/Nature/icon@2x.png"
@@ -307,3 +312,6 @@ func get_template_path(iname):
 		"amRubber.png": return Utils.hedgewars_path + "/Data/Graphics/amRubber.png"
 		"Snowball.png": return Utils.hedgewars_path + "/Data/Graphics/Snowball.png"
 		"amSnowball.png": return Utils.hedgewars_path + "/Data/Graphics/Hedgehog/amSnowball.png"
+		"RopeNode.png": return Utils.hedgewars_path + "/Data/Graphics/RopeNode.png"
+	assert(false, "Missing template: " + iname)
+	return ""

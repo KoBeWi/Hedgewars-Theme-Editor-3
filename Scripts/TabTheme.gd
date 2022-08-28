@@ -84,6 +84,8 @@ func _ready():
 	$SDWaterAnimation/FrameDuration/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_duration"])
 	$SDWaterAnimation/MovementSpeed/Value.connect("value_changed", HWTheme, "change_property", ["sd_water_animation_speed"])
 	
+	$"%RopeStepDefined".connect("toggled", HWTheme, "change_property", ["rope_step_defined"])
+	$"%RopeStepValue".connect("value_changed", HWTheme, "change_property", ["rope_step"])
 	
 	$Hidden.connect("toggled", HWTheme, "change_property", ["hidden"])
 	$FlattenFlakes.connect("toggled", HWTheme, "change_property", ["flatten_flakes"])
@@ -152,6 +154,10 @@ func on_theme_loaded():
 	$SDWaterAnimation/Frames/Value.value = HWTheme.sd_water_animation_frames
 	$SDWaterAnimation/FrameDuration/Value.value = HWTheme.sd_water_animation_duration
 	$SDWaterAnimation/MovementSpeed/Value.value = HWTheme.sd_water_animation_speed
+	
+	$"%RopeStepDefined".pressed = HWTheme.rope_step_defined
+	$"%RopeStepValue".editable = HWTheme.rope_step_defined
+	$"%RopeStepValue".value = HWTheme.rope_step
 	
 	$Hidden.pressed = HWTheme.hidden
 	$FlattenFlakes.pressed = HWTheme.flatten_flakes

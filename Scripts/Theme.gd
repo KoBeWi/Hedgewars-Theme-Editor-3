@@ -56,6 +56,9 @@ var sd_water_animation_frames: int
 var sd_water_animation_duration: int
 var sd_water_animation_speed: int
 
+var rope_step_defined: bool
+var rope_step: int
+
 var hidden: bool
 var flatten_clouds: bool
 var flatten_flakes: bool
@@ -126,6 +129,9 @@ func load_defaults():
 	sd_water_animation_duration = 0
 	sd_water_animation_speed = 100
 	
+	rope_step_defined = false
+	rope_step = 4
+	
 	hidden = false
 	flatten_clouds = false
 	flatten_flakes = false
@@ -155,15 +161,19 @@ func load_theme(_theme_name, version):
 	var water_opacity := 0.5
 	var sd_water_opacity := 0.5
 	for line in lines:
-		var split = line.split(" = ")#TODO: probably some regex for better handling
+		var split = line.split(" = ") # TODO: probably some regex for better handling
 		var params = []
 		if split.size() > 1: params = split[1].split(", ")
 		
-		match split[0]:#TODO: would be cool to add some metadata for editor
-			"music": music = params[0].get_basename()
-			"sd-music": sd_music = params[0].get_basename()
-			"fallback-music": fallback_music = params[0].get_basename()
-			"fallback-sd-music": fallback_sd_music = params[0].get_basename()
+		match split[0]: # TODO: would be cool to add some metadata for editor
+			"music":
+				music = params[0].get_basename()
+			"sd-music":
+				sd_music = params[0].get_basename()
+			"fallback-music":
+				fallback_music = params[0].get_basename()
+			"fallback-sd-music":
+				fallback_sd_music = params[0].get_basename()
 			"sky":
 				sky = Utils.get_color(params)
 				sky_defined = true
@@ -186,7 +196,8 @@ func load_theme(_theme_name, version):
 			"sd-water-bottom":
 				sd_water_bottom = Utils.get_color(params)
 				sd_water_bottom_defined = true
-			"sd-water-opacity": sd_water_opacity = Utils.get_color_value(params[0])
+			"sd-water-opacity":
+				sd_water_opacity = Utils.get_color_value(params[0])
 			"clouds":
 				clouds = int(params[0])
 				clouds_defined = true
@@ -219,11 +230,19 @@ func load_theme(_theme_name, version):
 				sd_water_animation_duration = int(params[1])
 				sd_water_animation_speed = float(params[2]) * 100
 				sd_water_animation_defined = true
-			"hidden": hidden = true
-			"flatten-clouds": flatten_clouds = true
-			"flatten-flakes": flatten_flakes = true
-			"snow": snow = true
-			"ice": ice = true
+			"rope-step":
+				rope_step = int(params[0])
+				rope_step_defined = true
+			"hidden":
+				hidden = true
+			"flatten-clouds":
+				flatten_clouds = true
+			"flatten-flakes":
+				flatten_flakes = true
+			"snow":
+				snow = true
+			"ice":
+				ice = true
 			"object":
 				var object := ThemeObject.new(params[0], int(params[1]))
 				objects[object.name] = object
@@ -295,7 +314,7 @@ func save_theme():
 	Directory.new().rename(get_theme_path().plus_file("theme.cfg"), get_theme_path().plus_file("theme.bak"))
 	
 	var cfg_file = File.new()
-	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.WRITE) == OK: ##TODO: show error if fails
+	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.WRITE) == OK: # TODO: show error if fails
 		cfg_file.store_string(theme_output.join("\n"))
 		cfg_file.close()
 		
@@ -385,6 +404,9 @@ func refresh_oputput(emit_changed = true):
 				line.append(str(", ", overlay.position.x, ", ", overlay.position.y, ", ", overlay.image))
 			
 			theme_output.append("overlays = " + line.join(""))
+	
+	if rope_step_defined:
+		theme_output.append(str("rope-step = ", rope_step))
 	
 	if hidden:
 		theme_output.append("hidden = true")

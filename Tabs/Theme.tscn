@@ -750,38 +750,66 @@ margin_bottom = 1846.0
 custom_fonts/font = ExtResource( 6 )
 text = "Miscellaneous"
 
-[node name="Hidden" type="CheckBox" parent="."]
+[node name="RopeStep" type="HBoxContainer" parent="."]
 margin_top = 1850.0
 margin_right = 1001.0
-margin_bottom = 1877.0
+margin_bottom = 1889.0
+alignment = 1
+
+[node name="RopeStepDefined" type="CheckBox" parent="RopeStep"]
+unique_name_in_owner = true
+margin_left = 405.0
+margin_right = 518.0
+margin_bottom = 39.0
+text = "Rope Step"
+
+[node name="RopeStepValue" type="SpinBox" parent="RopeStep"]
+unique_name_in_owner = true
+margin_left = 522.0
+margin_right = 596.0
+margin_bottom = 39.0
+hint_tooltip = "Number of frames in BlueWater.png. The frames in this image should be stacked vertically. The height of this image must be divisible by number of frames"
+max_value = 65536.0
+
+[node name="FlagsHeader" type="Label" parent="."]
+margin_top = 1893.0
+margin_right = 1001.0
+margin_bottom = 1935.0
+custom_fonts/font = ExtResource( 6 )
+text = "Flags"
+
+[node name="Hidden" type="CheckBox" parent="."]
+margin_top = 1939.0
+margin_right = 1001.0
+margin_bottom = 1966.0
 hint_tooltip = "If enabled, the theme will be hidden from the in-game theme selection menu"
 text = "Hidden?"
 
 [node name="FlattenFlakes" type="CheckBox" parent="."]
-margin_top = 1881.0
+margin_top = 1970.0
 margin_right = 1001.0
-margin_bottom = 1908.0
+margin_bottom = 1997.0
 hint_tooltip = "If enabled, all flakes have the same size and are on the same layer: In front of the sky and horizont and behind the terrain"
 text = "Flatten flakes?"
 
 [node name="FlattenClouds" type="CheckBox" parent="."]
-margin_top = 1912.0
+margin_top = 2001.0
 margin_right = 1001.0
-margin_bottom = 1939.0
+margin_bottom = 2028.0
 hint_tooltip = "If enabled, all clouds have the same size and are on the same layer: background"
 text = "Flatten clouds?"
 
 [node name="Snow" type="CheckBox" parent="."]
-margin_top = 1943.0
+margin_top = 2032.0
 margin_right = 1001.0
-margin_bottom = 1970.0
+margin_bottom = 2059.0
 hint_tooltip = "If enabled, when flakes collide with terrain, they become a part of the landscape. Use Snow.png to change the appearance of the snow"
 text = "Snow?"
 
 [node name="Ice" type="CheckBox" parent="."]
-margin_top = 1974.0
+margin_top = 2063.0
 margin_right = 1001.0
-margin_bottom = 2001.0
+margin_bottom = 2090.0
 hint_tooltip = "If enabled, girders become slippery like ice. This also applies to placed girders"
 text = "Ice?"
 
@@ -807,3 +835,4 @@ text = "Ice?"
 [connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/Frames/Value" method="set_editable"]
 [connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/FrameDuration/Value" method="set_editable"]
 [connection signal="toggled" from="SDWaterAnimationOnOff" to="SDWaterAnimation/MovementSpeed/Value" method="set_editable"]
+[connection signal="toggled" from="RopeStep/RopeStepDefined" to="RopeStep/RopeStepValue" method="set_editable"]
