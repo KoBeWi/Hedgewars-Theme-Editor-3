@@ -1,4 +1,4 @@
-![Logo](https://github.com/KoBeWi/Hedgewars-Theme-Editor-3/blob/master/icon.png?raw=true)
+![Logo](https://github.com/KoBeWi/Hedgewars-Theme-Editor-3/blob/master/icon.png)
 # Hedgewars Theme Editor 3
 A map theme editor for open-source game Hedgewars, third version. Created using [Godot Engine](https://godotengine.org/).
 
@@ -14,7 +14,7 @@ You will need to download Godot **3.5** to run the editor from source. You can g
 
 To edit the project, either run `godot -e` inside the project directory or add the Theme Editor to Project Manager on Godot startup.
 
-<img src="https://i.imgur.com/J7mo8if.gif" data-canonical-src="https://i.imgur.com/J7mo8if.gif" width="207" height="117" />
+<img src="https://github.com/KoBeWi/Hedgewars-Theme-Editor-3/blob/master/Media/HowToRun.gif" width="207" height="117" />
 
 IMPORTANT: you need to open the project in the Godot editor at least once, to import all resources. Otherwise it won't run.
 
