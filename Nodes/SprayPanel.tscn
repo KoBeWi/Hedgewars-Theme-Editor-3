@@ -13,6 +13,7 @@ func _ready():
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
 	$\"%Amount\".value = HWTheme.sprays[spray]
+	$\"%Amount\".get_line_edit().text = str($\"%Amount\".value) # FIXME engine bug
 	$\"%Amount\".connect(\"value_changed\", get_parent(), \"update_spray_amount\", [spray])
 "
 

@@ -13,6 +13,7 @@ func _ready():
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
 	$\"%Amount\".value = object.number
+	$\"%Amount\".get_line_edit().text = str(object.number) # FIXME engine bug
 	$\"%OnWater\".pressed = (not object.buried.empty() and object.buried[0] == Rect2())
 	
 	$\"%EditObject\".connect(\"pressed\", get_parent(), \"edit_object\", [object])
