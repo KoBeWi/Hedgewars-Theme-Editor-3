@@ -1,21 +1,31 @@
 extends VBoxContainer
 
-var spray_count = 0
+onready var container: VBoxContainer = $Container
+onready var object_label: Label = $ObjectLabel
+onready var spray_label: Label = $SprayLabel
+onready var warning_label: Label = $WarningLabel
+
+var spray_count := 0
+var object_count := 0
 
 func _ready():
 	get_parent().name = tr("Objects")
 	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
 	Utils.connect("object_modified", self, "on_object_modified")
-	
+
 func on_theme_loaded():
-	for panel in get_children(): panel.free()
+	for panel in container.get_children():
+		panel.free()
 	spray_count = 0
+	object_count = 0
 	
 	for spray in HWTheme.sprays.keys():
 		add_spray(spray)
 	
 	for object in HWTheme.objects.values():
 		add_object(object)
+	
+	update_labels()
 
 func on_object_modified(operation, object):
 	match operation:
@@ -40,30 +50,36 @@ func add_spray(spray):
 	var panel = preload("res://Nodes/SprayPanel.tscn").instance()
 	panel.spray = spray
 	if spray_count > 0:
-		add_child_below_node(get_child(spray_count-1), panel)
+		container.add_child_below_node(container.get_child(spray_count-1), panel) # TODO this can just use 2 containers
 	else:
-		add_child(panel)
-		move_child(panel, 0)
+		container.add_child(panel)
+		container.move_child(panel, 0)
 	spray_count += 1
+	update_labels()
 	return panel
 
 func remove_spray(spray):
 	for i in spray_count:
-		if get_child(i).spray == spray:
-			get_child(i).queue_free()
+		if container.get_child(i).spray == spray:
+			container.get_child(i).queue_free()
 			spray_count -= 1
+			update_labels()
 			return
 
 func add_object(object):
 	var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
 	panel.object = object
-	add_child(panel)
+	container.add_child(panel)
+	object_count += 1
+	update_labels()
 	return panel
 
 func remove_object(object):
-	for i in range(spray_count, get_child_count()):
-		if get_child(i).object.name == object:
-			get_child(i).queue_free()
+	for i in range(spray_count, container.get_child_count()):
+		if container.get_child(i).object.name == object:
+			container.get_child(i).queue_free()
+			object_count -= 1
+			update_labels()
 			return
 
 func update_object_amount(amount, object):
@@ -71,7 +87,7 @@ func update_object_amount(amount, object):
 	HWTheme.apply_change()
 
 func update_object_on_water(value, object):
-	if !value:
+	if not value:
 		HWTheme.objects[object].buried.erase(Rect2())
 	else:
 		HWTheme.objects[object].buried.insert(0, Rect2())
@@ -91,3 +107,8 @@ func edit_object(object):
 	get_tree().current_scene = object_edit
 	
 	$"/root".remove_child(Utils.temp_editor)
+
+func update_labels():
+	object_label.format(object_count)
+	spray_label.format(spray_count)
+	warning_label.visible = object_count > 32

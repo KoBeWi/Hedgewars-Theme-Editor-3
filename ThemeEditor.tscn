@@ -14,9 +14,6 @@ anchor_bottom = 1.0
 theme = ExtResource( 8 )
 texture = ExtResource( 7 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ThemeEditor" type="TabContainer" parent="."]
 anchor_right = 1.0

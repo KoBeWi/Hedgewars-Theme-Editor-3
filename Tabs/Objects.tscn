@@ -1,13 +1,41 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/TabObjects.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/FormatLabel.gd" type="Script" id=2]
 
-[node name="Container" type="VBoxContainer"]
+[node name="Objects" type="VBoxContainer"]
 margin_right = 1016.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="ObjectLabel" type="Label" parent="."]
+margin_right = 1016.0
+margin_bottom = 23.0
+text = "Object Count: %d"
+align = 1
+script = ExtResource( 2 )
+
+[node name="WarningLabel" type="Label" parent="."]
+margin_top = 27.0
+margin_right = 1016.0
+margin_bottom = 50.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Too many objects, maximum count is 32. The game will crash."
+align = 1
+script = ExtResource( 2 )
+
+[node name="SprayLabel" type="Label" parent="."]
+margin_top = 54.0
+margin_right = 1016.0
+margin_bottom = 77.0
+text = "Spray Count: %d"
+align = 1
+script = ExtResource( 2 )
+
+[node name="Container" type="VBoxContainer" parent="."]
+margin_top = 81.0
+margin_right = 1016.0
+margin_bottom = 560.0
+size_flags_vertical = 3
