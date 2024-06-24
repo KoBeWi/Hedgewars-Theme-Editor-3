@@ -22,6 +22,7 @@ _global_script_class_icons={
 
 config/name="Hedgewars Theme Editor 3"
 run/main_scene="res://ThemeEditor.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
 
 [autoload]
