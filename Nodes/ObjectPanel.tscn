@@ -16,9 +16,10 @@ func _ready():
 	$\"%Amount\".get_line_edit().text = str(object.number) # FIXME engine bug
 	$\"%OnWater\".pressed = (not object.buried.empty() and object.buried[0] == Rect2())
 	
-	$\"%EditObject\".connect(\"pressed\", get_parent(), \"edit_object\", [object])
-	$\"%Amount\".connect(\"value_changed\", get_parent(), \"update_object_amount\", [object.name])
-	$\"%OnWater\".connect(\"toggled\", get_parent(), \"update_object_on_water\", [object.name])
+	var parent := get_parent().get_parent() # FIXME this could be more reliable
+	$\"%EditObject\".connect(\"pressed\", parent, \"edit_object\", [object])
+	$\"%Amount\".connect(\"value_changed\", parent, \"update_object_amount\", [object.name])
+	$\"%OnWater\".connect(\"toggled\", parent, \"update_object_on_water\", [object.name])
 "
 
 [node name="ObjectPanel" type="Panel"]

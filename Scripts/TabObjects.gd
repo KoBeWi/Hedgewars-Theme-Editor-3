@@ -36,7 +36,7 @@ func on_object_modified(operation, object):
 			HWTheme.sprays.erase(object)
 			remove_spray(object)
 		"object+":
-			object = {name = object, number = 1, buried = [], visible = [], on_water = false}
+			object = HWTheme.ThemeObject.new(object, 1)
 			HWTheme.objects[object.name] = object
 			var panel = add_object(object)
 			object.buried.append(Rect2(Vector2(), panel.get_node("Container/Image").texture.get_size()))

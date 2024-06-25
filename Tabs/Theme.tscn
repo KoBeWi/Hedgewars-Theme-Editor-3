@@ -8,7 +8,7 @@
 [ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=6]
 [ext_resource path="res://Nodes/ColorPicker.tscn" type="PackedScene" id=7]
 
-[node name="Container" type="VBoxContainer"]
+[node name="Theme" type="VBoxContainer"]
 margin_right = 1001.0
 margin_bottom = 1654.0
 size_flags_horizontal = 3

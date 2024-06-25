@@ -12,9 +12,10 @@ func _ready():
 	$\"%Image\".texture = texture
 	rect_min_size.y = max(texture.get_size().y + 16, 128)
 	
+	var parent := get_parent().get_parent() # FIXME this could be more reliable
 	$\"%Amount\".value = HWTheme.sprays[spray]
 	$\"%Amount\".get_line_edit().text = str($\"%Amount\".value) # FIXME engine bug
-	$\"%Amount\".connect(\"value_changed\", get_parent(), \"update_spray_amount\", [spray])
+	$\"%Amount\".connect(\"value_changed\", parent, \"update_spray_amount\", [spray])
 "
 
 [node name="SprayPanel" type="Panel"]
