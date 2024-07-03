@@ -1,71 +1,49 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://bec35mck45vma"]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
-
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Button
 
-onready var theme_name: Label = $Container/Container/Name
-onready var theme_icon: TextureRect = $Container/Container/Icon
-onready var theme_version: Label = $Container/Container/Version
+@onready var theme_name: Label = %Name
+@onready var theme_icon: TextureRect = %Icon
+@onready var theme_version: Label = %Version
 "
 
 [node name="ThemeButton" type="Button"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = -384.0
-margin_bottom = -172.0
-rect_min_size = Vector2( 128, 128 )
+custom_minimum_size = Vector2(128, 128)
+offset_right = 128.0
+offset_bottom = 128.0
 toggle_mode = true
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = SubResource("1")
 
 [node name="Container" type="MarginContainer" parent="."]
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-custom_constants/margin_right = 8
-custom_constants/margin_top = 8
-custom_constants/margin_left = 8
-custom_constants/margin_bottom = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Container" type="VBoxContainer" parent="Container"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 120.0
-margin_bottom = 126.0
+layout_mode = 2
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Name" type="Label" parent="Container/Container"]
-margin_right = 112.0
-margin_bottom = 23.0
+unique_name_in_owner = true
+layout_mode = 2
 text = "Theme name"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Container/Container"]
-margin_top = 27.0
-margin_right = 112.0
-margin_bottom = 91.0
-rect_min_size = Vector2( 65, 64 )
-texture = ExtResource( 1 )
-expand = true
-stretch_mode = 6
+unique_name_in_owner = true
+custom_minimum_size = Vector2(65, 64)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Version" type="Label" parent="Container/Container"]
-margin_top = 95.0
-margin_right = 112.0
-margin_bottom = 118.0
-align = 2
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 2

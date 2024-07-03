@@ -10,7 +10,7 @@ Go to [Releases page](https://github.com/KoBeWi/Hedgewars-Theme-Editor-3/release
 
 ## Running the source
 
-You will need to download Godot **3.5** to run the editor from source. You can get it from the [official website](https://godotengine.org/).
+You will need to download Godot to run the editor from source (current stable version or newer). You can get it from the [official website](https://godotengine.org/).
 
 To edit the project, either run `godot -e` inside the project directory or add the Theme Editor to Project Manager on Godot startup.
 

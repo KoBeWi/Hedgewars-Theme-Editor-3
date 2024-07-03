@@ -8,19 +8,19 @@ var selected_theme: String
 
 func _ready():
 	get_parent().name = tr("Main")
-	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	HWTheme.theme_loaded.connect(on_theme_loaded)
 	Utils.main = self
 	
-	$Save/Button.connect("pressed", HWTheme, "save_theme")
-	$GamePath/Button.connect("pressed", $Dialogs/GameDialog, "popup_centered")
-	$UserPath/Button.connect("pressed", $Dialogs/UserDialog, "popup_centered")
-	$Dialogs/GameDialog.connect("dir_selected", self, "set_game_path")
-	$Dialogs/UserDialog.connect("dir_selected", self, "set_user_path")
-	$LanguageContainer/LanguageList.connect("item_selected", self, "change_language")
-	$PackContainer/PackThemes.connect("pressed", self, "pack_start")
-	$PackContainer/CreatePack.connect("pressed", self, "pack_accept")
-	$PackContainer/Cancel.connect("pressed", self, "pack_cancel")
-	$Save/Version.connect("value_changed", HWTheme, "set_version")
+	$Save/Button.pressed.connect(HWTheme.save_theme)
+	$GamePath/Button.pressed.connect($Dialogs/GameDialog.popup_centered)
+	$UserPath/Button.pressed.connect($Dialogs/UserDialog.popup_centered)
+	$Dialogs/GameDialog.dir_selected.connect(set_game_path)
+	$Dialogs/UserDialog.dir_selected.connect(set_user_path)
+	$LanguageContainer/LanguageList.item_selected.connect(change_language)
+	$PackContainer/PackThemes.pressed.connect(pack_start)
+	$PackContainer/CreatePack.pressed.connect(pack_accept)
+	$PackContainer/Cancel.pressed.connect(pack_cancel)
+	$Save/Version.value_changed.connect(HWTheme.set_version)
 	
 	$GamePath/Label.text = Utils.hedgewars_path
 	$UserPath/Label.text = Utils.hedgewars_user_path
@@ -56,22 +56,22 @@ func theme_selected(button: Button):
 		deselect_themes()
 
 func select_theme_button():
-	var style := preload("res://Resources/ThemeButtonSelected.stylebox") as StyleBox
-	for button in $ThemeAlign/ThemesList.get_children():
+	var style := preload("res://Resources/ThemeButtonSelected.stylebox")
+	for button: Button in $ThemeAlign/ThemesList.get_children():
 		if button.theme_name.text == selected_theme:
-			button.add_stylebox_override("normal", style)
-			button.add_stylebox_override("pressed", style)
-			button.add_stylebox_override("focus", style)
-			button.add_stylebox_override("hover", style)
+			button.add_theme_stylebox_override(&"normal", style)
+			button.add_theme_stylebox_override(&"pressed", style)
+			button.add_theme_stylebox_override(&"focus", style)
+			button.add_theme_stylebox_override(&"hover", style)
 		else:
-			button.add_stylebox_override("normal", null)
-			button.add_stylebox_override("pressed", null)
-			button.add_stylebox_override("focus", null)
-			button.add_stylebox_override("hover", null)
+			button.remove_theme_stylebox_override(&"normal")
+			button.remove_theme_stylebox_override(&"pressed")
+			button.remove_theme_stylebox_override(&"focus")
+			button.remove_theme_stylebox_override(&"hover")
 
 func deselect_themes():
 	for button in $ThemeAlign/ThemesList.get_children():
-		button.pressed = false
+		button.button_pressed = false
 
 func pack_start():
 	for i in $PackContainer.get_child_count():
@@ -79,25 +79,24 @@ func pack_start():
 	$SelectPack.visible = true
 	pack_mode = true
 
-func pack_accept():#TODO: pack music (optional)
+func pack_accept():# TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
 		if button.pressed:
 			selected.append(button.get_meta("theme"))
 	
 	var pack_name = $PackContainer/PackName.text
-	if pack_name == "": pack_name = PoolStringArray(selected).join("+")
+	if pack_name == "": pack_name = "+".join(PackedStringArray(selected))
 	
-	var root := Utils.package_path.plus_file(pack_name)
+	var root := Utils.package_path.path_join(pack_name)
 	
-	var output = Directory.new()
-	output.make_dir_recursive(root.plus_file("Data/Themes"))
+	DirAccess.make_dir_recursive_absolute(root.path_join("Data/Themes"))
 	
 	for theme_name in selected:
-		var output_path := root.plus_file("Data/Themes").plus_file(theme_name)
-		output.make_dir_recursive(output_path)
+		var output_path := root.path_join("Data/Themes").path_join(theme_name)
+		DirAccess.make_dir_recursive_absolute(output_path)
 		for file in Utils.list_directory(Utils.get_theme_path(theme_name), true): if not file in DONT_PACK:
-			output.copy(Utils.get_theme_path(theme_name).plus_file(file), output_path.plus_file(file))
+			DirAccess.copy_absolute(Utils.get_theme_path(theme_name).path_join(file), output_path.path_join(file))
 	
 	pack_cancel()#TODO: feedback if success
 
@@ -129,8 +128,8 @@ func change_language(item): # TODO: some warning? it probably discards changes
 	get_tree().reload_current_scene()
 
 func bind_setting(button, setting):
-	button.pressed = Utils.get(setting)
-	button.connect("toggled", self, "on_setting_changed", [setting])
+	button.button_pressed = Utils.get(setting)
+	button.toggled.connect(on_setting_changed.bind(setting))
 
 func on_setting_changed(enabled, setting):
 	Utils.set(setting, enabled)
@@ -141,15 +140,13 @@ func open_theme_directory():
 
 func new_theme():
 	var name_edit := $Dialogs/NewThemeDialog/LineEdit as LineEdit
-	var theme_path := Utils.get_themes_directory().plus_file(name_edit.text)
-	var dir := Directory.new()
+	var theme_path := Utils.get_themes_directory().path_join(name_edit.text)
 	
-	var err := dir.make_dir(theme_path)
+	var err := DirAccess.make_dir_absolute(theme_path)
 	if err == OK:
 		name_edit.clear()
 		
-		var file := File.new()
-		file.open(theme_path + "/theme.cfg", file.WRITE)
+		var file := FileAccess.open(theme_path + "/theme.cfg", FileAccess.WRITE)
 		file.close()
 		
 		Utils.refresh_themes()

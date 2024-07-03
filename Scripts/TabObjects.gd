@@ -1,17 +1,17 @@
 extends VBoxContainer
 
-onready var container: VBoxContainer = $Container
-onready var object_label: Label = $ObjectLabel
-onready var spray_label: Label = $SprayLabel
-onready var warning_label: Label = $WarningLabel
+@onready var container: VBoxContainer = $Container
+@onready var object_label: Label = $ObjectLabel
+@onready var spray_label: Label = $SprayLabel
+@onready var warning_label: Label = $WarningLabel
 
 var spray_count := 0
 var object_count := 0
 
 func _ready():
 	get_parent().name = tr("Objects")
-	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
-	Utils.connect("object_modified", self, "on_object_modified")
+	HWTheme.theme_loaded.connect(on_theme_loaded)
+	Utils.object_modified.connect(on_object_modified)
 
 func on_theme_loaded():
 	for panel in container.get_children():
@@ -47,10 +47,10 @@ func on_object_modified(operation, object):
 	HWTheme.apply_change()
 
 func add_spray(spray):
-	var panel = preload("res://Nodes/SprayPanel.tscn").instance()
+	var panel = preload("res://Nodes/SprayPanel.tscn").instantiate()
 	panel.spray = spray
 	if spray_count > 0:
-		container.add_child_below_node(container.get_child(spray_count-1), panel) # TODO this can just use 2 containers
+		container.add_sibling(container.get_child(spray_count - 1)) # TODO this can just use 2 containers
 	else:
 		container.add_child(panel)
 		container.move_child(panel, 0)
@@ -67,7 +67,7 @@ func remove_spray(spray):
 			return
 
 func add_object(object):
-	var panel  = preload("res://Nodes/ObjectPanel.tscn").instance()
+	var panel  = preload("res://Nodes/ObjectPanel.tscn").instantiate()
 	panel.object = object
 	container.add_child(panel)
 	object_count += 1
@@ -101,7 +101,7 @@ func update_spray_amount(amount, spray):
 func edit_object(object):
 	Utils.temp_editor = get_tree().current_scene
 	
-	var object_edit = preload("res://ObjectEdit.tscn").instance()
+	var object_edit = preload("res://ObjectEdit.tscn").instantiate()
 	object_edit.object = object
 	$"/root".add_child(object_edit)
 	get_tree().current_scene = object_edit

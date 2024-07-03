@@ -1,19 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://btmhl4dpc260n"]
 
-[ext_resource path="res://Font/SectionFont.tres" type="DynamicFont" id=1]
-[ext_resource path="res://Font/SubsectionFont.tres" type="DynamicFont" id=2]
-[ext_resource path="res://Images/NoImage.png" type="Texture" id=3]
+[ext_resource type="Texture2D" uid="uid://f5amv6ot7myy" path="res://Images/NoImage.png" id="3"]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="GDScript" id="1"]
 script/source = "extends Control
 
 var images := -1
 
 func _ready():
 	$Container/GeneralInfo.text = \"\"
-	Utils.dir_watcher.connect(\"files_created\", self, \"files_changed\")
-	Utils.dir_watcher.connect(\"files_modified\", self, \"files_changed\")
-	Utils.dir_watcher.connect(\"files_deleted\", self, \"files_changed\")
+	Utils.dir_watcher.files_created.connect(files_changed)
+	Utils.dir_watcher.files_modified.connect(files_changed)
+	Utils.dir_watcher.files_deleted.connect(files_changed)
 
 func add_info(info: String):
 	$Container/GeneralInfo.text += tr(info) + \"\\n\"
@@ -30,7 +28,7 @@ func add_image(iname: String):
 	
 	update_image(images)
 	
-	get_image(images).get_node(\"Template/TemplateButton\").connect(\"pressed\", get_parent(), \"fetch_template\", [iname, self, images])
+	get_image(images).get_node(\"Template/TemplateButton\").pressed.connect(get_parent().fetch_template.bind(iname, self, images))
 	get_parent().add_customizable_image(iname)
 
 func add_image_info(info: String, format := []):
@@ -48,7 +46,7 @@ func get_image(i) -> Control:
 
 func update_image(idx: int):
 	var image_container := get_image(idx)
-	var tex := Utils.load_texture(HWTheme.get_theme_path().plus_file(image_container.get_meta(\"image_name\")), true)
+	var tex := Utils.load_texture(HWTheme.get_theme_path().path_join(image_container.get_meta(\"image_name\")), true)
 	
 	if tex:
 		image_container.get_node(\"Image\").texture = tex
@@ -67,104 +65,75 @@ func files_changed(file_list: Array):
 "
 
 [node name="CustomizationPanel" type="PanelContainer"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = SubResource("1")
 
 [node name="Container" type="VBoxContainer" parent="."]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 1016.0
-margin_bottom = 592.0
+layout_mode = 2
 
 [node name="GroupName" type="Label" parent="Container"]
-margin_right = 1008.0
-margin_bottom = 42.0
-custom_fonts/font = ExtResource( 1 )
+layout_mode = 2
+theme_type_variation = &"Section"
 text = "Group name"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GeneralInfo" type="Label" parent="Container"]
-margin_top = 46.0
-margin_right = 1008.0
-margin_bottom = 69.0
+layout_mode = 2
 text = "Multiline general info"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Image" type="VBoxContainer" parent="Container"]
-margin_top = 73.0
-margin_right = 1008.0
-margin_bottom = 266.0
+layout_mode = 2
 alignment = 1
 
 [node name="ImageHeader" type="HBoxContainer" parent="Container/Image"]
-margin_right = 1008.0
-margin_bottom = 31.0
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_right = 433.0
-margin_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ImageName" type="Label" parent="Container/Image/ImageHeader"]
-margin_left = 437.0
-margin_right = 570.0
-margin_bottom = 31.0
-custom_fonts/font = ExtResource( 2 )
+layout_mode = 2
+theme_type_variation = &"Subsection"
 text = "Image name"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HSeparator2" type="HSeparator" parent="Container/Image/ImageHeader"]
-margin_left = 574.0
-margin_right = 1008.0
-margin_bottom = 31.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ImageInfo" type="Label" parent="Container/Image"]
-margin_top = 35.0
-margin_right = 1008.0
-margin_bottom = 58.0
+layout_mode = 2
 text = "Multiline image info"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Image" type="TextureRect" parent="Container/Image"]
-margin_top = 62.0
-margin_right = 1008.0
-margin_bottom = 130.0
-texture = ExtResource( 3 )
-stretch_mode = 4
+layout_mode = 2
+texture = ExtResource("3")
+stretch_mode = 3
 
 [node name="Template" type="HBoxContainer" parent="Container/Image"]
-margin_top = 134.0
-margin_right = 1008.0
-margin_bottom = 173.0
+layout_mode = 2
 
 [node name="HSeparator" type="Control" parent="Container/Image/Template"]
-margin_right = 435.0
-margin_bottom = 39.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="TemplateButton" type="Button" parent="Container/Image/Template"]
-margin_left = 439.0
-margin_right = 569.0
-margin_bottom = 39.0
+layout_mode = 2
 text = "Fetch template"
 
 [node name="HSeparator2" type="Control" parent="Container/Image/Template"]
-margin_left = 573.0
-margin_right = 1008.0
-margin_bottom = 39.0
+layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Space" type="Control" parent="Container/Image"]
-margin_top = 177.0
-margin_right = 1008.0
-margin_bottom = 193.0
-rect_min_size = Vector2( 0, 16 )
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2

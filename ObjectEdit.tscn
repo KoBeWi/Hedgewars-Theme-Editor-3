@@ -1,87 +1,104 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=24 format=3 uid="uid://kju5d6s6yqbj"]
 
-[ext_resource path="res://Scripts/ObjectEdit.gd" type="Script" id=1]
-[ext_resource path="res://Images/Checker.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/ObjectImageEdit.gd" type="Script" id=3]
-[ext_resource path="res://Resources/UITheme.theme" type="Theme" id=4]
+[ext_resource type="Script" path="res://Scripts/ObjectEdit.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dfsriw8xjado0" path="res://Images/Checker.png" id="2"]
+[ext_resource type="Script" path="res://Scripts/ObjectImageEdit.gd" id="3"]
+[ext_resource type="Theme" uid="uid://dlwvi2klj8edk" path="res://Resources/UITheme.theme" id="4"]
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id="1"]
 content_margin_left = 4.0
-content_margin_right = 2.0
 content_margin_top = 2.0
-bg_color = Color( 0, 0, 0, 0.501961 )
+content_margin_right = 2.0
+bg_color = Color(0, 0, 0, 0.501961)
 
-[sub_resource type="InputEventKey" id=9]
-scancode = 49
+[sub_resource type="ButtonGroup" id="ButtonGroup_y0f6j"]
 
-[sub_resource type="ShortCut" id=10]
-shortcut = SubResource( 9 )
+[sub_resource type="InputEventKey" id="InputEventKey_lekfe"]
+device = -1
+keycode = 49
+unicode = 49
 
-[sub_resource type="ButtonGroup" id=2]
+[sub_resource type="Shortcut" id="10"]
+events = [SubResource("InputEventKey_lekfe")]
 
-[sub_resource type="InputEventKey" id=11]
-scancode = 50
+[sub_resource type="ButtonGroup" id="ButtonGroup_kdq3l"]
 
-[sub_resource type="ShortCut" id=12]
-shortcut = SubResource( 11 )
+[sub_resource type="InputEventKey" id="InputEventKey_5xegc"]
+device = -1
+keycode = 50
+unicode = 50
 
-[sub_resource type="InputEventKey" id=13]
-scancode = 51
+[sub_resource type="Shortcut" id="12"]
+events = [SubResource("InputEventKey_5xegc")]
 
-[sub_resource type="ShortCut" id=14]
-shortcut = SubResource( 13 )
+[sub_resource type="ButtonGroup" id="ButtonGroup_glq5v"]
 
-[sub_resource type="InputEventKey" id=15]
-scancode = 52
+[sub_resource type="InputEventKey" id="InputEventKey_bbfga"]
+device = -1
+keycode = 51
+unicode = 51
 
-[sub_resource type="ShortCut" id=16]
-shortcut = SubResource( 15 )
+[sub_resource type="Shortcut" id="14"]
+events = [SubResource("InputEventKey_bbfga")]
 
-[sub_resource type="InputEventKey" id=3]
-scancode = 16777221
+[sub_resource type="ButtonGroup" id="ButtonGroup_p7pkr"]
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="InputEventKey" id="InputEventKey_8oyf7"]
+device = -1
+keycode = 52
+unicode = 52
 
-[sub_resource type="InputEventKey" id=5]
-scancode = 72
+[sub_resource type="Shortcut" id="16"]
+events = [SubResource("InputEventKey_8oyf7")]
 
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
+[sub_resource type="InputEventKey" id="InputEventKey_lqk12"]
+device = -1
+keycode = 4194309
 
-[sub_resource type="InputEventKey" id=7]
-scancode = 16777217
+[sub_resource type="Shortcut" id="4"]
+events = [SubResource("InputEventKey_lqk12")]
 
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
+[sub_resource type="InputEventKey" id="InputEventKey_mpgh7"]
+device = -1
+keycode = 72
+unicode = 104
+
+[sub_resource type="Shortcut" id="6"]
+events = [SubResource("InputEventKey_mpgh7")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vhpax"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="8"]
+events = [SubResource("InputEventKey_vhpax")]
 
 [node name="ObjectEdit" type="Panel"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
+script = ExtResource("1")
 
-[node name="ObjectImage" type="Sprite" parent="."]
+[node name="ObjectImage" type="Sprite2D" parent="."]
 z_index = 1
-script = ExtResource( 3 )
+script = ExtResource("3")
 
-[node name="Checker" type="Sprite" parent="ObjectImage"]
+[node name="Checker" type="Sprite2D" parent="ObjectImage"]
 show_behind_parent = true
-texture = ExtResource( 2 )
+texture_repeat = 2
+texture = ExtResource("2")
 region_enabled = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Zoom" type="VSlider" parent="UI"]
+anchors_preset = 9
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 34.0
-margin_bottom = -16.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 34.0
+offset_bottom = -16.0
 min_value = 1.0
 max_value = 20.0
 step = 0.1
@@ -89,217 +106,154 @@ value = 1.0
 scrollable = false
 tick_count = 20
 ticks_on_borders = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label" type="Label" parent="UI/Zoom"]
+layout_mode = 0
 anchor_top = 0.5
 anchor_bottom = 0.5
-margin_left = 27.0
-margin_top = -282.0
-margin_right = 46.0
-margin_bottom = -266.0
-custom_styles/normal = SubResource( 1 )
+offset_left = 27.0
+offset_top = -282.0
+offset_right = 46.0
+offset_bottom = -266.0
+theme_override_styles/normal = SubResource("1")
 text = "x1"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="PanelContainer" parent="UI"]
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -143.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -143.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/HBoxContainer"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 135.0
-margin_bottom = 592.0
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Button" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 139.0
-margin_right = 127.0
-margin_bottom = 178.0
+layout_mode = 2
 toggle_mode = true
-pressed = true
-shortcut = SubResource( 10 )
-group = SubResource( 2 )
+button_pressed = true
+button_group = SubResource("ButtonGroup_y0f6j")
+shortcut = SubResource("10")
 text = "Visible"
 
 [node name="Button2" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 182.0
-margin_right = 127.0
-margin_bottom = 221.0
+layout_mode = 2
 toggle_mode = true
-shortcut = SubResource( 12 )
-group = SubResource( 2 )
+button_group = SubResource("ButtonGroup_kdq3l")
+shortcut = SubResource("12")
 text = "Buried"
 
 [node name="Button3" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 225.0
-margin_right = 127.0
-margin_bottom = 264.0
+layout_mode = 2
 toggle_mode = true
-shortcut = SubResource( 14 )
-group = SubResource( 2 )
+button_group = SubResource("ButtonGroup_glq5v")
+shortcut = SubResource("14")
 text = "Anchor"
 
 [node name="Button4" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 268.0
-margin_right = 127.0
-margin_bottom = 307.0
+layout_mode = 2
 toggle_mode = true
-shortcut = SubResource( 16 )
-group = SubResource( 2 )
+button_group = SubResource("ButtonGroup_p7pkr")
+shortcut = SubResource("16")
 text = "Overlay"
 
 [node name="HSeparator" type="HSeparator" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 311.0
-margin_right = 127.0
-margin_bottom = 315.0
+layout_mode = 2
 
 [node name="Apply" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 319.0
-margin_right = 127.0
-margin_bottom = 358.0
-shortcut = SubResource( 4 )
+layout_mode = 2
+shortcut = SubResource("4")
 text = "Apply changes"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Help" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 362.0
-margin_right = 127.0
-margin_bottom = 401.0
-shortcut = SubResource( 6 )
+layout_mode = 2
+shortcut = SubResource("6")
 text = "Help"
 
 [node name="Revert" type="Button" parent="UI/HBoxContainer/VBoxContainer"]
-margin_top = 405.0
-margin_right = 127.0
-margin_bottom = 444.0
-shortcut = SubResource( 8 )
+layout_mode = 2
+shortcut = SubResource("8")
 text = "Revert"
 
 [node name="Help" type="PanelContainer" parent="UI"]
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -451.0
-margin_top = 7.0
-margin_right = -145.997
-margin_bottom = 220.0
-custom_styles/panel = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = -451.0
+offset_top = 7.0
+offset_right = -145.997
+offset_bottom = 220.0
+theme_override_styles/panel = SubResource("1")
 
 [node name="Layout" type="VBoxContainer" parent="UI/Help"]
-margin_left = 4.0
-margin_top = 2.0
-margin_right = 303.003
-margin_bottom = 213.0
+layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
 [node name="Label" type="Label" parent="UI/Help/Layout"]
-margin_top = 13.0
-margin_right = 299.0
-margin_bottom = 36.0
+layout_mode = 2
 text = "LMB - draw rectangle"
 
 [node name="Label2" type="Label" parent="UI/Help/Layout"]
-margin_top = 40.0
-margin_right = 299.0
-margin_bottom = 63.0
+layout_mode = 2
 text = "RMB - delete rectangle"
 
 [node name="Label3" type="Label" parent="UI/Help/Layout"]
-margin_top = 67.0
-margin_right = 299.0
-margin_bottom = 90.0
+layout_mode = 2
 text = "MMB - pan view"
 
 [node name="Label5" type="Label" parent="UI/Help/Layout"]
-margin_top = 94.0
-margin_right = 299.0
-margin_bottom = 117.0
+layout_mode = 2
 text = "Mouse wheel - zoom in/zoom out"
 
 [node name="Label6" type="Label" parent="UI/Help/Layout"]
-margin_top = 121.0
-margin_right = 299.0
-margin_bottom = 170.0
-custom_colors/font_color = Color( 1, 0, 1, 1 )
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
 text = "Magenta rectangles are intersecting visible and buried rectangles."
-autowrap = true
+autowrap_mode = 2
 
 [node name="Label7" type="Label" parent="UI/Help/Layout"]
-margin_top = 174.0
-margin_right = 299.0
-margin_bottom = 197.0
-custom_colors/font_color = Color( 1, 0, 1, 1 )
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 1, 1)
 text = "This MUSTN'T happen."
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="UI"]
-visible = true
-margin_left = 82.0553
-margin_top = -196.219
-margin_right = 282.055
-margin_bottom = -110.219
-theme = ExtResource( 4 )
-window_title = "Proszę potwierdzić..."
+theme = ExtResource("4")
 dialog_text = "Discard changes?"
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Overlays" type="PanelContainer" parent="UI"]
+anchors_preset = 9
 anchor_bottom = 1.0
-margin_left = 86.4296
-margin_right = 102.43
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 86.0
+offset_right = 202.0
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Overlays"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 108.0
-margin_bottom = 592.0
+layout_mode = 2
 
 [node name="Label" type="Label" parent="UI/Overlays/VBoxContainer"]
-margin_right = 100.0
-margin_bottom = 23.0
+layout_mode = 2
 text = "Select image"
-autowrap = true
+autowrap_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="UI/Overlays/VBoxContainer"]
-margin_top = 27.0
-margin_right = 100.0
-margin_bottom = 584.0
+layout_mode = 2
 size_flags_vertical = 3
-scroll_horizontal_enabled = false
+horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Overlays/VBoxContainer/ScrollContainer"]
-margin_right = 100.0
-rect_min_size = Vector2( 100, 0 )
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="value_changed" from="UI/Zoom" to="." method="set_zoom"]
-[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button" to="." method="set_mode" binds= [ 0 ]]
-[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button2" to="." method="set_mode" binds= [ 1 ]]
-[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button3" to="." method="set_mode" binds= [ 2 ]]
-[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button4" to="." method="set_mode" binds= [ 3 ]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button" to="." method="set_mode" binds= [0]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button2" to="." method="set_mode" binds= [1]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button3" to="." method="set_mode" binds= [2]]
+[connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Button4" to="." method="set_mode" binds= [3]]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Apply" to="." method="on_apply"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Help" to="." method="on_help"]
 [connection signal="pressed" from="UI/HBoxContainer/VBoxContainer/Revert" to="." method="on_revert"]

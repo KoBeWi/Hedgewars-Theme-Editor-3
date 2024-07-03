@@ -4,7 +4,7 @@ class Cloud:
 	var image: int
 	var pos: Vector2
 
-var texture: Texture
+var texture: Texture2D
 var amount: int
 var clouds: Array
 
@@ -21,7 +21,7 @@ func enable(width: float):
 	for i in amount:
 		var cloud := Cloud.new()
 		cloud.image = randi() % texture_count
-		cloud.pos = Vector2(rand_range(-256, draw_area_width), rand_range(-64, 64))
+		cloud.pos = Vector2(randf_range(-256, draw_area_width), randf_range(-64, 64))
 		clouds.append(cloud)
 
 func _process(delta: float) -> void:

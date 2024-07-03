@@ -1,6 +1,6 @@
-extends Sprite
+extends Sprite2D
 
-onready var edit := get_parent()
+@onready var edit := get_parent()
 
 var drawing: Vector2
 
@@ -8,7 +8,7 @@ var selected_rects: Array
 var intersecting_rects: Array
 
 func _ready():
-	texture = Utils.load_texture(HWTheme.get_theme_path().plus_file(edit.object.name + ".png"))
+	texture = Utils.load_texture(HWTheme.get_theme_path().path_join(edit.object.name + ".png"))
 	$Checker.region_rect.size = texture.get_size()
 	drawing = edit.NO_DRAW
 
@@ -49,7 +49,7 @@ func _draw():
 		draw_rect(rect, color, false)
 		draw_rect(rect, fill_color(color), true)
 	
-	var start: Vector2 = global_transform.affine_inverse().xform(Vector2())
+	var start: Vector2 = global_transform.affine_inverse() * Vector2()
 	var size := Vector2(999999999, 999999999)
 	var center1 := get_mouse_pos().floor()
 	var center2 := center1 + Vector2.ONE
@@ -62,7 +62,7 @@ func _draw():
 		if edit.current_overlay:
 			draw_texture(edit.current_overlay, get_mouse_pos())
 		else:
-			draw_string(edit.get_font("font", "Label"), get_mouse_pos(), tr("Select overlay image"), edit.get_color("font_color", "Label"))
+			draw_string(edit.get_theme_font(&"font", &"Label"), get_mouse_pos(), tr("Select overlay image"), HORIZONTAL_ALIGNMENT_LEFT, -1, 16, edit.get_theme_color(&"font_color", &"Label"))
 	
 	draw_set_transform(Vector2(), 0, Vector2(1, 1))
 
@@ -71,7 +71,7 @@ func update_selected():
 	selected_rects = []
 	
 	if is_drawing():
-		update()
+		queue_redraw()
 		return
 	
 	for rect in edit.object.buried:
@@ -92,7 +92,7 @@ func update_selected():
 			selected_rects.append(rect)
 	
 	if old_selected != selected_rects:
-		update()
+		queue_redraw()
 
 func update_intersecting():
 	intersecting_rects.clear()
@@ -121,9 +121,9 @@ func get_mouse_pos() -> Vector2:
 
 func get_rect_color(rect: Rect2, default: Color) -> Color:
 	if rect in selected_rects:
-		return Color.white
+		return Color.WHITE
 	elif rect in intersecting_rects:
-		return Color.magenta
+		return Color.MAGENTA
 	else:
 		return default
 
@@ -154,7 +154,7 @@ func is_drawing() -> bool:
 
 func stop_rectangle():
 	drawing = edit.NO_DRAW
-	update()
+	queue_redraw()
 
 func update_checker():
 	$Checker.global_scale = Vector2(1, 1)
@@ -174,4 +174,4 @@ func remove_rectangles() -> bool:
 	for overlay in to_erase:
 		edit.object.overlays.erase(overlay)
 	
-	return not selected_rects.empty()
+	return not selected_rects.is_empty()

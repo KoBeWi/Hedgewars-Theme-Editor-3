@@ -69,8 +69,8 @@ var objects: Dictionary
 var sprays: Dictionary
 var image_list: Array
 
-var theme_output: PoolStringArray
-var stored_output: PoolStringArray
+var theme_output: PackedStringArray
+var stored_output: PackedStringArray
 var is_loading: bool
 
 signal theme_loaded
@@ -91,13 +91,13 @@ func load_defaults():
 	
 	water_top_defined = false
 	water_bottom_defined = false
-	water_top = Color("80545C9D")
-	water_bottom = Color("80343C7D")
+	water_top = Color("545C9D80")
+	water_bottom = Color("343C7D80")
 	
 	sd_water_top_defined = false
 	sd_water_bottom_defined = false
-	sd_water_top = Color("809670A9")
-	sd_water_bottom = Color("80B972C9")
+	sd_water_top = Color("9670A980")
+	sd_water_bottom = Color("B972C980")
 	
 	clouds_defined = false
 	clouds = 9
@@ -154,8 +154,8 @@ func load_theme(_theme_name, version):
 	Utils.dir_watcher.add_scan_directory(get_theme_path())
 	
 	var lines = []
-	var cfg_file = File.new()
-	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.READ) == OK:
+	var cfg_file := FileAccess.open(get_theme_path().path_join("theme.cfg"), FileAccess.READ)
+	if cfg_file:
 		lines = cfg_file.get_as_text().split("\n")
 	
 	var water_opacity := 0.5
@@ -302,7 +302,7 @@ func load_theme(_theme_name, version):
 			image_list.append(file.get_basename().get_file())
 	
 	cfg_file.close()
-	emit_signal("theme_loaded")
+	theme_loaded.emit()
 	
 	refresh_oputput(false)
 	stored_output = theme_output
@@ -311,11 +311,11 @@ func load_theme(_theme_name, version):
 func save_theme():
 #	refresh_oputput(false)
 	
-	Directory.new().rename(get_theme_path().plus_file("theme.cfg"), get_theme_path().plus_file("theme.bak"))
+	DirAccess.rename_absolute(get_theme_path().path_join("theme.cfg"), get_theme_path().path_join("theme.bak"))
 	
-	var cfg_file = File.new()
-	if cfg_file.open(get_theme_path().plus_file("theme.cfg"), cfg_file.WRITE) == OK: # TODO: show error if fails
-		cfg_file.store_string(theme_output.join("\n"))
+	var cfg_file := FileAccess.open(get_theme_path().path_join("theme.cfg"), FileAccess.WRITE)
+	if cfg_file: # TODO: show error if fails
+		cfg_file.store_string("\n".join(theme_output))
 		cfg_file.close()
 		
 		stored_output = theme_output
@@ -325,20 +325,19 @@ func save_theme():
 		if theme_version > 0:
 			new_name += str("_v", theme_version)
 		
-		var renamer = Directory.new()
-		renamer.rename(Utils.get_themes_directory().plus_file(theme_name), Utils.get_themes_directory().plus_file(new_name))
+		DirAccess.rename_absolute(Utils.get_themes_directory().path_join(theme_name), Utils.get_themes_directory().path_join(new_name))
 		theme_name = new_name
 		
 		saved_version = theme_version
 		Utils.refresh_themes()
 	
-	emit_signal("output_updated", theme_output != stored_output)
+	output_updated.emit(theme_output != stored_output)
 
 func get_theme_path() -> String:
-	return Utils.get_themes_directory().plus_file(theme_name)
+	return Utils.get_themes_directory().path_join(theme_name)
 
 func refresh_oputput(emit_changed = true):
-	theme_output = PoolStringArray()
+	theme_output = PackedStringArray()
 	
 	theme_output.append("#Created with Hedgewars Theme Editor 3")
 	
@@ -371,7 +370,7 @@ func refresh_oputput(emit_changed = true):
 	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
 	
 	for object in objects.keys():
-		var line := PoolStringArray()
+		var line := PackedStringArray()
 		line.append(str(object, ", ", objects[object].number, ", "))
 		
 		if objects[object].buried.size() != 1:
@@ -383,27 +382,27 @@ func refresh_oputput(emit_changed = true):
 		for visible in objects[object].visible:
 			line.append(", " + Utils.get_rect_string(visible))
 		
-		theme_output.append("object = " + line.join(""))
+		theme_output.append("object = " + "".join(line))
 		
 		var anchors: Array = objects[object].anchors
-		if not anchors.empty():
-			line = PoolStringArray()
+		if not anchors.is_empty():
+			line = PackedStringArray()
 			line.append(str(object, ", ", anchors.size()))
 			
 			for anchor in anchors:
 				line.append(", " + Utils.get_rect_string(anchor))
 			
-			theme_output.append("anchors = " + line.join(""))
+			theme_output.append("anchors = " + "".join(line))
 		
 		var overlays: Array = objects[object].overlays
-		if not overlays.empty():
-			line = PoolStringArray()
+		if not overlays.is_empty():
+			line = PackedStringArray()
 			line.append(str(object, ", ", overlays.size()))
 			
 			for overlay in overlays:
 				line.append(str(", ", overlay.position.x, ", ", overlay.position.y, ", ", overlay.image))
 			
-			theme_output.append("overlays = " + line.join(""))
+			theme_output.append("overlays = " + "".join(line))
 	
 	if rope_step_defined:
 		theme_output.append(str("rope-step = ", rope_step))
@@ -424,7 +423,7 @@ func refresh_oputput(emit_changed = true):
 		theme_output.append("ice = true")
 	
 	if emit_changed:
-		emit_signal("output_updated", theme_output != stored_output)
+		output_updated.emit(theme_output != stored_output)
 
 func change_property(value, property: String):
 	if is_loading:
@@ -486,8 +485,8 @@ class ThemeObject:
 			position = p_position
 			image = p_image
 		
-		func get_texture() -> Texture:
-			return Utils.load_texture(HWTheme.get_theme_path().plus_file(image + ".png"))
+		func get_texture() -> Texture2D:
+			return Utils.load_texture(HWTheme.get_theme_path().path_join(image + ".png"))
 		
 		func get_rect() -> Rect2:
 			return Rect2(position, get_texture().get_size())

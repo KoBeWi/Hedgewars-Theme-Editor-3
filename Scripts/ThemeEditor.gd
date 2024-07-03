@@ -5,17 +5,18 @@ var theme_version_changed = false
 
 func _ready():
 	TranslationServer.set_locale(Utils.preferred_language)
-	OS.set_window_title(tr("Hedgewars Theme Editor 3"))
-	OS.window_maximized = Utils.maximize_on_start
+	get_window().title = tr("Hedgewars Theme Editor 3")
+	get_window().mode = Window.MODE_MAXIMIZED if (Utils.maximize_on_start) else Window.MODE_WINDOWED
 	
 	for i in range(1, get_child_count()):
 		set_tab_disabled(i, true)
 	
-	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
-	HWTheme.connect("output_updated", self, "on_output_updated")
+	HWTheme.theme_loaded.connect(on_theme_loaded)
+	HWTheme.output_updated.connect(on_output_updated)
 
 func on_theme_loaded():
-	OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.basename(), ")"))
+	# TODO: unify this into update_title()
+	get_window().set_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.basename(), ")"))
 	
 	for i in range(1, get_child_count()):
 		set_tab_disabled(i, false)
@@ -23,4 +24,4 @@ func on_theme_loaded():
 func on_output_updated(dirty):
 	if last_dirty != dirty:
 		last_dirty = dirty
-		OS.set_window_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.basename(), ")", "*" if dirty else ""))
+		get_window().set_title(str(tr("Hedgewars Theme Editor 3"), " (", HWTheme.basename(), ")", "*" if dirty else ""))

@@ -4,14 +4,14 @@ var customizable_list = {}
 
 func _ready():
 	get_parent().name = tr("Customization")
-	HWTheme.connect("theme_loaded", self, "on_theme_loaded")
+	HWTheme.theme_loaded.connect(on_theme_loaded)
 	
-	$ItemLists/LeftMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Sprays/List])
-	$ItemLists/LeftMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Sprays/List, $ItemLists/Other/List])
-	$ItemLists/RightMove/MoveLeft.connect("pressed", self, "move_item", [$ItemLists/Objects/List, $ItemLists/Other/List])
-	$ItemLists/RightMove/MoveRight.connect("pressed", self, "move_item", [$ItemLists/Other/List, $ItemLists/Objects/List])
+	$ItemLists/LeftMove/MoveLeft.pressed.connect(move_item.bind($ItemLists/Other/List, $ItemLists/Sprays/List))
+	$ItemLists/LeftMove/MoveRight.pressed.connect(move_item.bind($ItemLists/Sprays/List, $ItemLists/Other/List))
+	$ItemLists/RightMove/MoveLeft.pressed.connect(move_item.bind($ItemLists/Objects/List, $ItemLists/Other/List))
+	$ItemLists/RightMove/MoveRight.pressed.connect(move_item.bind($ItemLists/Other/List, $ItemLists/Objects/List))
 
-func on_theme_loaded():#TODO: sounds, error detection, jump to error
+func on_theme_loaded(): # TODO: sounds, error detection, jump to error
 	$ItemLists/Sprays/List.clear()
 	$ItemLists/Other/List.clear()
 	$ItemLists/Objects/List.clear()
@@ -35,7 +35,7 @@ func on_theme_loaded():#TODO: sounds, error detection, jump to error
 	customization.add_image_info("Size: %s", ["65x64"])
 	
 	customization = add_customization("Land texture")
-	customization.add_info("Texture drawn as map's terrain")
+	customization.add_info("Texture2D drawn as map's terrain")
 	customization.add_info("This image is required")
 	customization.add_image("LandTex.png")
 	customization.add_image_info("Any size")
@@ -231,40 +231,40 @@ func move_item(from, to):
 	from.remove_item(item)
 	
 	if from == $ItemLists/Other/List and to == $ItemLists/Sprays/List:
-		Utils.emit_signal("object_modified", "spray+", item_name)
+		Utils.object_modified.emit("spray+", item_name)
 	elif from == $ItemLists/Sprays/List and to == $ItemLists/Other/List:
-		Utils.emit_signal("object_modified", "spray-", item_name)
+		Utils.object_modified.emit("spray-", item_name)
 	elif from == $ItemLists/Other/List and to == $ItemLists/Objects/List:
-		Utils.emit_signal("object_modified", "object+", item_name)
+		Utils.object_modified.emit("object+", item_name)
 	elif from == $ItemLists/Objects/List and to == $ItemLists/Other/List:
-		Utils.emit_signal("object_modified", "object-", item_name)
+		Utils.object_modified.emit("object-", item_name)
 
 func on_sprays_click(item):
-	$ItemLists/Objects/List.unselect_all()
-	$ItemLists/Other/List.unselect_all()
+	$ItemLists/Objects/List.deselect_all()
+	$ItemLists/Other/List.deselect_all()
 	$ItemLists/LeftMove/MoveLeft.disabled = true
 	$ItemLists/LeftMove/MoveRight.disabled = false
 	$ItemLists/RightMove/MoveLeft.disabled = true
 	$ItemLists/RightMove/MoveRight.disabled = true
 
 func on_other_click(item):
-	$ItemLists/Sprays/List.unselect_all()
-	$ItemLists/Objects/List.unselect_all()
+	$ItemLists/Sprays/List.deselect_all()
+	$ItemLists/Objects/List.deselect_all()
 	$ItemLists/LeftMove/MoveLeft.disabled = false
 	$ItemLists/LeftMove/MoveRight.disabled = true
 	$ItemLists/RightMove/MoveLeft.disabled = true
 	$ItemLists/RightMove/MoveRight.disabled = false
 
 func on_objects_click(item):
-	$ItemLists/Sprays/List.unselect_all()
-	$ItemLists/Other/List.unselect_all()
+	$ItemLists/Sprays/List.deselect_all()
+	$ItemLists/Other/List.deselect_all()
 	$ItemLists/LeftMove/MoveLeft.disabled = true
 	$ItemLists/LeftMove/MoveRight.disabled = true
 	$ItemLists/RightMove/MoveLeft.disabled = false
 	$ItemLists/RightMove/MoveRight.disabled = true
 
 func add_customization(cname):
-	var custom = preload("res://Nodes/CustomizationPanel.tscn").instance()
+	var custom = preload("res://Nodes/CustomizationPanel.tscn").instantiate()
 	add_child(custom)
 	custom.get_node("Container/GroupName").text = tr(cname)
 	return custom
@@ -273,8 +273,7 @@ func add_customizable_image(iname):
 	customizable_list[iname] = true
 
 func fetch_template(iname: String, customization, index: int):
-	var dir = Directory.new()
-	dir.copy(get_template_path(iname), HWTheme.get_theme_path().plus_file(iname))
+	DirAccess.copy_absolute(get_template_path(iname), HWTheme.get_theme_path().path_join(iname))
 	customization.update_image(index)
 
 func get_template_path(iname: String) -> String:

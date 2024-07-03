@@ -1,71 +1,57 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://dgsrwg7c16473"]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource type="Texture2D" uid="uid://c84n844l2bqb1" path="res://icon.png" id="1"]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Panel
+[sub_resource type="GDScript" id="1"]
+script/source = "extends Control
 
 var spray: String
 
 func _ready():
-	var texture = Utils.load_texture(HWTheme.get_theme_path().plus_file(spray + \".png\"))
-	$\"%Image\".texture = texture
-	rect_min_size.y = max(texture.get_size().y + 16, 128)
+	%Image.texture = Utils.load_texture(HWTheme.get_theme_path().path_join(spray + \".png\"))
 	
 	var parent := get_parent().get_parent() # FIXME this could be more reliable
-	$\"%Amount\".value = HWTheme.sprays[spray]
-	$\"%Amount\".get_line_edit().text = str($\"%Amount\".value) # FIXME engine bug
-	$\"%Amount\".connect(\"value_changed\", parent, \"update_spray_amount\", [spray])
+	%Amount.value = HWTheme.sprays[spray]
+	%Amount.value_changed.connect(parent.update_spray_amount.bind(spray))
 "
 
-[node name="SprayPanel" type="Panel"]
+[node name="SprayPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -712.0
-margin_bottom = -472.0
-rect_min_size = Vector2( 0, 128 )
-script = SubResource( 1 )
+offset_right = -633.0
+offset_bottom = -376.0
+script = SubResource("1")
 
 [node name="Container" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
 alignment = 1
 
 [node name="Image" type="TextureRect" parent="Container"]
 unique_name_in_owner = true
-margin_right = 256.0
-margin_bottom = 256.0
-texture = ExtResource( 1 )
-stretch_mode = 4
+layout_mode = 2
+texture = ExtResource("1")
+stretch_mode = 3
 
 [node name="Separator" type="Control" parent="Container"]
-margin_left = 260.0
-margin_right = 276.0
-margin_bottom = 256.0
-rect_min_size = Vector2( 16, 0 )
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
 
 [node name="Controls" type="VBoxContainer" parent="Container"]
-margin_left = 280.0
-margin_right = 490.0
-margin_bottom = 256.0
+layout_mode = 2
 alignment = 1
 
 [node name="Amount" type="HBoxContainer" parent="Container/Controls"]
-margin_top = 108.0
-margin_right = 210.0
-margin_bottom = 147.0
+layout_mode = 2
 
 [node name="Amount" type="SpinBox" parent="Container/Controls/Amount"]
 unique_name_in_owner = true
-margin_right = 74.0
-margin_bottom = 39.0
+layout_mode = 2
 min_value = 1.0
 max_value = 65536.0
 value = 1.0
 
 [node name="Label" type="Label" parent="Container/Controls/Amount"]
-margin_left = 78.0
-margin_top = 8.0
-margin_right = 210.0
-margin_bottom = 31.0
+layout_mode = 2
 text = "Number per map"
