@@ -47,7 +47,7 @@ func _ready():
 	
 	var selected_language = 0
 	for i in language_list.size():
-		if language_list[i] == Utils.preferred_language:
+		if Utils.preferred_language.contains(language_list[i]):
 			selected_language = i
 		
 		$LanguageContainer/LanguageList.add_item(language_name_list[i])

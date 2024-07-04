@@ -8,9 +8,9 @@ var hedgewars_path: String
 var hedgewars_user_path: String
 var package_path: String
 
-var enable_autosave = true
-var maximize_on_start = true
-var include_music = true
+var enable_autosave := true
+var maximize_on_start := true
+var include_music := true
 
 var temp_editor
 var main
@@ -18,18 +18,7 @@ var main
 signal object_modified(operation, object)
 
 func _ready():
-	var config := FileAccess.open("user://config", FileAccess.READ)
-	if config:
-		var lines = config.get_as_text().split("\n")
-		preferred_language = lines[0]
-		enable_autosave = lines[1] == "true"
-		maximize_on_start = lines[2] == "true"
-		include_music = lines[3] == "true"
-		hedgewars_path = lines[4]
-		hedgewars_user_path = lines[5]
-		config.close()
-	else:
-		preferred_language = OS.get_locale()
+	load_settings()
 	
 	if hedgewars_path.is_empty():
 		var path: String
@@ -120,15 +109,41 @@ func select_music(list, item):
 			list.selected = i
 			return
 
+func load_settings():
+	var config := FileAccess.get_file_as_string("user://config.txt")
+	if not config.is_empty():
+		var config_data: Dictionary = str_to_var(config)
+		preferred_language = config_data.get("preferred_language", OS.get_locale())
+		enable_autosave = config_data.get("enable_autosave", true)
+		maximize_on_start = config_data.get("maximize_on_start", true)
+		include_music = config_data.get("include_music", true)
+		hedgewars_path = config_data.get("hedgewars_path", "")
+		hedgewars_user_path = config_data.get("hedgewars_user_path", "")
+	else:
+		var legacy_config := FileAccess.open("user://config", FileAccess.READ)
+		if legacy_config:
+			var lines := legacy_config.get_as_text().split("\n")
+			preferred_language = lines[0]
+			enable_autosave = lines[1].to_lower() == "true"
+			maximize_on_start = lines[2].to_lower() == "true"
+			include_music = lines[3].to_lower() == "true"
+			hedgewars_path = lines[4]
+			hedgewars_user_path = lines[5]
+			save_settings()
+		else:
+			preferred_language = OS.get_locale()
+
 func save_settings():
-	var config = FileAccess.open("user://config", FileAccess.WRITE)
-	config.store_line(preferred_language)
-	config.store_line(str(enable_autosave))
-	config.store_line(str(maximize_on_start))
-	config.store_line(str(include_music))
-	config.store_line(hedgewars_path)
-	config.store_line(hedgewars_user_path)
-	config.close()
+	var config_data: Dictionary
+	config_data["preferred_language"] = preferred_language
+	config_data["enable_autosave"] = enable_autosave
+	config_data["maximize_on_start"] = maximize_on_start
+	config_data["include_music"] = include_music
+	config_data["hedgewars_path"] = hedgewars_path
+	config_data["hedgewars_user_path"] = hedgewars_user_path
+	
+	var config := FileAccess.open("user://config.txt", FileAccess.WRITE)
+	config.store_string(var_to_str(config_data))
 
 func refresh_themes():
 	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
