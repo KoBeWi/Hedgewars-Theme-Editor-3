@@ -7,12 +7,11 @@ script/source = "extends Control
 
 var spray: String
 
-func _ready():
+func initialize():
 	%Image.texture = Utils.load_texture(HWTheme.get_theme_path().path_join(spray + \".png\"))
 	
-	var parent := get_parent().get_parent() # FIXME this could be more reliable
 	%Amount.value = HWTheme.sprays[spray]
-	%Amount.value_changed.connect(parent.update_spray_amount.bind(spray))
+	%Amount.value_changed.connect(owner.update_spray_amount.bind(spray))
 "
 
 [node name="SprayPanel" type="PanelContainer"]

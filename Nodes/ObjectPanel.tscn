@@ -7,16 +7,15 @@ script/source = "extends Control
 
 var object: HWTheme.ThemeObject
 
-func _ready():
+func initialize():
 	%Image.texture = Utils.load_texture(HWTheme.get_theme_path().path_join(object.name + \".png\"))
 	
 	%Amount.value = object.number
 	%OnWater.button_pressed = (not object.buried.is_empty() and object.buried[0] == Rect2())
 	
-	var parent := get_parent().get_parent() # FIXME this could be more reliable
-	%EditObject.pressed.connect(parent.edit_object.bind(object))
-	%Amount.value_changed.connect(parent.update_object_amount.bind(object.name))
-	%OnWater.toggled.connect(parent.update_object_on_water.bind(object.name))
+	%EditObject.pressed.connect(owner.edit_object.bind(object))
+	%Amount.value_changed.connect(owner.update_object_amount.bind(object.name))
+	%OnWater.toggled.connect(owner.update_object_on_water.bind(object.name))
 "
 
 [node name="ObjectPanel" type="PanelContainer"]

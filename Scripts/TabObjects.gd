@@ -1,12 +1,10 @@
 extends VBoxContainer
 
-@onready var container: VBoxContainer = $Container
-@onready var object_label: Label = $ObjectLabel
-@onready var spray_label: Label = $SprayLabel
-@onready var warning_label: Label = $WarningLabel
-
-var spray_count := 0
-var object_count := 0
+@onready var object_container: VBoxContainer = %ObjectContainer
+@onready var object_label: Label = %ObjectLabel
+@onready var warning_label: Label = %WarningLabel
+@onready var spray_container: VBoxContainer = %SprayContainer
+@onready var spray_label: Label = %SprayLabel
 
 func _ready():
 	get_parent().name = tr("Objects")
@@ -14,10 +12,10 @@ func _ready():
 	Utils.object_modified.connect(on_object_modified)
 
 func on_theme_loaded():
-	for panel in container.get_children():
+	for panel in object_container.get_children():
 		panel.free()
-	spray_count = 0
-	object_count = 0
+	for panel in spray_container.get_children():
+		panel.free()
 	
 	for spray in HWTheme.sprays.keys():
 		add_spray(spray)
@@ -49,38 +47,36 @@ func on_object_modified(operation, object):
 func add_spray(spray):
 	var panel = preload("res://Nodes/SprayPanel.tscn").instantiate()
 	panel.spray = spray
-	if spray_count > 0:
-		container.add_sibling(container.get_child(spray_count - 1)) # TODO this can just use 2 containers
-	else:
-		container.add_child(panel)
-		container.move_child(panel, 0)
-	spray_count += 1
-	update_labels()
+	spray_container.add_child(panel)
+	panel.owner = self
+	panel.initialize()
 	return panel
 
 func remove_spray(spray):
-	for i in spray_count:
-		if container.get_child(i).spray == spray:
-			container.get_child(i).queue_free()
-			spray_count -= 1
-			update_labels()
-			return
+	pass
+	#for i in spray_count:
+		#if container.get_child(i).spray == spray:
+			#container.get_child(i).queue_free()
+			#spray_count -= 1
+			#update_labels()
+			#return
 
 func add_object(object):
 	var panel  = preload("res://Nodes/ObjectPanel.tscn").instantiate()
 	panel.object = object
-	container.add_child(panel)
-	object_count += 1
-	update_labels()
+	object_container.add_child(panel)
+	panel.owner = self
+	panel.initialize()
 	return panel
 
 func remove_object(object):
-	for i in range(spray_count, container.get_child_count()):
-		if container.get_child(i).object.name == object:
-			container.get_child(i).queue_free()
-			object_count -= 1
-			update_labels()
-			return
+	pass
+	#for i in range(spray_count, container.get_child_count()):
+		#if container.get_child(i).object.name == object:
+			#container.get_child(i).queue_free()
+			#object_count -= 1
+			#update_labels()
+			#return
 
 func update_object_amount(amount, object):
 	HWTheme.objects[object].number = amount
@@ -109,6 +105,6 @@ func edit_object(object):
 	$"/root".remove_child(Utils.temp_editor)
 
 func update_labels():
-	object_label.format(object_count)
-	spray_label.format(spray_count)
-	warning_label.visible = object_count > 32
+	object_label.format(object_container.get_child_count())
+	warning_label.visible = object_container.get_child_count() > 32
+	spray_label.format(spray_container.get_child_count())
