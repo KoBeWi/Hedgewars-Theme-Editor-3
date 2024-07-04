@@ -221,17 +221,19 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="GameDialog" type="FileDialog" parent="Dialogs"]
-mode = 2
+size = Vector2i(600, 400)
 access = 2
 
 [node name="UserDialog" type="FileDialog" parent="Dialogs"]
-mode = 2
+size = Vector2i(600, 400)
 access = 2
 
 [node name="ErrorDialog" type="AcceptDialog" parent="Dialogs"]
+size = Vector2i(300, 200)
 dialog_autowrap = true
 
 [node name="NewThemeDialog" type="ConfirmationDialog" parent="Dialogs"]
+size = Vector2i(300, 104)
 
 [node name="LineEdit" type="LineEdit" parent="Dialogs/NewThemeDialog"]
 anchors_preset = 14
@@ -239,9 +241,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = 8.0
-offset_top = -57.0
+offset_top = -44.0
 offset_right = -8.0
-offset_bottom = 10.0
+offset_bottom = -5.0
 placeholder_text = "Enter name"
 
 [node name="Control" type="Control" parent="."]

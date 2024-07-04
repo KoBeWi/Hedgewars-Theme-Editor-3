@@ -95,7 +95,7 @@ func load_texture(file: String, ignore_cache := false) -> Texture2D: ## TODO: re
 	
 	return texture_cache[file]
 
-func list_directory(path: String, for_files := true) -> PackedStringArray:
+func list_directory(path: String, for_files := true) -> PackedStringArray: # TODO: can be removed
 	if for_files:
 		return DirAccess.get_files_at(path)
 	else:

@@ -25,7 +25,7 @@ func enable(width: float):
 		clouds.append(cloud)
 
 func _process(delta: float) -> void:
-	update()
+	queue_redraw()
 
 func _draw() -> void:
 	for cloud in clouds:

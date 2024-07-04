@@ -604,7 +604,7 @@ msgstr "Podmienia kawałek liny. Użyj razem z Krokiem Liny w zakładce Motyw."
 msgid "Main"
 msgstr "Ekran główny"
 
-msgid "English"
+msgid "LANGUAGE_NAME"
 msgstr "Polski"
 
 msgid "Theme"

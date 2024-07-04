@@ -16,7 +16,7 @@ func _ready() -> void:
 	
 	var sky_texture := Utils.load_texture(HWTheme.get_theme_path().path_join("Sky.png"))
 	if sky_texture:
-		sky_texture.flags |= Texture2D.FLAG_REPEAT
+		#sky_texture.flags |= Texture2D.FLAG_REPEAT
 		$Sky.texture = sky_texture
 		$Sky.region_rect.size.x = PREVIEW_SIZE.x
 		$Sky.region_rect.size.y = sky_texture.get_height()
@@ -26,7 +26,7 @@ func _ready() -> void:
 	var horizont_textureL := Utils.load_texture(HWTheme.get_theme_path().path_join("horizontL.png"))
 	var horizont_textureR := Utils.load_texture(HWTheme.get_theme_path().path_join("horizontR.png"))
 	if horizont_texture:
-		horizont_texture.flags |= Texture2D.FLAG_REPEAT
+		#horizont_texture.flags |= Texture2D.FLAG_REPEAT
 		$Horizont/Middle.texture = horizont_texture
 		if not horizont_textureL:
 			$Horizont/Middle.size_flags_horizontal |= Control.SIZE_EXPAND_FILL
@@ -53,7 +53,7 @@ func _ready() -> void:
 	var water_texture := Utils.load_texture(HWTheme.get_theme_path().path_join("BlueWater.png"))
 	if not water_texture:
 		water_texture = Utils.load_texture(Utils.hedgewars_path.path_join("Graphics/BlueWater.png"))
-	water_texture.flags |= Texture2D.FLAG_REPEAT
+	#water_texture.flags |= Texture2D.FLAG_REPEAT
 	
 	$WaterGradient.material.set_shader_parameter("top_color", HWTheme.water_top)
 	$WaterGradient.material.set_shader_parameter("water_bottom", HWTheme.water_bottom)

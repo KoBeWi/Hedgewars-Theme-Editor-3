@@ -34,16 +34,23 @@ func _ready():
 	
 	Utils.refresh_themes()
 	
+	var language_name_list: PackedStringArray
+	
 	language_list.append("en")
+	language_name_list.append("English")
+	
 	for language in Utils.list_directory("res://Translation", true):
 		if language.get_extension() == "po":
 			language_list.append(language.get_basename())
+			var translation: Translation = load("res://Translation".path_join(language))
+			language_name_list.append(translation.get_message(&"LANGUAGE_NAME"))
 	
 	var selected_language = 0
 	for i in language_list.size():
-		if language_list[i] == Utils.preferred_language: selected_language = i
-		TranslationServer.set_locale(language_list[i])
-		$LanguageContainer/LanguageList.add_item(tr("English") + "​")
+		if language_list[i] == Utils.preferred_language:
+			selected_language = i
+		
+		$LanguageContainer/LanguageList.add_item(language_name_list[i])
 	
 	TranslationServer.set_locale(Utils.preferred_language)
 	$LanguageContainer/LanguageList.selected = selected_language

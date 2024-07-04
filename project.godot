@@ -25,13 +25,17 @@ HWTheme="*res://Scripts/Theme.gd"
 
 gdscript/warnings/enable=false
 
+[display]
+
+window/subwindows/embed_subwindows=false
+
 [editor]
 
 search_in_file_extensions=PackedStringArray("gd", "gdshader", "shader", "tscn")
 
 [gui]
 
-theme/custom="res://Resources/UITheme.theme"
+theme/custom="res://Resources/UITheme.tres"
 
 [internationalization]
 
