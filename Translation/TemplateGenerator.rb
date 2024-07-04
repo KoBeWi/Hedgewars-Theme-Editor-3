@@ -13,6 +13,7 @@ msgstr ""
 dir_stack = [ROOT_DIRECTORY]
 visited_dirs = []
 strings = []
+strings << "TRANSLATED_LANGUAGE_NAME"
 
 while !dir_stack.empty?
     dir = dir_stack.pop

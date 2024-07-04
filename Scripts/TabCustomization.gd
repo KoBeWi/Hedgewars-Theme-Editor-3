@@ -35,7 +35,7 @@ func on_theme_loaded(): # TODO: sounds, error detection, jump to error
 	customization.add_image_info("Size: %s", ["65x64"])
 	
 	customization = add_customization("Land texture")
-	customization.add_info("Texture2D drawn as map's terrain")
+	customization.add_info("Texture drawn as map's terrain")
 	customization.add_info("This image is required")
 	customization.add_image("LandTex.png")
 	customization.add_image_info("Any size")

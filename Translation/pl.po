@@ -11,7 +11,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.2\n"
+
+msgid "TRANSLATED_LANGUAGE_NAME"
+msgstr "Polski"
 
 msgid "Visible"
 msgstr "Widoczne"
@@ -59,31 +62,6 @@ msgstr "Odrzucić zmiany?"
 
 msgid "Select image"
 msgstr "Wybierz obrazek"
-
-msgid "If a color is disabled, related key will not appear in theme.cfg"
-msgstr ""
-"Jeśli kolor jest wyłączony, odpowiedni klucz nie pojawi się w theme.cfg"
-
-msgid "Sky color"
-msgstr "Kolor nieba"
-
-msgid "Border/Mudgun color"
-msgstr "Kolor krawędzi/miotacza błota"
-
-msgid "Upper water color"
-msgstr "Górny kolor wody"
-
-msgid "Lower water color"
-msgstr "Dolny kolor wody"
-
-msgid "Sudden Death upper water color"
-msgstr "Górny kolor wody Nagłej Śmierci"
-
-msgid "Sudden Death lower water color"
-msgstr "Dolny kolor wody Nagłej Śmierci"
-
-msgid "Sudden Death lower sky/horizon tint"
-msgstr "Odcień nieba/horyzontu Nagłej Śmierci"
 
 msgid "Sprays"
 msgstr "Spray'e"
@@ -170,6 +148,15 @@ msgstr "Wybierz motywy do spakowania"
 msgid "Enter name"
 msgstr "Wprowadź nazwę"
 
+msgid "Object Count: %d"
+msgstr "Liczba obiektów: %d"
+
+msgid "Too many objects, maximum count is 32. The game will crash."
+msgstr "Zbyt wiele obiektów, maksymalna liczba to 32. Gra się scrashuje."
+
+msgid "Spray Count: %d"
+msgstr "Liczba sprayów: %d"
+
 msgid "Auto-Refresh on theme change."
 msgstr "Autoodświeżanie przy zmianie motywu."
 
@@ -214,6 +201,27 @@ msgstr ""
 msgid "Colors"
 msgstr "Kolory"
 
+msgid "Sky color"
+msgstr "Kolor nieba"
+
+msgid "Border/Mudgun color"
+msgstr "Kolor krawędzi/miotacza błota"
+
+msgid "Upper water color"
+msgstr "Górny kolor wody"
+
+msgid "Lower water color"
+msgstr "Dolny kolor wody"
+
+msgid "Sudden Death upper water color"
+msgstr "Górny kolor wody Nagłej Śmierci"
+
+msgid "Sudden Death lower water color"
+msgstr "Dolny kolor wody Nagłej Śmierci"
+
+msgid "Sudden Death lower sky/horizon tint"
+msgstr "Odcień nieba/horyzontu Nagłej Śmierci"
+
 msgid "Clouds floating atop the map before Sudden Death"
 msgstr "Chmury na szczycie mapy przed Nagłą Śmiercią"
 
@@ -249,6 +257,17 @@ msgstr "Liczba klatek używanych w pliku Flake.png"
 
 msgid "Frame duration"
 msgstr "Długość klatki"
+
+msgid ""
+"Number of ticks a frame is shown, after that the next frame is shown (a tick "
+"currently equals 1 millisecond). A value of 0 indicates that each flake "
+"should keep displaying the exact frame that was selected randomly when the "
+"flake was created"
+msgstr ""
+"Liczba cykli kiedy klatka jest widoczna, po której następna klatka się "
+"wyświetla (1 cykl aktualnie wynosi 1 milisekundę). Wartość 0 oznacza, że "
+"każdy płatek powinien wyświetlać dokładką klatkę, która została losowo "
+"wybrana, kiedy został utworzony"
 
 msgid "Rotation speed"
 msgstr "Szybkość obracania"
@@ -604,9 +623,6 @@ msgstr "Podmienia kawałek liny. Użyj razem z Krokiem Liny w zakładce Motyw."
 msgid "Main"
 msgstr "Ekran główny"
 
-msgid "LANGUAGE_NAME"
-msgstr "Polski"
-
 msgid "Theme"
 msgstr "Motyw"
 
@@ -627,6 +643,10 @@ msgstr "Edytuj ten obiekt"
 
 msgid "overlay"
 msgstr "nakładka"
+
+#~ msgid "If a color is disabled, related key will not appear in theme.cfg"
+#~ msgstr ""
+#~ "Jeśli kolor jest wyłączony, odpowiedni klucz nie pojawi się w theme.cfg"
 
 #~ msgid "Left mouse - visible rectangle (green)"
 #~ msgstr "Lewy przycisk myszy - odkryty prostokąt (zielony)"

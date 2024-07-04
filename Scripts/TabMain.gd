@@ -43,7 +43,7 @@ func _ready():
 		if language.get_extension() == "po":
 			language_list.append(language.get_basename())
 			var translation: Translation = load("res://Translation".path_join(language))
-			language_name_list.append(translation.get_message(&"LANGUAGE_NAME"))
+			language_name_list.append(translation.get_message(&"TRANSLATED_LANGUAGE_NAME"))
 	
 	var selected_language = 0
 	for i in language_list.size():

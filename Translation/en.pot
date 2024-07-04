@@ -5,6 +5,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+msgid "TRANSLATED_LANGUAGE_NAME"
+msgstr ""
+
 msgid "Visible"
 msgstr ""
 
@@ -48,30 +51,6 @@ msgid "Discard changes?"
 msgstr ""
 
 msgid "Select image"
-msgstr ""
-
-msgid "If a color is disabled, related key will not appear in theme.cfg"
-msgstr ""
-
-msgid "Sky color"
-msgstr ""
-
-msgid "Border/Mudgun color"
-msgstr ""
-
-msgid "Upper water color"
-msgstr ""
-
-msgid "Lower water color"
-msgstr ""
-
-msgid "Sudden Death upper water color"
-msgstr ""
-
-msgid "Sudden Death lower water color"
-msgstr ""
-
-msgid "Sudden Death lower sky/horizon tint"
 msgstr ""
 
 msgid "Sprays"
@@ -155,6 +134,15 @@ msgstr ""
 msgid "Enter name"
 msgstr ""
 
+msgid "Object Count: %d"
+msgstr ""
+
+msgid "Too many objects, maximum count is 32. The game will crash."
+msgstr ""
+
+msgid "Spray Count: %d"
+msgstr ""
+
 msgid "Auto-Refresh on theme change."
 msgstr ""
 
@@ -197,6 +185,27 @@ msgstr ""
 msgid "Colors"
 msgstr ""
 
+msgid "Sky color"
+msgstr ""
+
+msgid "Border/Mudgun color"
+msgstr ""
+
+msgid "Upper water color"
+msgstr ""
+
+msgid "Lower water color"
+msgstr ""
+
+msgid "Sudden Death upper water color"
+msgstr ""
+
+msgid "Sudden Death lower water color"
+msgstr ""
+
+msgid "Sudden Death lower sky/horizon tint"
+msgstr ""
+
 msgid "Clouds floating atop the map before Sudden Death"
 msgstr ""
 
@@ -231,6 +240,9 @@ msgid "Number of frames used in  Flake.png"
 msgstr ""
 
 msgid "Frame duration"
+msgstr ""
+
+msgid "Number of ticks a frame is shown, after that the next frame is shown (a tick currently equals 1 millisecond). A value of 0 indicates that each flake should keep displaying the exact frame that was selected randomly when the flake was created"
 msgstr ""
 
 msgid "Rotation speed"
@@ -531,9 +543,6 @@ msgid "Replaces piece of rope. Use together with Rope Step in Theme tab."
 msgstr ""
 
 msgid "Main"
-msgstr ""
-
-msgid "English"
 msgstr ""
 
 msgid "Theme"
