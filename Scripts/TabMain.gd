@@ -89,21 +89,27 @@ func pack_start():
 func pack_accept():# TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
-		if button.pressed:
+		if button.button_pressed:
 			selected.append(button.get_meta("theme"))
 	
-	var pack_name = $PackContainer/PackName.text
-	if pack_name == "": pack_name = "+".join(PackedStringArray(selected))
+	var pack_name: String = $PackContainer/PackName.text
+	if pack_name.is_empty():
+		pack_name = "+".join(PackedStringArray(selected))
 	
-	var root := Utils.package_path.path_join(pack_name)
+	DirAccess.make_dir_absolute(Utils.package_path)
 	
-	DirAccess.make_dir_recursive_absolute(root.path_join("Data/Themes"))
+	var hwp := ZIPPacker.new()
+	hwp.open(Utils.package_path.path_join(pack_name) + ".hwp")
 	
 	for theme_name in selected:
-		var output_path := root.path_join("Data/Themes").path_join(theme_name)
-		DirAccess.make_dir_recursive_absolute(output_path)
-		for file in Utils.list_directory(Utils.get_theme_path(theme_name), true): if not file in DONT_PACK:
-			DirAccess.copy_absolute(Utils.get_theme_path(theme_name).path_join(file), output_path.path_join(file))
+		var theme_base := "Data/Themes".path_join(theme_name)
+		for file in Utils.list_directory(Utils.get_theme_path(theme_name), true):
+			if file in DONT_PACK:
+				continue
+			
+			hwp.start_file(theme_base.path_join(file))
+			hwp.write_file(FileAccess.get_file_as_bytes(Utils.get_theme_path(theme_name).path_join(file)))
+			hwp.close_file()
 	
 	pack_cancel()#TODO: feedback if success
 
