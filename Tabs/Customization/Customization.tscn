@@ -1,0 +1,105 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn87b5sr50yq1"]
+
+[ext_resource type="Script" path="res://Tabs/Customization/Customization.gd" id="1"]
+
+[node name="Customization" type="VBoxContainer"]
+offset_right = 1016.0
+offset_bottom = 555.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1")
+
+[node name="ItemLists" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+alignment = 1
+
+[node name="Sprays" type="VBoxContainer" parent="ItemLists"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ItemLists/Sprays"]
+layout_mode = 2
+text = "Sprays"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="List" type="ItemList" parent="ItemLists/Sprays"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LeftMove" type="VBoxContainer" parent="ItemLists"]
+layout_mode = 2
+alignment = 1
+
+[node name="MoveLeft" type="Button" parent="ItemLists/LeftMove"]
+layout_mode = 2
+disabled = true
+text = "<<<"
+
+[node name="MoveRight" type="Button" parent="ItemLists/LeftMove"]
+layout_mode = 2
+disabled = true
+text = ">>>"
+
+[node name="Other" type="VBoxContainer" parent="ItemLists"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ItemLists/Other"]
+layout_mode = 2
+text = "Unused images"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="List" type="ItemList" parent="ItemLists/Other"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RightMove" type="VBoxContainer" parent="ItemLists"]
+layout_mode = 2
+alignment = 1
+
+[node name="MoveRight" type="Button" parent="ItemLists/RightMove"]
+layout_mode = 2
+disabled = true
+text = ">>>"
+
+[node name="MoveLeft" type="Button" parent="ItemLists/RightMove"]
+layout_mode = 2
+disabled = true
+text = "<<<"
+
+[node name="Objects" type="VBoxContainer" parent="ItemLists"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="ItemLists/Objects"]
+layout_mode = 2
+text = "Objects"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="List" type="ItemList" parent="ItemLists/Objects"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ImagesHeader" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"Header"
+text = "Customized theme images"
+horizontal_alignment = 1
+
+[node name="ImagesDescrition" type="Label" parent="."]
+layout_mode = 2
+theme_type_variation = &"Subsection"
+text = "List of images you can customize in your theme. You have to do so manually in preferred image-editing program."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[connection signal="item_selected" from="ItemLists/Sprays/List" to="." method="on_sprays_click"]
+[connection signal="item_selected" from="ItemLists/Other/List" to="." method="on_other_click"]
+[connection signal="item_selected" from="ItemLists/Objects/List" to="." method="on_objects_click"]

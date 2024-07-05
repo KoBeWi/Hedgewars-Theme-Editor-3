@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgur4nf4ueewo"]
+
+[ext_resource type="Script" path="res://Tabs/Theme/ColorPicker.gd" id="1_fqhvq"]
+
+[node name="ColorPicker" type="HBoxContainer"]
+offset_right = 298.0
+offset_bottom = 67.0
+script = ExtResource("1_fqhvq")
+
+[node name="OnOff" type="CheckBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sky color"
+
+[node name="Spacer" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="."]
+custom_minimum_size = Vector2(96, 40)
+layout_mode = 2
+
+[connection signal="color_changed" from="ColorPickerButton" to="." method="on_color_changed"]

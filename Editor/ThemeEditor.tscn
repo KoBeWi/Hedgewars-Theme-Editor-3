@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpacyjxk1mnrw"]
+
+[ext_resource type="Script" path="res://Editor/ThemeEditor.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://betcsy2o6lfkm" path="res://Tabs/Main/Main.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://c31ms7mt0dsau" path="res://Tabs/Theme/Theme.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://dn87b5sr50yq1" path="res://Tabs/Customization/Customization.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://ds7jlu01k8mhi" path="res://Tabs/Objects/Objects.tscn" id="6"]
+[ext_resource type="Texture2D" uid="uid://d3qt0a3ubyt5w" path="res://Editor/Background.png" id="7"]
+
+[node name="EditorBackground" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("7")
+expand_mode = 1
+
+[node name="ThemeEditor" type="TabContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+current_tab = 0
+script = ExtResource("1")
+
+[node name="Main" type="ScrollContainer" parent="ThemeEditor"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 0
+
+[node name="Content" parent="ThemeEditor/Main" instance=ExtResource("2")]
+layout_mode = 2
+
+[node name="Theme" type="ScrollContainer" parent="ThemeEditor"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 1
+
+[node name="Content" parent="ThemeEditor/Theme" instance=ExtResource("3")]
+layout_mode = 2
+
+[node name="Customization" type="ScrollContainer" parent="ThemeEditor"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 2
+
+[node name="Content" parent="ThemeEditor/Customization" instance=ExtResource("5")]
+layout_mode = 2
+
+[node name="Objects" type="ScrollContainer" parent="ThemeEditor"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_tab_index = 3
+
+[node name="Content" parent="ThemeEditor/Objects" instance=ExtResource("6")]
+layout_mode = 2

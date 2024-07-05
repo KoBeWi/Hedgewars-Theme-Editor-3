@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://6jy66k3cxx4g"]
+
+[ext_resource type="Texture2D" uid="uid://c84n844l2bqb1" path="res://Editor/icon.png" id="1"]
+[ext_resource type="Script" path="res://Tabs/Objects/ObjectPanel.gd" id="1_j5ibw"]
+
+[node name="ObjectPanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 128)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -633.0
+offset_bottom = -376.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5ibw")
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="Image" type="TextureRect" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1")
+stretch_mode = 3
+
+[node name="Separator" type="Control" parent="Container"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="Controls" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Amount" type="HBoxContainer" parent="Container/Controls"]
+layout_mode = 2
+
+[node name="Amount" type="SpinBox" parent="Container/Controls/Amount"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 65536.0
+value = 1.0
+
+[node name="Label" type="Label" parent="Container/Controls/Amount"]
+layout_mode = 2
+text = "Number per map"
+
+[node name="OnWater" type="CheckBox" parent="Container/Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Placed on water"
+
+[node name="EditObject" type="Button" parent="Container/Controls"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Edit this object"

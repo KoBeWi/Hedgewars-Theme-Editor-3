@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://8cyjki7icjjg"]
+
+[ext_resource type="Script" path="res://Tabs/Objects/ObjectEdit/OverlayItem.gd" id="1_g2l4f"]
+
+[node name="Button" type="Button"]
+offset_right = 142.0
+offset_bottom = 120.0
+toggle_mode = true
+script = ExtResource("1_g2l4f")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Texture" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "overlay"
+horizontal_alignment = 1

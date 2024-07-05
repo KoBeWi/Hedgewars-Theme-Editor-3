@@ -11,15 +11,15 @@ config_version=5
 [application]
 
 config/name="Hedgewars Theme Editor 3"
-run/main_scene="res://ThemeEditor.tscn"
+run/main_scene="res://Editor/ThemeEditor.tscn"
 config/features=PackedStringArray("4.3")
 run/low_processor_mode=true
-config/icon="res://icon.png"
+config/icon="res://Editor/icon.png"
 
 [autoload]
 
-Utils="*res://Scripts/Utility.gd"
-HWTheme="*res://Scripts/Theme.gd"
+Utils="*res://Resources/Scripts/Utility.gd"
+HWTheme="*res://Editor/Theme.gd"
 
 [debug]
 
