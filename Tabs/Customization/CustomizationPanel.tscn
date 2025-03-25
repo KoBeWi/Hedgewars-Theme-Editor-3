@@ -37,6 +37,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="ImageName" type="Label" parent="Container/Image/ImageHeader"]
+auto_translate_mode = 2
 layout_mode = 2
 theme_type_variation = &"Subsection"
 text = "Image name"

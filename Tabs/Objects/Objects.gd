@@ -7,7 +7,6 @@ extends VBoxContainer
 @onready var spray_label: Label = %SprayLabel
 
 func _ready():
-	get_parent().name = tr("Objects")
 	HWTheme.theme_loaded.connect(on_theme_loaded)
 	Utils.object_modified.connect(on_object_modified)
 

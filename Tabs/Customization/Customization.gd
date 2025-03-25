@@ -3,7 +3,6 @@ extends Control
 var customizable_list = {}
 
 func _ready():
-	get_parent().name = tr("Customization")
 	HWTheme.theme_loaded.connect(on_theme_loaded)
 	
 	$ItemLists/LeftMove/MoveLeft.pressed.connect(move_item.bind($ItemLists/Other/List, $ItemLists/Sprays/List))

@@ -33,6 +33,7 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="Name" type="Label" parent="Header"]
+auto_translate_mode = 2
 custom_minimum_size = Vector2(0, 96)
 layout_mode = 2
 theme_type_variation = &"Header"
@@ -54,6 +55,7 @@ layout_mode = 2
 text = "Music"
 
 [node name="List" type="OptionButton" parent="Music"]
+auto_translate_mode = 2
 layout_mode = 2
 tooltip_text = "Music that plays before Sudden Death"
 
@@ -74,6 +76,7 @@ layout_mode = 2
 text = "Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="SDMusic"]
+auto_translate_mode = 2
 layout_mode = 2
 tooltip_text = "Music that plays in Sudden Death"
 
@@ -94,6 +97,7 @@ layout_mode = 2
 text = "Fallback Music"
 
 [node name="List" type="OptionButton" parent="FallbackMusic"]
+auto_translate_mode = 2
 layout_mode = 2
 tooltip_text = "Music that plays if default music file is missing"
 
@@ -114,6 +118,7 @@ layout_mode = 2
 text = "Fallback Sudden Death Music"
 
 [node name="List" type="OptionButton" parent="FallbackSDMusic"]
+auto_translate_mode = 2
 layout_mode = 2
 tooltip_text = "Music that plays in Sudden Death if default music file is missing"
 

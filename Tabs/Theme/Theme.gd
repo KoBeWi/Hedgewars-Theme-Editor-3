@@ -6,7 +6,6 @@ var player_paused = null
 var current_player
 
 func _ready():
-	get_parent().name = tr("Theme")
 	HWTheme.theme_loaded.connect(on_theme_loaded)
 	
 	$Music/Play.pressed.connect(play_music.bind($Music/List))
@@ -14,10 +13,14 @@ func _ready():
 	$FallbackMusic/Play.pressed.connect(play_music.bind($FallbackMusic/List))
 	$FallbackSDMusic/Play.pressed.connect(play_music.bind($FallbackSDMusic/List))
 	
-	$Music/List.add_item(tr("/none/")) 
-	$SDMusic/List.add_item(tr("/none/"))
-	$FallbackMusic/List.add_item(tr("/none/")) 
-	$FallbackSDMusic/List.add_item(tr("/none/"))
+	$Music/List.add_item("/none/") 
+	$Music/List.set_item_auto_translate_mode(-1, Node.AUTO_TRANSLATE_MODE_ALWAYS) 
+	$SDMusic/List.add_item("/none/")
+	$Music/List.set_item_auto_translate_mode(-1, Node.AUTO_TRANSLATE_MODE_ALWAYS) 
+	$FallbackMusic/List.add_item("/none/")
+	$Music/List.set_item_auto_translate_mode(-1, Node.AUTO_TRANSLATE_MODE_ALWAYS) 
+	$FallbackSDMusic/List.add_item("/none/")
+	$Music/List.set_item_auto_translate_mode(-1, Node.AUTO_TRANSLATE_MODE_ALWAYS) 
 	
 	$Music/List.add_separator()
 	$SDMusic/List.add_separator()

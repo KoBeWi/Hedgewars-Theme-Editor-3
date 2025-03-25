@@ -7,7 +7,6 @@ var pack_mode: bool
 var selected_theme: String
 
 func _ready():
-	get_parent().name = tr("Main")
 	HWTheme.theme_loaded.connect(on_theme_loaded)
 	Utils.main = self
 	
@@ -135,10 +134,10 @@ func set_user_path(path: String):
 	$UserPath/Label.text = Utils.hedgewars_user_path
 	Utils.save_settings()
 
-func change_language(item): # TODO: some warning? it probably discards changes
+func change_language(item):
 	Utils.preferred_language = language_list[item]
+	TranslationServer.set_locale(Utils.preferred_language)
 	Utils.save_settings()
-	get_tree().reload_current_scene()
 
 func bind_setting(button, setting):
 	button.button_pressed = Utils.get(setting)

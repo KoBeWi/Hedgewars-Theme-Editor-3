@@ -25,6 +25,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="List" type="ItemList" parent="ItemLists/Sprays"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -54,6 +55,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="List" type="ItemList" parent="ItemLists/Other"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -83,6 +85,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="List" type="ItemList" parent="ItemLists/Objects"]
+auto_translate_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
