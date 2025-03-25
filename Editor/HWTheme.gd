@@ -264,14 +264,14 @@ func load_theme(theme_dir: String) -> void:
 					i = 3
 				
 				while rects > 0:
-					object.buried.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					object.buried.append(Rect2i(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
 					rects -= 1
 					i += 4
 				
 				rects = int(params[i])
 				i += 1
 				while rects > 0:
-					object.visible.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					object.visible.append(Rect2i(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
 					rects -= 1
 					i += 4
 			"spray":
@@ -282,7 +282,7 @@ func load_theme(theme_dir: String) -> void:
 				var i := 2
 				
 				while rects > 0:
-					object.anchors.append(Rect2(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
+					object.anchors.append(Rect2i(int(params[i]), int(params[i+1]), int(params[i+2]), int(params[i+3])))
 					rects -= 1
 					i += 4
 			"overlays":
@@ -291,7 +291,7 @@ func load_theme(theme_dir: String) -> void:
 				var i := 2
 				
 				while rects > 0:
-					object.overlays.append(ThemeObject.Overlay.new(Vector2(int(params[i+0]), int(params[i+1])), params[i+2]))
+					object.overlays.append(ThemeObject.Overlay.new(Vector2i(int(params[i+0]), int(params[i+1])), params[i+2]))
 					rects -= 1
 					i += 3
 	
@@ -346,75 +346,113 @@ func get_theme_path() -> String:
 	else:
 		return Utils.get_themes_directory().path_join("%s_v%d" % [theme_name, theme_version])
 
-func refresh_oputput(emit_changed = true) -> void:
+func refresh_oputput(emit_changed := true) -> void:
 	theme_output = PackedStringArray()
 	theme_output.append("#Created with Hedgewars Theme Editor 3")
 	
-	if sky_defined: theme_output.append(str("sky = ", int(sky.r * 255), ", ", int(sky.g * 255), ", ", int(sky.b * 255)))
-	if border_defined: theme_output.append(str("border = ", int(border.r * 255), ", ", int(border.g * 255), ", ", int(border.b * 255)))
-	if sd_tint_defined: theme_output.append(str("sd-tint = ", int(sd_tint.r * 255), ", ", int(sd_tint.g * 255), ", ", int(sd_tint.b * 255), ", ", int(sd_tint.a * 255)))
+	if sky_defined:
+		theme_output.append("sky = %d, %d, %d" % get_color_format(sky))
 	
-	if water_top_defined: theme_output.append(str("water-top = ", int(water_top.r * 255), ", ", int(water_top.g * 255), ", ", int(water_top.b * 255)))
-	if water_bottom_defined: theme_output.append(str("water-bottom = ", int(water_bottom.r * 255), ", ", int(water_bottom.g * 255), ", ", int(water_bottom.b * 255)))
-	if water_top_defined or water_bottom_defined: theme_output.append(str("water-opacity = ", int(water_top.a * 255)))
+	if border_defined:
+		theme_output.append("border = %d, %d, %d" % get_color_format(border))
 	
-	if sd_water_top_defined: theme_output.append(str("sd-water-top = ", int(sd_water_top.r * 255), ", ", int(sd_water_top.g * 255), ", ", int(sd_water_top.b * 255)))
-	if sd_water_bottom_defined: theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
-	if sd_water_top_defined or sd_water_bottom_defined: theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
+	if sd_tint_defined:
+		theme_output.append("sd-tint = %d, %d, %d" % get_color_format(sd_tint))
 	
-	if music and music != "/none/": theme_output.append(str("music = ", music, ".ogg"))
-	if sd_music and sd_music != "/none/": theme_output.append(str("sd-music = ", sd_music, ".ogg"))
-	if fallback_music and fallback_music != "/none/": theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
-	if fallback_sd_music and fallback_sd_music != "/none/": theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
+	if water_top_defined:
+		theme_output.append("water-top = %d, %d, %d" % get_color_format(water_top))
 	
-	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
-	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
+	if water_bottom_defined:
+		theme_output.append("water-bottom = %d, %d, %d" % get_color_format(water_bottom))
 	
-	if clouds_defined: theme_output.append(str("clouds = ", clouds))
-	if sd_clouds_defined: theme_output.append(str("sd-clouds = ", sd_clouds))
+	if water_top_defined or water_bottom_defined:
+		theme_output.append("water-opacity = %d" % int(water_top.a * 255))
 	
-	if water_animation_defined: theme_output.append(str("water-animation = ", water_animation_frames, ", ", water_animation_duration, ", ", water_animation_speed * 0.01))
-	if sd_water_animation_defined: theme_output.append(str("sd-water-animation = ", sd_water_animation_frames, ", ", sd_water_animation_duration, ", ", sd_water_animation_speed * 0.01))
+	if sd_water_top_defined:
+		theme_output.append("sd-water-top = %d, %d, %d" % get_color_format(sd_water_top))
 	
-	for spray in sprays.keys(): theme_output.append(str("spray = ", spray, ", ", sprays[spray]))
+	if sd_water_bottom_defined:
+		theme_output.append("sd-water-bottom = %d, %d, %d" % get_color_format(sd_water_bottom))
 	
-	for object in objects.keys():
+	if sd_water_top_defined or sd_water_bottom_defined:
+		theme_output.append("sd-water-opacity = %d" % int(sd_water_top.a * 255))
+	
+	if not music.is_empty() and music != "/none/":
+		theme_output.append("music = %s.ogg" % music)
+	
+	if not sd_music.is_empty() and sd_music != "/none/":
+		theme_output.append("sd-music = %s.ogg" % sd_music)
+	
+	if not fallback_music.is_empty() and fallback_music != "/none/":
+		theme_output.append("fallback-music = %s.ogg" % fallback_music)
+	
+	if not fallback_sd_music.is_empty() and fallback_sd_music != "/none/":
+		theme_output.append("fallback-sd-music = %s.ogg" % fallback_sd_music)
+	
+	if flakes_defined:
+		theme_output.append("flakes = %d, %d, %d, %d, %d" % [flakes_amount, flakes_frames, flakes_duration, flakes_rotation, flakes_speed])
+	
+	if sd_flakes_defined:
+		theme_output.append("sd-flakes = %d, %d, %d, %d, %d" % [sd_flakes_amount, sd_flakes_frames, sd_flakes_duration, sd_flakes_rotation, sd_flakes_speed])
+	
+	if clouds_defined:
+		theme_output.append("clouds = %d" % clouds)
+	
+	if sd_clouds_defined:
+		theme_output.append("sd-clouds = %d" % sd_clouds)
+	
+	if water_animation_defined:
+		theme_output.append("water-animation = %d, %d, %d" % [water_animation_frames, water_animation_duration, water_animation_speed])
+	
+	if sd_water_animation_defined:
+		theme_output.append("sd-water-animation = %d, %d, %d" % [sd_water_animation_frames, sd_water_animation_duration, sd_water_animation_speed])
+	
+	for spray in sprays.keys():
+		theme_output.append("spray = %s, %d" % [spray, sprays[spray]])
+	
+	for object_name in objects.keys():
+		var object := objects[object_name]
+		
 		var line := PackedStringArray()
-		line.append(str(object, ", ", objects[object].number, ", "))
+		line.append(object_name)
+		line.append(str(object.number))
 		
-		if objects[object].buried.size() != 1:
-			line.append(str(objects[object].buried.size(), ", "))
-		for buried in objects[object].buried:
-			line.append(Utils.get_rect_string(buried) +  ", ")
+		if object.buried.size() != 1:
+			line.append(str(object.buried.size()))
 		
-		line.append(str(objects[object].visible.size()))
-		for visible in objects[object].visible:
-			line.append(", " + Utils.get_rect_string(visible))
+		for buried in object.buried:
+			line.append(Utils.get_rect_string(buried))
 		
-		theme_output.append("object = " + "".join(line))
+		line.append(str(object.visible.size()))
+		for visible in object.visible:
+			line.append(Utils.get_rect_string(visible))
 		
-		var anchors: Array = objects[object].anchors
-		if not anchors.is_empty():
+		theme_output.append("object = %s" % ", ".join(line))
+		
+		if not object.anchors.is_empty():
 			line = PackedStringArray()
-			line.append(str(object, ", ", anchors.size()))
+			line.append(object_name)
+			line.append(str(object.anchors.size()))
 			
-			for anchor in anchors:
-				line.append(", " + Utils.get_rect_string(anchor))
+			for anchor in object.anchors:
+				line.append(Utils.get_rect_string(anchor))
 			
-			theme_output.append("anchors = " + "".join(line))
+			theme_output.append("anchors = %s" % ", ".join(line))
 		
-		var overlays: Array = objects[object].overlays
-		if not overlays.is_empty():
+		if not object.overlays.is_empty():
 			line = PackedStringArray()
-			line.append(str(object, ", ", overlays.size()))
+			line.append(object_name)
+			line.append(str(object.overlays.size()))
 			
-			for overlay in overlays:
-				line.append(str(", ", overlay.position.x, ", ", overlay.position.y, ", ", overlay.image))
+			for overlay in object.overlays:
+				line.append(str(overlay.position.x))
+				line.append(str(overlay.position.y))
+				line.append(str(overlay.image))
 			
-			theme_output.append("overlays = " + "".join(line))
+			theme_output.append("overlays = %s" % ", ".join(line))
 	
 	if rope_step_defined:
-		theme_output.append(str("rope-step = ", rope_step))
+		theme_output.append("rope-step = %d" % rope_step)
 	
 	if hidden:
 		theme_output.append("hidden = true")
@@ -433,6 +471,9 @@ func refresh_oputput(emit_changed = true) -> void:
 	
 	if emit_changed:
 		output_updated.emit(theme_output != stored_output)
+
+func get_color_format(color: Color) -> Array:
+	return [int(color.r * 255), int(color.g * 255), int(color.b * 255)]
 
 func change_property(value, property: StringName) -> void:
 	if is_loading:
@@ -464,11 +505,13 @@ func is_theme_loaded() -> bool:
 class ThemeObject:
 	var name: String
 	var number: int
-	var buried: Array
-	var visible: Array
-	var anchors: Array
-	var overlays: Array
-	var on_water: bool
+	
+	var buried: Array[Rect2i]
+	var visible: Array[Rect2i]
+	
+	var anchors: Array[Rect2i]
+	var overlays: Array[Overlay]
+	var on_water: bool # TODO: unused
 	
 	func _init(p_name: String, p_number: int):
 		name = p_name
@@ -476,21 +519,18 @@ class ThemeObject:
 	
 	func clone() -> ThemeObject:
 		var cloned := ThemeObject.new(name, number)
-		cloned.buried = buried.duplicate()
-		cloned.visible = visible.duplicate()
-		cloned.anchors = anchors.duplicate()
-		cloned.overlays = overlays.duplicate()
+		cloned.buried.assign(buried.duplicate())
+		cloned.visible.assign(visible.duplicate())
+		cloned.anchors.assign(anchors.duplicate())
+		cloned.overlays.assign(overlays.duplicate())
 		cloned.on_water = on_water
 		return cloned
 	
 	func has_overlay(overlay: String) -> bool:
-		for o in overlays:
-			if o.image == overlay:
-				return true
-		return false
+		return overlays.any(func(o: Overlay) -> bool: return o.image == overlay)
 	
 	class Overlay:
-		var position: Vector2
+		var position: Vector2i
 		var image: String
 		
 		func _init(p_position: Vector2, p_image: String):
