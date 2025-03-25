@@ -60,18 +60,11 @@ func theme_selected(button: Button):
 		deselect_themes()
 
 func select_theme_button():
-	var style := preload("res://Resources/ThemeButtonSelected.stylebox")
 	for button: Button in themes_list.get_children():
 		if button.theme_name_label.text == selected_theme:
-			button.add_theme_stylebox_override(&"normal", style)
-			button.add_theme_stylebox_override(&"pressed", style)
-			button.add_theme_stylebox_override(&"focus", style)
-			button.add_theme_stylebox_override(&"hover", style)
+			button.theme_type_variation = &"ThemeButtonSelected"
 		else:
-			button.remove_theme_stylebox_override(&"normal")
-			button.remove_theme_stylebox_override(&"pressed")
-			button.remove_theme_stylebox_override(&"focus")
-			button.remove_theme_stylebox_override(&"hover")
+			button.theme_type_variation = &""
 
 func deselect_themes():
 	for button in themes_list.get_children():

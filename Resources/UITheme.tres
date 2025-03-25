@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=35 format=3 uid="uid://2mwmi5ggkjo3"]
+[gd_resource type="Theme" load_steps=36 format=3 uid="uid://2mwmi5ggkjo3"]
 
 [ext_resource type="FontFile" uid="uid://c4uahnnlediho" path="res://Resources/OpenSans-Semibold.ttf" id="1_7w1pw"]
 [ext_resource type="Texture2D" uid="uid://bmbd511v5nip1" path="res://Resources/Icons/CheckboxOn.png" id="2_1wgf3"]
@@ -164,6 +164,22 @@ border_color = Color(1, 0.8, 0, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f86ov"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.42, 0.328072, 0.0294, 0.701961)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="19"]
 content_margin_left = 4.0
@@ -354,6 +370,11 @@ TabContainer/styles/tab_focus = SubResource("StyleBoxEmpty_wrq6y")
 TabContainer/styles/tab_hovered = SubResource("7")
 TabContainer/styles/tab_selected = SubResource("7")
 TabContainer/styles/tab_unselected = SubResource("1")
+ThemeButtonSelected/base_type = &"Button"
+ThemeButtonSelected/styles/focus = SubResource("StyleBoxFlat_f86ov")
+ThemeButtonSelected/styles/hover = SubResource("StyleBoxFlat_f86ov")
+ThemeButtonSelected/styles/normal = SubResource("StyleBoxFlat_f86ov")
+ThemeButtonSelected/styles/pressed = SubResource("StyleBoxFlat_f86ov")
 TooltipPanel/styles/panel = SubResource("19")
 VScrollBar/icons/decrement = ExtResource("8_kq8nl")
 VScrollBar/icons/decrement_highlight = ExtResource("9_d4awt")
