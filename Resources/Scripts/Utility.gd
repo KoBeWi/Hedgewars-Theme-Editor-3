@@ -25,13 +25,13 @@ func _ready():
 		
 		match OS.get_name():
 			"Windows":
-				for dir in Utils.list_directory("C:/Program Files (x86)", false):
+				for dir in DirAccess.get_directories_at("C:/Program Files (x86)"):
 					if dir.begins_with("Hedgewars"):
 						path = "C:/Program Files (x86)".path_join(dir)
 						break
 				
 				if path.is_empty():
-					for dir in Utils.list_directory("C:/Program Files", false):
+					for dir in DirAccess.get_directories_at("C:/Program Files"):
 						if dir.begins_with("Hedgewars"):
 							path = "C:/Program Files".path_join(dir)
 							break
@@ -83,12 +83,6 @@ func load_texture(file: String, ignore_cache := false) -> Texture2D: ## TODO: re
 		texture_cache[file] = texture
 	
 	return texture_cache[file]
-
-func list_directory(path: String, for_files := true) -> PackedStringArray: # TODO: can be removed
-	if for_files:
-		return DirAccess.get_files_at(path)
-	else:
-		return DirAccess.get_directories_at(path)
 
 func get_color(rgb):
 	var result = []
@@ -149,7 +143,7 @@ func refresh_themes():
 	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
 		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
 	
-	for theme_dir in Utils.list_directory(Utils.get_themes_directory(), false): # TODO: handle invalid user path
+	for theme_dir in DirAccess.get_directories_at(Utils.get_themes_directory()): # TODO: handle invalid user path
 		var button = preload("uid://bec35mck45vma").instantiate()
 		main.themes_list.add_child(button)
 		button.set_theme_dir(theme_dir)

@@ -36,7 +36,7 @@ func _ready():
 	language_list.add_item("English")
 	language_list.set_item_metadata(-1, "en")
 	
-	for language in Utils.list_directory("res://Translation", true):
+	for language in DirAccess.get_files_at("res://Translation"):
 		if language.get_extension() != "po":
 			continue
 		
@@ -93,7 +93,7 @@ func pack_accept():# TODO: pack music (optional)
 	
 	for theme_name in selected:
 		var theme_base := "Data/Themes".path_join(theme_name)
-		for file in Utils.list_directory(Utils.get_theme_path(theme_name), true):
+		for file in DirAccess.get_files_at(Utils.get_theme_path(theme_name)):
 			if file in DONT_PACK:
 				continue
 			

@@ -27,20 +27,22 @@ func _ready():
 	$FallbackMusic/List.add_separator()
 	$FallbackSDMusic/List.add_separator()
 	
-	for music in Utils.list_directory(Utils.get_game_music_directory()):
-		if music.get_extension() == "ogg":
-			$Music/List.add_item(music.get_basename())
-			$SDMusic/List.add_item(music.get_basename())
-			$FallbackMusic/List.add_item(music.get_basename())
-			$FallbackSDMusic/List.add_item(music.get_basename())
+	for music in DirAccess.get_files_at(Utils.get_game_music_directory()):
+		if music.get_extension() != "ogg":
+			continue
+		$Music/List.add_item(music.get_basename())
+		$SDMusic/List.add_item(music.get_basename())
+		$FallbackMusic/List.add_item(music.get_basename())
+		$FallbackSDMusic/List.add_item(music.get_basename())
 	
 	$Music/List.add_separator()
 	$SDMusic/List.add_separator()
 	
-	for music in Utils.list_directory(Utils.get_user_music_directory()): # TODO:refresh on directory change
-		if music.get_extension() == "ogg":
-			$Music/List.add_item(music.get_basename())
-			$SDMusic/List.add_item(music.get_basename())
+	for music in DirAccess.get_files_at(Utils.get_user_music_directory()): # TODO:refresh on directory change
+		if music.get_extension() != "ogg":
+			continue
+		$Music/List.add_item(music.get_basename())
+		$SDMusic/List.add_item(music.get_basename())
 	
 	$Music/List.item_selected.connect(HWTheme.change_property_from_list.bind("music", $Music/List))
 	$SDMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind("sd_music", $SDMusic/List))

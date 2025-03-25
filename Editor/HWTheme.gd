@@ -304,7 +304,7 @@ func load_theme(theme_dir: String):
 		sd_clouds = clouds
 	
 	image_list.clear()
-	for file in Utils.list_directory(HWTheme.get_theme_path(), true):
+	for file in DirAccess.get_files_at(HWTheme.get_theme_path()):
 		if file.get_extension() == "png":
 			image_list.append(file.get_basename().get_file())
 	

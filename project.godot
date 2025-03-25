@@ -20,7 +20,7 @@ config/icon="res://Editor/icon.png"
 [autoload]
 
 Utils="*res://Resources/Scripts/Utility.gd"
-HWTheme="*res://Editor/Theme.gd"
+HWTheme="*res://Editor/HWTheme.gd"
 
 [debug]
 
