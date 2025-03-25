@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://6jy66k3cxx4g"]
 
 [ext_resource type="Texture2D" uid="uid://c84n844l2bqb1" path="res://Editor/icon.png" id="1"]
-[ext_resource type="Script" path="res://Tabs/Objects/ObjectPanel.gd" id="1_j5ibw"]
+[ext_resource type="Script" uid="uid://pjd767y1cxu5" path="res://Tabs/Objects/ObjectPanel.gd" id="1_j5ibw"]
 
 [node name="ObjectPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 128)

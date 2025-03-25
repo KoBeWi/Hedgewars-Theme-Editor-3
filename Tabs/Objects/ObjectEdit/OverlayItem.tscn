@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://8cyjki7icjjg"]
 
-[ext_resource type="Script" path="res://Tabs/Objects/ObjectEdit/OverlayItem.gd" id="1_g2l4f"]
+[ext_resource type="Script" uid="uid://cfid6ylf0tay" path="res://Tabs/Objects/ObjectEdit/OverlayItem.gd" id="1_g2l4f"]
 
 [node name="Button" type="Button"]
 offset_right = 142.0

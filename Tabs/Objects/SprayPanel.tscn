@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgsrwg7c16473"]
 
 [ext_resource type="Texture2D" uid="uid://c84n844l2bqb1" path="res://Editor/icon.png" id="1"]
-[ext_resource type="Script" path="res://Tabs/Objects/SprayPanel.gd" id="1_ulyri"]
+[ext_resource type="Script" uid="uid://1iiwnv4prf2o" path="res://Tabs/Objects/SprayPanel.gd" id="1_ulyri"]
 
 [node name="SprayPanel" type="PanelContainer"]
 custom_minimum_size = Vector2(0, 128)

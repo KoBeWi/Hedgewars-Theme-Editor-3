@@ -1,8 +1,8 @@
 [gd_scene load_steps=24 format=3 uid="uid://kju5d6s6yqbj"]
 
-[ext_resource type="Script" path="res://Tabs/Objects/ObjectEdit/ObjectEdit.gd" id="1"]
+[ext_resource type="Script" uid="uid://chhwifky232fw" path="res://Tabs/Objects/ObjectEdit/ObjectEdit.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dfsriw8xjado0" path="res://Tabs/Objects/Checker.png" id="2"]
-[ext_resource type="Script" path="res://Tabs/Objects/ObjectEdit/ObjectImageEdit.gd" id="3"]
+[ext_resource type="Script" uid="uid://cre1p5syougbp" path="res://Tabs/Objects/ObjectEdit/ObjectImageEdit.gd" id="3"]
 [ext_resource type="Theme" uid="uid://2mwmi5ggkjo3" path="res://Resources/UITheme.tres" id="4"]
 
 [sub_resource type="StyleBoxFlat" id="1"]

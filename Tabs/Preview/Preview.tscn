@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://caml34a3oook0"]
 
-[ext_resource type="Script" path="res://Tabs/Preview/Preview.gd" id="1"]
+[ext_resource type="Script" uid="uid://cvub6da50hiyw" path="res://Tabs/Preview/Preview.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b5yto2mbqnxbs" path="res://Tabs/Preview/PreviewScene.tscn" id="2"]
-[ext_resource type="Script" path="res://Tabs/Preview/PreviewViewport.gd" id="2_xp7sy"]
+[ext_resource type="Script" uid="uid://csw3hvhpxd58v" path="res://Tabs/Preview/PreviewViewport.gd" id="2_xp7sy"]
 
 [node name="Preview" type="VBoxContainer"]
 anchors_preset = 15

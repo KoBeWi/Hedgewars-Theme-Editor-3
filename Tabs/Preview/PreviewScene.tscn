@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://b5yto2mbqnxbs"]
 
-[ext_resource type="Script" path="res://Tabs/Preview/PreviewScene.gd" id="1"]
+[ext_resource type="Script" uid="uid://chmeuew32m365" path="res://Tabs/Preview/PreviewScene.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://b4ennmbrrvdyf" path="res://Tabs/Preview/Arrow.png" id="2"]
-[ext_resource type="Script" path="res://Tabs/Preview/Clouds.gd" id="3"]
+[ext_resource type="Script" uid="uid://cljgfr644bq7k" path="res://Tabs/Preview/Clouds.gd" id="3"]
 
 [sub_resource type="CanvasItemMaterial" id="1"]
 particles_animation = true
@@ -24,7 +24,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="3"]
 shader = SubResource("2")
 shader_parameter/top_color = Color(0, 0, 0, 1)
-shader_parameter/bottom_color = null
+shader_parameter/bottom_color = Color(0, 0, 0, 1)
 
 [node name="PreviewScene" type="Node2D"]
 script = ExtResource("1")

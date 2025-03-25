@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://ds7jlu01k8mhi"]
 
-[ext_resource type="Script" path="res://Tabs/Objects/Objects.gd" id="1"]
-[ext_resource type="Script" path="res://Resources/Scripts/FormatLabel.gd" id="2"]
+[ext_resource type="Script" uid="uid://b6ufk2n4vu1np" path="res://Tabs/Objects/Objects.gd" id="1"]
+[ext_resource type="Script" uid="uid://bp0l5wwmvtkw" path="res://Resources/Scripts/FormatLabel.gd" id="2"]
 
 [node name="Objects" type="VBoxContainer"]
 offset_right = 1016.0

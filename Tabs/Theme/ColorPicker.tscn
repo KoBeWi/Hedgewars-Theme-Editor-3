@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgur4nf4ueewo"]
 
-[ext_resource type="Script" path="res://Tabs/Theme/ColorPicker.gd" id="1_fqhvq"]
+[ext_resource type="Script" uid="uid://bngemgariar5j" path="res://Tabs/Theme/ColorPicker.gd" id="1_fqhvq"]
 
 [node name="ColorPicker" type="HBoxContainer"]
 offset_right = 298.0
