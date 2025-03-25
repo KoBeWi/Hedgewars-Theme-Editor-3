@@ -150,15 +150,9 @@ func refresh_themes():
 		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
 	
 	for theme_dir in Utils.list_directory(Utils.get_themes_directory(), false): # TODO: handle invalid user path
-		var v = theme_dir.split("_v")
-		
-		var button = preload("uid://bec35mck45vma").instantiate() # ThemeButton.tscn
-		main.get_node("ThemeAlign/ThemesList").add_child(button)
-		button.set_meta("theme", theme_dir)
-		button.theme_name.text = v[0]
-		button.theme_icon.texture = Utils.load_texture(Utils.get_themes_directory().path_join(theme_dir).path_join("icon@2x.png"))
-		if v.size() == 2:
-			button.theme_version.text = str("v", int(v[1]))
+		var button = preload("uid://bec35mck45vma").instantiate()
+		main.themes_list.add_child(button)
+		button.set_theme_dir(theme_dir)
 		
 		button.pressed.connect(main.theme_selected.bind(button))
 	

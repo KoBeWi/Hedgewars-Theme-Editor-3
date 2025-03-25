@@ -2,7 +2,14 @@ extends Control
 
 const DONT_PACK = ["theme.bak", "desktop.ini", "thumbs.db"]
 
-var language_list: Array
+@onready var game_path_label: Label = %GamePathLabel
+@onready var user_path_label: Label = %UserPathLabel
+@onready var language_list: OptionButton = %LanguageList
+
+@onready var save_container: Container = %SaveContainer
+@onready var theme_version: SpinBox = %ThemeVersion
+@onready var themes_list: Container = %ThemesList
+
 var pack_mode: bool
 var selected_theme: String
 
@@ -10,61 +17,52 @@ func _ready():
 	HWTheme.theme_loaded.connect(on_theme_loaded)
 	Utils.main = self
 	
-	$Save/Button.pressed.connect(HWTheme.save_theme)
-	$GamePath/Button.pressed.connect($Dialogs/GameDialog.popup_centered)
-	$UserPath/Button.pressed.connect($Dialogs/UserDialog.popup_centered)
-	$Dialogs/GameDialog.dir_selected.connect(set_game_path)
-	$Dialogs/UserDialog.dir_selected.connect(set_user_path)
-	$LanguageContainer/LanguageList.item_selected.connect(change_language)
-	$PackContainer/PackThemes.pressed.connect(pack_start)
-	$PackContainer/CreatePack.pressed.connect(pack_accept)
-	$PackContainer/Cancel.pressed.connect(pack_cancel)
-	$Save/Version.value_changed.connect(HWTheme.set_version)
+	%Version.text += ProjectSettings.get_setting("application/config/version")
+	%SaveButton.pressed.connect(HWTheme.save_theme)
+	theme_version.value_changed.connect(HWTheme.set_version)
 	
-	$GamePath/Label.text = Utils.hedgewars_path
-	$UserPath/Label.text = Utils.hedgewars_user_path
+	game_path_label.text = Utils.hedgewars_path
+	user_path_label.text = Utils.hedgewars_user_path
 	
-	$Dialogs/GameDialog.current_dir = Utils.hedgewars_path
-	$Dialogs/UserDialog.current_dir = Utils.hedgewars_user_path
+	%GameDialog.current_dir = Utils.hedgewars_path
+	%UserDialog.current_dir = Utils.hedgewars_user_path
 	
-	bind_setting($Save/EnableAutosave, "enable_autosave")
-	bind_setting($MaximizeContainer/EnableMaximize, "maximize_on_start")
-	bind_setting($PackContainer/IncludeMusic, "include_music")
+	bind_setting(%EnableAutosave, "enable_autosave")
+	bind_setting(%EnableMaximize, "maximize_on_start")
+	bind_setting(%IncludeMusic, "include_music")
 	
 	Utils.refresh_themes()
 	
-	var language_name_list: PackedStringArray
-	
-	language_list.append("en")
-	language_name_list.append("English")
+	language_list.add_item("English")
+	language_list.set_item_metadata(-1, "en")
 	
 	for language in Utils.list_directory("res://Translation", true):
-		if language.get_extension() == "po":
-			language_list.append(language.get_basename())
-			var translation: Translation = load("res://Translation".path_join(language))
-			language_name_list.append(translation.get_message(&"TRANSLATED_LANGUAGE_NAME"))
+		if language.get_extension() != "po":
+			continue
+		
+		var translation: Translation = load("res://Translation".path_join(language))
+		language_list.add_item(translation.get_message(&"TRANSLATED_LANGUAGE_NAME"))
+		language_list.set_item_metadata(-1, language.get_basename())
 	
 	var selected_language = 0
-	for i in language_list.size():
-		if Utils.preferred_language.contains(language_list[i]):
+	for i in language_list.item_count:
+		if Utils.preferred_language.contains(language_list.get_item_metadata(i)):
 			selected_language = i
-		
-		$LanguageContainer/LanguageList.add_item(language_name_list[i])
 	
 	TranslationServer.set_locale(Utils.preferred_language)
-	$LanguageContainer/LanguageList.selected = selected_language
+	language_list.selected = selected_language
 
 func theme_selected(button: Button):
 	if not pack_mode:
-		HWTheme.load_theme(button.get_meta("theme"), int(button.theme_version.text))
-		selected_theme = button.theme_name.text
+		HWTheme.load_theme(button.theme_dir, int(button.theme_version.text))
+		selected_theme = button.theme_name_label.text
 		select_theme_button()
 		deselect_themes()
 
 func select_theme_button():
 	var style := preload("res://Resources/ThemeButtonSelected.stylebox")
-	for button: Button in $ThemeAlign/ThemesList.get_children():
-		if button.theme_name.text == selected_theme:
+	for button: Button in themes_list.get_children():
+		if button.theme_name_label.text == selected_theme:
 			button.add_theme_stylebox_override(&"normal", style)
 			button.add_theme_stylebox_override(&"pressed", style)
 			button.add_theme_stylebox_override(&"focus", style)
@@ -76,7 +74,7 @@ func select_theme_button():
 			button.remove_theme_stylebox_override(&"hover")
 
 func deselect_themes():
-	for button in $ThemeAlign/ThemesList.get_children():
+	for button in themes_list.get_children():
 		button.button_pressed = false
 
 func pack_start():
@@ -89,7 +87,7 @@ func pack_accept():# TODO: pack music (optional)
 	var selected = []
 	for button in $ThemeAlign/ThemesList.get_children():
 		if button.button_pressed:
-			selected.append(button.get_meta("theme"))
+			selected.append(button.theme_name)
 	
 	var pack_name: String = $PackContainer/PackName.text
 	if pack_name.is_empty():
@@ -120,22 +118,21 @@ func pack_cancel():
 	deselect_themes()
 
 func on_theme_loaded():
-	$SaveHeader.visible = true
-	$Save.visible = true
-	$Save/Version.value = HWTheme.theme_version
+	save_container.show()
+	theme_version.value = HWTheme.theme_version
 
 func set_game_path(path: String):
 	Utils.hedgewars_path = path
-	$GamePath/Label.text = Utils.hedgewars_path
+	game_path_label.text = Utils.hedgewars_path
 	Utils.save_settings()
 
 func set_user_path(path: String):
 	Utils.hedgewars_user_path = path
-	$UserPath/Label.text = Utils.hedgewars_user_path
+	user_path_label.text = Utils.hedgewars_user_path
 	Utils.save_settings()
 
 func change_language(item):
-	Utils.preferred_language = language_list[item]
+	Utils.preferred_language = language_list.get_item_metadata(item)
 	TranslationServer.set_locale(Utils.preferred_language)
 	Utils.save_settings()
 

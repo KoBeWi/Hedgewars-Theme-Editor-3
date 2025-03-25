@@ -21,10 +21,11 @@ layout_mode = 2
 theme_override_constants/margin_right = 8
 
 [node name="Version" type="Label" parent="VersionContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
-text = "v0.9.1a"
+text = "v"
 horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="."]
@@ -45,7 +46,9 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="GamePath"]
+[node name="GamePathLabel" type="Label" parent="GamePath"]
+unique_name_in_owner = true
+auto_translate_mode = 2
 layout_mode = 2
 
 [node name="Button" type="Button" parent="GamePath"]
@@ -62,7 +65,9 @@ horizontal_alignment = 1
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="UserPath"]
+[node name="UserPathLabel" type="Label" parent="UserPath"]
+unique_name_in_owner = true
+auto_translate_mode = 2
 layout_mode = 2
 
 [node name="Button" type="Button" parent="UserPath"]
@@ -80,6 +85,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="EnableMaximize" type="CheckBox" parent="MaximizeContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Maximize on start"
 
@@ -93,6 +99,7 @@ text = "Preferred language"
 horizontal_alignment = 1
 
 [node name="LanguageList" type="OptionButton" parent="LanguageContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 
 [node name="ThemesHeader" type="Label" parent="."]
@@ -142,52 +149,59 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="IncludeMusic" type="CheckBox" parent="PackContainer"]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 text = "Include custom music"
 
-[node name="SaveHeader" type="Label" parent="."]
+[node name="SaveContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
 visible = false
+layout_mode = 2
+
+[node name="SaveHeader" type="Label" parent="SaveContainer"]
 layout_mode = 2
 theme_type_variation = &"Section"
 text = "Save theme"
 horizontal_alignment = 1
 
-[node name="Save" type="HBoxContainer" parent="."]
-visible = false
+[node name="Save" type="HBoxContainer" parent="SaveContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="Save"]
+[node name="SaveButton" type="Button" parent="SaveContainer/Save"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Save theme"
 
-[node name="VSeparator" type="VSeparator" parent="Save"]
+[node name="VSeparator" type="VSeparator" parent="SaveContainer/Save"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Save"]
+[node name="Label" type="Label" parent="SaveContainer/Save"]
 layout_mode = 2
 text = "Version"
 
-[node name="Version" type="SpinBox" parent="Save"]
+[node name="ThemeVersion" type="SpinBox" parent="SaveContainer/Save"]
+unique_name_in_owner = true
 layout_mode = 2
 tooltip_text = "Use 0 to disable versioning"
 max_value = 10000.0
 
-[node name="VSeparator2" type="VSeparator" parent="Save"]
+[node name="VSeparator2" type="VSeparator" parent="SaveContainer/Save"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="EnableAutosave" type="CheckBox" parent="Save"]
+[node name="EnableAutosave" type="CheckBox" parent="SaveContainer/Save"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Enable autosave"
 
-[node name="VSeparator3" type="VSeparator" parent="Save"]
+[node name="VSeparator3" type="VSeparator" parent="SaveContainer/Save"]
 custom_minimum_size = Vector2(16, 0)
 layout_mode = 2
 
-[node name="OpenDir" type="Button" parent="Save"]
+[node name="OpenDir" type="Button" parent="SaveContainer/Save"]
 layout_mode = 2
 text = "Open theme directory"
 
@@ -213,6 +227,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="ThemesList" type="HFlowContainer" parent="ThemeAlign"]
+unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -221,10 +236,12 @@ size_flags_horizontal = 3
 layout_mode = 2
 
 [node name="GameDialog" type="FileDialog" parent="Dialogs"]
+unique_name_in_owner = true
 size = Vector2i(600, 400)
 access = 2
 
 [node name="UserDialog" type="FileDialog" parent="Dialogs"]
+unique_name_in_owner = true
 size = Vector2i(600, 400)
 access = 2
 
@@ -249,6 +266,14 @@ placeholder_text = "Enter name"
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
 
-[connection signal="pressed" from="Save/OpenDir" to="." method="open_theme_directory"]
+[connection signal="pressed" from="GamePath/Button" to="Dialogs/GameDialog" method="popup_centered"]
+[connection signal="pressed" from="UserPath/Button" to="Dialogs/UserDialog" method="popup_centered"]
+[connection signal="item_selected" from="LanguageContainer/LanguageList" to="." method="change_language"]
+[connection signal="pressed" from="PackContainer/PackThemes" to="." method="pack_start"]
+[connection signal="pressed" from="PackContainer/CreatePack" to="." method="pack_accept"]
+[connection signal="pressed" from="PackContainer/Cancel" to="." method="pack_cancel"]
+[connection signal="pressed" from="SaveContainer/Save/OpenDir" to="." method="open_theme_directory"]
 [connection signal="pressed" from="NewTheme" to="." method="on_new_theme_pressed"]
+[connection signal="dir_selected" from="Dialogs/GameDialog" to="." method="set_game_path"]
+[connection signal="dir_selected" from="Dialogs/UserDialog" to="." method="set_user_path"]
 [connection signal="confirmed" from="Dialogs/NewThemeDialog" to="." method="new_theme"]
