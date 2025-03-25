@@ -44,10 +44,10 @@ func _ready():
 		$Music/List.add_item(music.get_basename())
 		$SDMusic/List.add_item(music.get_basename())
 	
-	$Music/List.item_selected.connect(HWTheme.change_property_from_list.bind("music", $Music/List))
-	$SDMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind("sd_music", $SDMusic/List))
-	$FallbackMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind("fallback_music", $FallbackMusic/List))
-	$FallbackSDMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind("fallback_sd_music", $FallbackSDMusic/List))
+	$Music/List.item_selected.connect(HWTheme.change_property_from_list.bind(&"music", $Music/List))
+	$SDMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind(&"sd_music", $SDMusic/List))
+	$FallbackMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind(&"fallback_music", $FallbackMusic/List))
+	$FallbackSDMusic/List.item_selected.connect(HWTheme.change_property_from_list.bind(&"fallback_sd_music", $FallbackSDMusic/List))
 	
 	
 	$Colors/UpperWater/ColorPickerButton.color_changed.connect(synchronize_water_alpha.bind($Colors/LowerWater/ColorPickerButton))

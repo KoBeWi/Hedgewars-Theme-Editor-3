@@ -65,9 +65,9 @@ var flatten_flakes: bool
 var snow: bool
 var ice: bool
 
-var objects: Dictionary
-var sprays: Dictionary
-var image_list: Array
+var objects: Dictionary[String, ThemeObject]
+var sprays: Dictionary[String, int]
+var image_list: PackedStringArray
 
 var theme_output: PackedStringArray
 var stored_output: PackedStringArray
@@ -76,7 +76,7 @@ var is_loading: bool
 signal theme_loaded
 signal output_updated
 
-func load_defaults():
+func load_defaults() -> void:
 	music = ""
 	sd_music = ""
 	fallback_music = ""
@@ -141,7 +141,7 @@ func load_defaults():
 	objects = {}
 	sprays = {}
 
-func load_theme(theme_dir: String):
+func load_theme(theme_dir: String) -> void:
 	if is_theme_loaded():
 		Utils.dir_watcher.remove_scan_directory(get_theme_path())
 		Utils.texture_cache.clear()
@@ -168,7 +168,7 @@ func load_theme(theme_dir: String):
 	var water_opacity := 0.5
 	var sd_water_opacity := 0.5
 	for line in lines:
-		var split = line.split(" = ") # TODO: probably some regex for better handling
+		var split = line.split(" = ") # TODO: probably some regex for better handling, or at least "=" and trim
 		var params = []
 		if split.size() > 1: params = split[1].split(", ")
 		
@@ -315,7 +315,7 @@ func load_theme(theme_dir: String):
 	stored_output = theme_output
 	is_loading = false
 
-func save_theme():
+func save_theme() -> void:
 #	refresh_oputput(false)
 	
 	DirAccess.rename_absolute(get_theme_path().path_join("theme.cfg"), get_theme_path().path_join("theme.bak"))
@@ -346,9 +346,8 @@ func get_theme_path() -> String:
 	else:
 		return Utils.get_themes_directory().path_join("%s_v%d" % [theme_name, theme_version])
 
-func refresh_oputput(emit_changed = true):
+func refresh_oputput(emit_changed = true) -> void:
 	theme_output = PackedStringArray()
-	
 	theme_output.append("#Created with Hedgewars Theme Editor 3")
 	
 	if sky_defined: theme_output.append(str("sky = ", int(sky.r * 255), ", ", int(sky.g * 255), ", ", int(sky.b * 255)))
@@ -363,10 +362,10 @@ func refresh_oputput(emit_changed = true):
 	if sd_water_bottom_defined: theme_output.append(str("sd-water-bottom = ", int(sd_water_bottom.r * 255), ", ", int(sd_water_bottom.g * 255), ", ", int(sd_water_bottom.b * 255)))
 	if sd_water_top_defined or sd_water_bottom_defined: theme_output.append(str("sd-water-opacity = ", int(sd_water_top.a * 255)))
 	
-	if music and music != tr("/none/"): theme_output.append(str("music = ", music, ".ogg"))
-	if sd_music and sd_music != tr("/none/"): theme_output.append(str("sd-music = ", sd_music, ".ogg"))
-	if fallback_music and fallback_music != tr("/none/"): theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
-	if fallback_sd_music and fallback_sd_music != tr("/none/"): theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
+	if music and music != "/none/": theme_output.append(str("music = ", music, ".ogg"))
+	if sd_music and sd_music != "/none/": theme_output.append(str("sd-music = ", sd_music, ".ogg"))
+	if fallback_music and fallback_music != "/none/": theme_output.append(str("fallback-music = ", fallback_music, ".ogg"))
+	if fallback_sd_music and fallback_sd_music != "/none/": theme_output.append(str("fallback-sd-music = ", fallback_sd_music, ".ogg"))
 	
 	if flakes_defined: theme_output.append(str("flakes = ", flakes_amount, ", ", flakes_frames, ", ", flakes_duration, ", ", flakes_rotation, ", ", flakes_speed))
 	if sd_flakes_defined: theme_output.append(str("sd-flakes = ", sd_flakes_amount, ", ", sd_flakes_frames, ", ", sd_flakes_duration, ", ", sd_flakes_rotation, ", ", sd_flakes_speed))
@@ -435,22 +434,22 @@ func refresh_oputput(emit_changed = true):
 	if emit_changed:
 		output_updated.emit(theme_output != stored_output)
 
-func change_property(value, property: String):
+func change_property(value, property: StringName) -> void:
 	if is_loading:
 		return
 	
 	set(property, value)
 	apply_change()
 	
-func change_property_from_list(item: int, property: String, list: OptionButton):
+func change_property_from_list(item: int, property: StringName, list: OptionButton) -> void:
 	change_property(list.get_item_text(item), property)
 
-func apply_change():
+func apply_change() -> void:
 	refresh_oputput()
 	if Utils.enable_autosave:
 		save_theme()
 
-func set_version(version):
+func set_version(version: int) -> void:
 	theme_version = version
 	
 	if not is_loading and Utils.enable_autosave:

@@ -230,13 +230,13 @@ func move_item(from, to):
 	from.remove_item(item)
 	
 	if from == $ItemLists/Other/List and to == $ItemLists/Sprays/List:
-		Utils.object_modified.emit("spray+", item_name)
+		Utils.object_modified.emit(&"spray+", item_name)
 	elif from == $ItemLists/Sprays/List and to == $ItemLists/Other/List:
-		Utils.object_modified.emit("spray-", item_name)
+		Utils.object_modified.emit(&"spray-", item_name)
 	elif from == $ItemLists/Other/List and to == $ItemLists/Objects/List:
-		Utils.object_modified.emit("object+", item_name)
+		Utils.object_modified.emit(&"object+", item_name)
 	elif from == $ItemLists/Objects/List and to == $ItemLists/Other/List:
-		Utils.object_modified.emit("object-", item_name)
+		Utils.object_modified.emit(&"object-", item_name)
 
 func on_sprays_click(item):
 	$ItemLists/Objects/List.deselect_all()

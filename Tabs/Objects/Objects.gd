@@ -24,20 +24,20 @@ func on_theme_loaded():
 	
 	update_labels()
 
-func on_object_modified(operation, object):
+func on_object_modified(operation: StringName, object: String):
 	match operation:
-		"spray+":
+		&"spray+":
 			HWTheme.sprays[object] = 1
 			add_spray(object)
-		"spray-":
+		&"spray-":
 			HWTheme.sprays.erase(object)
 			remove_spray(object)
-		"object+":
-			object = HWTheme.ThemeObject.new(object, 1)
-			HWTheme.objects[object.name] = object
+		&"object+":
+			var new_object := HWTheme.ThemeObject.new(object, 1)
+			HWTheme.objects[object] = new_object
 			var panel = add_object(object)
-			object.buried.append(Rect2(Vector2(), panel.get_node("Container/Image").texture.get_size()))
-		"object-":
+			new_object.buried.append(Rect2(Vector2(), panel.get_node("Container/Image").texture.get_size()))
+		&"object-":
 			HWTheme.objects.erase(object)
 			remove_object(object)
 	

@@ -1,7 +1,7 @@
 extends Node
 
 var dir_watcher: DirectoryWatcher
-var texture_cache: Dictionary
+var texture_cache: Dictionary[String, Texture2D]
 
 var preferred_language: String
 var hedgewars_path: String
@@ -12,12 +12,12 @@ var enable_autosave := true
 var maximize_on_start := true
 var include_music := true
 
-var temp_editor
-var main
+var temp_editor: Node
+var main: Node
 
-signal object_modified(operation, object)
+signal object_modified(operation: StringName, object: String)
 
-func _ready():
+func _ready() -> void:
 	load_settings()
 	
 	if hedgewars_path.is_empty():
@@ -84,26 +84,29 @@ func load_texture(file: String, ignore_cache := false) -> Texture2D: ## TODO: re
 	
 	return texture_cache[file]
 
-func get_color(rgb):
-	var result = []
-	for i in 3: result.append(get_color_value(rgb[i]))
-	return Color(result[0], result[1], result[2])
+func get_color(rgb: PackedStringArray) -> Color:
+	var result: Color
+	result.r = get_color_value(rgb[0])
+	result.g = get_color_value(rgb[1])
+	result.b = get_color_value(rgb[2])
+	return result
+
+func get_color_value(val: String) -> float:
+	if val.begins_with("$"):
+		return val.substr(1).hex_to_int() / 255.0
+	return val.to_int() / 255.0
 
 func get_rect_string(rect: Rect2) -> String:
 	return str(rect.position.x, ", ", rect.position.y, ", ", rect.size.x, ", ", rect.size.y)
 
-func get_color_value(val):
-	if val.begins_with("$"): return val.substr(1, 2).hex_to_int() / 255.0
-	else: return int(val) / 255.0
-
-func select_music(list, item):
+func select_music(list: OptionButton, item: String) -> void:
 	list.selected = 0
 	for i in list.get_item_count():
 		if list.get_item_text(i) == item:
 			list.selected = i
 			return
 
-func load_settings():
+func load_settings() -> void:
 	var config := FileAccess.get_file_as_string("user://config.txt")
 	if not config.is_empty():
 		var config_data: Dictionary = str_to_var(config)
@@ -127,7 +130,7 @@ func load_settings():
 		else:
 			preferred_language = OS.get_locale()
 
-func save_settings():
+func save_settings() -> void:
 	var config_data: Dictionary
 	config_data["preferred_language"] = preferred_language
 	config_data["enable_autosave"] = enable_autosave
@@ -139,7 +142,7 @@ func save_settings():
 	var config := FileAccess.open("user://config.txt", FileAccess.WRITE)
 	config.store_string(var_to_str(config_data))
 
-func refresh_themes():
+func refresh_themes() -> void:
 	for i in main.get_node("ThemeAlign/ThemesList").get_child_count():
 		main.get_node("ThemeAlign/ThemesList").get_child(0).free()
 	
