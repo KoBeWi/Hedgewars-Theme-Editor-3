@@ -141,15 +141,22 @@ func load_defaults():
 	objects = {}
 	sprays = {}
 
-func load_theme(_theme_name, version):
-	if theme_name:
+func load_theme(theme_dir: String):
+	if is_theme_loaded():
 		Utils.dir_watcher.remove_scan_directory(get_theme_path())
 		Utils.texture_cache.clear()
 	
 	load_defaults()
-	theme_name = _theme_name
-	theme_version = version
-	saved_version = version
+	
+	var v := theme_dir.split("_v")
+	theme_name = v[0]
+	if v.size() == 1:
+		theme_version = 0
+		saved_version = 0
+	else:
+		theme_version = v[1].to_int()
+		saved_version = theme_version
+	
 	is_loading = true
 	Utils.dir_watcher.add_scan_directory(get_theme_path())
 	
@@ -334,7 +341,10 @@ func save_theme():
 	output_updated.emit(theme_output != stored_output)
 
 func get_theme_path() -> String:
-	return Utils.get_themes_directory().path_join(theme_name)
+	if theme_version == 0:
+		return Utils.get_themes_directory().path_join(theme_name)
+	else:
+		return Utils.get_themes_directory().path_join("%s_v%d" % [theme_name, theme_version])
 
 func refresh_oputput(emit_changed = true):
 	theme_output = PackedStringArray()
@@ -448,6 +458,9 @@ func set_version(version):
 
 func basename() -> String:
 	return theme_name.split("_v")[0]
+
+func is_theme_loaded() -> bool:
+	return not theme_name.is_empty()
 
 class ThemeObject:
 	var name: String

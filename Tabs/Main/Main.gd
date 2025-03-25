@@ -54,7 +54,7 @@ func _ready():
 
 func theme_selected(button: Button):
 	if not pack_mode:
-		HWTheme.load_theme(button.theme_dir, int(button.theme_version.text))
+		HWTheme.load_theme(button.get_theme_dir())
 		selected_theme = button.theme_name_label.text
 		select_theme_button()
 		deselect_themes()
@@ -77,10 +77,10 @@ func pack_start():
 	pack_mode = true
 
 func pack_accept():# TODO: pack music (optional)
-	var selected = []
-	for button in $ThemeAlign/ThemesList.get_children():
-		if button.button_pressed:
-			selected.append(button.theme_name)
+	var selected: Array[String]
+	selected.assign(themes_list.get_children().filter(
+		func(button: Button) -> bool: return button.button_pressed).map(
+			func(button) -> String: return button.get_theme_dir()))
 	
 	var pack_name: String = $PackContainer/PackName.text
 	if pack_name.is_empty():
